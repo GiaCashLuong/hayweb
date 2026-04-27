@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yêu cầu báo giá – HAYWEB</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav id="nav"></nav>
+
+<div class="new-project-layout">
+  <!-- Step Indicator -->
+  <div class="step-indicator" id="step-indicator"></div>
+
+  <!-- Step 1: Overview -->
+  <div class="form-step active" id="step-1">
+    <h2 class="form-step-title" id="s1-title"></h2>
+    <p class="form-step-desc" id="s1-desc"></p>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label" id="lbl-pname"></label>
+        <input type="text" id="project-name" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="lbl-ptype"></label>
+        <select id="project-type" class="form-select">
+          <option value="landing">Landing Page</option>
+          <option value="business">Business Website</option>
+          <option value="ecommerce">E-commerce / Bán hàng</option>
+          <option value="webapp">Web Application</option>
+          <option value="other">Khác / Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" id="lbl-pdesc"></label>
+      <textarea id="project-desc" class="form-textarea" rows="4" required></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label" id="lbl-ref"></label>
+      <input type="text" id="project-refs" class="form-input" placeholder="https://example.com, ...">
+    </div>
+    <button class="btn-primary" id="next-1" style="margin-top:1.5rem"></button>
+  </div>
+
+  <!-- Step 2: Features -->
+  <div class="form-step" id="step-2">
+    <h2 class="form-step-title" id="s2-title"></h2>
+    <p class="form-step-desc" id="s2-desc"></p>
+    <div class="form-group">
+      <label class="form-label" id="lbl-features"></label>
+      <div class="tag-group" id="features-tags"></div>
+    </div>
+    <div class="form-group" style="margin-top:1.5rem">
+      <label class="form-label" id="lbl-pages"></label>
+      <select id="num-pages" class="form-select">
+        <option value="1">1 trang / 1 page</option>
+        <option value="3">3–5 trang / 3–5 pages</option>
+        <option value="8" selected>5–8 trang / 5–8 pages</option>
+        <option value="15">8–15 trang / 8–15 pages</option>
+        <option value="20">15+ trang / 15+ pages</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" id="lbl-budget"></label>
+      <select id="budget" class="form-select">
+        <option value="starter">Starter – 5.000.000₫ / $200</option>
+        <option value="pro" selected>Professional – 15.000.000₫ / $600</option>
+        <option value="enterprise">Enterprise – 35.000.000₫ / $1,400</option>
+        <option value="custom">Tùy chỉnh / Custom</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1.5rem">
+      <button class="btn-outline" id="prev-2"></button>
+      <button class="btn-primary" id="next-2"></button>
+    </div>
+  </div>
+
+  <!-- Step 3: Design & Timeline -->
+  <div class="form-step" id="step-3">
+    <h2 class="form-step-title" id="s3-title"></h2>
+    <p class="form-step-desc" id="s3-desc"></p>
+    <div class="form-group">
+      <label class="form-label" id="lbl-style"></label>
+      <div class="tag-group" id="style-tags"></div>
+    </div>
+    <div class="form-row" style="margin-top:1.5rem">
+      <div class="form-group">
+        <label class="form-label" id="lbl-colors"></label>
+        <input type="text" id="colors" class="form-input" placeholder="VD: đen-vàng, xanh navy...">
+      </div>
+      <div class="form-group">
+        <label class="form-label" id="lbl-deadline"></label>
+        <input type="date" id="deadline" class="form-input">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" id="lbl-extra"></label>
+      <textarea id="extra-notes" class="form-textarea" rows="3"></textarea>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1.5rem">
+      <button class="btn-outline" id="prev-3"></button>
+      <button class="btn-primary" id="submit-btn"></button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="form-step" id="step-loading">
+    <div class="quote-loading">
+      <div class="spinner"></div>
+      <p id="loading-text"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/supabase.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/page-new-project.js"></script>
+</body>
+</html>

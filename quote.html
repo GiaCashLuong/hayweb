@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo giá dự án – HAYWEB</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav id="nav"></nav>
+
+<main style="padding-top:6rem;padding-bottom:4rem">
+  <div class="container">
+    <div style="margin-bottom:2rem">
+      <div class="section-label" id="quote-by-label"></div>
+      <h1 class="section-title" id="quote-title-heading"></h1>
+    </div>
+
+    <div class="quote-layout" id="quote-layout">
+      <!-- Quote body -->
+      <div class="quote-body" id="quote-body">
+        <p style="color:var(--muted)" id="loading-msg"></p>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="quote-sidebar">
+        <!-- Summary card -->
+        <div class="quote-meta-card">
+          <h3 class="quote-section-title" id="summary-title"></h3>
+          <div id="quote-summary-content"></div>
+        </div>
+
+        <!-- Signature card -->
+        <div class="quote-signature-card">
+          <h3 class="quote-section-title" id="sign-title"></h3>
+          <canvas id="sig-canvas" class="signature-canvas"></canvas>
+          <div style="display:flex;gap:.75rem;margin-top:.75rem">
+            <button class="btn-ghost" id="sig-clear" style="color:var(--muted);font-size:.8rem;padding:.4rem .75rem"></button>
+          </div>
+        </div>
+
+        <!-- Payment card -->
+        <div class="quote-payment-card">
+          <h3 class="quote-section-title" id="pay-title"></h3>
+          <div class="payment-methods" style="margin-bottom:1.25rem">
+            <button class="payment-btn active" id="btn-stripe">
+              <div id="stripe-label"></div>
+            </button>
+            <button class="payment-btn" id="btn-payos">
+              <div id="payos-label"></div>
+            </button>
+          </div>
+          <button class="btn-primary" id="btn-pay" style="width:100%;justify-content:center"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="footer"></footer>
+
+<script src="js/supabase.min.js"></script>
+<script src="js/signature_pad.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/page-quote.js"></script>
+</body>
+</html>
