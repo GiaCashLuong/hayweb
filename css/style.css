@@ -150,7 +150,6 @@ body::before {
   font-weight: 300;
   letter-spacing: 0.04em;
   color: var(--white);
-  display: flex; align-items: center; gap: .5rem;
 }
 .nav-brand span { color: var(--gold); }
 .nav-links { display: flex; align-items: center; gap: 2rem; }
