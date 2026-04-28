@@ -39,26 +39,36 @@ const values = [
   },
 ];
 
+function svgTeamAvatar(variant) {
+  const variants = {
+    a: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ta1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f1f1f"/><stop offset="1" stop-color="#0f0f0f"/></linearGradient></defs><rect width="200" height="200" fill="url(#ta1)"/><circle cx="100" cy="80" r="32" fill="#9a9a9a"/><path d="M40 180c5-30 30-50 60-50s55 20 60 50z" fill="#9a9a9a"/></svg>`,
+    b: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tb1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#252028"/><stop offset="1" stop-color="#15131a"/></linearGradient></defs><rect width="200" height="200" fill="url(#tb1)"/><path d="M70 70c0-17 13-30 30-30s30 13 30 30v15l-15-5c-13 7-25 7-30 0l-15 5z" fill="#b8a896"/><circle cx="100" cy="85" r="28" fill="#cdbcab"/><path d="M40 180c5-28 30-48 60-48s55 20 60 48z" fill="#3a3340"/></svg>`,
+    c: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tc1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f2a2a"/><stop offset="1" stop-color="#11181a"/></linearGradient></defs><rect width="200" height="200" fill="url(#tc1)"/><path d="M68 75c0-19 14-35 32-35s32 16 32 35v15l-15-5c-13 7-25 7-32 0l-17 5z" fill="#3a2a1a"/><circle cx="100" cy="85" r="27" fill="#c69b75"/><path d="M40 180c5-28 30-48 60-48s55 20 60 48z" fill="#1f2f3a"/></svg>`,
+    d: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="td1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a242a"/><stop offset="1" stop-color="#181318"/></linearGradient></defs><rect width="200" height="200" fill="url(#td1)"/><path d="M65 80c0-22 16-40 35-40s35 18 35 40v22l-18-8c-13 7-25 7-35 0l-17 8z" fill="#5a4a55"/><circle cx="100" cy="85" r="28" fill="#d8c4ad"/><path d="M40 180c5-28 30-48 60-48s55 20 60 48z" fill="#3a3038"/></svg>`,
+  };
+  return `data:image/svg+xml;utf8,${encodeURIComponent(variants[variant] || variants.a)}`;
+}
+
 const team = [
   {
     nameVI: 'Gia Lương', nameEN: 'Gia Luong',
     roleVI: 'Founder & Lead Developer', roleEN: 'Founder & Lead Developer',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop'
+    avatarVariant: 'a'
   },
   {
     nameVI: 'Minh Tuyết', nameEN: 'Minh Tuyet',
     roleVI: 'UI/UX Designer', roleEN: 'UI/UX Designer',
-    img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop'
+    avatarVariant: 'b'
   },
   {
     nameVI: 'Thái Bình', nameEN: 'Thai Binh',
     roleVI: 'Backend & Database', roleEN: 'Backend & Database',
-    img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop'
+    avatarVariant: 'c'
   },
   {
     nameVI: 'Lan Anh', nameEN: 'Lan Anh',
     roleVI: 'Project Manager', roleEN: 'Project Manager',
-    img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop'
+    avatarVariant: 'd'
   },
 ];
 
@@ -117,7 +127,7 @@ function init() {
     : 'The people <em>behind HAYWEB</em>';
   document.getElementById('team-grid').innerHTML = team.map(m => `
     <div class="team-card fade-up">
-      <div class="team-avatar"><img src="${m.img}" alt="${vi ? m.nameVI : m.nameEN}" loading="lazy"></div>
+      <div class="team-avatar"><img src="${svgTeamAvatar(m.avatarVariant)}" alt="${vi ? m.nameVI : m.nameEN}" loading="lazy"></div>
       <div class="team-name">${vi ? m.nameVI : m.nameEN}</div>
       <div class="team-role">${vi ? m.roleVI : m.roleEN}</div>
     </div>

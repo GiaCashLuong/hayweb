@@ -13,6 +13,7 @@ const i18n = {
     nav_home:       'Trang chủ',
     nav_portfolio:  'Dự án',
     nav_pricing:    'Bảng giá',
+    nav_guides:     'Hướng dẫn',
     nav_about:      'Về chúng tôi',
     nav_contact:    'Liên hệ',
     nav_login:      'Đăng nhập',
@@ -32,9 +33,9 @@ const i18n = {
 
     // Services
     svc_label:      'Dịch vụ',
-    svc_title:      'Chúng tôi kiến tạo',
-    svc_title_em:   'trải nghiệm số',
-    svc_desc:       'Không chỉ làm đẹp — chúng tôi xây dựng hệ thống hoàn chỉnh giúp doanh nghiệp bạn bứt phá.',
+    svc_title:      'Hệ sinh thái',
+    svc_title_em:   'số toàn diện',
+    svc_desc:       'Từ website, marketing, hosting đến phần mềm và đào tạo — tất cả những gì doanh nghiệp Việt cần để bứt phá trên không gian số.',
 
     // Stats
     stat_projects:  'Dự án đã bàn giao',
@@ -151,6 +152,7 @@ const i18n = {
     nav_home:       'Home',
     nav_portfolio:  'Portfolio',
     nav_pricing:    'Pricing',
+    nav_guides:     'Guides',
     nav_about:      'About',
     nav_contact:    'Contact',
     nav_login:      'Login',
@@ -168,9 +170,9 @@ const i18n = {
     hero_cta_2:     'View Portfolio',
 
     svc_label:      'Services',
-    svc_title:      'We build',
-    svc_title_em:   'digital experiences',
-    svc_desc:       'Not just beautiful — we craft complete systems that propel your business forward.',
+    svc_title:      'A complete',
+    svc_title_em:   'digital ecosystem',
+    svc_desc:       'From websites, marketing and hosting to custom software and training — everything Vietnamese businesses need to win online.',
 
     stat_projects:  'Projects Delivered',
     stat_clients:   'Happy Clients',
@@ -305,6 +307,7 @@ async function renderNav(activePage) {
     <a href="/index.html" ${activePage==='home'?'class="active"':''}>${t('nav_home')}</a>
     <a href="/portfolio.html" ${activePage==='portfolio'?'class="active"':''}>${t('nav_portfolio')}</a>
     <a href="/pricing.html" ${activePage==='pricing'?'class="active"':''}>${t('nav_pricing')}</a>
+    <a href="/guides.html" ${activePage==='guides'?'class="active"':''}>${t('nav_guides')}</a>
     <a href="/about.html" ${activePage==='about'?'class="active"':''}>${t('nav_about')}</a>
     <a href="/contact.html" ${activePage==='contact'?'class="active"':''}>${t('nav_contact')}</a>
     ${user
@@ -351,6 +354,7 @@ function renderFooter() {
             <li><a href="/index.html">${t('nav_home')}</a></li>
             <li><a href="/portfolio.html">${t('nav_portfolio')}</a></li>
             <li><a href="/pricing.html">${t('nav_pricing')}</a></li>
+            <li><a href="/guides.html">${t('nav_guides')}</a></li>
             <li><a href="/about.html">${t('nav_about')}</a></li>
           </ul>
         </div>

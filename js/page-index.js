@@ -1,41 +1,240 @@
-const services = [
+// ====== SERVICES — TAB-BASED CATALOGUE ======
+// 5 nhóm dịch vụ: Website / Marketing / Hosting / Software / Training
+const svcCategories = [
   {
-    icon: `<svg class="service-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
-    titleVI: 'Website Doanh Nghiệp', titleEN: 'Business Website',
-    descVI: 'Thiết kế chuyên nghiệp, chuẩn SEO, tối ưu chuyển đổi. Từ landing page đến hệ thống web app đầy đủ tính năng.',
-    descEN: 'Professional design, SEO-ready, conversion-optimized. From landing pages to full-featured web apps.',
-    tag: 'Web Design'
+    key: 'website',
+    labelVI: 'Website', labelEN: 'Websites',
+    icon: `<svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M2 9h20M7 14h4"/></svg>`,
+    items: [
+      {
+        accent: 'website',
+        icon: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h18M8 3v18"/></svg>`,
+        titleVI: 'Website Doanh Nghiệp', titleEN: 'Business Website',
+        descVI: 'Giao diện chuyên nghiệp, chuẩn SEO, multi-page. Phù hợp công ty, dịch vụ chuyên sâu.',
+        descEN: 'Professional multi-page sites, SEO-ready. Ideal for companies & service brands.'
+      },
+      {
+        accent: 'website',
+        icon: `<svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`,
+        titleVI: 'Landing Page Chuyển Đổi', titleEN: 'High-conversion Landing Page',
+        descVI: 'Tối ưu chuyển đổi cho từng chiến dịch quảng cáo. A/B test, heatmap tích hợp.',
+        descEN: 'Conversion-optimized for every ad campaign. A/B testing & heatmap built in.'
+      },
+      {
+        accent: 'website',
+        icon: `<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+        titleVI: 'Web Bán Hàng', titleEN: 'E-commerce Store',
+        descVI: 'Cửa hàng online, quản lý sản phẩm, đơn hàng, tích hợp Stripe + PayOS/VietQR.',
+        descEN: 'Online stores with product/order management, Stripe + PayOS/VietQR ready.'
+      },
+      {
+        accent: 'website',
+        icon: `<svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+        titleVI: 'Mẫu Web Triển Khai 24h', titleEN: 'Ready-made Templates (24h)',
+        descVI: 'Bộ template cao cấp, customize logo + nội dung — bàn giao trong 24 giờ.',
+        descEN: 'Premium template library, customize logo + content — delivered in 24 hours.'
+      },
+      {
+        accent: 'website',
+        icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+        titleVI: 'Website Đa Ngôn Ngữ', titleEN: 'Multilingual Website',
+        descVI: 'Tiếng Việt / Tiếng Anh / hoặc nhiều ngôn ngữ. Chuyển đổi mượt, SEO riêng từng ngôn ngữ.',
+        descEN: 'VI / EN or multi-language toggle. Smooth switch, locale-specific SEO.'
+      },
+      {
+        accent: 'website',
+        icon: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+        titleVI: 'UI/UX & Thương Hiệu', titleEN: 'UI/UX & Branding',
+        descVI: 'Nghiên cứu trải nghiệm người dùng, thiết kế nhận diện thương hiệu thống nhất.',
+        descEN: 'User research, design system & cohesive brand identity across touchpoints.'
+      }
+    ]
   },
   {
-    icon: `<svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
-    titleVI: 'UI/UX & Thương hiệu', titleEN: 'UI/UX & Branding',
-    descVI: 'Trải nghiệm người dùng được nghiên cứu kỹ lưỡng. Visual identity gắn kết và nhất quán trên mọi điểm chạm.',
-    descEN: 'User experience crafted through research. Cohesive visual identity consistent across all touchpoints.',
-    tag: 'UI/UX'
+    key: 'marketing',
+    labelVI: 'Marketing', labelEN: 'Marketing',
+    icon: `<svg viewBox="0 0 24 24"><path d="M3 11l18-7-7 18-2-8-9-3z"/></svg>`,
+    items: [
+      {
+        accent: 'marketing',
+        icon: `<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>`,
+        titleVI: 'SEO Tổng Thể', titleEN: 'Full-stack SEO',
+        descVI: 'Audit kỹ thuật, từ khoá, content, backlink. Tăng thứ hạng Google bền vững.',
+        descEN: 'Technical audit, keywords, content, backlinks. Sustainable Google ranking growth.'
+      },
+      {
+        accent: 'marketing',
+        icon: `<svg viewBox="0 0 24 24"><path d="M22 12A10 10 0 1 1 12 2"/><path d="M22 2L12 12"/><path d="M16 2h6v6"/></svg>`,
+        titleVI: 'Google / Facebook Ads', titleEN: 'Google / Facebook Ads',
+        descVI: 'Setup, vận hành, tối ưu chi phí quảng cáo. Báo cáo ROI minh bạch hàng tuần.',
+        descEN: 'Setup, manage and optimize ad spend. Transparent weekly ROI reports.'
+      },
+      {
+        accent: 'marketing',
+        icon: `<svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg>`,
+        titleVI: 'Phân Tích & Báo Cáo', titleEN: 'Analytics & Reporting',
+        descVI: 'Cài Google Analytics 4, Meta Pixel, dashboard tuỳ chỉnh. Đọc số liệu để ra quyết định.',
+        descEN: 'GA4, Meta Pixel & custom dashboards. Data-driven decision making.'
+      },
+      {
+        accent: 'marketing',
+        icon: `<svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+        titleVI: 'Content & Social', titleEN: 'Content & Social',
+        descVI: 'Lên kế hoạch nội dung, viết bài, thiết kế post Facebook/Instagram theo tháng.',
+        descEN: 'Content planning, copywriting and Facebook/Instagram post design — monthly.'
+      },
+      {
+        accent: 'marketing',
+        icon: `<svg viewBox="0 0 24 24"><path d="M4 4h16v12H5.17L4 17.17z"/></svg>`,
+        titleVI: 'Email Marketing', titleEN: 'Email Marketing',
+        descVI: 'Thiết kế template, tự động hoá luồng email, đo lường tỷ lệ mở & click.',
+        descEN: 'Email templates, automation flows, open/click rate tracking.'
+      },
+      {
+        accent: 'marketing',
+        icon: `<svg viewBox="0 0 24 24"><path d="M2 3h20M2 9h20M9 15h13M2 15l4 4 4-4"/></svg>`,
+        titleVI: 'Tư Vấn Chiến Lược Số', titleEN: 'Digital Strategy Consulting',
+        descVI: 'Lộ trình 3-6-12 tháng cho doanh nghiệp muốn chuyển đổi số bài bản.',
+        descEN: '3-6-12 month digital roadmap for businesses scaling online.'
+      }
+    ]
   },
   {
-    icon: `<svg class="service-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
-    titleVI: 'E-commerce & Thanh toán', titleEN: 'E-commerce & Payments',
-    descVI: 'Cửa hàng online tích hợp thanh toán quốc tế (Stripe) và nội địa (PayOS/VietQR). Quản lý đơn hàng tự động.',
-    descEN: 'Online stores with international (Stripe) and domestic (PayOS/VietQR) payments. Automated order management.',
-    tag: 'E-commerce'
+    key: 'hosting',
+    labelVI: 'Hosting', labelEN: 'Hosting',
+    icon: `<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><path d="M6 7h.01M6 17h.01"/></svg>`,
+    items: [
+      {
+        accent: 'hosting',
+        icon: `<svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`,
+        titleVI: 'Cloud Hosting', titleEN: 'Cloud Hosting',
+        descVI: 'Uptime 99.9%, tốc độ < 2s, backup hàng ngày. CDN toàn cầu, SSL miễn phí.',
+        descEN: '99.9% uptime, < 2s load. Daily backups, global CDN, free SSL.'
+      },
+      {
+        accent: 'hosting',
+        icon: `<svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 8l8 5 8-5"/></svg>`,
+        titleVI: 'Email Doanh Nghiệp', titleEN: 'Business Email',
+        descVI: 'Email @tencongty.vn chuyên nghiệp. 50GB / mỗi địa chỉ, anti-spam, mobile sync.',
+        descEN: 'Pro @yourcompany.com email. 50GB per address, anti-spam, mobile sync.'
+      },
+      {
+        accent: 'hosting',
+        icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>`,
+        titleVI: 'Tên Miền', titleEN: 'Domain Name',
+        descVI: 'Đăng ký .vn, .com, .net, .com.vn — bảo vệ thông tin Whois, miễn phí năm đầu.',
+        descEN: 'Register .vn, .com, .net, .com.vn. Free Whois privacy & first-year discount.'
+      },
+      {
+        accent: 'hosting',
+        icon: `<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+        titleVI: 'SSL & Bảo Mật', titleEN: 'SSL & Security',
+        descVI: 'HTTPS, firewall, rate-limit, header bảo mật chuẩn quốc tế (Mozilla Observatory 100/100).',
+        descEN: 'HTTPS, WAF, rate limits, security headers (Mozilla Observatory 100/100).'
+      },
+      {
+        accent: 'hosting',
+        icon: `<svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>`,
+        titleVI: 'Backup & Khôi Phục', titleEN: 'Backup & Restore',
+        descVI: 'Sao lưu tự động hàng ngày, lưu 30 phiên bản. Khôi phục 1-click khi cần.',
+        descEN: 'Daily auto backups, 30 versions retained. One-click restore.'
+      },
+      {
+        accent: 'hosting',
+        icon: `<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>`,
+        titleVI: 'Bảo Trì Định Kỳ', titleEN: 'Ongoing Maintenance',
+        descVI: 'Cập nhật bảo mật, theo dõi uptime 24/7, sửa lỗi nhỏ — gói tháng / năm.',
+        descEN: 'Security patches, 24/7 uptime monitoring, minor fixes — monthly / yearly.'
+      }
+    ]
   },
   {
-    icon: `<svg class="service-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.19h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16a2 2 0 0 1 1 1.92z"/></svg>`,
-    titleVI: 'Tích hợp & API', titleEN: 'Integration & API',
-    descVI: 'Kết nối CRM, ERP, chatbot, Google Analytics, Meta Pixel. API tùy chỉnh theo nhu cầu doanh nghiệp.',
-    descEN: 'Connect CRM, ERP, chatbots, Google Analytics, Meta Pixel. Custom APIs tailored to your business needs.',
-    tag: 'Integration'
+    key: 'software',
+    labelVI: 'Phần mềm', labelEN: 'Software',
+    icon: `<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+    items: [
+      {
+        accent: 'software',
+        icon: `<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+        titleVI: 'CRM Khách Hàng', titleEN: 'Customer CRM',
+        descVI: 'Quản lý lead, deal, hợp đồng, công nợ. Tích hợp Zalo OA, email, SMS.',
+        descEN: 'Manage leads, deals, contracts, AR. Zalo OA, email & SMS integration.'
+      },
+      {
+        accent: 'software',
+        icon: `<svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+        titleVI: 'LMS Học Trực Tuyến', titleEN: 'Online Learning (LMS)',
+        descVI: 'Khoá học, bài kiểm tra, chứng chỉ. Quản lý học viên & tiến độ học.',
+        descEN: 'Courses, quizzes, certificates. Student & progress management.'
+      },
+      {
+        accent: 'software',
+        icon: `<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+        titleVI: 'POS Nhà Hàng / Cửa Hàng', titleEN: 'Restaurant / Retail POS',
+        descVI: 'Order tại bàn, in bill, tích hợp thanh toán QR. Báo cáo doanh thu realtime.',
+        descEN: 'Table orders, receipt print, QR payments. Real-time revenue reports.'
+      },
+      {
+        accent: 'software',
+        icon: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+        titleVI: 'E-commerce Toàn Diện', titleEN: 'Full E-commerce',
+        descVI: 'Cửa hàng online + admin panel + tồn kho + đơn hàng + ship + thanh toán Việt Nam.',
+        descEN: 'Storefront + admin + inventory + orders + shipping + VN payments.'
+      },
+      {
+        accent: 'software',
+        icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
+        titleVI: 'API & Tích Hợp', titleEN: 'API & Integrations',
+        descVI: 'Kết nối ERP, kế toán Misa, vận chuyển GHN/GHTK, thanh toán PayOS — bất kỳ hệ thống nào.',
+        descEN: 'Connect ERP, accounting (Misa), shipping (GHN/GHTK), payments (PayOS) — anything.'
+      },
+      {
+        accent: 'software',
+        icon: `<svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+        titleVI: 'Web App Theo Yêu Cầu', titleEN: 'Custom Web Apps',
+        descVI: 'Hệ thống quản lý nội bộ, dashboard, workflow tự động — viết riêng cho bài toán của bạn.',
+        descEN: 'Internal management, dashboards, automation — built for your specific workflow.'
+      }
+    ]
   },
   {
-    icon: `<svg class="service-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-    titleVI: 'Bảo mật & Bảo trì', titleEN: 'Security & Maintenance',
-    descVI: 'Bảo mật tiêu chuẩn quốc tế, uptime 99.9%, backup tự động. Bảo trì và cập nhật định kỳ.',
-    descEN: 'International security standards, 99.9% uptime, automatic backups. Regular maintenance and updates.',
-    tag: 'Maintenance'
-  },
+    key: 'training',
+    labelVI: 'Đào tạo', labelEN: 'Training',
+    icon: `<svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+    items: [
+      {
+        accent: 'training',
+        icon: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5"/></svg>`,
+        titleVI: 'Khoá Làm Web Cơ Bản', titleEN: 'Web Basics Course',
+        descVI: 'HTML, CSS, JS, Git — từ con số 0 đến tự làm landing page hoàn chỉnh trong 6 tuần.',
+        descEN: 'HTML, CSS, JS, Git — zero to complete landing page in 6 weeks.'
+      },
+      {
+        accent: 'training',
+        icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
+        titleVI: 'Tư Vấn Kỹ Thuật 1-1', titleEN: '1-on-1 Technical Consulting',
+        descVI: 'Buổi 90 phút online — review code, kiến trúc hệ thống, hoặc lộ trình học của bạn.',
+        descEN: '90-min online session — code review, architecture or learning roadmap.'
+      },
+      {
+        accent: 'training',
+        icon: `<svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>`,
+        titleVI: 'Workshop Doanh Nghiệp', titleEN: 'Corporate Workshop',
+        descVI: 'Đào tạo team marketing / IT của công ty bạn — chuyên đề SEO, ads, web hiện đại.',
+        descEN: 'Train your marketing / IT team — topics: SEO, ads, modern web stack.'
+      },
+      {
+        accent: 'training',
+        icon: `<svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3a9 9 0 0 1 6.36 2.64"/></svg>`,
+        titleVI: 'Chứng Chỉ Hoàn Thành', titleEN: 'Certificate of Completion',
+        descVI: 'Cấp chứng chỉ HAYWEB sau khi hoàn thành khoá học — verified online.',
+        descEN: 'HAYWEB certificate after course completion — online verifiable.'
+      }
+    ]
+  }
 ];
 
+// ====== STATS ======
 const stats = [
   { numVI: '120', numEN: '120', suffix: '+', labelVI: 'Dự án đã bàn giao', labelEN: 'Projects Delivered' },
   { numVI: '98', numEN: '98', suffix: '%', labelVI: 'Khách hàng hài lòng', labelEN: 'Client Satisfaction' },
@@ -43,6 +242,7 @@ const stats = [
   { numVI: '99.9', numEN: '99.9', suffix: '%', labelVI: 'Uptime cam kết', labelEN: 'Uptime Guaranteed' },
 ];
 
+// ====== PORTFOLIO ======
 const portfolio = [
   {
     img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
@@ -64,6 +264,7 @@ const portfolio = [
   },
 ];
 
+// ====== WHY US ======
 const whyItems = [
   {
     icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--silver)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
@@ -119,6 +320,20 @@ const pricing = [
   }
 ];
 
+// ====== SVG AVATARS (replaces unsplash people images) ======
+function svgAvatar(variant) {
+  // 4 variants — minimalist, monochromatic
+  const variants = {
+    a: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ga" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a2a2a"/><stop offset="1" stop-color="#161616"/></linearGradient></defs><circle cx="20" cy="20" r="20" fill="url(#ga)"/><circle cx="20" cy="16" r="6.2" fill="#9a9a9a"/><path d="M8.5 34c1.5-5.6 6.3-9 11.5-9s10 3.4 11.5 9z" fill="#9a9a9a"/></svg>`,
+    b: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#252028"/><stop offset="1" stop-color="#15131a"/></linearGradient></defs><circle cx="20" cy="20" r="20" fill="url(#gb)"/><path d="M14 13.5c0-3.3 2.7-6 6-6s6 2.7 6 6V17H14z" fill="#b8a896"/><circle cx="20" cy="17" r="5.5" fill="#cdbcab"/><path d="M9 35c1.7-5.4 6.3-8.6 11-8.6s9.3 3.2 11 8.6z" fill="#3a3340"/></svg>`,
+    c: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f2a2a"/><stop offset="1" stop-color="#11181a"/></linearGradient></defs><circle cx="20" cy="20" r="20" fill="url(#gc)"/><path d="M13 14c0-3.7 3.1-7 7-7s7 3.3 7 7v3l-3-1c-2.7 1.4-5.3 1.4-8 0l-3 1z" fill="#3a2a1a"/><circle cx="20" cy="17" r="5.3" fill="#c69b75"/><path d="M9.5 34.5c1.7-5.3 6.2-8.5 10.5-8.5s8.8 3.2 10.5 8.5z" fill="#1f2f3a"/></svg>`,
+    d: `<svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a242a"/><stop offset="1" stop-color="#181318"/></linearGradient></defs><circle cx="20" cy="20" r="20" fill="url(#gd)"/><path d="M12 16c0-4.4 3.6-8 8-8s8 3.6 8 8v6l-4-2c-2.7 1.4-5.3 1.4-8 0l-4 2z" fill="#5a4a55"/><circle cx="20" cy="17" r="5.4" fill="#d8c4ad"/><path d="M9 35c1.6-5.5 6.3-8.7 11-8.7s9.4 3.2 11 8.7z" fill="#3a3038"/></svg>`
+  };
+  const svg = variants[variant] || variants.a;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
+
+// ====== TESTIMONIALS ======
 const testimonials = [
   {
     stars: '★★★★★',
@@ -126,7 +341,7 @@ const testimonials = [
     textEN: '"HAYWEB turned our vision into reality in 5 days. Quality far exceeded our expectations — especially the user experience."',
     nameVI: 'Nguyễn Minh Tâm', nameEN: 'Nguyen Minh Tam',
     roleVI: 'CEO, Kobe Steak House', roleEN: 'CEO, Kobe Steak House',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop'
+    avatarVariant: 'a'
   },
   {
     stars: '★★★★★',
@@ -134,7 +349,7 @@ const testimonials = [
     textEN: '"Extremely professional process. From form submission to final delivery — everything was transparent and on time. I have since referred 3 other business partners."',
     nameVI: 'Trần Thị Lan Anh', nameEN: 'Tran Thi Lan Anh',
     roleVI: 'Founder, HKP Sim Kinh Dịch', roleEN: 'Founder, HKP Feng Shui',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop'
+    avatarVariant: 'b'
   },
   {
     stars: '★★★★★',
@@ -142,11 +357,82 @@ const testimonials = [
     textEN: '"Our website now receives more compliments from customers than ever before. Conversion rate increased 340% in the first month."',
     nameVI: 'Phạm Văn Đức', nameEN: 'Pham Van Duc',
     roleVI: 'Director, Ecopark Investments', roleEN: 'Director, Ecopark Investments',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop'
+    avatarVariant: 'c'
   }
 ];
 
 const vi = currentLang === 'vi';
+
+function renderServicesTabs() {
+  const tabsBar = document.getElementById('services-tabs');
+  const panelsHost = document.getElementById('services-panels');
+  if (!tabsBar || !panelsHost) return;
+
+  tabsBar.innerHTML = svcCategories.map((c, i) => `
+    <button type="button" class="services-tab ${i===0?'active':''}" data-tab="${c.key}">
+      ${c.icon}
+      <span>${vi ? c.labelVI : c.labelEN}</span>
+    </button>
+  `).join('');
+
+  panelsHost.innerHTML = svcCategories.map((c, i) => `
+    <div class="services-panel ${i===0?'active':''}" data-panel="${c.key}">
+      <div class="services-panel-grid">
+        ${c.items.map(it => `
+          <article class="svc-tab-card magnetic" data-accent="${it.accent}">
+            <div class="svc-tab-icon">${it.icon}</div>
+            <h4>${vi ? it.titleVI : it.titleEN}</h4>
+            <p>${vi ? it.descVI : it.descEN}</p>
+            <a href="/new-project.html" class="svc-tab-link">
+              ${vi ? 'Tìm hiểu' : 'Learn more'}
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </article>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+
+  // Tab switching
+  tabsBar.querySelectorAll('.services-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.tab;
+      tabsBar.querySelectorAll('.services-tab').forEach(b => b.classList.toggle('active', b === btn));
+      panelsHost.querySelectorAll('.services-panel').forEach(p => {
+        const isActive = p.dataset.panel === key;
+        p.classList.toggle('active', isActive);
+        if (isActive) {
+          // Re-trigger stagger animation
+          p.querySelectorAll('.svc-tab-card').forEach(card => {
+            card.style.animation = 'none';
+            // force reflow
+            void card.offsetWidth;
+            card.style.animation = '';
+          });
+        }
+      });
+      attachMagnetic();
+    });
+  });
+
+  attachMagnetic();
+}
+
+function attachMagnetic() {
+  document.querySelectorAll('.magnetic').forEach(el => {
+    if (el._magneticBound) return;
+    el._magneticBound = true;
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+      const y = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+      el.style.transform = `translate(${x * 6}px, ${y * 6}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+}
 
 function buildPage() {
   // Hero
@@ -167,14 +453,7 @@ function buildPage() {
   document.getElementById('svc-title').innerHTML = `${t('svc_title')} <em>${t('svc_title_em')}</em>`;
   document.getElementById('svc-desc').textContent = t('svc_desc');
   document.getElementById('svc-cta').textContent = vi ? 'Nhận báo giá →' : 'Get a Quote →';
-  document.getElementById('services-grid').innerHTML = services.map(s => `
-    <div class="service-card tilt shine">
-      ${s.icon}
-      <h3>${vi ? s.titleVI : s.titleEN}</h3>
-      <p>${vi ? s.descVI : s.descEN}</p>
-      <span class="service-tag">${s.tag}</span>
-    </div>
-  `).join('');
+  renderServicesTabs();
 
   // Stats
   document.getElementById('stats-grid').innerHTML = stats.map(s => `
@@ -267,7 +546,7 @@ function buildPage() {
       <div class="testimonial-stars">${t2.stars}</div>
       <p class="testimonial-text">${vi ? t2.textVI : t2.textEN}</p>
       <div class="testimonial-author">
-        <div class="testimonial-avatar"><img src="${t2.avatar}" alt="" loading="lazy"></div>
+        <div class="testimonial-avatar svg-avatar"><img src="${svgAvatar(t2.avatarVariant)}" alt="" loading="lazy"></div>
         <div>
           <div class="testimonial-name">${vi ? t2.nameVI : t2.nameEN}</div>
           <div class="testimonial-role">${vi ? t2.roleVI : t2.roleEN}</div>
