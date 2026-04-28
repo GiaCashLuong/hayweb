@@ -1,3 +1,35 @@
+// ====== SERVICE SLUG MAP ======
+const svcSlugMap = {
+  'Website Doanh Nghiệp': 'website-doanh-nghiep',
+  'Landing Page Chuyển Đổi': 'landing-page',
+  'Web Bán Hàng': 'web-ban-hang',
+  'Mẫu Web Triển Khai 24h': 'mau-web-24h',
+  'Website Đa Ngôn Ngữ': 'website-da-ngon-ngu',
+  'UI/UX & Thương Hiệu': 'ui-ux-thuong-hieu',
+  'SEO Tổng Thể': 'seo-tong-the',
+  'Google / Facebook Ads': 'google-facebook-ads',
+  'Phân Tích & Báo Cáo': 'phan-tich-bao-cao',
+  'Content & Social': 'content-social',
+  'Email Marketing': 'email-marketing',
+  'Tư Vấn Chiến Lược Số': 'tu-van-chien-luoc-so',
+  'Cloud Hosting': 'cloud-hosting',
+  'Email Doanh Nghiệp': 'email-doanh-nghiep',
+  'Tên Miền': 'ten-mien',
+  'SSL & Bảo Mật': 'ssl-bao-mat',
+  'Backup & Khôi Phục': 'backup-khoi-phuc',
+  'Bảo Trì Định Kỳ': 'bao-tri-dinh-ky',
+  'CRM Khách Hàng': 'crm-khach-hang',
+  'LMS Học Trực Tuyến': 'lms-hoc-truc-tuyen',
+  'POS Nhà Hàng / Cửa Hàng': 'pos-nha-hang',
+  'E-commerce Toàn Diện': 'ecommerce-toan-dien',
+  'API & Tích Hợp': 'api-tich-hop',
+  'Web App Theo Yêu Cầu': 'web-app-theo-yeu-cau',
+  'Khoá Làm Web Cơ Bản': 'khoa-lam-web',
+  'Tư Vấn Kỹ Thuật 1-1': 'tu-van-ky-thuat-1-1',
+  'Workshop Doanh Nghiệp': 'workshop-doanh-nghiep',
+  'Chứng Chỉ Hoàn Thành': 'chung-chi-hoan-thanh',
+};
+
 // ====== SERVICES — TAB-BASED CATALOGUE ======
 // 5 nhóm dịch vụ: Website / Marketing / Hosting / Software / Training
 const svcCategories = [
@@ -383,7 +415,7 @@ function renderServicesTabs() {
             <div class="svc-tab-icon">${it.icon}</div>
             <h4>${vi ? it.titleVI : it.titleEN}</h4>
             <p>${vi ? it.descVI : it.descEN}</p>
-            <a href="/new-project.html" class="svc-tab-link">
+            <a href="/service?slug=${svcSlugMap[it.titleVI] || ''}" class="svc-tab-link">
               ${vi ? 'Tìm hiểu' : 'Learn more'}
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
