@@ -1015,9 +1015,10 @@ footer {
 }
 .services-tab:hover { color: var(--silver-light); }
 .services-tab.active {
-  background: var(--white);
-  color: var(--bg);
-  box-shadow: 0 4px 14px rgba(255,255,255,0.08);
+  background: var(--surface-2);
+  color: var(--white);
+  border: 1px solid var(--border-hover);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 .services-tabs-panels {
   position: relative;
@@ -1060,25 +1061,26 @@ footer {
   border-color: var(--border-hover);
   background: var(--surface-2);
 }
-.svc-tab-card[data-accent="website"]   { --accent: #7DD3FC; }
-.svc-tab-card[data-accent="marketing"] { --accent: #C084FC; }
-.svc-tab-card[data-accent="hosting"]   { --accent: #4ADE80; }
-.svc-tab-card[data-accent="software"]  { --accent: #FBBF24; }
-.svc-tab-card[data-accent="training"]  { --accent: #F472B6; }
+.svc-tab-card[data-accent="website"]   { --accent: var(--silver-light); }
+.svc-tab-card[data-accent="marketing"] { --accent: var(--gold-light); }
+.svc-tab-card[data-accent="hosting"]   { --accent: var(--silver); }
+.svc-tab-card[data-accent="software"]  { --accent: var(--gold); }
+.svc-tab-card[data-accent="training"]  { --accent: var(--silver-light); }
 .svc-tab-card::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0;
-  height: 2px;
+  height: 1px;
   background: var(--accent, var(--silver));
   opacity: 0;
-  transition: opacity .25s;
+  transition: opacity .3s;
 }
-.svc-tab-card:hover::before { opacity: 0.5; }
+.svc-tab-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.svc-tab-card:hover::before { opacity: 1; }
 .svc-tab-icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  background: rgba(192,192,192,0.05);
-  border: 1px solid var(--border);
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  background: rgba(192,192,192,0.06);
+  border: 1px solid rgba(192,192,192,0.12);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 1.25rem;
   transition: background .25s, border-color .25s;
@@ -1090,8 +1092,8 @@ footer {
   stroke-linecap: round; stroke-linejoin: round;
 }
 .svc-tab-card:hover .svc-tab-icon {
-  background: rgba(192,192,192,0.10);
-  border-color: var(--accent, var(--border-hover));
+  background: rgba(192,192,192,0.12);
+  border-color: rgba(192,192,192,0.25);
 }
 .svc-tab-card h4 {
   font-family: var(--font-display);

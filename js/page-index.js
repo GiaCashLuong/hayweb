@@ -251,10 +251,10 @@ const portfolio = [
     url: 'https://kobe-steak.vercel.app'
   },
   {
-    img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-    titleVI: 'Ecopark Real Estate', titleEN: 'Ecopark Real Estate',
-    descVI: 'Bất động sản nghỉ dưỡng', descEN: 'Luxury real estate portal',
-    url: 'https://ecopark-web.vercel.app'
+    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+    titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
+    descVI: 'Web agency — hệ thống hoàn chỉnh', descEN: 'Full-stack web agency system',
+    url: 'https://hayweb.vercel.app'
   },
   {
     img: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=800&q=80',
