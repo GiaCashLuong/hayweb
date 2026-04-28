@@ -1,7 +1,8 @@
 // ====== GUIDES — bilingual resource hub ======
 const guides = [
   {
-    tone: '1',
+    slug: 'why-website-2026',
+    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Nhập môn', tagEN: 'Beginners',
     minutesVI: '5 phút đọc', minutesEN: '5 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
@@ -11,17 +12,19 @@ const guides = [
     excerptEN: 'Social platforms come and go, but your website is the only digital asset you truly own. 7 reasons it still matters.'
   },
   {
-    tone: '2',
+    slug: 'website-cost',
+    img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Chi phí', tagEN: 'Pricing',
     minutesVI: '7 phút đọc', minutesEN: '7 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
     titleVI: 'Chi phí làm website thực sự là bao nhiêu?',
     titleEN: 'How much does a website really cost in 2026?',
     excerptVI: 'Bóc tách chi phí: domain, hosting, thiết kế, lập trình, bảo trì. Cảnh báo các chiêu giảm giá ảo của agency rẻ tiền.',
-    excerptEN: 'Breaking down domain, hosting, design, dev, maintenance. Red flags of "cheap agency" pricing tricks.'
+    excerptEN: 'Breaking down domain, hosting, design, dev, maintenance. Red flags of cheap agency pricing tricks.'
   },
   {
-    tone: '3',
+    slug: 'seo-guide',
+    img: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=700&q=75&auto=format&fit=crop',
     tagVI: 'SEO', tagEN: 'SEO',
     minutesVI: '8 phút đọc', minutesEN: '8 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>`,
@@ -31,7 +34,8 @@ const guides = [
     excerptEN: 'Technical, On-page, Off-page explained plainly — plus a 12-item checklist you can run today.'
   },
   {
-    tone: '4',
+    slug: 'landing-vs-website',
+    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Marketing', tagEN: 'Marketing',
     minutesVI: '6 phút đọc', minutesEN: '6 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 6-6"/></svg>`,
@@ -41,7 +45,8 @@ const guides = [
     excerptEN: 'Two tools, two problems. A guide to choosing the right one for each business stage.'
   },
   {
-    tone: '5',
+    slug: 'hosting-guide',
+    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Hạ tầng', tagEN: 'Infrastructure',
     minutesVI: '6 phút đọc', minutesEN: '6 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg>`,
@@ -51,7 +56,8 @@ const guides = [
     excerptEN: 'Speed, uptime, security, cost — a real comparison for Vietnamese businesses, no sponsorships.'
   },
   {
-    tone: '6',
+    slug: 'hayweb-process',
+    img: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Quy trình', tagEN: 'Process',
     minutesVI: '4 phút đọc', minutesEN: '4 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9S3 16.97 3 12 7.03 3 12 3a9 9 0 0 1 6.36 2.64"/></svg>`,
@@ -61,7 +67,8 @@ const guides = [
     excerptEN: '5 clear steps: brief → quote → digital sign → build → deliver. What sets us apart from traditional agencies?'
   },
   {
-    tone: '7',
+    slug: 'website-security',
+    img: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Bảo mật', tagEN: 'Security',
     minutesVI: '5 phút đọc', minutesEN: '5 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
@@ -71,7 +78,8 @@ const guides = [
     excerptEN: 'XSS, SQL injection, CSRF... explained with concrete examples and how HAYWEB handles each from day one.'
   },
   {
-    tone: '8',
+    slug: 'website-performance',
+    img: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=75&auto=format&fit=crop',
     tagVI: 'Hiệu năng', tagEN: 'Performance',
     minutesVI: '6 phút đọc', minutesEN: '6 min read',
     art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
@@ -94,20 +102,24 @@ function buildPage() {
     : 'A curated set of short, readable posts to help businesses make smart decisions when choosing a web partner.';
 
   document.getElementById('guides-grid').innerHTML = guides.map(g => {
-    // Inject our class + viewBox into g.art SVG
     const art = g.art.replace('<svg ', '<svg class="guide-thumb-art" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" ');
     return `
     <article class="guide-card fade-up">
-      <div class="guide-thumb" data-tone="${g.tone}">${art}</div>
+      <a href="/article?slug=${g.slug}" class="guide-thumb-link" aria-label="${vi ? g.titleVI : g.titleEN}">
+        <div class="guide-thumb">
+          <img class="guide-thumb-img" src="${g.img}" alt="" loading="lazy">
+          ${art}
+        </div>
+      </a>
       <div class="guide-body">
         <div class="guide-meta">
           <span>${vi ? g.tagVI : g.tagEN}</span>
           <span class="dot"></span>
           <span class="reading">${vi ? g.minutesVI : g.minutesEN}</span>
         </div>
-        <h3>${vi ? g.titleVI : g.titleEN}</h3>
+        <h3><a href="/article?slug=${g.slug}">${vi ? g.titleVI : g.titleEN}</a></h3>
         <p>${vi ? g.excerptVI : g.excerptEN}</p>
-        <a href="/contact.html" class="guide-link">
+        <a href="/article?slug=${g.slug}" class="guide-link">
           ${vi ? 'Đọc tiếp' : 'Read more'}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
@@ -116,7 +128,6 @@ function buildPage() {
   `;
   }).join('');
 
-  // CTA
   document.getElementById('cta-title').innerHTML = vi
     ? 'Cần tư vấn cụ thể cho <em>dự án của bạn?</em>'
     : 'Need specific advice for <em>your project?</em>';

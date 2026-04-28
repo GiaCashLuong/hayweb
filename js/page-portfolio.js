@@ -11,15 +11,6 @@ const projects = [
     category: 'restaurant'
   },
   {
-    img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
-    tagVI: 'Bất động sản', tagEN: 'Real Estate',
-    titleVI: 'Ecopark Real Estate', titleEN: 'Ecopark Real Estate',
-    descVI: 'Cổng thông tin bất động sản nghỉ dưỡng song ngữ VI/EN với tích hợp Stripe thanh toán quốc tế.',
-    descEN: 'VI/EN bilingual real estate portal with Stripe international payment integration.',
-    url: 'https://ecopark-web.vercel.app',
-    category: 'realestate'
-  },
-  {
     img: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=800&q=80',
     tagVI: 'Thương mại điện tử', tagEN: 'E-commerce',
     titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
