@@ -472,6 +472,12 @@ function buildPage() {
   document.getElementById('hero-title').innerHTML =
     `${t('hero_title_1')} <em>${t('hero_title_2')}</em><br>${t('hero_title_3')} <em>${t('hero_title_4')}</em>`;
   document.getElementById('hero-sub').textContent = t('hero_sub');
+  const benefits = vi
+    ? ['✓ Bàn giao trong 7–14 ngày', '✓ 120+ dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']
+    : ['✓ Delivered in 7–14 days', '✓ 120+ projects delivered', '✓ 12 months free support'];
+  const benefitsEl = document.getElementById('hero-benefits');
+  if (benefitsEl) benefitsEl.innerHTML = benefits.map(b => `<span class="hero-benefit">${b}</span>`).join('');
+
   document.getElementById('hero-actions').innerHTML = `
     <a href="/new-project.html" class="btn-primary">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -480,7 +486,7 @@ function buildPage() {
     <a href="/portfolio.html" class="btn-outline">${t('hero_cta_2')}</a>
     <div class="hero-trust" aria-label="${vi ? 'Đánh giá khách hàng' : 'Client reviews'}">
       <span class="hero-trust-stars" aria-hidden="true">★★★★★</span>
-      <span>${vi ? '4.9/5 từ 120+ khách hàng' : '4.9/5 from 120+ clients'}</span>
+      <span>${vi ? '4.9/5 từ 120+ khách hàng • Không ràng buộc • Không phí ẩn' : '4.9/5 from 120+ clients • No commitment • No hidden fees'}</span>
     </div>
   `;
 

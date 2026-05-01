@@ -28,7 +28,7 @@ const i18n = {
     hero_title_3:   'Thiết kế để',
     hero_title_4:   'chinh phục.',
     hero_sub:       'Đội ngũ chuyên gia hơn 5 năm kinh nghiệm. Từng dự án là một tuyệt tác được đo ni đóng giày cho thương hiệu của bạn.',
-    hero_cta_1:     'Nhận báo giá ngay',
+    hero_cta_1:     'Nhận báo giá miễn phí',
     hero_cta_2:     'Xem portfolio',
 
     // Services
@@ -166,7 +166,7 @@ const i18n = {
     hero_title_3:   'Design that',
     hero_title_4:   'wins.',
     hero_sub:       'A team of specialists with 5+ years of experience. Every project is a masterpiece crafted specifically for your brand.',
-    hero_cta_1:     'Get a Quote Now',
+    hero_cta_1:     'Get a Free Quote',
     hero_cta_2:     'View Portfolio',
 
     svc_label:      'Services',
