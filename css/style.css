@@ -1322,6 +1322,7 @@ footer {
 }
 
 /* ===== MOBILE CTA BAR (bắt buộc) ===== */
+.mobile-cta-bar { display: none; }
 @media (max-width: 768px) {
   .mobile-cta-bar {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
