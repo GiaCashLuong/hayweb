@@ -399,6 +399,18 @@ function renderFooter() {
       </div>
     </div>
   `;
+
+  const bar = document.createElement('div');
+  bar.className = 'mobile-cta-bar';
+  bar.setAttribute('aria-label', 'Mobile actions');
+  bar.innerHTML = `
+    <a href="tel:+84797986525" class="btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      ${currentLang === 'vi' ? 'Gọi ngay' : 'Call'}
+    </a>
+    <a href="/new-project.html" class="btn-primary">${currentLang === 'vi' ? 'Báo giá miễn phí' : 'Free Quote'}</a>
+  `;
+  document.body.appendChild(bar);
 }
 
 function initScrollReveal() {
