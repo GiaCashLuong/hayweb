@@ -1,2 +1,5 @@
 .vercel
 .env.secrets
+
+# Verification screenshots (not for deploy)
+_screenshots/
