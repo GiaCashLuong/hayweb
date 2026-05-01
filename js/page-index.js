@@ -277,19 +277,19 @@ const stats = [
 // ====== PORTFOLIO ======
 const portfolio = [
   {
-    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    accent: '#A67C2E',
     titleVI: 'Kobe Steak House', titleEN: 'Kobe Steak House',
     descVI: 'Nhà hàng bít tết cao cấp', descEN: 'Premium steakhouse website',
     url: 'https://kobe-steak.vercel.app'
   },
   {
-    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+    accent: '#C8C8C8',
     titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
     descVI: 'Web agency — hệ thống hoàn chỉnh', descEN: 'Full-stack web agency system',
     url: 'https://hayweb.vercel.app'
   },
   {
-    img: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=800&q=80',
+    accent: '#6495ED',
     titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
     descVI: 'Thương mại điện tử phong thủy', descEN: 'Feng shui e-commerce platform',
     url: '#'
@@ -502,8 +502,8 @@ function buildPage() {
   document.getElementById('port-title').innerHTML = `${t('port_title')} <em>${t('port_title_em')}</em>`;
   document.getElementById('port-viewall').textContent = t('port_viewall');
   document.getElementById('portfolio-grid').innerHTML = portfolio.map(p => `
-    <div class="portfolio-card fade-up">
-      <img src="${p.img}" alt="${vi ? p.titleVI : p.titleEN}" loading="lazy">
+    <div class="portfolio-card fade-up" style="--port-accent:${p.accent}">
+      <div class="portfolio-card-visual" aria-hidden="true"></div>
       <div class="portfolio-overlay">
         <h3>${vi ? p.titleVI : p.titleEN}</h3>
         <p>${vi ? p.descVI : p.descEN}</p>

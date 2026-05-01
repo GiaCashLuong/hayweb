@@ -2,7 +2,7 @@ const vi = currentLang === 'vi';
 
 const projects = [
   {
-    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    accent: '#A67C2E',
     tagVI: 'Nhà hàng', tagEN: 'Restaurant',
     titleVI: 'Kobe Steak House', titleEN: 'Kobe Steak House',
     descVI: 'Website nhà hàng bít tết cao cấp với hệ thống đặt bàn online, menu interactive và gallery ảnh chuyên nghiệp.',
@@ -11,7 +11,7 @@ const projects = [
     category: 'restaurant'
   },
   {
-    img: 'https://images.unsplash.com/photo-1527576539890-dfa815648363?w=800&q=80',
+    accent: '#6495ED',
     tagVI: 'Thương mại điện tử', tagEN: 'E-commerce',
     titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
     descVI: 'Nền tảng thương mại điện tử phong thủy cao cấp với hệ thống affiliate CTV và tích hợp PayOS.',
@@ -20,7 +20,7 @@ const projects = [
     category: 'ecommerce'
   },
   {
-    img: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+    accent: '#C8C8C8',
     tagVI: 'Web Agency', tagEN: 'Web Agency',
     titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
     descVI: 'Chính website bạn đang xem — hệ thống web agency hoàn chỉnh với auth, quote tự động, ký số, thanh toán đa kênh.',
@@ -29,7 +29,7 @@ const projects = [
     category: 'webapp'
   },
   {
-    img: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80',
+    accent: '#E8A598',
     tagVI: 'Thời trang', tagEN: 'Fashion',
     titleVI: 'Luxury Fashion Boutique', titleEN: 'Luxury Fashion Boutique',
     descVI: 'Cửa hàng thời trang cao cấp với lookbook, kích cỡ guide và thanh toán VNPay.',
@@ -38,7 +38,7 @@ const projects = [
     category: 'ecommerce'
   },
   {
-    img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+    accent: '#6DB88A',
     tagVI: 'Dịch vụ', tagEN: 'Services',
     titleVI: 'Tech Consulting Firm', titleEN: 'Tech Consulting Firm',
     descVI: 'Website tư vấn công nghệ doanh nghiệp với hệ thống CRM mini và booking lịch tư vấn.',
@@ -61,9 +61,9 @@ let activeFilter = 'all';
 function renderProjects() {
   const filtered = activeFilter === 'all' ? projects : projects.filter(p => p.category === activeFilter);
   document.getElementById('portfolio-grid').innerHTML = filtered.map(p => `
-    <div class="portfolio-full-card fade-up">
+    <div class="portfolio-full-card fade-up" style="--port-accent:${p.accent}">
       <div class="portfolio-full-img">
-        <img src="${p.img}" alt="${vi ? p.titleVI : p.titleEN}" loading="lazy">
+        <div class="portfolio-card-visual" aria-hidden="true"></div>
       </div>
       <div class="portfolio-full-info">
         <div class="portfolio-full-tag">${vi ? p.tagVI : p.tagEN}</div>
