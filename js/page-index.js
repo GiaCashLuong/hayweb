@@ -478,6 +478,10 @@ function buildPage() {
       ${t('hero_cta_1')}
     </a>
     <a href="/portfolio.html" class="btn-outline">${t('hero_cta_2')}</a>
+    <div class="hero-trust" aria-label="${vi ? 'Đánh giá khách hàng' : 'Client reviews'}">
+      <span class="hero-trust-stars" aria-hidden="true">★★★★★</span>
+      <span>${vi ? '4.9/5 từ 120+ khách hàng' : '4.9/5 from 120+ clients'}</span>
+    </div>
   `;
 
   // Services
@@ -496,6 +500,25 @@ function buildPage() {
       <div class="stat-label">${vi ? s.labelVI : s.labelEN}</div>
     </div>
   `).join('');
+
+  // Tech partners bar
+  const partners = [
+    { name: 'Vercel', mark: 'V' },
+    { name: 'Supabase', mark: 'S' },
+    { name: 'Stripe', mark: '§' },
+    { name: 'PayOS', mark: 'P' },
+    { name: 'Anthropic', mark: 'A' },
+    { name: 'Cloudflare', mark: '☁' },
+  ];
+  const partnersEl = document.getElementById('partners-bar');
+  if (partnersEl) {
+    partnersEl.innerHTML = `
+      <p class="partners-label">${vi ? 'Công nghệ tin dùng' : 'Powered by'}</p>
+      <div class="partners-logos">
+        ${partners.map(p => `<span class="partner-logo" title="${p.name}">${p.name}</span>`).join('')}
+      </div>
+    `;
+  }
 
   // Portfolio
   document.getElementById('port-label').textContent = t('port_label');
