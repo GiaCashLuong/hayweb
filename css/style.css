@@ -663,6 +663,16 @@ section { padding: 8rem 0; }
 .testimonial-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
 .testimonial-role { font-size: 0.78rem; color: var(--muted); }
 
+/* ===== TRUST BADGES ===== */
+.cta-trust-badges {
+  display: flex; align-items: center; justify-content: center; gap: 2rem; flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+.cta-trust-badge {
+  display: flex; align-items: center; gap: .4rem;
+  font-size: .78rem; color: var(--muted); letter-spacing: .02em;
+}
+
 /* ===== CTA BAND ===== */
 .cta-band {
   background: var(--surface);

@@ -620,6 +620,13 @@ function buildPage() {
   document.getElementById('cta-title').innerHTML = `${t('cta_title')} <em>${t('cta_title_em')}</em>`;
   document.getElementById('cta-desc').textContent = t('cta_desc');
   document.getElementById('cta-btn').textContent = t('cta_btn');
+  const badges = [
+    { icon: '🔒', text: vi ? 'SSL Bảo mật' : 'SSL Secured' },
+    { icon: '✓', text: vi ? '100% Hoàn tiền nếu không hài lòng' : '100% Refund if not satisfied' },
+    { icon: '⚡', text: vi ? 'Báo giá trong 5 phút' : 'Quote in 5 minutes' },
+  ];
+  const badgesEl = document.getElementById('cta-trust-badges');
+  if (badgesEl) badgesEl.innerHTML = badges.map(b => `<span class="cta-trust-badge"><span aria-hidden="true">${b.icon}</span>${b.text}</span>`).join('');
 }
 
 async function init() {
