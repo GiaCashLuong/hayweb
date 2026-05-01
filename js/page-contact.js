@@ -48,6 +48,8 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
   btn.disabled = true;
   btn.textContent = t('loading');
 
+  if (document.getElementById('website').value) return;
+
   const name  = document.getElementById('con-name').value.trim();
   const email = document.getElementById('con-email').value.trim();
   const phone = document.getElementById('con-phone').value.trim();
