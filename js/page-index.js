@@ -283,7 +283,7 @@ const portfolio = [
     url: 'https://kobe-steak.vercel.app'
   },
   {
-    accent: '#C8C8C8',
+    accent: '#1a1a1a',
     titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
     descVI: 'Web agency — hệ thống hoàn chỉnh', descEN: 'Full-stack web agency system',
     url: 'https://hayweb.vercel.app'
