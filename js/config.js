@@ -23,11 +23,13 @@ const i18n = {
 
     // Hero
     hero_eyebrow:   'Nền Tảng Phát Triển Doanh Nghiệp',
-    hero_title_1:   'Website không bán được hàng',
-    hero_title_2:   '= đốt tiền.',
-    hero_title_3:   'Chúng tôi xây hệ thống',
-    hero_title_4:   'biến khách thành đơn.',
-    hero_sub:       'Bốn trụ cột đi cùng nhau: web chuyển đổi cao — quảng cáo tối ưu — SEO bền vững — chiến lược tăng trưởng. Bạn chỉ cần tập trung vào sản phẩm.',
+    hero_title_1:   'Web đẹp',
+    hero_title_2:   'không bán hàng.',
+    hero_title_3:   'Web bán hàng',
+    hero_title_4:   'không tự đẹp.',
+    hero_title_5:   'HAYWEB làm cả hai',
+    hero_title_6:   'đo lường được.',
+    hero_sub:       'Bốn trụ cột đi cùng nhau cho doanh nghiệp Việt: website chuyển đổi cao — quảng cáo tối ưu chi phí — SEO bền vững top Google — chiến lược tăng trưởng có lộ trình.',
     hero_cta_1:     'Đặt 30 phút tư vấn miễn phí',
     hero_cta_2:     'Liên hệ ngay',
 
@@ -190,11 +192,13 @@ const i18n = {
     nav_new:        'Get a Quote',
 
     hero_eyebrow:   'Business Growth Platform',
-    hero_title_1:   'A site that doesn\'t sell',
-    hero_title_2:   'is wasted spend.',
-    hero_title_3:   'We build systems that',
-    hero_title_4:   'turn visits into orders.',
-    hero_sub:       'Four pillars working as one: high-converting web — optimized ads — sustainable SEO — growth strategy. You stay focused on your product.',
+    hero_title_1:   'Pretty sites',
+    hero_title_2:   'don\'t sell.',
+    hero_title_3:   'Sites that sell',
+    hero_title_4:   'aren\'t pretty by chance.',
+    hero_title_5:   'HAYWEB does both',
+    hero_title_6:   'measurably.',
+    hero_sub:       'Four pillars working as one for Vietnamese businesses: high-converting web — cost-optimized ads — sustainable SEO to top of Google — growth strategy with a roadmap.',
     hero_cta_1:     'Book a free 30-min call',
     hero_cta_2:     'Contact us',
 

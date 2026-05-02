@@ -755,10 +755,12 @@ function attachMagnetic() {
 }
 
 function buildPage() {
-  // Hero
+  // Hero — 3-line resolution structure (statement / counter / synthesis)
   document.getElementById('hero-eyebrow').textContent = t('hero_eyebrow');
   document.getElementById('hero-title').innerHTML =
-    `${t('hero_title_1')} <em>${t('hero_title_2')}</em><br>${t('hero_title_3')} <em>${t('hero_title_4')}</em>`;
+    `${t('hero_title_1')} <em>${t('hero_title_2')}</em><br>` +
+    `${t('hero_title_3')} <em>${t('hero_title_4')}</em><br>` +
+    `<span class="hero-resolve">${t('hero_title_5')} — <em>${t('hero_title_6')}</em></span>`;
   document.getElementById('hero-sub').textContent = t('hero_sub');
   const benefits = vi
     ? ['✓ Bàn giao trong 7–14 ngày', '✓ 120+ dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']

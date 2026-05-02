@@ -16,16 +16,67 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation"></nav>
 
-<!-- HERO -->
+<!-- HERO — light editorial split (text left, mockup right) -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow" id="hero-eyebrow"></div>
-    <h1 class="hero-title" id="hero-title"></h1>
-    <p class="hero-subtitle" id="hero-sub"></p>
-    <div class="hero-benefits" id="hero-benefits"></div>
-    <div class="hero-actions" id="hero-actions"></div>
+    <div class="hero-text">
+      <div class="hero-eyebrow" id="hero-eyebrow"></div>
+      <h1 class="hero-title" id="hero-title"></h1>
+      <p class="hero-subtitle" id="hero-sub"></p>
+      <div class="hero-benefits" id="hero-benefits"></div>
+      <div class="hero-actions" id="hero-actions"></div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-mockup">
+        <div class="hero-mockup-bar">
+          <span class="hero-mockup-dot d1"></span>
+          <span class="hero-mockup-dot d2"></span>
+          <span class="hero-mockup-dot d3"></span>
+          <span class="hero-mockup-url">hayweb.vercel.app/dashboard</span>
+        </div>
+        <div class="hero-mockup-body">
+          <div class="hero-mockup-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-num">5.2<small>×</small></span>
+              <span class="hero-stat-lbl">Conversion</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">−47<small>%</small></span>
+              <span class="hero-stat-lbl">CPA</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">#3</span>
+              <span class="hero-stat-lbl">Google</span>
+            </div>
+          </div>
+          <div class="hero-mockup-chart">
+            <svg viewBox="0 0 320 110" preserveAspectRatio="none" role="img" aria-hidden="true">
+              <line x1="0" y1="28" x2="320" y2="28" class="hero-grid"/>
+              <line x1="0" y1="55" x2="320" y2="55" class="hero-grid"/>
+              <line x1="0" y1="82" x2="320" y2="82" class="hero-grid"/>
+              <path d="M 8 92 L 60 90 L 120 88 L 180 89 L 240 87 L 312 86" class="hero-line-before"/>
+              <path d="M 8 92 L 60 78 L 120 62 L 180 44 L 240 26 L 312 12" class="hero-line-after"/>
+              <circle cx="312" cy="12" r="4" class="hero-line-end"/>
+            </svg>
+            <div class="hero-mockup-legend">
+              <span><i class="hero-swatch hero-swatch-before"></i>Trước HAYWEB</span>
+              <span><i class="hero-swatch hero-swatch-after"></i>Sau 90 ngày</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-mockup-badge">
+        <span class="hero-badge-arrow" aria-hidden="true">↗</span>
+        <span class="hero-badge-text">
+          <strong>+340%</strong>
+          <small>đơn hàng / tháng</small>
+        </span>
+      </div>
+    </div>
   </div>
+
   <div class="hero-scroll" aria-hidden="true">
     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
       <path d="M12 5v14M5 12l7 7 7-7"/>
