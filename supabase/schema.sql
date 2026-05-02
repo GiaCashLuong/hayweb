@@ -67,3 +67,32 @@ CREATE POLICY "Only service role can read contact messages" ON hw_contact_messag
 CREATE INDEX IF NOT EXISTS hw_projects_user_id_idx ON hw_projects (user_id);
 CREATE INDEX IF NOT EXISTS hw_projects_status_idx  ON hw_projects (status);
 CREATE INDEX IF NOT EXISTS hw_projects_created_idx ON hw_projects (created_at DESC);
+
+-- === hw_consultations ===
+-- Daily-limited free consultation slots (5/day) + waitlist overflow.
+-- Used by hw-consultation-slots (count) + hw-consultation-book (insert).
+CREATE TABLE IF NOT EXISTS hw_consultations (
+  id           uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  name         text NOT NULL,
+  email        text NOT NULL,
+  phone        text,
+  source       text,                                  -- 'cta_band' | 'contact' | 'sticky_bar'
+  status       text DEFAULT 'booked' CHECK (status IN ('booked','waitlist','contacted','done','cancelled')),
+  slot_date    date NOT NULL DEFAULT (now() AT TIME ZONE 'Asia/Ho_Chi_Minh')::date,
+  notes        text,
+  created_at   timestamptz DEFAULT now()
+);
+
+ALTER TABLE hw_consultations ENABLE ROW LEVEL SECURITY;
+
+-- Anon can ONLY insert (not read). Slot count comes via Edge Function with service_role.
+CREATE POLICY "Anyone can book a consultation" ON hw_consultations
+  FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Only service role can read consultations" ON hw_consultations
+  FOR SELECT USING (auth.jwt() ->> 'role' = 'service_role');
+
+CREATE INDEX IF NOT EXISTS hw_consultations_slot_date_idx
+  ON hw_consultations (slot_date);
+CREATE INDEX IF NOT EXISTS hw_consultations_status_idx
+  ON hw_consultations (status);
