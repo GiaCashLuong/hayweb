@@ -283,7 +283,8 @@ const portfolio = [
     url: 'https://kobe-steak.vercel.app'
   },
   {
-    accent: '#1a1a1a',
+    accent: '#A67C2E',
+    image: '/images/portfolio-hayweb.jpg',
     titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
     descVI: 'Web agency — hệ thống hoàn chỉnh', descEN: 'Full-stack web agency system',
     url: 'https://hayweb.vercel.app'
@@ -834,19 +835,24 @@ function buildPage() {
   document.getElementById('port-label').textContent = t('port_label');
   document.getElementById('port-title').innerHTML = `${t('port_title')} <em>${t('port_title_em')}</em>`;
   document.getElementById('port-viewall').textContent = t('port_viewall');
-  document.getElementById('portfolio-grid').innerHTML = portfolio.map(p => `
+  document.getElementById('portfolio-grid').innerHTML = portfolio.map(p => {
+    const title = vi ? p.titleVI : p.titleEN;
+    const visual = p.image
+      ? `<div class="portfolio-card-visual has-image"><img src="${p.image}" alt="${title}" loading="lazy"></div>`
+      : `<div class="portfolio-card-visual" aria-hidden="true"></div>`;
+    return `
     <div class="portfolio-card fade-up" style="--port-accent:${p.accent}">
-      <div class="portfolio-card-visual" aria-hidden="true"></div>
+      ${visual}
       <div class="portfolio-overlay">
-        <h3>${vi ? p.titleVI : p.titleEN}</h3>
+        <h3>${title}</h3>
         <p>${vi ? p.descVI : p.descEN}</p>
         <a href="${p.url}" target="_blank" rel="noopener" class="portfolio-link">
           ${vi ? 'Xem dự án' : 'View project'}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 
   // Why us
   document.getElementById('why-label').textContent = t('why_label');

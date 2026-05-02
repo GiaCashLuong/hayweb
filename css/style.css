@@ -462,14 +462,20 @@ section { padding: 8rem 0; }
   border: 1px solid var(--border);
   box-shadow: 0 6px 24px rgba(60,40,15,0.06);
 }
-/* abstract CSS visual — no stock photos. Subtle dot grid with accent stripe + faded brand cipher. */
+/* Accent stripe always visible regardless of image / CSS-visual variant */
+.portfolio-card::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 3px; z-index: 2;
+  background: var(--port-accent, var(--border-hover));
+}
+/* CSS-only fallback visual (no image): subtle dot grid + faded brand cipher */
 .portfolio-card-visual {
   width: 100%; height: 100%; position: absolute; inset: 0;
   background:
     radial-gradient(circle at 30% 30%, rgba(166,124,46,0.06) 0%, transparent 50%),
     radial-gradient(circle, rgba(26,26,26,0.07) 1px, transparent 1px) 0 0 / 22px 22px,
     var(--white);
-  border-bottom: 3px solid var(--port-accent, var(--border-hover));
   transition: transform .6s ease;
   display: flex; align-items: center; justify-content: center;
 }
@@ -482,6 +488,14 @@ section { padding: 8rem 0; }
   color: rgba(26,26,26,0.05);
   text-transform: uppercase;
 }
+/* Real-image variant: hide CSS pattern + watermark, show actual screenshot */
+.portfolio-card-visual.has-image { background: none; }
+.portfolio-card-visual.has-image::before { content: none; }
+.portfolio-card-visual.has-image img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .6s ease;
+}
+.portfolio-card:hover .portfolio-card-visual.has-image img { transform: scale(1.04); }
 /* keep img rule for portfolio pages that may still render imgs */
 .portfolio-card img {
   width: 100%; height: 100%; object-fit: cover;
