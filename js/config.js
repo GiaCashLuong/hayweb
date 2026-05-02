@@ -507,14 +507,18 @@ function initStatsCounter() {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       const el = e.target;
-      const target = parseInt(el.dataset.count);
+      const raw      = el.dataset.count;
+      const target   = parseFloat(raw);
+      const decimals = (raw.split('.')[1] || '').length;
       const duration = 1800;
-      const step = target / (duration / 16);
-      let current = 0;
+      const step     = target / (duration / 16);
+      let current    = 0;
       const timer = setInterval(() => {
         current += step;
         if (current >= target) { current = target; clearInterval(timer); }
-        el.textContent = Math.floor(current).toLocaleString();
+        el.textContent = decimals
+          ? current.toFixed(decimals)
+          : Math.floor(current).toLocaleString();
       }, 16);
       obs.unobserve(el);
     });
