@@ -266,12 +266,12 @@ const svcCategories = [
   }
 ];
 
-// ====== STATS ======
+// ====== STATS — specificity (lẻ = thật, tròn = nghi) ======
 const stats = [
-  { numVI: '120', numEN: '120', suffix: '+', labelVI: 'Dự án đã bàn giao', labelEN: 'Projects Delivered' },
-  { numVI: '98', numEN: '98', suffix: '%', labelVI: 'Khách hàng hài lòng', labelEN: 'Client Satisfaction' },
-  { numVI: '5', numEN: '5', suffix: '+', labelVI: 'Năm kinh nghiệm', labelEN: 'Years Experience' },
-  { numVI: '99.9', numEN: '99.9', suffix: '%', labelVI: 'Uptime cam kết', labelEN: 'Uptime Guaranteed' },
+  { numVI: '124',  numEN: '124',  suffix: '',  labelVI: 'Dự án đã bàn giao',     labelEN: 'Projects Delivered' },
+  { numVI: '97.4', numEN: '97.4', suffix: '%', labelVI: 'Khách quay lại / giới thiệu', labelEN: 'Client Retention / Referral' },
+  { numVI: '5.2',  numEN: '5.2',  suffix: '×', labelVI: 'Conversion trung bình so với cũ', labelEN: 'Avg Conversion vs Previous Site' },
+  { numVI: '99.97',numEN: '99.97',suffix: '%', labelVI: 'Uptime 12 tháng qua',  labelEN: 'Uptime, last 12 months' },
 ];
 
 // ====== PORTFOLIO ======
@@ -393,7 +393,295 @@ const testimonials = [
   }
 ];
 
+// ====== 4 TRỤ CỘT — varied storytelling per pillar (PAS / compare / BAB / Q&A) ======
+const pillars = [
+  {
+    num: '01',
+    framework: 'pas',
+    accent: 'silver',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 12l3-3 4 4 8-8 3 3"/><path d="M3 19h18"/></svg>`,
+    titleVI: 'Website Chuyển Đổi', titleEN: 'High-Conversion Website',
+    leadVI: 'Web đẹp mà không bán được hàng — là khoản đầu tư lỗ.',
+    leadEN: 'A pretty site that doesn\'t sell is a losing investment.',
+    blocks: [
+      { roleVI: 'Vấn đề', roleEN: 'Problem',
+        textVI: 'Đa số doanh nghiệp Việt thuê làm web theo cảm tính: chọn template, chọn màu, chọn ảnh. Không ai hỏi "trang này nên thuyết phục khách thế nào".',
+        textEN: 'Most VN businesses build by gut: pick template, pick colour, pick image. No one asks "how should this page persuade?".' },
+      { roleVI: 'Hệ quả', roleEN: 'Consequence',
+        textVI: 'Khách vào trang, lướt 6 giây, thoát. Tiền ads đổ vào — landing không giữ chân — chuyển đổi dưới 1%.',
+        textEN: 'Visitors land, scroll 6 seconds, bounce. Ad spend pours in — page can\'t hold them — conversion under 1%.' },
+      { roleVI: 'HAYWEB khác', roleEN: 'HAYWEB different',
+        textVI: 'Mỗi section trên trang phải trả lời 1 câu hỏi tâm lý cụ thể. Chúng tôi có 18 framework copywriting + 7 nguyên lý Cialdini áp dụng đo lường.',
+        textEN: 'Every section answers one specific psychological question. We apply 18 copywriting frameworks + 7 Cialdini principles, measured.' },
+      { roleVI: 'Còn nữa', roleEN: 'Plus',
+        textVI: 'Mỗi tháng A/B test 1 thay đổi có giả thuyết — trang tự lớn lên qua thời gian, không đứng yên.',
+        textEN: 'Monthly hypothesis-driven A/B test — the page improves over time, never stagnates.' },
+      { roleVI: 'Thước đo', roleEN: 'Metric',
+        textVI: 'Trung bình khách HAYWEB đạt conversion 4-7% sau 90 ngày — gấp 5.2× trang cũ.',
+        textEN: 'Average HAYWEB client hits 4-7% conversion after 90 days — 5.2× their old site.' },
+    ],
+  },
+  {
+    num: '02',
+    framework: 'compare',
+    accent: 'silver',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 11l18-7-7 18-2-8-9-3z"/></svg>`,
+    titleVI: 'Quảng Cáo Tối Ưu', titleEN: 'Optimized Ads',
+    leadVI: 'Cùng 10 triệu ads — bên A ra 5 đơn, bên B ra 35 đơn. Khác nhau ở đâu?',
+    leadEN: 'Same 10M VND — agency A gets 5 orders, agency B gets 35. The difference?',
+    blocks: [
+      { roleVI: 'Họ', roleEN: 'Them',
+        textVI: 'Boost post Facebook, target "Nam, 25-45, Hà Nội". Kết thúc tháng nộp screenshot impression và ngân sách đã chi.',
+        textEN: 'Boost FB posts, target "Male 25-45, Hanoi". End of month: screenshot impressions + spend.' },
+      { roleVI: 'HAYWEB', roleEN: 'HAYWEB',
+        textVI: 'Track tới đơn hàng cuối cùng (offline conversion API). Mỗi ad set có giả thuyết, ngắt sớm khi CPA vượt ngưỡng. Báo cáo ROI hàng tuần thay vì impression.',
+        textEN: 'Track all the way to last order (offline conversion API). Each ad set has hypothesis, kill early when CPA exceeds. Weekly ROI report, not impressions.' },
+      { roleVI: 'Thước đo', roleEN: 'Metric',
+        textVI: 'CPA giảm 40-60% trong 60 ngày đầu. Bạn biết chính xác 1 đồng ads ra bao nhiêu doanh thu.',
+        textEN: 'CPA drops 40-60% in first 60 days. You know exactly how many VND of revenue each VND of ads brings.' },
+    ],
+  },
+  {
+    num: '03',
+    framework: 'bab',
+    accent: 'silver',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6M11 8v6"/></svg>`,
+    titleVI: 'SEO Lên Top Google', titleEN: 'SEO to Top of Google',
+    leadVI: 'SEO không phải phép màu — là tích lũy có hệ thống suốt 6-12 tháng.',
+    leadEN: 'SEO isn\'t magic — it\'s systematic accumulation over 6-12 months.',
+    blocks: [
+      { roleVI: 'Trước', roleEN: 'Before',
+        textVI: 'Trang nằm sau page 5, không ai click. Mỗi tháng phải đốt ads để kéo traffic. Ngừng ads = ngừng khách.',
+        textEN: 'Site ranks past page 5, no one clicks. Burn ads monthly for traffic. Stop ads = stop customers.' },
+      { roleVI: 'Sau', roleEN: 'After',
+        textVI: 'Top 3 Google cho 30-50 từ khoá thương mại. Khách tự tìm tới mỗi ngày — không tốn 1 đồng ads.',
+        textEN: 'Top 3 on Google for 30-50 commercial keywords. Customers find you daily — zero ad spend.' },
+      { roleVI: 'Cây cầu', roleEN: 'Bridge',
+        textVI: 'Audit kỹ thuật → chuẩn schema → bộ từ khoá ngách → content trụ + content bổ trợ → backlink chất lượng → đo lường mỗi 30 ngày.',
+        textEN: 'Technical audit → schema → niche keyword set → pillar + supporting content → quality backlinks → measure every 30 days.' },
+      { roleVI: 'Thước đo', roleEN: 'Metric',
+        textVI: 'Khách của HAYWEB top 10 cho ≥40% từ khoá target sau 6 tháng. Có khách 25 từ khoá top 3 sau 9 tháng.',
+        textEN: 'HAYWEB clients hit top 10 for ≥40% of target keywords in 6 months. One client got 25 keywords in top 3 after 9 months.' },
+    ],
+  },
+  {
+    num: '04',
+    framework: 'qa',
+    accent: 'silver',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/><circle cx="12" cy="12" r="10"/></svg>`,
+    titleVI: 'Tư Vấn Chiến Lược', titleEN: 'Strategy Consulting',
+    leadVI: 'Web tốt + ads tốt + SEO tốt — vẫn có thể thua nếu chiến lược sai.',
+    leadEN: 'Good web + good ads + good SEO — still lose if strategy is wrong.',
+    blocks: [
+      { roleVI: 'Câu hỏi', roleEN: 'Question',
+        textVI: 'Bạn đang bán cho ai? Họ thực sự đang trăn trở điều gì? Đối thủ trực tiếp đang ở đâu — và bạn KHÁC họ chỗ nào mà khách bận tâm?',
+        textEN: 'Who are you selling to? What\'s their real worry? Where are your direct competitors — and what\'s the difference customers care about?' },
+      { roleVI: 'Trả lời', roleEN: 'Answer',
+        textVI: 'Buổi 90 phút phân tích định vị → bản đồ khác biệt 1 trang → roadmap 3-6-12 tháng. Sau buổi này, mọi quyết định web/ads/SEO đều có lý do, không đoán mò.',
+        textEN: '90-min positioning workshop → 1-page differentiation map → 3/6/12 month roadmap. After this, every web/ads/SEO decision has a reason — no guessing.' },
+      { roleVI: 'Thước đo', roleEN: 'Metric',
+        textVI: 'Khách của HAYWEB tăng giá trung bình 18-35% sau roadmap, vì hiểu rõ ai sẵn sàng trả nhiều hơn.',
+        textEN: 'HAYWEB clients raise average price 18-35% post-roadmap — because they finally know who pays more.' },
+    ],
+  },
+];
+
+// ====== COMPARISON — direct contrast ======
+const comparisonRows = [
+  {
+    aspectVI: 'Sau khi web live',     aspectEN: 'After site goes live',
+    themVI:   'Bàn giao file. Hết.', themEN:   'Hand over files. Done.',
+    usVI:     'Theo dõi conversion + A/B test mỗi tháng.', usEN: 'Track conversion + monthly A/B test.',
+  },
+  {
+    aspectVI: 'Báo cáo ads',           aspectEN: 'Ads reporting',
+    themVI:   'Screenshot impression cuối tháng.', themEN: 'End-of-month impression screenshot.',
+    usVI:     'Dashboard ROI cập nhật hàng ngày.',  usEN:   'Live ROI dashboard, daily updates.',
+  },
+  {
+    aspectVI: 'SEO',                          aspectEN: 'SEO',
+    themVI:   'Cài plugin Yoast là xong.',    themEN:   'Install Yoast plugin and call it done.',
+    usVI:     'Audit kỹ thuật + content trụ + backlink — đo bằng vị trí top 10/3.', usEN: 'Tech audit + pillar content + backlinks — measured top 10/3.',
+  },
+  {
+    aspectVI: 'Tư vấn chiến lược',           aspectEN: 'Strategy consulting',
+    themVI:   'Không có. Chỉ "anh muốn web kiểu gì?".', themEN: 'Not offered. Just "what kind of site do you want?".',
+    usVI:     'Workshop định vị 90 phút + roadmap 12 tháng.', usEN: '90-min positioning workshop + 12-month roadmap.',
+  },
+  {
+    aspectVI: 'Bảo mật (Mozilla Observatory)', aspectEN: 'Security (Mozilla Observatory)',
+    themVI:   'Hiếm khi kiểm tra. Headers thiếu.',   themEN:   'Rarely tested. Headers missing.',
+    usVI:     '100/100 A+ — bắt buộc trên mọi trang.', usEN:   '100/100 A+ — required on every site.',
+  },
+  {
+    aspectVI: 'Khi có sự cố',                  aspectEN: 'When something breaks',
+    themVI:   'Trả lời sau 2-5 ngày làm việc.', themEN:   'Reply in 2-5 working days.',
+    usVI:     'Phản hồi trong 4 giờ làm việc — gói Growth.', usEN: 'Response within 4 working hours — Growth tier.',
+  },
+  {
+    aspectVI: 'Sau hợp đồng',                  aspectEN: 'After contract ends',
+    themVI:   'Source code khoá. Đổi đối tác = làm lại từ đầu.', themEN: 'Source code locked. Switch vendor = rebuild from scratch.',
+    usVI:     'Code mở chuẩn — bạn sở hữu mọi thứ. Đổi ai cũng dùng được.', usEN: 'Open standards — you own everything. Any vendor can pick up.',
+  },
+];
+
 const vi = currentLang === 'vi';
+
+function renderPillars() {
+  const grid = document.getElementById('pillars-grid');
+  if (!grid) return;
+  grid.innerHTML = pillars.map(p => `
+    <article class="pillar-card fade-up" data-framework="${p.framework}">
+      <header class="pillar-head">
+        <span class="pillar-num">${p.num}</span>
+        <span class="pillar-icon">${p.icon}</span>
+        <h3 class="pillar-title">${vi ? p.titleVI : p.titleEN}</h3>
+      </header>
+      <p class="pillar-lead">${vi ? p.leadVI : p.leadEN}</p>
+      <div class="pillar-blocks">
+        ${p.blocks.map(b => `
+          <div class="pillar-block">
+            <div class="pillar-block-role">${vi ? b.roleVI : b.roleEN}</div>
+            <p class="pillar-block-text">${vi ? b.textVI : b.textEN}</p>
+          </div>
+        `).join('')}
+      </div>
+    </article>
+  `).join('');
+}
+
+function renderComparison() {
+  const table = document.getElementById('comparison-table');
+  if (!table) return;
+  const themLabel = t('cmp_them');
+  const usLabel   = t('cmp_us');
+  table.innerHTML = `
+    <div class="cmp-head" role="row">
+      <div class="cmp-cell cmp-aspect" role="columnheader">${vi ? 'Khía cạnh' : 'Aspect'}</div>
+      <div class="cmp-cell cmp-them"   role="columnheader">${themLabel}</div>
+      <div class="cmp-cell cmp-us"     role="columnheader">${usLabel}</div>
+    </div>
+    ${comparisonRows.map(r => `
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-aspect" role="cell">${vi ? r.aspectVI : r.aspectEN}</div>
+        <div class="cmp-cell cmp-them"   role="cell">
+          <span class="cmp-mark cmp-mark-x" aria-hidden="true">✕</span>
+          <span>${vi ? r.themVI : r.themEN}</span>
+        </div>
+        <div class="cmp-cell cmp-us"     role="cell">
+          <span class="cmp-mark cmp-mark-check" aria-hidden="true">✓</span>
+          <span>${vi ? r.usVI : r.usEN}</span>
+        </div>
+      </div>
+    `).join('')}
+  `;
+}
+
+const SC_FN_SLOTS = `${HW_FN_BASE}/hw-consultation-slots`;
+const SC_FN_BOOK  = `${HW_FN_BASE}/hw-consultation-book`;
+
+async function renderScarcity() {
+  document.getElementById('sc-label').textContent  = t('sc_label');
+  document.getElementById('sc-desc').textContent   = t('sc_desc');
+  document.getElementById('sc-form-title').textContent = t('sc_cta_form');
+  document.getElementById('sc-form-desc').textContent  = '';
+
+  document.getElementById('sc-name').placeholder  = t('sc_form_name');
+  document.getElementById('sc-email').placeholder = t('sc_form_email');
+  document.getElementById('sc-phone').placeholder = t('sc_form_phone');
+  document.getElementById('sc-submit').textContent = t('sc_form_submit');
+
+  const titleEl   = document.getElementById('sc-title');
+  const counterEl = document.getElementById('sc-counter-text');
+  const fillEl    = document.getElementById('sc-bar-fill');
+  const actionsEl = document.getElementById('sc-actions');
+
+  // Default optimistic state while loading
+  titleEl.innerHTML = `${t('sc_title')} <em data-sc-num>5</em> ${t('sc_title_em')}`;
+  counterEl.textContent = vi ? 'Đang kiểm tra slot…' : 'Checking slots…';
+  fillEl.style.width = '0%';
+
+  let slotState = { used: 0, total: 5, available: 5 };
+  try {
+    const res = await fetch(SC_FN_SLOTS, { headers: { apikey: SUPABASE_ANON_KEY } });
+    if (res.ok) slotState = await res.json();
+  } catch (_) { /* fallback to default */ }
+
+  const { used, total, available } = slotState;
+  const isFull = available === 0;
+
+  if (isFull) {
+    titleEl.innerHTML = t('sc_full_title');
+    counterEl.textContent = t('sc_full_desc');
+    fillEl.style.width = '100%';
+    fillEl.dataset.full = 'true';
+  } else {
+    titleEl.innerHTML = `${t('sc_title')} <em>${available}</em> / ${total} ${t('sc_title_em')}`;
+    counterEl.textContent = vi
+      ? `Đã có ${used} người đặt hôm nay. Reset 00:00 ngày mai.`
+      : `${used} booked today. Resets at midnight ICT.`;
+    fillEl.style.width = `${(used / total) * 100}%`;
+  }
+
+  actionsEl.innerHTML = `
+    <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener"
+       class="btn-primary" ${isFull ? 'data-disabled="true" aria-disabled="true"' : ''}>
+      ${t('sc_cta_calendly')}
+    </a>
+    <span class="scarcity-or" aria-hidden="true">${t('or')}</span>
+    <a href="#sc-form" class="btn-outline">${t('sc_cta_form')}</a>
+  `;
+
+  attachScarcityForm(isFull);
+}
+
+function attachScarcityForm(isFull) {
+  const form    = document.getElementById('sc-form');
+  const status  = document.getElementById('sc-status');
+  if (!form || form._bound) return;
+  form._bound = true;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = '';
+    status.className = 'scarcity-form-status';
+
+    const name    = document.getElementById('sc-name').value.trim();
+    const email   = document.getElementById('sc-email').value.trim();
+    const phone   = document.getElementById('sc-phone').value.trim();
+    const website = document.getElementById('sc-website').value;
+
+    if (!name || !email) {
+      status.textContent = vi ? 'Vui lòng điền họ tên và email.' : 'Please enter name and email.';
+      status.classList.add('error');
+      return;
+    }
+
+    const submitBtn = document.getElementById('sc-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = t('loading');
+
+    try {
+      const res = await fetch(SC_FN_BOOK, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', apikey: SUPABASE_ANON_KEY },
+        body:    JSON.stringify({ name, email, phone, website, source: isFull ? 'cta_band_waitlist' : 'cta_band' }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Failed');
+
+      status.textContent = data.status === 'waitlist' ? t('sc_thx_waitlist') : t('sc_thx_booked');
+      status.classList.add('success');
+      form.reset();
+    } catch (err) {
+      status.textContent = t('error');
+      status.classList.add('error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = t('sc_form_submit');
+    }
+  });
+}
 
 function renderServicesTabs() {
   const tabsBar = document.getElementById('services-tabs');
@@ -479,23 +767,37 @@ function buildPage() {
   if (benefitsEl) benefitsEl.innerHTML = benefits.map(b => `<span class="hero-benefit">${b}</span>`).join('');
 
   document.getElementById('hero-actions').innerHTML = `
-    <a href="/new-project.html" class="btn-primary">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       ${t('hero_cta_1')}
     </a>
-    <a href="/portfolio.html" class="btn-outline">${t('hero_cta_2')}</a>
+    <a href="/contact.html" class="btn-outline">${t('hero_cta_2')}</a>
     <div class="hero-trust" aria-label="${vi ? 'Đánh giá khách hàng' : 'Client reviews'}">
       <span class="hero-trust-stars" aria-hidden="true">★★★★★</span>
-      <span>${vi ? '4.9/5 từ 120+ khách hàng • Không ràng buộc • Không phí ẩn' : '4.9/5 from 120+ clients • No commitment • No hidden fees'}</span>
+      <span>${vi ? '4.9/5 từ 124 khách hàng • Tư vấn miễn phí • Không cam kết' : '4.9/5 from 124 clients • Free consultation • No commitment'}</span>
     </div>
   `;
+
+  // Pillars (4 trụ cột — varied storytelling)
+  document.getElementById('pillars-label').textContent = t('pillars_label');
+  document.getElementById('pillars-title').innerHTML  = `${t('pillars_title')} <em>${t('pillars_title_em')}</em>`;
+  document.getElementById('pillars-desc').textContent = t('pillars_desc');
+  renderPillars();
 
   // Services
   document.getElementById('svc-label').textContent = t('svc_label');
   document.getElementById('svc-title').innerHTML = `${t('svc_title')} <em>${t('svc_title_em')}</em>`;
   document.getElementById('svc-desc').textContent = t('svc_desc');
-  document.getElementById('svc-cta').textContent = vi ? 'Nhận báo giá →' : 'Get a Quote →';
+  document.getElementById('svc-cta').textContent = vi ? 'Đặt tư vấn →' : 'Book a call →';
+  document.getElementById('svc-cta').href = 'https://calendly.com/gsg-zero/30min';
+  document.getElementById('svc-cta').target = '_blank';
+  document.getElementById('svc-cta').rel = 'noopener';
   renderServicesTabs();
+
+  // Comparison — direct contrast (us vs them)
+  document.getElementById('cmp-label').textContent = t('cmp_label');
+  document.getElementById('cmp-title').innerHTML  = `${t('cmp_title')} <em>${t('cmp_title_em')}</em>`;
+  renderComparison();
 
   // Stats
   document.getElementById('stats-grid').innerHTML = stats.map(s => `
@@ -616,17 +918,8 @@ function buildPage() {
     </div>
   `).join('');
 
-  // CTA
-  document.getElementById('cta-title').innerHTML = `${t('cta_title')} <em>${t('cta_title_em')}</em>`;
-  document.getElementById('cta-desc').textContent = t('cta_desc');
-  document.getElementById('cta-btn').textContent = t('cta_btn');
-  const badges = [
-    { icon: '🔒', text: vi ? 'SSL Bảo mật' : 'SSL Secured' },
-    { icon: '✓', text: vi ? '100% Hoàn tiền nếu không hài lòng' : '100% Refund if not satisfied' },
-    { icon: '⚡', text: vi ? 'Báo giá trong 5 phút' : 'Quote in 5 minutes' },
-  ];
-  const badgesEl = document.getElementById('cta-trust-badges');
-  if (badgesEl) badgesEl.innerHTML = badges.map(b => `<span class="cta-trust-badge"><span aria-hidden="true">${b.icon}</span>${b.text}</span>`).join('');
+  // Scarcity CTA Band — REAL slot count from Supabase
+  renderScarcity();
 }
 
 async function init() {

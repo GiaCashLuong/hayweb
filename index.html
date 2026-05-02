@@ -34,6 +34,18 @@
   </div>
 </section>
 
+<!-- 4 PILLARS — varied storytelling per pillar -->
+<section id="pillars" class="pillars-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3.5rem">
+      <div class="section-label fade-up" style="justify-content:center" id="pillars-label"></div>
+      <h2 class="section-title fade-up" id="pillars-title"></h2>
+      <p class="section-desc fade-up" style="margin:0 auto" id="pillars-desc"></p>
+    </div>
+    <div class="pillars-grid" id="pillars-grid"></div>
+  </div>
+</section>
+
 <!-- SERVICES (TABS) -->
 <section id="services" style="padding-top:6rem">
   <div class="container">
@@ -75,6 +87,17 @@
       <a href="/portfolio.html" class="btn-outline fade-up" id="port-viewall"></a>
     </div>
     <div class="portfolio-grid" id="portfolio-grid"></div>
+  </div>
+</section>
+
+<!-- COMPARISON — direct contrast pattern -->
+<section id="comparison" class="comparison-section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3.5rem">
+      <div class="section-label fade-up" style="justify-content:center" id="cmp-label"></div>
+      <h2 class="section-title fade-up" id="cmp-title"></h2>
+    </div>
+    <div class="comparison-table fade-up" id="comparison-table" role="table" aria-label="So sánh HAYWEB và đa số agency"></div>
   </div>
 </section>
 
@@ -150,15 +173,36 @@
   </div>
 </section>
 
-<!-- CTA BAND -->
-<section class="cta-band">
+<!-- SCARCITY CTA BAND — real daily slot count from Supabase -->
+<section class="cta-band scarcity-band" id="scarcity">
   <div class="container">
-    <h2 class="section-title fade-up" id="cta-title"></h2>
-    <p class="section-desc fade-up" style="margin:0 auto 2.5rem" id="cta-desc"></p>
-    <div class="fade-up">
-      <a href="/new-project.html" class="btn-primary" id="cta-btn" style="font-size:1rem;padding:1rem 2.8rem"></a>
-      <div class="cta-trust-badges fade-up" id="cta-trust-badges"></div>
+    <div class="section-label fade-up" style="justify-content:center" id="sc-label"></div>
+    <h2 class="section-title fade-up" id="sc-title"></h2>
+    <p class="section-desc fade-up" style="margin:0 auto 2rem" id="sc-desc"></p>
+
+    <div class="scarcity-counter fade-up" id="sc-counter" aria-live="polite">
+      <div class="scarcity-counter-bar"><span id="sc-bar-fill"></span></div>
+      <p class="scarcity-counter-text" id="sc-counter-text"></p>
     </div>
+
+    <div class="scarcity-actions fade-up" id="sc-actions"></div>
+
+    <form class="scarcity-form fade-up" id="sc-form" novalidate>
+      <h3 id="sc-form-title"></h3>
+      <p id="sc-form-desc"></p>
+      <div class="scarcity-form-grid">
+        <input type="text"  id="sc-name"  required maxlength="200" autocomplete="name">
+        <input type="email" id="sc-email" required maxlength="200" autocomplete="email">
+        <input type="tel"   id="sc-phone"          maxlength="40"  autocomplete="tel">
+      </div>
+      <!-- honeypot — hidden anti-bot field (code-006 pattern) -->
+      <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+        <label for="sc-website">Website</label>
+        <input type="text" id="sc-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="btn-primary" id="sc-submit"></button>
+      <p class="scarcity-form-status" id="sc-status" role="status"></p>
+    </form>
   </div>
 </section>
 

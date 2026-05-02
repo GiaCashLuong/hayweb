@@ -22,14 +22,14 @@ const i18n = {
     nav_new:        'Yêu cầu báo giá',
 
     // Hero
-    hero_eyebrow:   'Thiết Kế Web Chuyên Nghiệp',
-    hero_title_1:   'Thiết kế không chỉ',
-    hero_title_2:   'đẹp.',
-    hero_title_3:   'Thiết kế để',
-    hero_title_4:   'chinh phục.',
-    hero_sub:       'Đội ngũ chuyên gia hơn 5 năm kinh nghiệm. Từng dự án là một tuyệt tác được đo ni đóng giày cho thương hiệu của bạn.',
-    hero_cta_1:     'Nhận báo giá miễn phí',
-    hero_cta_2:     'Xem portfolio',
+    hero_eyebrow:   'Nền Tảng Phát Triển Doanh Nghiệp',
+    hero_title_1:   'Website không bán được hàng',
+    hero_title_2:   '= đốt tiền.',
+    hero_title_3:   'Chúng tôi xây hệ thống',
+    hero_title_4:   'biến khách thành đơn.',
+    hero_sub:       'Bốn trụ cột đi cùng nhau: web chuyển đổi cao — quảng cáo tối ưu — SEO bền vững — chiến lược tăng trưởng. Bạn chỉ cần tập trung vào sản phẩm.',
+    hero_cta_1:     'Đặt 30 phút tư vấn miễn phí',
+    hero_cta_2:     'Liên hệ ngay',
 
     // Services
     svc_label:      'Dịch vụ',
@@ -142,6 +142,35 @@ const i18n = {
     con_send:       'Gửi tin nhắn',
     con_sent:       'Tin nhắn đã gửi! Chúng tôi sẽ phản hồi sớm.',
 
+    // Pillars (4 trụ cột)
+    pillars_label:    'Bốn trụ cột tăng trưởng',
+    pillars_title:    'Bốn mảnh ghép',
+    pillars_title_em: 'của một doanh nghiệp lớn lên',
+    pillars_desc:     'Hầu hết doanh nghiệp Việt chi tiền cho 1 mảnh — rồi tự hỏi vì sao không hiệu quả. Bốn mảnh phải đi cùng nhau.',
+
+    // Comparison
+    cmp_label:    'So sánh thẳng',
+    cmp_title:    'Đa số agency dừng ở',
+    cmp_title_em: 'việc bàn giao file',
+    cmp_them:     'Đa số agency Việt Nam',
+    cmp_us:       'HAYWEB',
+
+    // Scarcity CTA Band
+    sc_label:        'Tư vấn miễn phí',
+    sc_title:        'Hôm nay còn',
+    sc_title_em:     'lượt tư vấn miễn phí',
+    sc_desc:         '30 phút trao đổi 1-1 với chuyên viên — phân tích trang hiện tại, gợi ý 3 điểm cải thiện ngay. Không cam kết, không phí.',
+    sc_cta_calendly: 'Đặt lịch Calendly →',
+    sc_cta_form:     'Hoặc để lại thông tin',
+    sc_full_title:   'Hôm nay đã đầy 5/5 lượt',
+    sc_full_desc:    'Để lại thông tin — chúng tôi liên hệ trong 24h để xếp lịch ngày mai.',
+    sc_form_name:    'Họ tên',
+    sc_form_email:   'Email',
+    sc_form_phone:   'Số điện thoại (tuỳ chọn)',
+    sc_form_submit:  'Gửi yêu cầu',
+    sc_thx_booked:   'Đã ghi nhận. Chúng tôi sẽ liên hệ trong 30 phút làm việc.',
+    sc_thx_waitlist: 'Bạn đã vào hàng chờ ngày mai. Email xác nhận đã gửi.',
+
     // Common
     loading:        'Đang tải...',
     error:          'Đã có lỗi xảy ra. Vui lòng thử lại.',
@@ -160,14 +189,14 @@ const i18n = {
     nav_logout:     'Logout',
     nav_new:        'Get a Quote',
 
-    hero_eyebrow:   'Professional Web Design',
-    hero_title_1:   'Design that doesn\'t just',
-    hero_title_2:   'look good.',
-    hero_title_3:   'Design that',
-    hero_title_4:   'wins.',
-    hero_sub:       'A team of specialists with 5+ years of experience. Every project is a masterpiece crafted specifically for your brand.',
-    hero_cta_1:     'Get a Free Quote',
-    hero_cta_2:     'View Portfolio',
+    hero_eyebrow:   'Business Growth Platform',
+    hero_title_1:   'A site that doesn\'t sell',
+    hero_title_2:   'is wasted spend.',
+    hero_title_3:   'We build systems that',
+    hero_title_4:   'turn visits into orders.',
+    hero_sub:       'Four pillars working as one: high-converting web — optimized ads — sustainable SEO — growth strategy. You stay focused on your product.',
+    hero_cta_1:     'Book a free 30-min call',
+    hero_cta_2:     'Contact us',
 
     svc_label:      'Services',
     svc_title:      'A complete',
@@ -265,6 +294,32 @@ const i18n = {
     con_msg:        'Message',
     con_send:       'Send Message',
     con_sent:       'Message sent! We\'ll respond shortly.',
+
+    pillars_label:    'Four growth pillars',
+    pillars_title:    'Four pieces',
+    pillars_title_em: 'a growing business needs',
+    pillars_desc:     'Most Vietnamese businesses pay for one piece — then wonder why nothing works. The four must work together.',
+
+    cmp_label:    'Direct comparison',
+    cmp_title:    'Most agencies stop at',
+    cmp_title_em: 'handing over files',
+    cmp_them:     'Most Vietnam agencies',
+    cmp_us:       'HAYWEB',
+
+    sc_label:        'Free consultation',
+    sc_title:        'Today only',
+    sc_title_em:     'free consultations left',
+    sc_desc:         '30 minutes one-on-one with a specialist — site audit, 3 actionable improvements. No commitment, no fee.',
+    sc_cta_calendly: 'Book on Calendly →',
+    sc_cta_form:     'Or leave your details',
+    sc_full_title:   'All 5 slots taken today',
+    sc_full_desc:    'Leave your details — we\'ll contact you within 24h to book tomorrow.',
+    sc_form_name:    'Full name',
+    sc_form_email:   'Email',
+    sc_form_phone:   'Phone (optional)',
+    sc_form_submit:  'Submit request',
+    sc_thx_booked:   'Recorded. We\'ll contact you within 30 working minutes.',
+    sc_thx_waitlist: 'You\'re on tomorrow\'s waitlist. Confirmation email sent.',
 
     loading:        'Loading...',
     error:          'An error occurred. Please try again.',
@@ -400,18 +455,21 @@ function renderFooter() {
     </div>
   `;
 
-  const bar = document.createElement('div');
-  bar.className = 'mobile-cta-bar';
-  bar.setAttribute('aria-label', 'Mobile actions');
-  bar.innerHTML = `
-    <a href="tel:+84797986525" class="btn-outline" aria-label="Call HAYWEB">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      ${currentLang === 'vi' ? 'Gọi ngay' : 'Call'}
-    </a>
-    <a href="https://zalo.me/0797986525" target="_blank" rel="noopener" class="btn-outline" aria-label="Zalo HAYWEB">Zalo</a>
-    <a href="/new-project.html" class="btn-primary">${currentLang === 'vi' ? 'Báo giá' : 'Quote'}</a>
-  `;
-  document.body.appendChild(bar);
+  // Avoid duplicates if renderFooter runs twice (e.g. SPA navigation)
+  if (!document.querySelector('.mobile-cta-bar')) {
+    const bar = document.createElement('div');
+    bar.className = 'mobile-cta-bar';
+    bar.setAttribute('aria-label', 'Mobile actions');
+    bar.innerHTML = `
+      <a href="tel:+84797986525" class="btn-outline" aria-label="Call HAYWEB">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        ${currentLang === 'vi' ? 'Gọi' : 'Call'}
+      </a>
+      <a href="https://zalo.me/0797986525" target="_blank" rel="noopener" class="btn-outline" aria-label="Zalo HAYWEB">Zalo</a>
+      <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener" class="btn-primary">${currentLang === 'vi' ? 'Đặt lịch' : 'Book'}</a>
+    `;
+    document.body.appendChild(bar);
+  }
 }
 
 function initScrollReveal() {
