@@ -21,8 +21,8 @@ const i18n = {
     nav_logout:     'Đăng xuất',
     nav_new:        'Yêu cầu báo giá',
 
-    // Hero
-    hero_eyebrow:   'Nền Tảng Phát Triển Doanh Nghiệp',
+    // Hero — editorial direction (replaces v3 generic "platform" eyebrow + generic "tư vấn miễn phí" CTA)
+    hero_eyebrow:   'Studio Hà Nội · Issue 01 · 2026',
     hero_title_1:   'Web đẹp',
     hero_title_2:   'không bán hàng.',
     hero_title_3:   'Web bán hàng',
@@ -30,8 +30,10 @@ const i18n = {
     hero_title_5:   'HAYWEB làm cả hai',
     hero_title_6:   'đo lường được.',
     hero_sub:       'Bốn trụ cột đi cùng nhau cho doanh nghiệp Việt: website chuyển đổi cao — quảng cáo tối ưu chi phí — SEO bền vững top Google — chiến lược tăng trưởng có lộ trình.',
-    hero_cta_1:     'Đặt 30 phút tư vấn miễn phí',
-    hero_cta_2:     'Liên hệ ngay',
+    hero_cta_1:     'Đặt buổi 90 phút phân tích định vị',
+    hero_cta_2:     'Xem 124 dự án đã bàn giao',
+    hero_cta_micro: 'Qua Zoom · không cam kết · phản hồi trong 4h',
+    hero_visual_caption: 'Studio dashboard · HAYWEB v4',
 
     // Services
     svc_label:      'Dịch vụ',
@@ -157,21 +159,25 @@ const i18n = {
     cmp_them:     'Đa số agency Việt Nam',
     cmp_us:       'HAYWEB',
 
-    // Scarcity CTA Band
-    sc_label:        'Tư vấn miễn phí',
+    // Scarcity CTA Band — editorial outcome-specific (replaces generic "tư vấn miễn phí")
+    sc_label:        'Buổi định vị 90 phút',
     sc_title:        'Hôm nay còn',
-    sc_title_em:     'lượt tư vấn miễn phí',
-    sc_desc:         '30 phút trao đổi 1-1 với chuyên viên — phân tích trang hiện tại, gợi ý 3 điểm cải thiện ngay. Không cam kết, không phí.',
-    sc_cta_calendly: 'Đặt lịch Calendly →',
+    sc_title_em:     'buổi trong lịch',
+    sc_desc:         'Buổi 1-1 qua Zoom: phân tích định vị → bản đồ khác biệt 1 trang → roadmap 3-6-12 tháng. Sau buổi, mọi quyết định web/ads/SEO đều có lý do.',
+    sc_cta_calendly: 'Đặt buổi qua Calendly →',
     sc_cta_form:     'Hoặc để lại thông tin',
-    sc_full_title:   'Hôm nay đã đầy 5/5 lượt',
-    sc_full_desc:    'Để lại thông tin — chúng tôi liên hệ trong 24h để xếp lịch ngày mai.',
+    sc_full_title:   'Lịch hôm nay đã kín 5/5 buổi',
+    sc_full_desc:    'Để lại thông tin — chúng tôi xếp lịch ngày mai trong 24h.',
     sc_form_name:    'Họ tên',
     sc_form_email:   'Email',
     sc_form_phone:   'Số điện thoại (tuỳ chọn)',
     sc_form_submit:  'Gửi yêu cầu',
     sc_thx_booked:   'Đã ghi nhận. Chúng tôi sẽ liên hệ trong 30 phút làm việc.',
     sc_thx_waitlist: 'Bạn đã vào hàng chờ ngày mai. Email xác nhận đã gửi.',
+
+    // Editorial v4 additions
+    stats_meta:        'Số liệu cập nhật 04/2026 · Audit nội bộ',
+    why_side_caption:  'Studio dashboard — đo conversion, A/B test, báo cáo ROI hàng tuần.',
 
     // Common
     loading:        'Đang tải...',
@@ -191,7 +197,7 @@ const i18n = {
     nav_logout:     'Logout',
     nav_new:        'Get a Quote',
 
-    hero_eyebrow:   'Business Growth Platform',
+    hero_eyebrow:   'Studio Hanoi · Issue 01 · 2026',
     hero_title_1:   'Pretty sites',
     hero_title_2:   'don\'t sell.',
     hero_title_3:   'Sites that sell',
@@ -199,8 +205,10 @@ const i18n = {
     hero_title_5:   'HAYWEB does both',
     hero_title_6:   'measurably.',
     hero_sub:       'Four pillars working as one for Vietnamese businesses: high-converting web — cost-optimized ads — sustainable SEO to top of Google — growth strategy with a roadmap.',
-    hero_cta_1:     'Book a free 30-min call',
-    hero_cta_2:     'Contact us',
+    hero_cta_1:     'Book a 90-min positioning workshop',
+    hero_cta_2:     'See 124 delivered projects',
+    hero_cta_micro: 'Over Zoom · no commitment · response within 4h',
+    hero_visual_caption: 'Studio dashboard · HAYWEB v4',
 
     svc_label:      'Services',
     svc_title:      'A complete',
@@ -310,20 +318,24 @@ const i18n = {
     cmp_them:     'Most Vietnam agencies',
     cmp_us:       'HAYWEB',
 
-    sc_label:        'Free consultation',
-    sc_title:        'Today only',
-    sc_title_em:     'free consultations left',
-    sc_desc:         '30 minutes one-on-one with a specialist — site audit, 3 actionable improvements. No commitment, no fee.',
+    sc_label:        '90-min positioning workshop',
+    sc_title:        'Today',
+    sc_title_em:     'sessions remain on the calendar',
+    sc_desc:         '1-on-1 Zoom session: positioning analysis → 1-page differentiation map → 3-6-12 month roadmap. After this, every web/ads/SEO decision has a reason.',
     sc_cta_calendly: 'Book on Calendly →',
     sc_cta_form:     'Or leave your details',
-    sc_full_title:   'All 5 slots taken today',
-    sc_full_desc:    'Leave your details — we\'ll contact you within 24h to book tomorrow.',
+    sc_full_title:   'Today\'s calendar is fully booked (5/5)',
+    sc_full_desc:    'Leave your details — we\'ll arrange tomorrow within 24h.',
     sc_form_name:    'Full name',
     sc_form_email:   'Email',
     sc_form_phone:   'Phone (optional)',
     sc_form_submit:  'Submit request',
     sc_thx_booked:   'Recorded. We\'ll contact you within 30 working minutes.',
     sc_thx_waitlist: 'You\'re on tomorrow\'s waitlist. Confirmation email sent.',
+
+    // Editorial v4 additions
+    stats_meta:        'Numbers updated 04/2026 · Audited internally',
+    why_side_caption:  'Studio dashboard — measure conversion, A/B test, weekly ROI report.',
 
     loading:        'Loading...',
     error:          'An error occurred. Please try again.',

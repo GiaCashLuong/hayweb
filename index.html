@@ -16,7 +16,7 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation"></nav>
 
-<!-- HERO — light editorial split (text left, mockup right) -->
+<!-- HERO — editorial v4 (asymmetric text-left + real screenshot right) -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -28,70 +28,34 @@
       <div class="hero-actions" id="hero-actions"></div>
     </div>
 
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-mockup">
-        <div class="hero-mockup-bar">
-          <span class="hero-mockup-dot d1"></span>
-          <span class="hero-mockup-dot d2"></span>
-          <span class="hero-mockup-dot d3"></span>
-          <span class="hero-mockup-url">hayweb.vercel.app/dashboard</span>
+    <!-- Real screenshot in browser chrome — replaces v3 fake stats/chart/+340% badge -->
+    <div class="hero-visual hero-visual-editorial" aria-hidden="true">
+      <figure class="hero-screenshot-frame">
+        <div class="hero-screenshot-bar">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="hero-screenshot-url">hayweb.vercel.app</span>
         </div>
-        <div class="hero-mockup-body">
-          <div class="hero-mockup-stats">
-            <div class="hero-stat">
-              <span class="hero-stat-num">5.2<small>×</small></span>
-              <span class="hero-stat-lbl">Conversion</span>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat-num">−47<small>%</small></span>
-              <span class="hero-stat-lbl">CPA</span>
-            </div>
-            <div class="hero-stat">
-              <span class="hero-stat-num">#3</span>
-              <span class="hero-stat-lbl">Google</span>
-            </div>
-          </div>
-          <div class="hero-mockup-chart">
-            <svg viewBox="0 0 320 110" preserveAspectRatio="none" role="img" aria-hidden="true">
-              <line x1="0" y1="28" x2="320" y2="28" class="hero-grid"/>
-              <line x1="0" y1="55" x2="320" y2="55" class="hero-grid"/>
-              <line x1="0" y1="82" x2="320" y2="82" class="hero-grid"/>
-              <path d="M 8 92 L 60 90 L 120 88 L 180 89 L 240 87 L 312 86" class="hero-line-before"/>
-              <path d="M 8 92 L 60 78 L 120 62 L 180 44 L 240 26 L 312 12" class="hero-line-after"/>
-              <circle cx="312" cy="12" r="4" class="hero-line-end"/>
-            </svg>
-            <div class="hero-mockup-legend">
-              <span><i class="hero-swatch hero-swatch-before"></i>Trước HAYWEB</span>
-              <span><i class="hero-swatch hero-swatch-after"></i>Sau 90 ngày</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-mockup-badge">
-        <span class="hero-badge-arrow" aria-hidden="true">↗</span>
-        <span class="hero-badge-text">
-          <strong>+340%</strong>
-          <small>đơn hàng / tháng</small>
-        </span>
-      </div>
+        <img class="hero-screenshot-img"
+             src="/images/portfolio-hayweb.jpg"
+             alt=""
+             loading="eager"
+             width="800" height="500">
+      </figure>
+      <span class="hero-visual-caption" id="hero-visual-caption"></span>
     </div>
-  </div>
-
-  <div class="hero-scroll" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
-    </svg>
-    <span>Scroll</span>
   </div>
 </section>
 
-<!-- 4 PILLARS — varied storytelling per pillar -->
+<!-- 4 PILLARS — editorial: drop-cap intro + numbered XL cards -->
 <section id="pillars" class="pillars-section">
   <div class="container">
     <div class="text-center" style="margin-bottom:3.5rem">
       <div class="section-label fade-up" style="justify-content:center" id="pillars-label"></div>
       <h2 class="section-title fade-up" id="pillars-title"></h2>
-      <p class="section-desc fade-up" style="margin:0 auto" id="pillars-desc"></p>
+      <hr class="rule-line rule-center fade-up" aria-hidden="true">
+      <p class="pillars-intro-prose fade-up drop-cap" id="pillars-desc"></p>
     </div>
     <div class="pillars-grid" id="pillars-grid"></div>
   </div>
@@ -113,10 +77,11 @@
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats-section">
+<!-- STATS — editorial shock-contrast dark section (1 dark instance per page = pacing rhythm) -->
+<section class="stats-section stats-dark">
   <div class="container">
     <div class="stats-grid" id="stats-grid"></div>
+    <p class="stats-dark-meta" id="stats-meta"></p>
   </div>
 </section>
 
@@ -152,37 +117,31 @@
   </div>
 </section>
 
-<!-- WHY US -->
+<!-- WHY US — editorial spread (50/50 with real screenshot + side caption) -->
 <section style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="container">
-    <div class="why-grid">
+    <div class="why-grid why-editorial-spread">
       <div>
         <div class="section-label fade-up" id="why-label"></div>
         <h2 class="section-title fade-up" id="why-title"></h2>
-        <p class="section-desc fade-up" style="margin-bottom:3rem" id="why-desc"></p>
+        <p class="section-desc fade-up drop-cap" style="margin-bottom:3rem" id="why-desc"></p>
         <div class="why-items fade-up" id="why-items"></div>
       </div>
-      <div class="why-visual fade-up" aria-hidden="true">
-        <div class="why-mockup">
-          <div class="why-mockup-bar">
-            <span class="why-mockup-dot"></span>
-            <span class="why-mockup-dot"></span>
-            <span class="why-mockup-dot"></span>
-            <span class="why-mockup-url">hayweb.vercel.app</span>
+      <aside class="why-visual fade-up" aria-hidden="true">
+        <figure class="why-screenshot">
+          <div class="why-screenshot-bar">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
-          <div class="why-mockup-content">
-            <div class="why-mockup-nav"></div>
-            <div class="why-mockup-hero"></div>
-            <div class="why-mockup-cards">
-              <div></div><div></div><div></div>
-            </div>
-          </div>
-        </div>
-        <div class="why-visual-badge">
-          <p id="why-badge-text"></p>
-          <span id="why-badge-sub"></span>
-        </div>
-      </div>
+          <img class="why-screenshot-img"
+               src="/images/portfolio-hayweb.jpg"
+               alt=""
+               loading="lazy"
+               width="600" height="450">
+        </figure>
+        <span class="side-caption" id="why-side-caption"></span>
+      </aside>
     </div>
   </div>
 </section>
@@ -213,14 +172,15 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TESTIMONIALS — editorial pull-quote (1 elevated + 2 standard) -->
 <section>
   <div class="container">
     <div class="text-center" style="margin-bottom:3.5rem">
       <div class="section-label fade-up" style="justify-content:center" id="testi-label"></div>
       <h2 class="section-title fade-up" id="testi-title"></h2>
     </div>
-    <div class="testimonials-grid" id="testimonials-grid"></div>
+    <div class="testimonials-grid testimonials-editorial" id="testimonials-grid"></div>
+    <div class="testimonials-secondary-grid" id="testimonials-secondary"></div>
   </div>
 </section>
 

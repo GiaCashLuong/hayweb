@@ -274,25 +274,28 @@ const stats = [
   { numVI: '99.97',numEN: '99.97',suffix: '%', labelVI: 'Uptime 12 tháng qua',  labelEN: 'Uptime, last 12 months' },
 ];
 
-// ====== PORTFOLIO ======
+// ====== PORTFOLIO — featured first (asymmetric grid: 1 large + 2 small) ======
 const portfolio = [
   {
-    accent: '#A67C2E',
-    titleVI: 'Kobe Steak House', titleEN: 'Kobe Steak House',
-    descVI: 'Nhà hàng bít tết cao cấp', descEN: 'Premium steakhouse website',
-    url: 'https://kobe-steak.vercel.app'
-  },
-  {
-    accent: '#A67C2E',
+    accent: '#1a1a1a',
     image: '/images/portfolio-hayweb.jpg',
+    tagVI: 'Agency · 2026', tagEN: 'Agency · 2026',
     titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
-    descVI: 'Web agency — hệ thống hoàn chỉnh', descEN: 'Full-stack web agency system',
+    descVI: 'Hệ thống agency — báo giá AI, ký số, thanh toán Stripe', descEN: 'Full agency system — AI quotes, e-sign, Stripe checkout',
     url: 'https://hayweb.vercel.app'
   },
   {
-    accent: '#6495ED',
+    accent: '#1a1a1a',
+    tagVI: 'F&B · 2025', tagEN: 'F&B · 2025',
+    titleVI: 'Kobe Steak House', titleEN: 'Kobe Steak House',
+    descVI: 'Bít tết cao cấp — đặt bàn realtime, sơ đồ bàn 25 vị trí', descEN: 'Premium steakhouse — realtime booking, 25-table floor plan',
+    url: 'https://kobe-steak.vercel.app'
+  },
+  {
+    accent: '#1a1a1a',
+    tagVI: 'E-com · 2026', tagEN: 'E-com · 2026',
     titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
-    descVI: 'Thương mại điện tử phong thủy', descEN: 'Feng shui e-commerce platform',
+    descVI: 'Sim phong thủy — affiliate CTV, lọc theo mệnh', descEN: 'Feng shui sims — CTV affiliate, filter by element',
     url: '#'
   },
 ];
@@ -769,17 +772,29 @@ function buildPage() {
   const benefitsEl = document.getElementById('hero-benefits');
   if (benefitsEl) benefitsEl.innerHTML = benefits.map(b => `<span class="hero-benefit">${b}</span>`).join('');
 
+  // Hero CTA — editorial: primary outcome-specific + microcopy + secondary text-link
+  document.getElementById('hero-actions').className = 'hero-actions hero-actions-editorial';
   document.getElementById('hero-actions').innerHTML = `
-    <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener" class="btn-primary">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      ${t('hero_cta_1')}
-    </a>
-    <a href="/contact.html" class="btn-outline">${t('hero_cta_2')}</a>
+    <div class="hero-actions-row">
+      <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener" class="btn-primary">
+        ${t('hero_cta_1')}
+        <span aria-hidden="true" style="margin-left:.1rem">↗</span>
+      </a>
+      <a href="/portfolio.html" class="hero-cta-secondary">
+        ${t('hero_cta_2')}
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+    <span class="cta-microcopy">${t('hero_cta_micro')}</span>
     <div class="hero-trust" aria-label="${vi ? 'Đánh giá khách hàng' : 'Client reviews'}">
       <span class="hero-trust-stars" aria-hidden="true">★★★★★</span>
-      <span>${vi ? '4.9/5 từ 124 khách hàng • Tư vấn miễn phí • Không cam kết' : '4.9/5 from 124 clients • Free consultation • No commitment'}</span>
+      <span>${vi ? '4.9/5 từ 124 khách hàng' : '4.9/5 from 124 clients'}</span>
     </div>
   `;
+
+  // Hero visual caption (editorial side note next to screenshot)
+  const heroCaptionEl = document.getElementById('hero-visual-caption');
+  if (heroCaptionEl) heroCaptionEl.textContent = t('hero_visual_caption');
 
   // Pillars (4 trụ cột — varied storytelling)
   document.getElementById('pillars-label').textContent = t('pillars_label');
@@ -802,7 +817,7 @@ function buildPage() {
   document.getElementById('cmp-title').innerHTML  = `${t('cmp_title')} <em>${t('cmp_title_em')}</em>`;
   renderComparison();
 
-  // Stats
+  // Stats — dark shock-contrast section, editorial meta line below
   document.getElementById('stats-grid').innerHTML = stats.map(s => `
     <div class="stat-item fade-up">
       <div class="stat-number">
@@ -811,6 +826,8 @@ function buildPage() {
       <div class="stat-label">${vi ? s.labelVI : s.labelEN}</div>
     </div>
   `).join('');
+  const statsMetaEl = document.getElementById('stats-meta');
+  if (statsMetaEl) statsMetaEl.textContent = t('stats_meta');
 
   // Tech partners bar
   const partners = [
@@ -835,8 +852,12 @@ function buildPage() {
   document.getElementById('port-label').textContent = t('port_label');
   document.getElementById('port-title').innerHTML = `${t('port_title')} <em>${t('port_title_em')}</em>`;
   document.getElementById('port-viewall').textContent = t('port_viewall');
-  document.getElementById('portfolio-grid').innerHTML = portfolio.map(p => {
+  // Editorial asymmetric grid (1 featured + 2 standard) — kicker tag editorial format
+  const portfolioGrid = document.getElementById('portfolio-grid');
+  portfolioGrid.classList.add('portfolio-asymmetric');
+  portfolioGrid.innerHTML = portfolio.map(p => {
     const title = vi ? p.titleVI : p.titleEN;
+    const tag   = vi ? p.tagVI   : p.tagEN;
     const visual = p.image
       ? `<div class="portfolio-card-visual has-image"><img src="${p.image}" alt="${title}" loading="lazy"></div>`
       : `<div class="portfolio-card-visual" aria-hidden="true"></div>`;
@@ -844,6 +865,7 @@ function buildPage() {
     <div class="portfolio-card fade-up" style="--port-accent:${p.accent}">
       ${visual}
       <div class="portfolio-overlay">
+        ${tag ? `<span class="portfolio-card-tag">${tag}</span>` : ''}
         <h3>${title}</h3>
         <p>${vi ? p.descVI : p.descEN}</p>
         <a href="${p.url}" target="_blank" rel="noopener" class="portfolio-link">
@@ -854,7 +876,7 @@ function buildPage() {
     </div>`;
   }).join('');
 
-  // Why us
+  // Why us — editorial spread (real screenshot + side caption)
   document.getElementById('why-label').textContent = t('why_label');
   document.getElementById('why-title').innerHTML = `${t('why_title')} <em>${t('why_title_em')}</em>`;
   document.getElementById('why-desc').textContent = t('why_desc');
@@ -867,23 +889,22 @@ function buildPage() {
       </div>
     </div>
   `).join('');
-  document.getElementById('why-badge-text').textContent = vi
-    ? '"Chúng tôi không làm web. Chúng tôi kiến tạo di sản số."'
-    : '"We don\'t build websites. We craft digital legacies."';
-  document.getElementById('why-badge-sub').textContent = vi ? '— Phương châm của HAYWEB' : '— The HAYWEB philosophy';
+  const whyCaptionEl = document.getElementById('why-side-caption');
+  if (whyCaptionEl) whyCaptionEl.textContent = t('why_side_caption');
 
-  // Process
+  // Process — editorial XL numbered (rule lines on top of each card replace gray connector bar)
   document.getElementById('proc-label').textContent = vi ? 'Quy trình' : 'Our Process';
   document.getElementById('proc-title').innerHTML = vi
     ? 'Từ ý tưởng đến <em>sản phẩm</em> trong 5 bước'
     : 'From idea to <em>product</em> in 5 steps';
-  document.getElementById('process-steps').innerHTML = process.map((p, i) => `
+  const procEl = document.getElementById('process-steps');
+  procEl.classList.add('process-editorial');
+  procEl.innerHTML = process.map((p, i) => `
     <div class="process-step fade-up ${i===0?'active':''}">
       <div class="process-num">${vi ? p.numVI : p.numEN}</div>
       <h4>${vi ? p.stepVI : p.stepEN}</h4>
       <p>${vi ? p.descVI : p.descEN}</p>
     </div>
-    ${i < process.length - 1 ? '<div class="step-line" style="height:1px;background:var(--border);align-self:center;margin-top:-3rem"></div>' : ''}
   `).join('');
 
   // Pricing
@@ -909,11 +930,11 @@ function buildPage() {
   `).join('');
   document.getElementById('price-viewall').textContent = vi ? 'Xem bảng giá đầy đủ →' : 'View full pricing →';
 
-  // Testimonials
+  // Testimonials — editorial: 1 oversized pull-quote + 2 standard tiles
   document.getElementById('testi-label').textContent = t('testi_label');
   document.getElementById('testi-title').innerHTML = `${t('testi_title')} <em>${t('testi_title_em')}</em>`;
-  document.getElementById('testimonials-grid').innerHTML = testimonials.map(t2 => `
-    <div class="testimonial-card">
+  const renderTestimonialCard = (t2, isPullQuote) => `
+    <div class="testimonial-card${isPullQuote ? ' testimonial-pullquote' : ''}">
       <div class="testimonial-stars">${t2.stars}</div>
       <p class="testimonial-text">${vi ? t2.textVI : t2.textEN}</p>
       <div class="testimonial-author">
@@ -924,7 +945,14 @@ function buildPage() {
         </div>
       </div>
     </div>
-  `).join('');
+  `;
+  // Pick the longest testimonial as pull-quote (most impactful when elevated)
+  const sortedByLen = [...testimonials].sort((a, b) =>
+    ((vi ? b.textVI : b.textEN).length) - ((vi ? a.textVI : a.textEN).length));
+  const pullQuote = sortedByLen[0];
+  const others = testimonials.filter(x => x !== pullQuote);
+  document.getElementById('testimonials-grid').innerHTML = renderTestimonialCard(pullQuote, true);
+  document.getElementById('testimonials-secondary').innerHTML = others.map(o => renderTestimonialCard(o, false)).join('');
 
   // Scarcity CTA Band — REAL slot count from Supabase
   renderScarcity();
