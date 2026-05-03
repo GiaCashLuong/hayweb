@@ -2603,9 +2603,256 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
   .folio-image-real,
   .stat-number,
   .why-screenshot,
+  .why-art-composition,
   .process-step {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;
   }
+}
+
+/* ===== PASS 7 — HERO ART TYPOGRAPHY (Task 2: editorial concept replaces browser chrome) ===== */
+.hero-art-typography {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 4rem 2.5rem;
+  background: var(--surface, #F4EFE6);
+  border: 1px solid var(--border, rgba(26,26,26,0.08));
+  border-radius: 4px;
+  overflow: hidden;
+  min-height: 480px;
+}
+.art-numeral {
+  font-family: var(--font-display, 'Be Vietnam Pro');
+  font-size: clamp(8rem, 20vw, 14rem);
+  font-weight: 700;
+  line-height: 0.8;
+  color: var(--ink, #1a1a1a);
+  letter-spacing: -0.04em;
+}
+.art-mono {
+  font-family: var(--font-mono, 'JetBrains Mono');
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted, #6B6B6B);
+  margin-top: 1rem;
+}
+.art-divider {
+  display: block;
+  width: 60%;
+  height: 1px;
+  background: var(--ink, #1a1a1a);
+  margin: 2rem 0;
+  opacity: 0.4;
+}
+.art-italic {
+  font-family: var(--font-display, 'Be Vietnam Pro');
+  font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold, #A67C2E);
+  line-height: 1;
+}
+.art-arrow {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  color: var(--ink, #1a1a1a);
+  margin-top: 1.5rem;
+  align-self: flex-start;
+  line-height: 1;
+}
+@media (max-width: 1024px) {
+  .hero-art-typography { min-height: 320px; padding: 3rem 2rem; }
+  .art-numeral { font-size: clamp(6rem, 18vw, 10rem); }
+}
+@media (max-width: 768px) {
+  .hero-art-typography { min-height: 240px; padding: 2rem 1.5rem; }
+}
+
+/* ===== PASS 7 — STATS DOT GRID DECORATION (Task 4) ===== */
+.stats-section.stats-dark { position: relative; overflow: hidden; }
+.stats-dot-grid {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+}
+.stats-section.stats-dark .container { position: relative; z-index: 1; }
+
+/* ===== PASS 7 — SCARCITY DECO SVG (Task 4) ===== */
+.cta-band.scarcity-band { position: relative; overflow: hidden; }
+.scarcity-deco {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.scarcity-band .container { position: relative; z-index: 1; }
+
+/* ===== PASS 7 — FOOTER HAYWEB WATERMARK (Task 4) ===== */
+footer { position: relative; overflow: hidden; }
+footer::before {
+  content: 'HAYWEB';
+  position: absolute;
+  bottom: -2.5rem;
+  right: -2rem;
+  font-family: var(--font-display, 'Be Vietnam Pro');
+  font-size: clamp(7rem, 18vw, 16rem);
+  font-weight: 700;
+  color: rgba(244,239,230,0.04);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ===== PASS 7 — PROCESS NUM BG (Task 4: oversized corner number illustration) ===== */
+.process-step { position: relative; overflow: hidden; }
+.process-num-bg {
+  position: absolute;
+  bottom: -0.5rem;
+  right: 0.5rem;
+  font-family: var(--font-mono, 'JetBrains Mono');
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(26,26,26,0.04);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  letter-spacing: -0.02em;
+  user-select: none;
+}
+
+/* ===== PASS 7 — TESTIMONIAL MONOGRAM (Task 4: initial letter gold-border circle) ===== */
+.testimonial-monogram {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold, #A67C2E);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display, 'Be Vietnam Pro');
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold, #A67C2E);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+/* ===== PASS 7 — PRICING TIER-PRO BADGE (Task 4: gold star SVG) ===== */
+.tier.tier-pro { position: relative; }
+.tier-pro-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 28px;
+  height: 28px;
+  color: var(--gold, #A67C2E);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* ===== PASS 7 — WHY-US ART COMPOSITION (Task 4: editorial stats grid replaces browser chrome) ===== */
+.why-art-composition {
+  background: var(--surface, #F4EFE6);
+  border: 1px solid var(--border, rgba(26,26,26,0.08));
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(60,40,15,0.10);
+}
+.why-art-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border, rgba(26,26,26,0.08));
+}
+.why-art-cell {
+  background: var(--surface, #F4EFE6);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+.why-art-cell--large {
+  grid-column: span 2;
+  padding: 2rem;
+  border-bottom: 1px solid var(--border, rgba(26,26,26,0.08));
+}
+.why-art-cell--accent {
+  background: var(--ink, #1a1a1a);
+  color: var(--gold, #A67C2E);
+  align-items: center;
+  justify-content: center;
+}
+.why-art-cell--accent svg { width: 40px; height: 40px; }
+.why-art-stat {
+  font-family: var(--font-display, 'Be Vietnam Pro');
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--text, #1a1a1a);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.why-art-stat em { color: var(--gold, #A67C2E); font-style: normal; }
+.why-art-label {
+  font-family: var(--font-mono, 'JetBrains Mono');
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted, #6B6B6B);
+}
+.why-art-mono {
+  font-family: var(--font-mono, 'JetBrains Mono');
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text, #1a1a1a);
+  line-height: 1;
+}
+.why-art-mono small { font-size: 0.85em; font-weight: 400; }
+.why-art-sub {
+  font-family: var(--font-mono, 'JetBrains Mono');
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted, #6B6B6B);
+}
+.why-art-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border, rgba(26,26,26,0.08));
+  color: var(--muted, #6B6B6B);
+}
+.why-art-wordmark {
+  font-family: var(--font-display, 'Be Vietnam Pro');
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text, #1a1a1a);
+}
+
+/* ===== PASS 7 — H2 WORD REVEAL (Pattern 10: perspective container) ===== */
+.hw-word { display: inline-block; transform-origin: top center; }
+
+/* ===== PASS 7 — REDUCED MOTION: new elements snap to visible ===== */
+@media (prefers-reduced-motion: reduce) {
+  .hero-art-typography .art-numeral,
+  .hero-art-typography .art-mono,
+  .hero-art-typography .art-divider,
+  .hero-art-typography .art-italic,
+  .hero-art-typography .art-arrow,
+  .why-art-composition,
+  .process-num-bg,
+  .hw-word { opacity: 1 !important; transform: none !important; }
 }
