@@ -948,8 +948,10 @@ function buildPage() {
     : 'From idea to <em>product</em> in 5 steps';
   const procEl = document.getElementById('process-steps');
   procEl.classList.add('process-editorial');
+  // Task 4 Pass 7: oversized number illustration in card corner (editorial numbered cards)
   procEl.innerHTML = process.map((p, i) => `
     <div class="process-step fade-up ${i===0?'active':''}">
+      <div class="process-num-bg" aria-hidden="true">${vi ? p.numVI : p.numEN}</div>
       <div class="process-num">${vi ? p.numVI : p.numEN}</div>
       <h4>${vi ? p.stepVI : p.stepEN}</h4>
       <p>${vi ? p.descVI : p.descEN}</p>
@@ -983,6 +985,10 @@ function buildPage() {
     <!-- Tier 2: Pro — gold bg, ribbon, translateY lift (architect §5 exception) -->
     <div class="tier tier-pro fade-up">
       <span class="tier-ribbon">${vi ? 'Phổ biến nhất' : 'Most popular'}</span>
+      <!-- Task 4 Pass 7: gold star SVG badge accent on tier-pro -->
+      <svg class="tier-pro-badge" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="16,3 19.5,12.5 30,12.5 21.5,18.5 24.5,28 16,22.5 7.5,28 10.5,18.5 2,12.5 12.5,12.5" stroke="rgba(166,124,46,0.7)" stroke-width="1.5" fill="none"/>
+      </svg>
       <div class="tier-head">
         <span class="tier-name">${vi ? pricing[1].tierVI : pricing[1].tierEN}</span>
         <span class="tier-tag">${vi ? 'Web app · Đa trang · Tài khoản' : 'Web app · Multi-page · Auth'}</span>
@@ -1018,19 +1024,24 @@ function buildPage() {
   // Testimonials — editorial: 1 oversized pull-quote + 2 standard tiles
   document.getElementById('testi-label').textContent = t('testi_label');
   document.getElementById('testi-title').innerHTML = `${t('testi_title')} <em>${t('testi_title_em')}</em>`;
-  const renderTestimonialCard = (t2, isPullQuote) => `
+  // Task 4 Pass 7: replace SVG avatar with monogram circle (first letter, gold border)
+  const renderTestimonialCard = (t2, isPullQuote) => {
+    const name = vi ? t2.nameVI : t2.nameEN;
+    const initial = name.charAt(0).toUpperCase();
+    return `
     <div class="testimonial-card${isPullQuote ? ' testimonial-pullquote' : ''}">
       <div class="testimonial-stars">${t2.stars}</div>
       <p class="testimonial-text">${vi ? t2.textVI : t2.textEN}</p>
       <div class="testimonial-author">
-        <div class="testimonial-avatar svg-avatar"><img src="${svgAvatar(t2.avatarVariant)}" alt="" loading="lazy"></div>
+        <div class="testimonial-monogram" aria-hidden="true">${initial}</div>
         <div>
-          <div class="testimonial-name">${vi ? t2.nameVI : t2.nameEN}</div>
+          <div class="testimonial-name">${name}</div>
           <div class="testimonial-role">${vi ? t2.roleVI : t2.roleEN}</div>
         </div>
       </div>
     </div>
   `;
+  };
   // Pick the longest testimonial as pull-quote (most impactful when elevated)
   const sortedByLen = [...testimonials].sort((a, b) =>
     ((vi ? b.textVI : b.textEN).length) - ((vi ? a.textVI : a.textEN).length));
@@ -1095,34 +1106,35 @@ function initStrongScrollAnimations() {
   // Bail immediately if user prefers reduced motion — CSS handles snap-to-position
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // PATTERN 1 — Hero chiasmus lines slide from far offscreen (alternating left/right)
-  // Targets .line-a / .line-b / .line-c / .line-d / .hero-resolve inside .hero-title
-  // FOUC-safe: gsap.set() primes opacity:0 synchronously BEFORE forEach loop,
-  // so GSAP controls final state from the very first paint tick.
-  // CSS also pre-hides at opacity:0 as belt-and-suspenders (see style.css HERO FOUC block).
-  // Pass 6: converted from gsap.from() to gsap.fromTo() — explicit end state { x:0, opacity:1 }
-  // prevents the set+from race condition where GSAP records END=opacity:0 and animates 0→0.
+  // PATTERN 1 — Hero chiasmus lines: PAGE-LOAD timeline (Pass 7 fix)
+  // ROOT CAUSE of desktop issue: ScrollTrigger 'top 90%' fires on hero elements that are already
+  // in viewport on load → animation plays and completes instantly, user sees no motion.
+  // FIX: Replace ScrollTrigger with DOMContentLoaded-safe GSAP timeline — stagger 180ms, 1.2s ease.
+  // Pass 7: gsap.set() primes opacity:0 synchronously (FOUC belt-and-suspenders kept from Pass 4).
   const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d, .hero-title .hero-resolve');
-  // CRITICAL: prime initial state synchronously to prevent FOUC flash (hero-specific, kept from Pass 4)
   gsap.set(heroLines, { opacity: 0 });
+
+  const heroTl = gsap.timeline({ delay: 0.2 });
   heroLines.forEach((line, i) => {
-    const fromX = (i % 2 === 0) ? '-120vw' : '120vw'; // extreme offscreen
-    gsap.fromTo(line,
+    const fromX = (i % 2 === 0) ? '-150vw' : '150vw';
+    heroTl.fromTo(line,
       { x: fromX, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1.4,
-        ease: 'power4.out',
-        delay: i * 0.08,
-        scrollTrigger: {
-          trigger: line,
-          start: 'top 92%',
-          toggleActions: 'play none none none'
-        }
-      }
+      { x: 0, opacity: 1, duration: 1.2, ease: 'power4.out' },
+      i * 0.18
     );
   });
+
+  // Hero supporting elements: kicker, subtitle, CTA, trust — stagger on page-load (no ScrollTrigger)
+  gsap.from('.hero-eyebrow', { y: 30, opacity: 0, duration: 0.8, delay: 0.1, ease: 'power3.out' });
+  gsap.from('.hero-subtitle, #hero-sub', { y: 30, opacity: 0, duration: 0.8, delay: 1.2, ease: 'power3.out', overwrite: 'auto' });
+  gsap.from('.hero-actions, .hero-actions-editorial', { y: 30, opacity: 0, duration: 0.8, delay: 1.5, ease: 'power3.out', overwrite: 'auto' });
+  gsap.from('.hero-trust, .hero-benefits', { y: 20, opacity: 0, duration: 0.8, delay: 1.8, ease: 'power3.out', overwrite: 'auto' });
+  // Hero art composition entrance (Task 2: .hero-art-typography children)
+  gsap.from('.hero-art-typography .art-numeral', { y: 80, opacity: 0, duration: 1.0, delay: 0.4, ease: 'power4.out' });
+  gsap.from('.hero-art-typography .art-mono',    { y: 30, opacity: 0, duration: 0.7, delay: 0.9, ease: 'power3.out' });
+  gsap.from('.hero-art-typography .art-divider', { scaleX: 0, opacity: 0, duration: 0.6, delay: 1.1, ease: 'power3.out', transformOrigin: 'left center' });
+  gsap.from('.hero-art-typography .art-italic',  { y: 30, opacity: 0, duration: 0.7, delay: 1.3, ease: 'power3.out' });
+  gsap.from('.hero-art-typography .art-arrow',   { y: 20, opacity: 0, duration: 0.5, delay: 1.5, ease: 'power3.out' });
 
   // PATTERN 2 — Section titles slide in from far left
   // Pass 6: removed gsap.set() prime (caused set+from race: END recorded as opacity:0, animated 0→0).
@@ -1271,6 +1283,79 @@ function initStrongScrollAnimations() {
         }
       }
     );
+  });
+
+  // PATTERN 9 — Magnetic hover on primary CTAs (Pass 7)
+  // Buttons shift toward cursor 20% of offset. Elastic return on leave.
+  document.querySelectorAll('.btn-primary, .cta-gold, .tier-cta-strong').forEach(btn => {
+    if (btn._magneticCTA) return;
+    btn._magneticCTA = true;
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+    });
+  });
+
+  // PATTERN 10 — Section h2 word-by-word reveal on scroll (Pass 7)
+  // Skips .section-title already handled by Pattern 2 (class overlap guard).
+  // Uses word wrapping — does NOT split em/strong (regex preserves tags).
+  gsap.utils.toArray('section h2:not(.section-title)').forEach(h2 => {
+    const original = h2.innerHTML;
+    // Wrap text nodes only (not HTML tags) — split on whitespace tokens
+    h2.innerHTML = original.replace(/>([^<]+)</g, (match, text) => {
+      return '>' + text.replace(/(\S+)/g, '<span class="hw-word">$1</span>') + '<';
+    });
+    const words = h2.querySelectorAll('.hw-word');
+    if (!words.length) return;
+    gsap.fromTo(words,
+      { y: 60, opacity: 0, rotateX: -45 },
+      {
+        y: 0, opacity: 1, rotateX: 0,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: h2, start: 'top 85%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // PATTERN 11 — Marquee scroll-velocity boost (Pass 7)
+  // Fast scroll → marquee speeds up, then eases back to 64s baseline.
+  let _lastScroll = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const velocity = Math.abs(window.scrollY - _lastScroll);
+    _lastScroll = window.scrollY;
+    const marqueeTrack = document.querySelector('.marquee-track');
+    if (marqueeTrack && velocity > 5) {
+      marqueeTrack.style.animationDuration = Math.max(8, 64 - velocity * 0.5) + 's';
+      setTimeout(() => {
+        if (marqueeTrack) marqueeTrack.style.animationDuration = '64s';
+      }, 800);
+    }
+  }, { passive: true });
+
+  // PATTERN 12 — Stats counter increment from 0 to target (Pass 7)
+  // Combines with Pattern 4 scale-in. Reads data-count attribute set in buildPage() stats render.
+  // Targets .stat-number span[data-count] — the inner span that holds numeric text.
+  gsap.utils.toArray('.stat-number span[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const decimals = (String(target).split('.')[1] || '').length;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target,
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate: () => {
+        el.textContent = obj.val.toFixed(decimals);
+      },
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+    });
   });
 
   // Refresh ScrollTrigger after all async DOM builds settle
