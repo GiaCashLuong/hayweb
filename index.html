@@ -28,21 +28,15 @@
       <div class="hero-actions" id="hero-actions"></div>
     </div>
 
-    <!-- Real screenshot in browser chrome — replaces v3 fake stats/chart/+340% badge -->
+    <!-- Editorial art composition — Pass 7: replaces browser chrome screenshot (mundane → conceptual) -->
     <div class="hero-visual hero-visual-editorial" aria-hidden="true">
-      <figure class="hero-screenshot-frame">
-        <div class="hero-screenshot-bar">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="hero-screenshot-url">hayweb.vercel.app</span>
-        </div>
-        <img class="hero-screenshot-img"
-             src="/images/portfolio-hayweb.jpg"
-             alt=""
-             loading="eager"
-             width="800" height="500">
-      </figure>
+      <div class="hero-art-typography">
+        <span class="art-numeral">04</span>
+        <span class="art-mono">PILLARS</span>
+        <span class="art-divider"></span>
+        <span class="art-italic"><em>compounding</em></span>
+        <span class="art-arrow">↗</span>
+      </div>
       <span class="hero-visual-caption" id="hero-visual-caption"></span>
     </div>
   </div>
@@ -119,6 +113,11 @@
 
 <!-- STATS — editorial shock-contrast dark section (1 dark instance per page = pacing rhythm) -->
 <section class="stats-section stats-dark bg-film-grain">
+  <!-- Decorative dot grid — Task 4 Pass 7 -->
+  <svg class="stats-dot-grid" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+    <defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(244,239,230,0.12)"/></pattern></defs>
+    <rect width="240" height="240" fill="url(#dots)"/>
+  </svg>
   <div class="container">
     <div class="stats-grid" id="stats-grid"></div>
     <p class="stats-dark-meta" id="stats-meta"></p>
@@ -167,19 +166,36 @@
         <p class="section-desc fade-up drop-cap" style="margin-bottom:3rem" id="why-desc"></p>
         <div class="why-items fade-up" id="why-items"></div>
       </div>
+      <!-- Task 4 Pass 7: editorial art composition in why-us right column (replaces browser chrome) -->
       <aside class="why-visual fade-up" aria-hidden="true">
-        <figure class="why-screenshot">
-          <div class="why-screenshot-bar">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+        <div class="why-art-composition">
+          <div class="why-art-grid">
+            <div class="why-art-cell why-art-cell--large">
+              <span class="why-art-stat">5.2<em>×</em></span>
+              <span class="why-art-label">conversion lift</span>
+            </div>
+            <div class="why-art-cell why-art-cell--accent">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                <path d="M8 28 L16 18 L24 22 L36 10"/>
+                <circle cx="36" cy="10" r="2.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="why-art-cell">
+              <span class="why-art-mono">30</span>
+              <span class="why-art-sub">projects</span>
+            </div>
+            <div class="why-art-cell">
+              <span class="why-art-mono">99.97<small>%</small></span>
+              <span class="why-art-sub">uptime</span>
+            </div>
           </div>
-          <img class="why-screenshot-img"
-               src="/images/kobe-steak-hero.jpeg"
-               alt="Kobe Steak — landing page client work"
-               loading="lazy"
-               width="600" height="450">
-        </figure>
+          <div class="why-art-bottom">
+            <span class="why-art-wordmark">HAYWEB</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="20" height="20">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
         <span class="side-caption" id="why-side-caption"></span>
       </aside>
     </div>
@@ -226,6 +242,13 @@
 
 <!-- SCARCITY CTA BAND — real daily slot count from Supabase -->
 <section class="cta-band scarcity-band bg-warm-corner" id="scarcity">
+  <!-- Decorative corner line pattern — Task 4 Pass 7 -->
+  <svg class="scarcity-deco" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+    <line x1="0" y1="120" x2="120" y2="0" stroke="rgba(166,124,46,0.12)" stroke-width="1"/>
+    <line x1="20" y1="120" x2="120" y2="20" stroke="rgba(166,124,46,0.08)" stroke-width="1"/>
+    <line x1="40" y1="120" x2="120" y2="40" stroke="rgba(166,124,46,0.06)" stroke-width="1"/>
+    <line x1="60" y1="120" x2="120" y2="60" stroke="rgba(166,124,46,0.04)" stroke-width="1"/>
+  </svg>
   <div class="container">
     <div class="section-label fade-up" style="justify-content:center" id="sc-label"></div>
     <h2 class="section-title fade-up" id="sc-title"></h2>
