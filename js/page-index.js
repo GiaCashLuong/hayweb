@@ -268,7 +268,7 @@ const svcCategories = [
 
 // ====== STATS — specificity (lẻ = thật, tròn = nghi) ======
 const stats = [
-  { numVI: '124',  numEN: '124',  suffix: '',  labelVI: 'Dự án đã bàn giao',     labelEN: 'Projects Delivered' },
+  { numVI: '30',   numEN: '30',   suffix: '',  labelVI: 'Dự án đã bàn giao',     labelEN: 'Projects Delivered' },
   { numVI: '97.4', numEN: '97.4', suffix: '%', labelVI: 'Khách quay lại / giới thiệu', labelEN: 'Client Retention / Referral' },
   { numVI: '5.2',  numEN: '5.2',  suffix: '×', labelVI: 'Conversion trung bình so với cũ', labelEN: 'Avg Conversion vs Previous Site' },
   { numVI: '99.97',numEN: '99.97',suffix: '%', labelVI: 'Uptime 12 tháng qua',  labelEN: 'Uptime, last 12 months' },
@@ -759,16 +759,19 @@ function attachMagnetic() {
 }
 
 function buildPage() {
-  // Hero — 3-line resolution structure (statement / counter / synthesis)
+  // Hero — broken-grid chiasmus typography (pivot-audit §C #1, demo HTML:32-37)
+  // 4 lines: line-a/b left-aligned, line-c/d right-aligned = editorial chiasmus structure
   document.getElementById('hero-eyebrow').textContent = t('hero_eyebrow');
   document.getElementById('hero-title').innerHTML =
-    `${t('hero_title_1')} <em>${t('hero_title_2')}</em><br>` +
-    `${t('hero_title_3')} <em>${t('hero_title_4')}</em><br>` +
+    `<span class="line-a">${t('hero_title_1')}</span>` +
+    `<span class="line-b"><em>${t('hero_title_2')}</em></span>` +
+    `<span class="line-c">${t('hero_title_3')}</span>` +
+    `<span class="line-d"><em>${t('hero_title_4')}</em></span>` +
     `<span class="hero-resolve">${t('hero_title_5')} — <em>${t('hero_title_6')}</em></span>`;
   document.getElementById('hero-sub').textContent = t('hero_sub');
   const benefits = vi
-    ? ['✓ Bàn giao trong 7–14 ngày', '✓ 120+ dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']
-    : ['✓ Delivered in 7–14 days', '✓ 120+ projects delivered', '✓ 12 months free support'];
+    ? ['✓ Bàn giao trong 7–14 ngày', '✓ 30 dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']
+    : ['✓ Delivered in 7–14 days', '✓ 30 projects delivered', '✓ 12 months free support'];
   const benefitsEl = document.getElementById('hero-benefits');
   if (benefitsEl) benefitsEl.innerHTML = benefits.map(b => `<span class="hero-benefit">${b}</span>`).join('');
 
@@ -848,33 +851,79 @@ function buildPage() {
     `;
   }
 
-  // Portfolio
+  // Portfolio — folio asymmetric grid (pivot-audit §C #8, demo lift)
+  // Structure: 1 featured (7fr, span 2 rows, real kobe image) + 2 right column (folio-vert, folio-small)
   document.getElementById('port-label').textContent = t('port_label');
   document.getElementById('port-title').innerHTML = `${t('port_title')} <em>${t('port_title_em')}</em>`;
   document.getElementById('port-viewall').textContent = t('port_viewall');
-  // Editorial asymmetric grid (1 featured + 2 standard) — kicker tag editorial format
   const portfolioGrid = document.getElementById('portfolio-grid');
-  portfolioGrid.classList.add('portfolio-asymmetric');
-  portfolioGrid.innerHTML = portfolio.map(p => {
-    const title = vi ? p.titleVI : p.titleEN;
-    const tag   = vi ? p.tagVI   : p.tagEN;
-    const visual = p.image
-      ? `<div class="portfolio-card-visual has-image"><img src="${p.image}" alt="${title}" loading="lazy"></div>`
-      : `<div class="portfolio-card-visual" aria-hidden="true"></div>`;
-    return `
-    <div class="portfolio-card fade-up" style="--port-accent:${p.accent}">
-      ${visual}
-      <div class="portfolio-overlay">
-        ${tag ? `<span class="portfolio-card-tag">${tag}</span>` : ''}
-        <h3>${title}</h3>
-        <p>${vi ? p.descVI : p.descEN}</p>
-        <a href="${p.url}" target="_blank" rel="noopener" class="portfolio-link">
-          ${vi ? 'Xem dự án' : 'View project'}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+  portfolioGrid.className = 'folio-grid';
+  // portfolio[1] = Kobe Steak (real image), portfolio[0] = HAYWEB Studio, portfolio[2] = HKP
+  const p0 = portfolio[1]; // featured: Kobe Steak — real screenshot asset
+  const p1 = portfolio[0]; // folio-vert: HAYWEB Studio
+  const p2 = portfolio[2]; // folio-small: HKP Sim Kinh Dịch
+  portfolioGrid.innerHTML = `
+    <!-- Feature card: Kobe Steak — real screenshot (data-cursor activates gold pill cursor) -->
+    <a href="${p0.url}" target="_blank" rel="noopener" class="folio folio-feature fade-up" data-cursor="true">
+      <div class="folio-meta">
+        <span class="folio-no">001</span>
+        <span>${vi ? p0.tagVI : p0.tagEN}</span>
       </div>
-    </div>`;
-  }).join('');
+      <h3 class="folio-title">${vi ? p0.titleVI : p0.titleEN}</h3>
+      <p class="folio-desc">${vi ? p0.descVI : p0.descEN}</p>
+      <div class="folio-image folio-image-real">
+        <img src="/images/kobe-steak-hero.jpeg"
+             alt="${vi ? p0.titleVI : p0.titleEN}"
+             loading="lazy" width="800" height="500">
+      </div>
+      <div class="folio-footer">
+        <span>${vi ? 'F&B · Realtime Booking' : 'F&B · Realtime Booking'}</span>
+        <span class="folio-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- Vert card: HAYWEB Studio — mono classification (no real screenshot yet) -->
+    <a href="${p1.url}" target="_blank" rel="noopener" class="folio folio-vert fade-up" data-cursor="true">
+      <div class="folio-meta">
+        <span class="folio-no">002</span>
+        <span>${vi ? p1.tagVI : p1.tagEN}</span>
+      </div>
+      <h3 class="folio-title">${vi ? p1.titleVI : p1.titleEN}</h3>
+      <p class="folio-desc">${vi ? p1.descVI : p1.descEN}</p>
+      <div class="folio-image folio-image-hayweb" aria-hidden="true">
+        <div class="folio-classify">
+          <span class="folio-classify-id">HW</span>
+          <span class="folio-classify-line">Agency · Stripe · Supabase</span>
+          <span class="folio-classify-line">Báo giá AI · Ký số · Thanh toán</span>
+        </div>
+      </div>
+      <div class="folio-footer">
+        <span>Agency · AI Quotes</span>
+        <span class="folio-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- Small card: HKP Sim Kinh Dịch — mono classification -->
+    <a href="${p2.url || '#'}" class="folio folio-small fade-up" data-cursor="true">
+      <div class="folio-meta">
+        <span class="folio-no">003</span>
+        <span>${vi ? p2.tagVI : p2.tagEN}</span>
+      </div>
+      <h3 class="folio-title">${vi ? p2.titleVI : p2.titleEN}</h3>
+      <p class="folio-desc">${vi ? p2.descVI : p2.descEN}</p>
+      <div class="folio-image folio-image-hkp" aria-hidden="true">
+        <div class="folio-classify">
+          <span class="folio-classify-id">HKP</span>
+          <span class="folio-classify-line">E-com · Sim phong thủy</span>
+          <span class="folio-classify-line">CTV affiliate · Supabase</span>
+        </div>
+      </div>
+      <div class="folio-footer">
+        <span>E-com · Feng Shui</span>
+        <span class="folio-arrow">↗</span>
+      </div>
+    </a>
+  `;
 
   // Why us — editorial spread (real screenshot + side caption)
   document.getElementById('why-label').textContent = t('why_label');
@@ -907,27 +956,63 @@ function buildPage() {
     </div>
   `).join('');
 
-  // Pricing
+  // Pricing — 3-tone tiers (pivot-audit §C #5, demo lift)
+  // Starter = cream, Pro = gold-bg + ribbon + lift, Enterprise = black
   document.getElementById('price-label').textContent = t('price_label');
   document.getElementById('price-title').innerHTML = `${t('price_title')} <em>${t('price_title_em')}</em>`;
   document.getElementById('price-desc').textContent = t('price_desc');
-  document.getElementById('pricing-preview').innerHTML = pricing.map(p => `
-    <div class="price-card ${p.featured ? 'featured' : ''} fade-up">
-      <div class="price-tier">${vi ? p.tierVI : p.tierEN}</div>
-      <div class="price-amount">${p.vnd}</div>
-      <div class="price-amount-usd">${p.usd}</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        ${(vi ? p.featuresVI : p.featuresEN).map(f => `
-          <li>
-            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-            ${f}
-          </li>
-        `).join('')}
+  const pricingEl = document.getElementById('pricing-preview');
+  pricingEl.className = 'tier-grid';
+  pricingEl.innerHTML = `
+    <!-- Tier 1: Starter — cream entry -->
+    <div class="tier tier-starter fade-up">
+      <div class="tier-head">
+        <span class="tier-name">${vi ? pricing[0].tierVI : pricing[0].tierEN}</span>
+        <span class="tier-tag">${vi ? 'Landing page · Brochure' : 'Landing page · Brochure'}</span>
+      </div>
+      <div class="tier-price">
+        <span class="amount">${pricing[0].vnd}<small> VND</small></span>
+        <span class="amount-usd">${pricing[0].usd} USD</span>
+      </div>
+      <ul class="tier-features">
+        ${(vi ? pricing[0].featuresVI : pricing[0].featuresEN).map(f => `<li>${f}</li>`).join('')}
       </ul>
-      <a href="${p.href}" class="${p.featured ? 'btn-primary' : 'btn-outline'}">${t(p.ctaKey)}</a>
+      <a href="${pricing[0].href}" class="tier-cta">${t(pricing[0].ctaKey)}</a>
     </div>
-  `).join('');
+
+    <!-- Tier 2: Pro — gold bg, ribbon, translateY lift (architect §5 exception) -->
+    <div class="tier tier-pro fade-up">
+      <span class="tier-ribbon">${vi ? 'Phổ biến nhất' : 'Most popular'}</span>
+      <div class="tier-head">
+        <span class="tier-name">${vi ? pricing[1].tierVI : pricing[1].tierEN}</span>
+        <span class="tier-tag">${vi ? 'Web app · Đa trang · Tài khoản' : 'Web app · Multi-page · Auth'}</span>
+      </div>
+      <div class="tier-price">
+        <span class="amount">${pricing[1].vnd}<small> VND</small></span>
+        <span class="amount-usd">${pricing[1].usd} USD</span>
+      </div>
+      <ul class="tier-features">
+        ${(vi ? pricing[1].featuresVI : pricing[1].featuresEN).map(f => `<li>${f}</li>`).join('')}
+      </ul>
+      <a href="${pricing[1].href}" class="tier-cta tier-cta-strong">${t(pricing[1].ctaKey)}</a>
+    </div>
+
+    <!-- Tier 3: Enterprise — black bg, palette completion -->
+    <div class="tier tier-ent fade-up">
+      <div class="tier-head">
+        <span class="tier-name">${vi ? pricing[2].tierVI : pricing[2].tierEN}</span>
+        <span class="tier-tag">${vi ? 'Hệ thống phức tạp · CRM · ERP' : 'Complex systems · CRM · ERP'}</span>
+      </div>
+      <div class="tier-price">
+        <span class="amount">${pricing[2].vnd}<small> VND</small></span>
+        <span class="amount-usd">${pricing[2].usd} USD</span>
+      </div>
+      <ul class="tier-features">
+        ${(vi ? pricing[2].featuresVI : pricing[2].featuresEN).map(f => `<li>${f}</li>`).join('')}
+      </ul>
+      <a href="${pricing[2].href}" class="tier-cta tier-cta-cream">${t(pricing[2].ctaKey)}</a>
+    </div>
+  `;
   document.getElementById('price-viewall').textContent = vi ? 'Xem bảng giá đầy đủ →' : 'View full pricing →';
 
   // Testimonials — editorial: 1 oversized pull-quote + 2 standard tiles
@@ -958,13 +1043,259 @@ function buildPage() {
   renderScarcity();
 }
 
+// Custom cursor — gold pill on data-cursor elements (pivot-audit §C #8)
+// Lerp animation for smooth follow. Mobile: cursor-pill display:none via CSS.
+function initCursorPill() {
+  const pill = document.getElementById('cursor');
+  if (!pill) return;
+  // Only active on pointer devices — not touch
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  let mx = -200, my = -200;
+  let cx = -200, cy = -200;
+  let active = false;
+  let raf = null;
+
+  function lerp(a, b, n) { return a + (b - a) * n; }
+
+  function tick() {
+    cx = lerp(cx, mx, 0.12);
+    cy = lerp(cy, my, 0.12);
+    pill.style.transform = `translate(${cx}px, ${cy}px) translate(-50%, -50%) scale(${active ? 1 : 0})`;
+    raf = requestAnimationFrame(tick);
+  }
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+  });
+
+  document.querySelectorAll('[data-cursor]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      active = true;
+      pill.classList.add('is-active');
+    });
+    el.addEventListener('mouseleave', () => {
+      active = false;
+      pill.classList.remove('is-active');
+    });
+  });
+
+  raf = requestAnimationFrame(tick);
+}
+
+// ===== GSAP STRONG SCROLL ANIMATIONS — Pass 3 (2026-05-03) =====
+// User req: "chữ kéo từ chỗ rất xa về tới vị trí chính, hiệu ứng mạnh"
+// Layers ON TOP of existing IO-based .fade-up reveals — does not replace them.
+// Reduced-motion: early return preserves accessibility.
+function initStrongScrollAnimations() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Bail immediately if user prefers reduced motion — CSS handles snap-to-position
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // PATTERN 1 — Hero chiasmus lines slide from far offscreen (alternating left/right)
+  // Targets .line-a / .line-b / .line-c / .line-d / .hero-resolve inside .hero-title
+  // FOUC-safe: gsap.set() primes opacity:0 synchronously BEFORE forEach loop,
+  // so GSAP controls final state from the very first paint tick.
+  // CSS also pre-hides at opacity:0 as belt-and-suspenders (see style.css HERO FOUC block).
+  // Pass 6: converted from gsap.from() to gsap.fromTo() — explicit end state { x:0, opacity:1 }
+  // prevents the set+from race condition where GSAP records END=opacity:0 and animates 0→0.
+  const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d, .hero-title .hero-resolve');
+  // CRITICAL: prime initial state synchronously to prevent FOUC flash (hero-specific, kept from Pass 4)
+  gsap.set(heroLines, { opacity: 0 });
+  heroLines.forEach((line, i) => {
+    const fromX = (i % 2 === 0) ? '-120vw' : '120vw'; // extreme offscreen
+    gsap.fromTo(line,
+      { x: fromX, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.4,
+        ease: 'power4.out',
+        delay: i * 0.08,
+        scrollTrigger: {
+          trigger: line,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // PATTERN 2 — Section titles slide in from far left
+  // Pass 6: removed gsap.set() prime (caused set+from race: END recorded as opacity:0, animated 0→0).
+  // Converted to gsap.fromTo() with explicit end state { x:0, opacity:1 }.
+  const sectionTitles = gsap.utils.toArray('.section-title');
+  sectionTitles.forEach(el => {
+    gsap.fromTo(el,
+      { x: -180, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 1.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom-=80',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // PATTERN 3 — Pillar cards stagger slide-up from below
+  // Pass 6: removed gsap.set() prime, converted to gsap.fromTo() with end { y:0, opacity:1 }.
+  const pillarCards = gsap.utils.toArray('.pillar-card');
+  pillarCards.forEach((card, i) => {
+    gsap.fromTo(card,
+      { y: 140, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.0,
+        ease: 'power3.out',
+        delay: i * 0.09,
+        scrollTrigger: {
+          trigger: card,
+          start: 'top bottom-=80',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // PATTERN 4 — Stats numbers scale-pop (back.out gives a slight overshoot = satisfying)
+  // Pass 6: removed gsap.set() prime, converted to gsap.fromTo() with end { scale:1, opacity:1 }.
+  const statNums = gsap.utils.toArray('.stat-number');
+  statNums.forEach(el => {
+    gsap.fromTo(el,
+      { scale: 0.4, opacity: 0 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom-=80',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // PATTERN 5 — Folio featured image: scale-in with blur lift (dramatic reveal)
+  // filter:'blur(20px)' only runs if not in ban list — visual-concept §9 allows on elements, not bg
+  // Pass 6: removed gsap.set() prime, converted to gsap.fromTo() with end { scale:1, opacity:1, filter:'blur(0px)' }.
+  const folioEls = gsap.utils.toArray('.folio-feature, .folio-image-real');
+  folioEls.forEach(el => {
+    gsap.fromTo(el,
+      { scale: 1.15, opacity: 0, filter: 'blur(16px)' },
+      {
+        scale: 1,
+        opacity: 1,
+        filter: 'blur(0px)',
+        duration: 1.5,
+        ease: 'power4.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom-=80',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // PATTERN 6 — Pricing tiers stagger pop-in from below
+  // Pass 6: removed gsap.set() prime, converted to gsap.fromTo() with end { y:0, opacity:1 }.
+  const tiers = gsap.utils.toArray('.tier');
+  tiers.forEach((tier, i) => {
+    gsap.fromTo(tier,
+      { y: 90, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.95,
+        ease: 'power3.out',
+        delay: i * 0.13,
+        scrollTrigger: {
+          trigger: tier,
+          start: 'top bottom-=80',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // PATTERN 7 — Why-us screenshot: parallax scrub (smooth depth on scroll)
+  // scrub:1 = smooth 1s lag behind scroll, no snap issue
+  // Pass 5: already gsap.fromTo — explicit from/to state, immune to set+from race.
+  // Pass 6: removed the redundant gsap.set() that was added above the forEach — fromTo owns state fully.
+  const whyScreenshots = gsap.utils.toArray('.why-screenshot');
+  whyScreenshots.forEach(el => {
+    gsap.fromTo(el,
+      { y: 70, scale: 0.96 },
+      {
+        y: -50,
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      }
+    );
+  });
+
+  // PATTERN 8 — Process steps cascade left/right alternating
+  // Pass 6: removed per-element gsap.set() prime + the extra forEach loop.
+  // Converted to single gsap.fromTo() forEach with end { x:0, opacity:1 }.
+  const processSteps = gsap.utils.toArray('.process-step');
+  processSteps.forEach((step, i) => {
+    gsap.fromTo(step,
+      { x: i % 2 === 0 ? -110 : 110, opacity: 0 },
+      {
+        x: 0,
+        opacity: 1,
+        duration: 0.95,
+        ease: 'power3.out',
+        delay: i * 0.06,
+        scrollTrigger: {
+          trigger: step,
+          start: 'top bottom-=80',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+
+  // Refresh ScrollTrigger after all async DOM builds settle
+  // (buildPage() is called before this, but just in case of reflows)
+  // Pass 5 Option C: explicit refresh after all triggers registered
+  ScrollTrigger.refresh();
+}
+
 async function init() {
   await renderNav('home');
   renderFooter();
   buildPage();
-  initScrollReveal();
   init3DTilt();
   initStatsCounter();
+  initCursorPill();
+  // Pass 5 fix: GSAP must run BEFORE IO observer so gsap.set() primes are applied
+  // synchronously. initScrollReveal() then filters those selectors out, avoiding
+  // the dual-system conflict (GSAP inline opacity:0 beats CSS .revealed opacity:1).
+  initStrongScrollAnimations();
+  initScrollReveal();
 }
+
+// Refresh ScrollTrigger positions after window resize
+window.addEventListener('resize', () => {
+  if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+});
 
 init();

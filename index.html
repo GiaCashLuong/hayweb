@@ -17,7 +17,7 @@
 <nav id="nav" role="navigation" aria-label="Main navigation"></nav>
 
 <!-- HERO — editorial v4 (asymmetric text-left + real screenshot right) -->
-<section class="hero" id="home">
+<section class="hero bg-paper-grain" id="home">
   <div class="hero-bg"></div>
   <div class="hero-content">
     <div class="hero-text">
@@ -48,8 +48,48 @@
   </div>
 </section>
 
+<!-- MARQUEE PROOF STRIP — gold band, 7 verified stats, 64s loop (content-output-2026-05-03 §marquee) -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <!-- Content duplicated once for seamless infinite loop (translateX(-50%) technique) -->
+    <div class="marquee-content">
+      <span class="marquee-stat"><strong>30</strong> dự án bàn giao</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Mozilla 100/100</strong> bảo mật</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Uptime 99.97%</strong></span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>4</strong> Edge Functions</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Stripe + PayOS</strong> tích hợp</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Song ngữ</strong> Việt / Anh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>CSP A+</strong> · không CDN ngoài</span>
+      <span class="marquee-dot">◆</span>
+    </div>
+    <!-- Duplicate for loop -->
+    <div class="marquee-content" aria-hidden="true">
+      <span class="marquee-stat"><strong>30</strong> dự án bàn giao</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Mozilla 100/100</strong> bảo mật</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Uptime 99.97%</strong></span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>4</strong> Edge Functions</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Stripe + PayOS</strong> tích hợp</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>Song ngữ</strong> Việt / Anh</span>
+      <span class="marquee-dot">◆</span>
+      <span class="marquee-stat"><strong>CSP A+</strong> · không CDN ngoài</span>
+      <span class="marquee-dot">◆</span>
+    </div>
+  </div>
+</div>
+
 <!-- 4 PILLARS — editorial: drop-cap intro + numbered XL cards -->
-<section id="pillars" class="pillars-section">
+<section id="pillars" class="pillars-section bg-warm-corner">
   <div class="container">
     <div class="text-center" style="margin-bottom:3.5rem">
       <div class="section-label fade-up" style="justify-content:center" id="pillars-label"></div>
@@ -78,7 +118,7 @@
 </section>
 
 <!-- STATS — editorial shock-contrast dark section (1 dark instance per page = pacing rhythm) -->
-<section class="stats-section stats-dark">
+<section class="stats-section stats-dark bg-film-grain">
   <div class="container">
     <div class="stats-grid" id="stats-grid"></div>
     <p class="stats-dark-meta" id="stats-meta"></p>
@@ -135,8 +175,8 @@
             <span class="dot"></span>
           </div>
           <img class="why-screenshot-img"
-               src="/images/portfolio-hayweb.jpg"
-               alt=""
+               src="/images/kobe-steak-hero.jpeg"
+               alt="Kobe Steak — landing page client work"
                loading="lazy"
                width="600" height="450">
         </figure>
@@ -147,7 +187,7 @@
 </section>
 
 <!-- PROCESS -->
-<section>
+<section class="bg-blueprint-grid">
   <div class="container">
     <div class="text-center" style="margin-bottom:4rem">
       <div class="section-label fade-up" style="justify-content:center" id="proc-label"></div>
@@ -158,7 +198,7 @@
 </section>
 
 <!-- PRICING PREVIEW -->
-<section style="background:var(--surface);border-top:1px solid var(--border)">
+<section class="bg-paper-grain" style="background:var(--surface);border-top:1px solid var(--border);--grain-opacity:0.03">
   <div class="container">
     <div class="text-center" style="margin-bottom:3.5rem">
       <div class="section-label fade-up" style="justify-content:center" id="price-label"></div>
@@ -185,7 +225,7 @@
 </section>
 
 <!-- SCARCITY CTA BAND — real daily slot count from Supabase -->
-<section class="cta-band scarcity-band" id="scarcity">
+<section class="cta-band scarcity-band bg-warm-corner" id="scarcity">
   <div class="container">
     <div class="section-label fade-up" style="justify-content:center" id="sc-label"></div>
     <h2 class="section-title fade-up" id="sc-title"></h2>
@@ -219,8 +259,14 @@
 
 <footer id="footer" role="contentinfo"></footer>
 
+<!-- Custom cursor pill — activates on data-cursor elements (folio cards) -->
+<div class="cursor-pill" id="cursor" aria-hidden="true"><span>VIEW →</span></div>
+
 <script src="js/supabase.min.js"></script>
 <script src="js/config.js"></script>
+<!-- GSAP + ScrollTrigger — self-hosted, load before page-index.js (CSP: script-src 'self') -->
+<script src="js/gsap.min.js"></script>
+<script src="js/gsap-scrolltrigger.min.js"></script>
 <script src="js/page-index.js"></script>
 
 <!-- Analytics & Tracking (self-hosted per CSP rules) -->

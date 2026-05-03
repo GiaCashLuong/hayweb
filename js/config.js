@@ -31,8 +31,8 @@ const i18n = {
     hero_title_6:   'đo lường được.',
     hero_sub:       'Bốn trụ cột đi cùng nhau cho doanh nghiệp Việt: website chuyển đổi cao — quảng cáo tối ưu chi phí — SEO bền vững top Google — chiến lược tăng trưởng có lộ trình.',
     hero_cta_1:     'Đặt buổi 90 phút phân tích định vị',
-    hero_cta_2:     'Xem 124 dự án đã bàn giao',
-    hero_cta_micro: 'Qua Zoom · không cam kết · phản hồi trong 4h',
+    hero_cta_2:     'Xem 30 dự án đã bàn giao',
+    hero_cta_micro: 'qua Zoom · không cam kết · phản hồi trong 4h',
     hero_visual_caption: 'Studio dashboard · HAYWEB v4',
 
     // Services
@@ -61,9 +61,9 @@ const i18n = {
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
-    price_cta_s:    'Bắt đầu ngay',
+    price_cta_s:    'Bắt đầu dự án',
     price_cta_p:    'Nhận báo giá',
-    price_cta_e:    'Liên hệ tư vấn',
+    price_cta_e:    'Đặt buổi chiến lược',
 
     // Portfolio
     port_label:     'Portfolio',
@@ -84,7 +84,7 @@ const i18n = {
 
     // Footer
     footer_desc:    'Thiết kế web chuyên nghiệp tại Hà Nội. Chúng tôi kiến tạo trải nghiệm số đẳng cấp cho doanh nghiệp Việt.',
-    footer_copy:    '© 2025 HAYWEB. Bảo lưu mọi quyền.',
+    footer_copy:    '© 2026 HAYWEB. Bảo lưu mọi quyền.',
     footer_links:   'Liên kết',
     footer_services:'Dịch vụ',
     footer_contact: 'Liên hệ',
@@ -167,7 +167,11 @@ const i18n = {
     sc_cta_calendly: 'Đặt buổi qua Calendly →',
     sc_cta_form:     'Hoặc để lại thông tin',
     sc_full_title:   'Lịch hôm nay đã kín 5/5 buổi',
-    sc_full_desc:    'Để lại thông tin — chúng tôi xếp lịch ngày mai trong 24h.',
+    sc_full_desc:    'Để lại thông tin — chúng tôi xếp lịch cho buổi kế tiếp và gửi email xác nhận trong 4h làm việc.',
+    sc_availability: 'Lịch mở mỗi ngày làm việc · 9:00 – 17:00',
+    footer_colophon: 'Set in Be Vietnam Pro & JetBrains Mono · Xây tại Hà Nội',
+    nav_meta_year:   'CIRCA 2026',
+    nav_meta_city:   'HÀ NỘI',
     sc_form_name:    'Họ tên',
     sc_form_email:   'Email',
     sc_form_phone:   'Số điện thoại (tuỳ chọn)',
@@ -206,7 +210,7 @@ const i18n = {
     hero_title_6:   'measurably.',
     hero_sub:       'Four pillars working as one for Vietnamese businesses: high-converting web — cost-optimized ads — sustainable SEO to top of Google — growth strategy with a roadmap.',
     hero_cta_1:     'Book a 90-min positioning workshop',
-    hero_cta_2:     'See 124 delivered projects',
+    hero_cta_2:     'See 30 delivered projects',
     hero_cta_micro: 'Over Zoom · no commitment · response within 4h',
     hero_visual_caption: 'Studio dashboard · HAYWEB v4',
 
@@ -232,9 +236,9 @@ const i18n = {
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
-    price_cta_s:    'Get Started',
+    price_cta_s:    'Start a Project',
     price_cta_p:    'Get a Quote',
-    price_cta_e:    'Contact Us',
+    price_cta_e:    'Book a Strategy Call',
 
     port_label:     'Portfolio',
     port_title:     'Projects that',
@@ -251,7 +255,7 @@ const i18n = {
     cta_btn:        'Start your project',
 
     footer_desc:    'Professional web design in Hanoi. We craft world-class digital experiences for Vietnamese businesses.',
-    footer_copy:    '© 2025 HAYWEB. All rights reserved.',
+    footer_copy:    '© 2026 HAYWEB. All rights reserved.',
     footer_links:   'Links',
     footer_services:'Services',
     footer_contact: 'Contact',
@@ -325,7 +329,11 @@ const i18n = {
     sc_cta_calendly: 'Book on Calendly →',
     sc_cta_form:     'Or leave your details',
     sc_full_title:   'Today\'s calendar is fully booked (5/5)',
-    sc_full_desc:    'Leave your details — we\'ll arrange tomorrow within 24h.',
+    sc_full_desc:    'Leave your details — we\'ll schedule the next available session and confirm by email within 4 working hours.',
+    sc_availability: 'Open every working day · 9:00 – 17:00',
+    footer_colophon: 'Set in Be Vietnam Pro & JetBrains Mono · Built in Hà Nội',
+    nav_meta_year:   'CIRCA 2026',
+    nav_meta_city:   'HÀ NỘI',
     sc_form_name:    'Full name',
     sc_form_email:   'Email',
     sc_form_phone:   'Phone (optional)',
@@ -391,6 +399,11 @@ async function renderNav(activePage) {
 
   nav.innerHTML = `
     <a href="/index.html" class="nav-brand">HAY<span>WEB</span></a>
+    <div class="nav-meta" aria-hidden="true">
+      <span class="nav-meta-text">${t('nav_meta_year')}</span>
+      <span class="nav-divider">·</span>
+      <span class="nav-meta-text">${t('nav_meta_city')}</span>
+    </div>
     <nav class="nav-links" id="nav-links">${navLinksHTML}</nav>
     <button class="nav-toggle" id="nav-menu-btn" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -403,15 +416,33 @@ async function renderNav(activePage) {
   nav.querySelector('#nav-lang-btn').addEventListener('click', toggleLang);
   nav.querySelector('#nav-menu-btn').addEventListener('click', () => nav.classList.toggle('open'));
 
+  // nav-dark: section-aware inversion when overlapping dark sections
+  // (pivot-audit §C #7 — BLOCKER for dark footer and stats readability)
+  function updateNavDark() {
+    const navRect = nav.getBoundingClientRect();
+    const navBottom = navRect.bottom;
+    const darkSections = document.querySelectorAll('.stats-dark, footer.footer-dark, [data-nav-dark]');
+    let isDark = false;
+    darkSections.forEach(section => {
+      const r = section.getBoundingClientRect();
+      if (r.top <= navBottom && r.bottom >= 0) isDark = true;
+    });
+    nav.classList.toggle('nav-dark', isDark);
+  }
+
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 40);
-  });
+    updateNavDark();
+  }, { passive: true });
   nav.classList.toggle('scrolled', window.scrollY > 40);
+  updateNavDark();
 }
 
 function renderFooter() {
   const footer = document.getElementById('footer');
   if (!footer) return;
+  // Add footer-dark class for dark bg + nav-dark detection trigger (pivot-audit §C #6 + #7)
+  footer.classList.add('footer-dark');
   footer.innerHTML = `
     <div class="container">
       <div class="footer-grid">
@@ -455,7 +486,10 @@ function renderFooter() {
         </div>
       </div>
       <div class="footer-bottom">
-        <span class="footer-copy">${t('footer_copy')}</span>
+        <div>
+          <span class="footer-copy">${t('footer_copy')}</span>
+          <span class="foot-set">&ensp;·&ensp;<em>${t('footer_colophon')}</em></span>
+        </div>
         <div class="footer-socials">
           <a href="#" class="footer-social" aria-label="Facebook">
             <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
@@ -497,7 +531,35 @@ function initScrollReveal() {
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.fade-up, .testimonial-card').forEach(el => observer.observe(el));
+
+  // Pass 5 fix (2026-05-03): skip elements that GSAP ScrollTrigger animates.
+  // Both systems targeting the same element causes conflict: GSAP inline opacity:0
+  // wins over CSS .fade-up.revealed { opacity:1 }, leaving elements stuck invisible.
+  const gsapTargets = [
+    '.hero-title .line', '.hero-resolve',
+    '.pillar-card',
+    '.stat-number',
+    '.folio-feature', '.folio-image-real',
+    '.tier',
+    '.why-screenshot',
+    '.process-step',
+    '.section-title'
+  ];
+  const skipSelector = gsapTargets.join(', ');
+
+  document.querySelectorAll('.fade-up, .testimonial-card').forEach(el => {
+    // Skip elements managed by GSAP — let GSAP own their opacity/transform lifecycle
+    if (el.matches(skipSelector)) return;
+
+    // BUG GUARD: skip reveal class for elements already in viewport on init
+    // (deep-link / fullpage-screenshot protection — structure-builder pitfall #10)
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom >= 0) {
+      el.classList.add('revealed');
+    } else {
+      observer.observe(el);
+    }
+  });
 }
 
 function init3DTilt() {
