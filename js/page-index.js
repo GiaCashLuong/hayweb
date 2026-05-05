@@ -296,7 +296,7 @@ const portfolio = [
     tagVI: 'E-com · 2026', tagEN: 'E-com · 2026',
     titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
     descVI: 'Sim phong thủy — affiliate CTV, lọc theo mệnh', descEN: 'Feng shui sims — CTV affiliate, filter by element',
-    url: '#'
+    url: 'https://hoang-kim-phat-sim.vercel.app'  /* C2 FIX: real URL — no broken href="#" (V-003) */
   },
 ];
 
@@ -535,7 +535,7 @@ function renderPillars() {
   const grid = document.getElementById('pillars-grid');
   if (!grid) return;
   grid.innerHTML = pillars.map(p => `
-    <article class="pillar-card fade-up" data-framework="${p.framework}">
+    <article class="pillar-card fade-up" data-framework="${p.framework}" data-cursor="explore">
       <header class="pillar-head">
         <span class="pillar-num">${p.num}</span>
         <span class="pillar-icon">${p.icon}</span>
@@ -579,6 +579,20 @@ function renderComparison() {
       </div>
     `).join('')}
   `;
+
+  // NEW: Comparison CTA — content-output.md §3 + architecture §4
+  // "Bắt đầu dự án ngay →" (vi) / "Start your project →" (en)
+  const ctaRow = document.getElementById('comparison-cta-row');
+  if (ctaRow) {
+    ctaRow.innerHTML = `
+      <a href="/new-project.html" class="btn-gold" data-magnetic>
+        ${vi ? 'Bắt đầu dự án ngay →' : 'Start your project →'}
+      </a>
+      <span class="comparison-cta-microcopy">
+        ${vi ? 'Báo giá miễn phí · không cam kết' : 'Free quote · no commitment'}
+      </span>
+    `;
+  }
 }
 
 const SC_FN_SLOTS = `${HW_FN_BASE}/hw-consultation-slots`;
@@ -809,7 +823,7 @@ function buildPage() {
   document.getElementById('svc-label').textContent = t('svc_label');
   document.getElementById('svc-title').innerHTML = `${t('svc_title')} <em>${t('svc_title_em')}</em>`;
   document.getElementById('svc-desc').textContent = t('svc_desc');
-  document.getElementById('svc-cta').textContent = vi ? 'Đặt tư vấn →' : 'Book a call →';
+  document.getElementById('svc-cta').textContent = vi ? 'Đặt buổi tư vấn miễn phí →' : 'Book a free consultation →'; // content-output.md §3 svc_cta polish
   document.getElementById('svc-cta').href = 'https://calendly.com/gsg-zero/30min';
   document.getElementById('svc-cta').target = '_blank';
   document.getElementById('svc-cta').rel = 'noopener';
@@ -832,7 +846,7 @@ function buildPage() {
   const statsMetaEl = document.getElementById('stats-meta');
   if (statsMetaEl) statsMetaEl.textContent = t('stats_meta');
 
-  // Tech partners bar
+  // Tech partners bar — C3 FIX: expanded to 8 partners (≥6 target) per fix list C-001
   const partners = [
     { name: 'Vercel', mark: 'V' },
     { name: 'Supabase', mark: 'S' },
@@ -840,6 +854,8 @@ function buildPage() {
     { name: 'PayOS', mark: 'P' },
     { name: 'Anthropic', mark: 'A' },
     { name: 'Cloudflare', mark: '☁' },
+    { name: 'Google Analytics 4', mark: 'G' },
+    { name: 'Microsoft Clarity', mark: 'M' },
   ];
   const partnersEl = document.getElementById('partners-bar');
   if (partnersEl) {
@@ -904,7 +920,7 @@ function buildPage() {
     </a>
 
     <!-- Small card: HKP Sim Kinh Dịch — mono classification -->
-    <a href="${p2.url || '#'}" class="folio folio-small fade-up" data-cursor="true">
+    <a href="${p2.url || '#'}" target="_blank" rel="noopener noreferrer" class="folio folio-small fade-up" data-cursor="true">
       <div class="folio-meta">
         <span class="folio-no">003</span>
         <span>${vi ? p2.tagVI : p2.tagEN}</span>
@@ -967,7 +983,7 @@ function buildPage() {
   pricingEl.className = 'tier-grid';
   pricingEl.innerHTML = `
     <!-- Tier 1: Starter — cream entry -->
-    <div class="tier tier-starter fade-up">
+    <div class="tier tier-starter fade-up" data-cursor="select">
       <div class="tier-head">
         <span class="tier-name">${vi ? pricing[0].tierVI : pricing[0].tierEN}</span>
         <span class="tier-tag">${vi ? 'Landing page · Brochure' : 'Landing page · Brochure'}</span>
@@ -983,7 +999,7 @@ function buildPage() {
     </div>
 
     <!-- Tier 2: Pro — gold bg, ribbon, translateY lift (architect §5 exception) -->
-    <div class="tier tier-pro fade-up">
+    <div class="tier tier-pro fade-up" data-cursor="select">
       <span class="tier-ribbon">${vi ? 'Phổ biến nhất' : 'Most popular'}</span>
       <!-- Task 4 Pass 7: gold star SVG badge accent on tier-pro -->
       <svg class="tier-pro-badge" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1004,7 +1020,7 @@ function buildPage() {
     </div>
 
     <!-- Tier 3: Enterprise — black bg, palette completion -->
-    <div class="tier tier-ent fade-up">
+    <div class="tier tier-ent fade-up" data-cursor="select">
       <div class="tier-head">
         <span class="tier-name">${vi ? pricing[2].tierVI : pricing[2].tierEN}</span>
         <span class="tier-tag">${vi ? 'Hệ thống phức tạp · CRM · ERP' : 'Complex systems · CRM · ERP'}</span>
@@ -1056,11 +1072,21 @@ function buildPage() {
 
 // Custom cursor — gold pill on data-cursor elements (pivot-audit §C #8)
 // Lerp animation for smooth follow. Mobile: cursor-pill display:none via CSS.
+// Phase 3.2 Second Pass: adds body.has-custom-cursor class for CSS cursor:none scope.
+// Also normalizes legacy data-cursor="true" → data-cursor="view" for effects-motion context map.
 function initCursorPill() {
   const pill = document.getElementById('cursor');
   if (!pill) return;
   // Only active on pointer devices — not touch
   if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  // Add body class for CSS cursor:none scoping (effects-motion.js CSS uses this)
+  document.body.classList.add('has-custom-cursor');
+
+  // Normalize legacy data-cursor="true" to "view" (portfolio cards from renderPortfolio)
+  document.querySelectorAll('[data-cursor="true"]').forEach(el => {
+    el.dataset.cursor = 'view';
+  });
 
   let mx = -200, my = -200;
   let cx = -200, cy = -200;
@@ -1081,14 +1107,24 @@ function initCursorPill() {
     my = e.clientY;
   });
 
+  // B9 FIX: 3-context cursor label swap per effects-plan.md §3 (custom-cursor-context-aware Platinum)
+  // view → "VIEW →" (portfolio), select → "CHỌN" (pricing tiers), explore → "→" (pillars)
+  const labelMap = { view: 'VIEW →', select: 'CHỌN', explore: '→' };
+  const pillLabel = pill.querySelector('span');
+
   document.querySelectorAll('[data-cursor]').forEach(el => {
     el.addEventListener('mouseenter', () => {
       active = true;
       pill.classList.add('is-active');
+      if (pillLabel) {
+        const ctx = el.dataset.cursor;
+        pillLabel.textContent = labelMap[ctx] || 'VIEW →';
+      }
     });
     el.addEventListener('mouseleave', () => {
       active = false;
       pill.classList.remove('is-active');
+      if (pillLabel) pillLabel.textContent = 'VIEW →'; // reset to default
     });
   });
 
@@ -1136,26 +1172,13 @@ function initStrongScrollAnimations() {
   gsap.from('.hero-art-typography .art-italic',  { y: 30, opacity: 0, duration: 0.7, delay: 1.3, ease: 'power3.out' });
   gsap.from('.hero-art-typography .art-arrow',   { y: 20, opacity: 0, duration: 0.5, delay: 1.5, ease: 'power3.out' });
 
-  // PATTERN 2 — Section titles slide in from far left
-  // Pass 6: removed gsap.set() prime (caused set+from race: END recorded as opacity:0, animated 0→0).
-  // Converted to gsap.fromTo() with explicit end state { x:0, opacity:1 }.
+  // PATTERN 2 — Section titles slide-from-left REMOVED (Pass 8 / Phase 3.2 Second Pass 2026-05-05)
+  // Replaced by effects-motion.js Effect 5: split-text-reveal (per-char stagger via SplitText).
+  // split-text-reveal targets [data-split-text] on the 8 section H2s with overwrite:'auto'
+  // so no conflict with any residual gsap state. Safe to remove this pattern entirely.
+  // Keeping variable declaration to avoid reference errors in later patterns if any.
   const sectionTitles = gsap.utils.toArray('.section-title');
-  sectionTitles.forEach(el => {
-    gsap.fromTo(el,
-      { x: -180, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top bottom-=80',
-          toggleActions: 'play none none none'
-        }
-      }
-    );
-  });
+  // INTENTIONALLY EMPTY — split-text-reveal in effects-motion.js handles section H2 animation.
 
   // PATTERN 3 — Pillar cards stagger slide-up from below
   // Pass 6: removed gsap.set() prime, converted to gsap.fromTo() with end { y:0, opacity:1 }.
@@ -1285,21 +1308,11 @@ function initStrongScrollAnimations() {
     );
   });
 
-  // PATTERN 9 — Magnetic hover on primary CTAs (Pass 7)
-  // Buttons shift toward cursor 20% of offset. Elastic return on leave.
-  document.querySelectorAll('.btn-primary, .cta-gold, .tier-cta-strong').forEach(btn => {
-    if (btn._magneticCTA) return;
-    btn._magneticCTA = true;
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: 'power2.out' });
-    });
-    btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
-    });
-  });
+  // PATTERN 9 — Magnetic CTA REMOVED (Pass 8 / Phase 3.2 Second Pass 2026-05-05)
+  // Replaced by effects-motion.js Effect 6: magnetic-button (library snippet precision targeting).
+  // New implementation: [data-magnetic] attribute only (2 CTAs: hero primary + scarcity submit).
+  // Proximity-based RAF approach; auto-degrades to tap-scale on touch + CSS hover on low tier.
+  // INTENTIONALLY EMPTY — effects-motion.js handles magnetic.
 
   // PATTERN 10 — Section h2 word-by-word reveal on scroll (Pass 7)
   // Skips .section-title already handled by Pattern 2 (class overlap guard).

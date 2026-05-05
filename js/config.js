@@ -32,8 +32,8 @@ const i18n = {
     hero_sub:       'Bốn trụ cột đi cùng nhau cho doanh nghiệp Việt: website chuyển đổi cao — quảng cáo tối ưu chi phí — SEO bền vững top Google — chiến lược tăng trưởng có lộ trình.',
     hero_cta_1:     'Đặt buổi 90 phút phân tích định vị',
     hero_cta_2:     'Xem 30 dự án đã bàn giao',
-    hero_cta_micro: 'qua Zoom · không cam kết · phản hồi trong 4h',
-    hero_visual_caption: 'Studio dashboard · HAYWEB v4',
+    hero_cta_micro: 'qua Zoom · không cam kết · yên tâm phản hồi trong 4h',  /* C4 FIX: LF8 "yên tâm" trigger word (C-003) */
+    hero_visual_caption: 'Studio Hà Nội · v5.1 dark luxury', // content-output.md §3 polish
 
     // Services
     svc_label:      'Dịch vụ',
@@ -51,19 +51,19 @@ const i18n = {
     why_label:      'Vì sao chọn HAYWEB',
     why_title:      'Đẳng cấp khác biệt',
     why_title_em:   'từ ngày đầu tiên',
-    why_desc:       'Từ báo giá đến bàn giao — quy trình minh bạch, tốc độ vượt trội, chất lượng không thỏa hiệp.',
+    why_desc:       'Từ báo giá đến bàn giao trong 5 phút — quy trình minh bạch, tốc độ vượt trội, kết quả đo được.', // content-output.md §3 polish: "5 phút" + "đo được"
 
     // Pricing
     price_label:    'Bảng giá',
-    price_title:    'Minh bạch từ',
-    price_title_em: 'đầu đến cuối',
+    price_title:    'Giá cố định. Không phí ẩn.', // content-output.md §3 pricing H2 polish
+    price_title_em: 'Bàn giao đúng hạn.',
     price_desc:     'Không phí ẩn, không bất ngờ. Chọn gói phù hợp hoặc liên hệ để nhận tư vấn cá nhân.',
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
-    price_cta_s:    'Bắt đầu dự án',
-    price_cta_p:    'Nhận báo giá',
-    price_cta_e:    'Đặt buổi chiến lược',
+    price_cta_s:    'Bắt đầu ngay →',         // content-output.md §3 polish
+    price_cta_p:    'Nhận báo giá ngay →',    // content-output.md §3 polish
+    price_cta_e:    'Đặt buổi chiến lược →',  // content-output.md §3 polish
 
     // Portfolio
     port_label:     'Portfolio',
@@ -167,9 +167,9 @@ const i18n = {
     sc_cta_calendly: 'Đặt buổi qua Calendly →',
     sc_cta_form:     'Hoặc để lại thông tin',
     sc_full_title:   'Lịch hôm nay đã kín 5/5 buổi',
-    sc_full_desc:    'Để lại thông tin — chúng tôi xếp lịch cho buổi kế tiếp và gửi email xác nhận trong 4h làm việc.',
+    sc_full_desc:    'Lịch đã kín — nhưng để lại thông tin và sẽ có buổi ưu tiên cho ngày mai. Email xác nhận trong 4h.', // content-output.md §3 polish
     sc_availability: 'Lịch mở mỗi ngày làm việc · 9:00 – 17:00',
-    footer_colophon: 'Set in Be Vietnam Pro & JetBrains Mono · Xây tại Hà Nội',
+    footer_colophon: 'Set in Be Vietnam Pro & JetBrains Mono · Xây tại Hà Nội · v5.1', // content-output.md §3 add "· v5.1"
     nav_meta_year:   'CIRCA 2026',
     nav_meta_city:   'HÀ NỘI',
     sc_form_name:    'Họ tên',
@@ -181,7 +181,7 @@ const i18n = {
 
     // Editorial v4 additions
     stats_meta:        'Số liệu cập nhật 04/2026 · Audit nội bộ',
-    why_side_caption:  'Studio dashboard — đo conversion, A/B test, báo cáo ROI hàng tuần.',
+    why_side_caption:  'conversion đo được — A/B test, báo cáo ROI hàng tuần.', // content-output.md §3 polish: "conversion đo được"
 
     // Common
     loading:        'Đang tải...',
@@ -211,8 +211,8 @@ const i18n = {
     hero_sub:       'Four pillars working as one for Vietnamese businesses: high-converting web — cost-optimized ads — sustainable SEO to top of Google — growth strategy with a roadmap.',
     hero_cta_1:     'Book a 90-min positioning workshop',
     hero_cta_2:     'See 30 delivered projects',
-    hero_cta_micro: 'Over Zoom · no commitment · response within 4h',
-    hero_visual_caption: 'Studio dashboard · HAYWEB v4',
+    hero_cta_micro: 'Over Zoom · no commitment · peace of mind, response within 4h',
+    hero_visual_caption: 'Studio Hanoi · v5.1 dark luxury', // content-output.md §3 polish
 
     svc_label:      'Services',
     svc_title:      'A complete',
@@ -227,18 +227,18 @@ const i18n = {
     why_label:      'Why HAYWEB',
     why_title:      'A different class',
     why_title_em:   'from day one',
-    why_desc:       'From quote to delivery — transparent process, superior speed, uncompromising quality.',
+    why_desc:       'From quote to delivery in 5 minutes — transparent process, superior speed, measurable results.', // content-output.md §3 polish: "5 min" + "measurable"
 
     price_label:    'Pricing',
-    price_title:    'Transparent',
-    price_title_em: 'from start to finish',
+    price_title:    'Fixed price. No hidden fees.', // content-output.md §3 polish
+    price_title_em: 'On-time delivery.',
     price_desc:     'No hidden fees, no surprises. Choose a plan or contact us for a custom quote.',
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
-    price_cta_s:    'Start a Project',
-    price_cta_p:    'Get a Quote',
-    price_cta_e:    'Book a Strategy Call',
+    price_cta_s:    'Start now →',              // content-output.md §3 polish
+    price_cta_p:    'Get a quote →',            // content-output.md §3 polish
+    price_cta_e:    'Book a strategy call →',   // content-output.md §3 polish
 
     port_label:     'Portfolio',
     port_title:     'Projects that',
@@ -254,7 +254,7 @@ const i18n = {
     cta_desc:       'Fill the form — get a detailed quote in 5 minutes. No commitment, no consulting fee.',
     cta_btn:        'Start your project',
 
-    footer_desc:    'Professional web design in Hanoi. We craft world-class digital experiences for Vietnamese businesses.',
+    footer_desc:    'We build high-converting digital experiences for Vietnamese businesses.', // content-output.md §3 polish
     footer_copy:    '© 2026 HAYWEB. All rights reserved.',
     footer_links:   'Links',
     footer_services:'Services',
@@ -329,9 +329,9 @@ const i18n = {
     sc_cta_calendly: 'Book on Calendly →',
     sc_cta_form:     'Or leave your details',
     sc_full_title:   'Today\'s calendar is fully booked (5/5)',
-    sc_full_desc:    'Leave your details — we\'ll schedule the next available session and confirm by email within 4 working hours.',
+    sc_full_desc:    'Calendar is full — leave your details and we\'ll prioritize a slot for tomorrow. Confirmation email within 4h.', // content-output.md §3 polish
     sc_availability: 'Open every working day · 9:00 – 17:00',
-    footer_colophon: 'Set in Be Vietnam Pro & JetBrains Mono · Built in Hà Nội',
+    footer_colophon: 'Set in Be Vietnam Pro & JetBrains Mono · Built in Hà Nội · v5.1', // content-output.md §3 add "· v5.1"
     nav_meta_year:   'CIRCA 2026',
     nav_meta_city:   'HÀ NỘI',
     sc_form_name:    'Full name',
@@ -343,7 +343,7 @@ const i18n = {
 
     // Editorial v4 additions
     stats_meta:        'Numbers updated 04/2026 · Audited internally',
-    why_side_caption:  'Studio dashboard — measure conversion, A/B test, weekly ROI report.',
+    why_side_caption:  'measurable conversion — A/B test, weekly ROI report.', // content-output.md §3 polish
 
     loading:        'Loading...',
     error:          'An error occurred. Please try again.',
@@ -477,11 +477,18 @@ function renderFooter() {
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor" stroke="none"/></svg>
-            <span>0797 986 525</span>
+            <!-- C1 FIX: clickable tel link (V-002) -->
+            <a href="tel:+84797986525" class="footer-contact-link">0797 986 525</a>
           </div>
           <div class="footer-contact-item">
             <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor" stroke="none"/></svg>
-            <span>gsg.zero@gmail.com</span>
+            <!-- C1 FIX: clickable mailto link (V-002) -->
+            <a href="mailto:gsg.zero@gmail.com" class="footer-contact-link">gsg.zero@gmail.com</a>
+          </div>
+          <!-- C1 FIX: MST placeholder (V-002) -->
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+            <span class="footer-mst">MST: Đang đăng ký</span>
           </div>
         </div>
       </div>
@@ -490,16 +497,17 @@ function renderFooter() {
           <span class="footer-copy">${t('footer_copy')}</span>
           <span class="foot-set">&ensp;·&ensp;<em>${t('footer_colophon')}</em></span>
         </div>
+        <!-- C2 FIX: social icons without real URLs get aria-disabled (V-003) — no clickable href="#" -->
         <div class="footer-socials">
-          <a href="#" class="footer-social" aria-label="Facebook">
+          <span class="footer-social footer-social--disabled" role="img" aria-label="Facebook (coming soon)" title="Facebook — coming soon">
             <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          </a>
-          <a href="#" class="footer-social" aria-label="Instagram">
+          </span>
+          <span class="footer-social footer-social--disabled" role="img" aria-label="Instagram (coming soon)" title="Instagram — coming soon">
             <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="1.5" fill="none"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="currentColor" stroke-width="1.5" fill="none"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </a>
-          <a href="#" class="footer-social" aria-label="LinkedIn">
+          </span>
+          <span class="footer-social footer-social--disabled" role="img" aria-label="LinkedIn (coming soon)" title="LinkedIn — coming soon">
             <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" stroke="currentColor" stroke-width="1.5" fill="none"/><rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
-          </a>
+          </span>
         </div>
       </div>
     </div>

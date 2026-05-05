@@ -1636,7 +1636,7 @@ footer {
 .hero-content {
   width: 100%;
   max-width: 1320px;
-  padding: 9rem 2.5rem 6rem;
+  padding: 5rem 2.5rem 4rem;  /* A3: reduced from 9rem/6rem → 5rem/4rem for ≤1200px hero height */
   display: grid;
   grid-template-columns: 1.25fr 0.85fr;
   gap: 4.5rem;
@@ -1757,7 +1757,8 @@ footer {
   .hero-visual { max-width: 440px; margin: 1rem auto 1.5rem; }
 }
 @media (max-width: 768px) {
-  .hero-content { padding: 6rem 1.5rem 5rem; }
+  /* A6: reduce from 6rem top → 3.5rem top so kicker anchors at ~120-140px from top (not 340px) */
+  .hero-content { padding: 3.5rem 1.5rem 3rem; }
 }
 
 /* =====================================================================
@@ -2248,6 +2249,8 @@ footer {
   font-family: var(--font-mono); font-weight: 700;
   font-size: 1.15rem; letter-spacing: -0.02em;
   color: #1a1a1a;
+  /* B5 FIX: force same weight as surrounding text to prevent font-fallback weight mismatch */
+  font-synthesis: none;
 }
 .marquee-dot {
   color: rgba(14,14,14,0.45); font-size: 0.55rem;
@@ -2856,3 +2859,1386 @@ footer::before {
   .process-num-bg,
   .hw-word { opacity: 1 !important; transform: none !important; }
 }
+
+/* =======================================================================
+   v5.1 DARK LUXURY EXTENSION — 2026-05-05
+   Scoped under body.home-dark-luxury — sub-pages completely unaffected.
+   All 17 existing :root tokens KEPT. 14 new tokens appended to :root.
+   ======================================================================= */
+
+/* ── EXTENSION TOKENS (appended to :root scope) ── */
+:root {
+  /* v5.1 dark-luxury additions — homepage only, sub-pages unaffected */
+  --dark-ink:         #0E0E0E;                    /* primary homepage bg — near-black warm */
+  --dark-surface:     #161410;                    /* dark card bg — warm-tinted black */
+  --dark-surface-2:   #1E1B16;                    /* elevated dark card — slightly lighter */
+  --dark-muted:       rgba(244,239,230,0.55);     /* muted text on dark bg */
+  --dark-muted-2:     rgba(244,239,230,0.32);     /* tertiary text on dark bg */
+  --dark-border:      rgba(244,239,230,0.10);     /* border on dark bg */
+  --dark-border-hover: rgba(244,239,230,0.22);    /* hover border on dark bg */
+  --cream:            #F4EFE6;                    /* alias = --bg */
+  --paper:            #FAF7EE;                    /* alias = --surface */
+  --charcoal:         #2a2520;                    /* alias = --silver */
+  --gold-subtle:      rgba(166,124,46,0.08);      /* gold tint on surfaces */
+  --gold-glow:        rgba(166,124,46,0.30);      /* gold underglow on dark bg */
+  --gold-glow-strong: rgba(166,124,46,0.50);      /* stronger gold glow for featured */
+  --gold-on-dark:     #C9A042;                    /* brighter gold on dark bg — 5.13:1 on #0E0E0E — heading/kicker only */
+  --gold-ornament:    rgba(201,160,66,0.40);      /* semi-transparent gold for ornamental lines */
+  --ivory-on-dark:    #F4EFE6;                    /* alias — body text on dark (17.4:1 on --dark-ink) */
+}
+
+/* ── GLOBAL DARK-LUXURY PAGE OVERRIDE ── */
+body.home-dark-luxury {
+  background: var(--dark-ink);
+  color: var(--cream);
+}
+
+/* Dark luxury dot-grid: shift to near-invisible gold-tinted dots */
+body.home-dark-luxury::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.018'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+/* Scrollbar on dark page */
+body.home-dark-luxury ::-webkit-scrollbar-track { background: var(--dark-ink); }
+body.home-dark-luxury ::-webkit-scrollbar-thumb { background: rgba(244,239,230,0.18); }
+
+/* ── NAV — dark-luxury always-dark ── */
+body.home-dark-luxury #nav {
+  background: transparent;
+}
+body.home-dark-luxury #nav.scrolled {
+  background: rgba(14,14,14,0.97);
+  border-bottom-color: var(--dark-border);
+}
+/* Dark nav text/icons — always ivory on dark-luxury homepage */
+body.home-dark-luxury #nav .nav-brand,
+body.home-dark-luxury #nav .nav-links a,
+body.home-dark-luxury #nav .nav-meta-text { color: var(--cream); }
+body.home-dark-luxury #nav .nav-brand span { color: var(--gold); }
+body.home-dark-luxury #nav .nav-cta {
+  color: var(--cream);
+  border-color: rgba(244,239,230,0.35);
+}
+body.home-dark-luxury #nav .nav-cta:hover { background: var(--cream); color: var(--dark-ink); }
+body.home-dark-luxury #nav .nav-toggle { color: var(--cream); }
+body.home-dark-luxury #nav .nav-meta { color: var(--dark-muted); }
+body.home-dark-luxury #nav.open .nav-links {
+  background: rgba(14,14,14,0.99);
+  border-bottom-color: var(--dark-border);
+}
+body.home-dark-luxury #nav.open .nav-links a { color: var(--cream); }
+
+/* ── SECTION 1: HERO — dark obsidian ── */
+body.home-dark-luxury .hero {
+  background: var(--dark-ink);
+  background-image: radial-gradient(circle, rgba(201,160,66,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--cream);
+  border-bottom-color: var(--dark-border);
+  /* A3: cap hero height to ~1.1 viewports max — prevent 2.4vh scroll-to-CTA issue */
+  min-height: auto;
+  max-height: none;
+}
+/* A3 polish v2: tighten hero padding on desktop ≥1280 to keep CTAs above first fold (1366×768 laptops) */
+@media (min-width: 1280px) {
+  body.home-dark-luxury .hero-content { padding: 4rem 2.5rem 3rem; }
+  body.home-dark-luxury .hero-title { font-size: clamp(2.6rem, 6.8vw, 5.2rem); line-height: 1.04; }
+  body.home-dark-luxury .hero-subtitle { font-size: 1rem; line-height: 1.55; max-width: 540px; }
+  body.home-dark-luxury .hero-benefits { gap: 0.5rem; margin-block: 1rem; }
+}
+body.home-dark-luxury .hero-eyebrow {
+  color: var(--dark-muted);
+  opacity: 1;
+  animation: none;
+  transform: none;
+}
+body.home-dark-luxury .hero-eyebrow::before { background: var(--gold-ornament); }
+body.home-dark-luxury .hero-title {
+  color: var(--cream);
+  /* A3: 11vw at 1440px = 158px/line × 5 lines = 832px overflow. Cap at 7.5vw max 6rem so
+     5-line block totals ~420px, fits within hero ≤1100px at 1440×900 viewport. */
+  font-size: clamp(2.8rem, 7.5vw, 6rem);
+}
+/* A5: Vogue Italia rule — 1 italic gold per headline. line-b/line-d stay italic but cream.
+   Only .hero-resolve em ("đo lường được") gets gold-on-dark. Max 1 gold em in hero. */
+body.home-dark-luxury .hero-title .line-b em,
+body.home-dark-luxury .hero-title .line-d em { color: var(--cream); }
+body.home-dark-luxury .hero-resolve { color: var(--dark-muted); }
+body.home-dark-luxury .hero-resolve em { color: var(--gold-on-dark); }
+body.home-dark-luxury .hero-subtitle { color: var(--dark-muted); }
+body.home-dark-luxury .hero-benefit { color: var(--dark-muted); }
+body.home-dark-luxury .hero-trust { color: var(--dark-muted); }
+body.home-dark-luxury .hero-trust-stars { color: var(--gold-on-dark); }
+/* Hero CTA gold button on dark */
+body.home-dark-luxury .hero .btn-gold,
+body.home-dark-luxury .hero-actions a.btn-primary {
+  background: var(--gold);
+  color: var(--dark-ink);
+  font-weight: 700;
+}
+body.home-dark-luxury .hero .btn-gold:hover,
+body.home-dark-luxury .hero-actions a.btn-primary:hover {
+  background: var(--gold-light);
+  box-shadow: 0 12px 40px var(--gold-glow);
+  color: var(--dark-ink);
+}
+/* Secondary CTA outline on dark */
+body.home-dark-luxury .hero-actions .hero-cta-secondary {
+  color: var(--cream);
+}
+body.home-dark-luxury .hero .btn-outline {
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury .hero .btn-outline:hover {
+  border-color: var(--cream);
+  background: rgba(244,239,230,0.06);
+}
+
+/* Hero art composition — Mode B velvet oxblood bg (images-curated.md Image 3) */
+body.home-dark-luxury .hero-visual-editorial {
+  position: relative;
+  isolation: isolate;
+}
+body.home-dark-luxury .hero-visual-editorial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/hero-velvet-oxblood.jpg');
+  background-size: cover;
+  background-position: right center;
+  transform: scaleX(-1);
+  filter: brightness(0.45) contrast(1.05) saturate(0.7) blur(1.5px);
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+}
+body.home-dark-luxury .hero-visual-editorial::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(14,14,14,0.65) 0%,
+    rgba(14,14,14,0.85) 70%,
+    rgba(14,14,14,0.95) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+body.home-dark-luxury .hero-visual-editorial .hero-art-typography,
+body.home-dark-luxury .hero-visual-editorial .hero-visual-caption {
+  position: relative;
+  z-index: 2;
+}
+/* A1/A4 FIX: Strip cream bg from art-typography on dark luxury — lets velvet ::before register through */
+body.home-dark-luxury .hero-visual-editorial .hero-art-typography {
+  background: transparent;
+  border-color: var(--dark-border);
+}
+/* Hero art typography inverts — ivory/gold on dark */
+body.home-dark-luxury .art-numeral { color: var(--cream); opacity: 0.85; }
+body.home-dark-luxury .art-mono { color: var(--gold-on-dark); }
+body.home-dark-luxury .art-divider { background: var(--gold-ornament); }
+body.home-dark-luxury .art-italic em { color: var(--gold-on-dark); }
+body.home-dark-luxury .art-arrow { color: var(--cream); }
+body.home-dark-luxury .hero-visual-caption { color: var(--dark-muted); }
+
+/* ── SECTION 2: MARQUEE — unchanged gold band ── */
+/* Marquee already has gold bg by default — no override needed. */
+/* Add warm text shadow depth per visual-concept §5 §2 */
+body.home-dark-luxury .marquee .marquee-stat,
+body.home-dark-luxury .marquee .marquee-dot {
+  text-shadow: 0 1px 3px rgba(60,40,15,0.20);
+}
+/* B5 FIX: ensure strong inside marquee matches parent weight — prevents font-fallback dim */
+body.home-dark-luxury .marquee .marquee-stat strong {
+  font-weight: 700;
+  color: inherit;  /* inherit dark ink from .marquee-content — unified rendering */
+  font-size: inherit;
+}
+
+/* ── SECTION 3: PILLARS — dark ascending tone ── */
+body.home-dark-luxury .pillars-section {
+  background: var(--dark-ink);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury #pillars-label,
+body.home-dark-luxury .pillars-section .section-label {
+  color: var(--gold-on-dark);
+}
+body.home-dark-luxury .pillars-section .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury #pillars-title,
+body.home-dark-luxury .pillars-section .section-title { color: var(--cream); }
+body.home-dark-luxury .pillars-section .section-title em { color: var(--gold-on-dark); }
+body.home-dark-luxury .pillars-intro-prose { color: var(--dark-muted); }
+/* B6 FIX: floating drop-cap "H" reads as printing artifact on dark bg — remove under dark luxury */
+body.home-dark-luxury .pillars-intro-prose::first-letter {
+  font-size: inherit;
+  font-weight: inherit;
+  float: none;
+  line-height: inherit;
+  padding: 0;
+  color: inherit;
+}
+body.home-dark-luxury .rule-line { background: var(--gold-ornament); }
+
+/* Pillar cards — ascending dark tone (card 1→4) */
+/* Card 1: --dark-surface-2, ghost numeral, gold border-top */
+body.home-dark-luxury .pillar-card:nth-child(1) {
+  background: var(--dark-surface-2);
+  border-color: var(--dark-border);
+  border-top: 1px solid var(--gold-ornament);
+  border-left: none;
+}
+/* Card 2: --dark-surface, gold numeral */
+body.home-dark-luxury .pillar-card:nth-child(2) {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  border-left: none;
+}
+body.home-dark-luxury .pillar-card:nth-child(2) .pillar-num { color: var(--gold-on-dark); opacity: 1; }
+/* Card 3: B1 FIX — was --charcoal #2a2520 (LIGHTER than card 2 #161410, causing zigzag).
+   Now #111009 = strictly darker than --dark-surface #161410, strictly lighter than --dark-ink #0E0E0E.
+   Monotonic sequence: #1E1B16 → #161410 → #111009 → #0E0E0E. */
+body.home-dark-luxury .pillar-card:nth-child(3) {
+  background: #111009;
+  border-color: var(--dark-border);
+  border-left: none;
+}
+body.home-dark-luxury .pillar-card:nth-child(3) .pillar-num { color: var(--gold-on-dark); opacity: 1; }
+body.home-dark-luxury .pillar-card:nth-child(3) .pillar-block-role { color: var(--gold-on-dark); opacity: 1; }
+/* Card 4: --dark-ink, gold left frame */
+body.home-dark-luxury .pillar-card:nth-child(4) {
+  background: var(--dark-ink);
+  border-color: var(--dark-border);
+  border-left: 3px solid var(--gold);
+}
+body.home-dark-luxury .pillar-card:nth-child(4) .pillar-num { color: var(--gold-on-dark); opacity: 1; }
+
+/* All pillar cards: ivory text, gold ornament border, hover gold-glow */
+body.home-dark-luxury .pillar-card { border: 1px solid var(--gold-ornament); }
+body.home-dark-luxury .pillar-card:nth-child(4) { border-left: 3px solid var(--gold); }
+body.home-dark-luxury .pillar-title { color: var(--cream); }
+body.home-dark-luxury .pillar-lead { color: var(--cream); }
+body.home-dark-luxury .pillar-block { border-left-color: var(--dark-border-hover); }
+body.home-dark-luxury .pillar-block-role { color: var(--dark-muted); opacity: 1; }
+body.home-dark-luxury .pillar-block-text { color: var(--dark-muted); }
+body.home-dark-luxury .pillar-icon { border-color: var(--dark-border-hover); color: var(--cream); }
+body.home-dark-luxury .pillar-head { border-bottom-color: var(--dark-border); }
+body.home-dark-luxury .pillar-card:hover { border-color: var(--gold-ornament); box-shadow: 0 24px 80px var(--gold-glow); transform: none; }
+
+/* ── SECTION 4: SERVICES TABS — dark surface ── */
+body.home-dark-luxury #services { background: var(--dark-surface); }
+body.home-dark-luxury #svc-label,
+body.home-dark-luxury #services .section-label { color: var(--gold-on-dark); }
+body.home-dark-luxury #services .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury #svc-title,
+body.home-dark-luxury #services .section-title { color: var(--cream); }
+body.home-dark-luxury #services .section-title em { color: var(--gold-on-dark); }
+body.home-dark-luxury #svc-desc,
+body.home-dark-luxury #services .section-desc { color: var(--dark-muted); }
+body.home-dark-luxury #svc-cta.btn-outline {
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury #svc-cta.btn-outline:hover {
+  border-color: var(--cream);
+  background: rgba(244,239,230,0.06);
+}
+body.home-dark-luxury .services-tabs {
+  background: var(--dark-surface-2);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .services-tab { color: var(--dark-muted); }
+body.home-dark-luxury .services-tab:hover { color: var(--cream); }
+body.home-dark-luxury .services-tab.active {
+  background: transparent;
+  color: var(--gold-on-dark);
+  border-bottom: 2px solid var(--gold-on-dark);
+  border-radius: 0;
+}
+/* Panels ascending dark tone */
+body.home-dark-luxury .services-panel[data-panel="website"] .services-panel-grid { background: transparent; }
+body.home-dark-luxury .svc-tab-card { background: var(--dark-surface-2); border-color: var(--dark-border); }
+body.home-dark-luxury .svc-tab-card:hover { border-color: var(--gold-ornament); box-shadow: 0 12px 40px var(--gold-glow); }
+body.home-dark-luxury .svc-tab-card h4 { color: var(--cream); }
+body.home-dark-luxury .svc-tab-card p { color: var(--dark-muted); }
+body.home-dark-luxury .svc-tab-link { color: var(--dark-muted); }
+body.home-dark-luxury .svc-tab-card:hover .svc-tab-link { color: var(--gold-on-dark); }
+body.home-dark-luxury .svc-tab-icon { background: rgba(201,160,66,0.06); border-color: var(--dark-border); }
+
+/* ── SECTION 5: STATS — deeper dark + gold numerals ── */
+body.home-dark-luxury .stats-section.stats-dark {
+  background: var(--dark-ink);
+}
+/* Gold stat numbers — the flagship quyền quý typographic moment */
+body.home-dark-luxury .stats-section.stats-dark .stat-number { color: var(--gold-on-dark); }
+/* B4 FIX: stat-suffix (%, ×, symbols) was gray due to base opacity:0.6. Force gold + opacity:1 for
+   visual unit integrity — digits + symbols must read as single gold numeral. */
+body.home-dark-luxury .stats-section.stats-dark .stat-number .stat-suffix,
+body.home-dark-luxury .stats-section.stats-dark .stat-number sup,
+body.home-dark-luxury .stats-section.stats-dark .stat-suffix {
+  color: var(--gold-on-dark);
+  opacity: 1;
+}
+body.home-dark-luxury .stats-section.stats-dark .stat-label { color: var(--dark-muted); }
+body.home-dark-luxury .stats-dark-meta { color: var(--dark-muted-2); }
+
+/* Mode B: marble zone atmospheric — stats section (images-curated.md Image 4) */
+body.home-dark-luxury .stats-section.stats-dark {
+  position: relative;
+  isolation: isolate;
+}
+body.home-dark-luxury .stats-section.stats-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/dark-zone-marble-veined.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: hue-rotate(-12deg) saturate(0.85) brightness(0.55) blur(1px);
+  opacity: 0.10;
+  z-index: 0;
+  pointer-events: none;
+}
+body.home-dark-luxury .stats-section.stats-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14,14,14,0.92) 0%, rgba(14,14,14,0.86) 50%, rgba(14,14,14,0.92) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+body.home-dark-luxury .stats-section.stats-dark > .container { position: relative; z-index: 2; }
+
+/* ── SECTION 6: TECH PARTNERS — dark transitional bar ── */
+body.home-dark-luxury section.partners-section,
+body.home-dark-luxury section:has(#partners-bar) {
+  background: var(--dark-surface);
+  border-top-color: var(--dark-border);
+}
+body.home-dark-luxury .partners-label { color: var(--dark-muted); }
+body.home-dark-luxury .partner-logo {
+  color: var(--dark-muted);
+  border-color: var(--dark-border);
+  opacity: 0.45;
+}
+body.home-dark-luxury .partner-logo:hover { opacity: 0.75; }
+
+/* ── SECTION 7: PORTFOLIO PREVIEW — LIGHT RELIEF ── */
+/* Portfolio stays on --bg ivory per visual-concept §3 section rotation */
+body.home-dark-luxury section.section-light-relief,
+body.home-dark-luxury .portfolio-section-wrapper {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+/* Kobe image subtle adjustment for dark-luxury page */
+body.home-dark-luxury .portfolio-card-002 img { filter: brightness(0.9) contrast(1.05); }
+
+/* ── SECTION 8: COMPARISON — dark surface ── */
+body.home-dark-luxury #comparison.comparison-section {
+  background: var(--dark-surface);
+}
+body.home-dark-luxury #cmp-label,
+body.home-dark-luxury .comparison-section .section-label { color: var(--gold-on-dark); }
+body.home-dark-luxury .comparison-section .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury #cmp-title,
+body.home-dark-luxury .comparison-section .section-title { color: var(--cream); }
+body.home-dark-luxury .comparison-section .section-title em { color: var(--gold-on-dark); }
+body.home-dark-luxury .comparison-table {
+  background: var(--dark-surface-2);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .cmp-head {
+  background: rgba(201,160,66,0.04);
+  border-bottom-color: var(--dark-border-hover);
+}
+body.home-dark-luxury .cmp-row { border-bottom-color: var(--dark-border); }
+body.home-dark-luxury .cmp-cell { border-right-color: var(--dark-border); color: var(--dark-muted); }
+body.home-dark-luxury .cmp-head .cmp-cell { color: var(--dark-muted); }
+body.home-dark-luxury .cmp-aspect { color: var(--cream); }
+body.home-dark-luxury .cmp-them { color: var(--dark-muted); opacity: 1; }
+/* B2 FIX: HAYWEB column gets full gold border perimeter (jewelry-box / Vacheron dial feel).
+   Row bg ascending warmth + inset glow for depth. "Them" column stays flat dark = contrast. */
+body.home-dark-luxury .cmp-us {
+  color: var(--cream);
+  background: rgba(201,160,66,0.06);
+  border-left: 2px solid var(--gold-ornament);
+  border-right: 2px solid var(--gold-ornament);  /* CLOSE PERIMETER — Vacheron jewelry-box */
+  box-shadow: inset 0 0 60px rgba(166,124,46,0.06);
+}
+body.home-dark-luxury .cmp-head .cmp-cell.cmp-us {
+  color: var(--gold-on-dark);
+  border-left: 2px solid var(--gold);           /* header row: full gold border-left for perimeter start */
+  border-right: 2px solid var(--gold);          /* CLOSE PERIMETER — header gold cap */
+  border-top: 1px solid var(--gold-ornament);   /* cap the column with gold top */
+}
+body.home-dark-luxury .cmp-row:last-child .cmp-us {
+  border-bottom: 1px solid var(--gold-ornament); /* cap the column with gold bottom */
+}
+/* Horizontal row separators in gold (engraved dial effect) */
+body.home-dark-luxury .cmp-row { border-bottom-color: rgba(201,160,66,0.15); }
+
+/* Comparison section CTA — new per content-output §8 architecture §4 */
+body.home-dark-luxury .comparison-cta-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 3rem;
+}
+body.home-dark-luxury .comparison-cta-row .btn-gold {
+  background: var(--gold);
+  color: var(--dark-ink);
+  font-weight: 700;
+  padding: .9rem 2.4rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  transition: background .2s, box-shadow .2s;
+  text-decoration: none;
+}
+body.home-dark-luxury .comparison-cta-row .btn-gold:hover {
+  background: var(--gold-light);
+  box-shadow: 0 12px 40px var(--gold-glow);
+}
+body.home-dark-luxury .comparison-cta-microcopy {
+  font-size: 0.78rem;
+  color: var(--dark-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+}
+
+/* ── SECTION 9: WHY US — LIGHT RELIEF ── */
+body.home-dark-luxury .why-section-light {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+body.home-dark-luxury .why-art-cell--accent { background: var(--dark-ink); }
+/* B3 FIX: why-art numbers are cream-on-cream because composition bg = surface (#FAF7EE)
+   and page bg = --bg (#F4EFE6) — essentially same hue. Fix: force dark text explicitly
+   and add stronger border so composition block lifts from page bg. */
+body.home-dark-luxury .why-art-composition {
+  border: 1px solid var(--border-hover);
+  box-shadow: 0 8px 32px rgba(26,26,26,0.10);
+}
+body.home-dark-luxury .why-art-stat { color: var(--text); }         /* 5.2× — near-black, 14.8:1 on ivory */
+body.home-dark-luxury .why-art-stat em { color: var(--gold); }       /* "×" in standard gold — 3.73:1, decorative */
+body.home-dark-luxury .why-art-label { color: var(--silver-light); } /* "conversion lift" — readable secondary */
+body.home-dark-luxury .why-art-mono { color: var(--text); }          /* "30" / "99.97%" — near-black */
+body.home-dark-luxury .why-art-mono small { color: var(--silver); }
+body.home-dark-luxury .why-art-sub { color: var(--silver-light); }   /* "projects" / "uptime" labels */
+body.home-dark-luxury .why-art-wordmark { color: var(--text); }       /* "HAYWEB" wordmark in near-black */
+body.home-dark-luxury .why-art-bottom { color: var(--silver-light); }
+
+/* ── SECTION 10: PROCESS — dark-ink + gold blueprint grid + ascending circles ── */
+body.home-dark-luxury section.bg-blueprint-grid {
+  background: var(--dark-ink);
+  background-image:
+    linear-gradient(var(--gold-ornament) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gold-ornament) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+body.home-dark-luxury #proc-label,
+body.home-dark-luxury .bg-blueprint-grid .section-label { color: var(--gold-on-dark); }
+body.home-dark-luxury .bg-blueprint-grid .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury .bg-blueprint-grid .section-title { color: var(--cream); }
+body.home-dark-luxury .bg-blueprint-grid .section-title em { color: var(--gold-on-dark); }
+body.home-dark-luxury .process-steps::before {
+  background: rgba(201,160,66,0.30);
+}
+/* B8 FIX: Sharpen alpha differential — ghost→tint→mid→strong→luminous clearly distinct */
+/* Step 1: ghost — barely visible */
+body.home-dark-luxury .process-step:nth-child(1) .process-num {
+  background: rgba(244,239,230,0.06);
+  border-color: rgba(244,239,230,0.12);
+  color: var(--dark-muted);
+  opacity: 1;
+}
+/* Step 2: tint — gold starts */
+body.home-dark-luxury .process-step:nth-child(2) .process-num {
+  background: rgba(166,124,46,0.20);
+  border-color: rgba(166,124,46,0.35);
+  color: var(--gold-on-dark);
+  opacity: 1;
+}
+/* Step 3: mid */
+body.home-dark-luxury .process-step:nth-child(3) .process-num {
+  background: rgba(166,124,46,0.40);
+  border-color: rgba(166,124,46,0.55);
+  color: var(--gold-on-dark);
+  opacity: 1;
+}
+/* Step 4: strong */
+body.home-dark-luxury .process-step:nth-child(4) .process-num {
+  background: rgba(166,124,46,0.65);
+  border-color: rgba(201,160,66,0.75);
+  color: var(--dark-ink);
+  opacity: 1;
+}
+/* Step 5: luminous terminal — full gold + extended glow */
+body.home-dark-luxury .process-step:nth-child(5) .process-num {
+  background: rgba(201,160,66,0.90);
+  border-color: var(--gold-on-dark);
+  color: var(--dark-ink);
+  box-shadow: 0 0 30px rgba(201,160,66,0.60);
+  opacity: 1;
+}
+body.home-dark-luxury .process-step h4 { color: var(--cream); }
+body.home-dark-luxury .process-step p { color: var(--dark-muted); }
+body.home-dark-luxury .process-num-bg { color: var(--gold-ornament); }
+
+/* Mode B: marble zone atmospheric covers process section */
+body.home-dark-luxury section.bg-blueprint-grid {
+  position: relative;
+  isolation: isolate;
+}
+body.home-dark-luxury section.bg-blueprint-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/dark-zone-marble-veined.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: hue-rotate(-12deg) saturate(0.85) brightness(0.55) blur(1px);
+  opacity: 0.10;
+  z-index: 0;
+  pointer-events: none;
+}
+body.home-dark-luxury section.bg-blueprint-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14,14,14,0.92) 0%, rgba(14,14,14,0.86) 50%, rgba(14,14,14,0.92) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+body.home-dark-luxury section.bg-blueprint-grid > .container { position: relative; z-index: 2; }
+
+/* ── SECTION 11: PRICING — dark surface + ascending tone ── */
+body.home-dark-luxury .pricing-section-dark {
+  background: var(--dark-surface);
+  border-top-color: var(--dark-border);
+}
+body.home-dark-luxury #price-label,
+body.home-dark-luxury .pricing-section-dark .section-label { color: var(--gold-on-dark); }
+body.home-dark-luxury .pricing-section-dark .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury #price-title,
+body.home-dark-luxury .pricing-section-dark .section-title { color: var(--cream); }
+body.home-dark-luxury .pricing-section-dark .section-title em { color: var(--gold-on-dark); }
+body.home-dark-luxury #price-desc,
+body.home-dark-luxury .pricing-section-dark .section-desc { color: var(--dark-muted); }
+/* Tier cards ascending dark — Essential / Growth / Enterprise */
+body.home-dark-luxury .tier-starter {
+  background: var(--dark-surface-2);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .tier-pro {
+  background: var(--dark-surface);
+  border-color: var(--gold);
+  border-top: 3px solid var(--gold);
+  /* B7 FIX: increase from 0 0 40px 0.30 to extended spread + higher alpha for obvious "crown" */
+  box-shadow: 0 24px 60px rgba(166,124,46,0.35), 0 0 40px rgba(166,124,46,0.25);
+}
+body.home-dark-luxury .tier-ent {
+  background: var(--dark-ink);
+  border: 1px solid var(--gold-ornament);
+}
+/* Tier text — all cream */
+body.home-dark-luxury .tier-name { color: var(--cream); }
+body.home-dark-luxury .tier-tag { color: var(--dark-muted); }
+body.home-dark-luxury .amount { color: var(--cream); font-family: var(--font-mono); }
+body.home-dark-luxury .amount-usd { color: var(--dark-muted); }
+body.home-dark-luxury .tier-features li { color: var(--dark-muted); }
+body.home-dark-luxury .tier-ribbon {
+  background: var(--gold-ornament);
+  color: var(--gold-on-dark);
+}
+/* Enterprise price label in gold */
+body.home-dark-luxury .tier-ent .amount { color: var(--gold-on-dark); }
+/* CTAs on dark tiers */
+body.home-dark-luxury .tier-cta {
+  background: var(--dark-surface-2);
+  border: 1px solid var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury .tier-cta:hover { border-color: var(--gold-ornament); color: var(--gold-on-dark); }
+body.home-dark-luxury .tier-cta-strong {
+  background: var(--gold);
+  color: var(--dark-ink);
+  border: none;
+  font-weight: 700;
+}
+body.home-dark-luxury .tier-cta-strong:hover { background: var(--gold-light); box-shadow: 0 8px 32px var(--gold-glow); }
+body.home-dark-luxury .tier-cta-cream {
+  background: transparent;
+  border: 1px solid var(--gold-ornament);
+  color: var(--cream);
+}
+body.home-dark-luxury .tier-cta-cream:hover { border-color: var(--gold); color: var(--gold-on-dark); }
+body.home-dark-luxury #price-viewall {
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury #price-viewall:hover { border-color: var(--cream); }
+
+/* ── SECTION 12: TESTIMONIALS — dark ink + pull-quote ── */
+body.home-dark-luxury .testimonials-section-dark {
+  background: var(--dark-ink);
+}
+body.home-dark-luxury #testi-label,
+body.home-dark-luxury .testimonials-section-dark .section-label { color: var(--gold-on-dark); }
+body.home-dark-luxury .testimonials-section-dark .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury #testi-title,
+body.home-dark-luxury .testimonials-section-dark .section-title { color: var(--cream); }
+body.home-dark-luxury .testimonials-section-dark .section-title em { color: var(--gold-on-dark); }
+/* Pull-quote elevated card */
+body.home-dark-luxury .testimonial-pullquote {
+  background: var(--dark-surface);
+  border: 1px solid var(--gold-ornament);
+  position: relative;
+  padding-top: 3.5rem;
+}
+body.home-dark-luxury .testimonial-pullquote::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.75rem;
+  left: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--gold-on-dark);
+  opacity: 0.9;
+  pointer-events: none;
+}
+/* Standard testimonial cards */
+body.home-dark-luxury .testimonial-card {
+  background: var(--dark-surface-2);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .testimonial-card:hover { box-shadow: 0 12px 40px var(--gold-glow); border-color: var(--gold-ornament); }
+body.home-dark-luxury .testimonial-stars { color: var(--gold-on-dark); }
+body.home-dark-luxury .testimonial-text { color: var(--dark-muted); }
+body.home-dark-luxury .testimonial-pullquote .testimonial-text { color: var(--cream); font-style: italic; font-size: 1rem; line-height: 1.7; }
+body.home-dark-luxury .testimonial-name { color: var(--cream); }
+body.home-dark-luxury .testimonial-role { color: var(--dark-muted); }
+body.home-dark-luxury .testimonial-monogram {
+  border-color: var(--gold-ornament);
+  color: var(--gold-on-dark);
+  background: var(--dark-surface);
+}
+/* Mode B: marble zone atmospheric covers testimonials */
+body.home-dark-luxury .testimonials-section-dark {
+  position: relative;
+  isolation: isolate;
+}
+body.home-dark-luxury .testimonials-section-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/dark-zone-marble-veined.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  filter: hue-rotate(-12deg) saturate(0.85) brightness(0.55) blur(1px);
+  opacity: 0.10;
+  z-index: 0;
+  pointer-events: none;
+}
+body.home-dark-luxury .testimonials-section-dark::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14,14,14,0.92) 0%, rgba(14,14,14,0.86) 50%, rgba(14,14,14,0.92) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+body.home-dark-luxury .testimonials-section-dark > .container { position: relative; z-index: 2; }
+
+/* ── SECTION 13: SCARCITY CTA BAND — terminal dark + guilloche bg ── */
+body.home-dark-luxury .scarcity-band {
+  background: var(--dark-ink);
+  border-top-color: var(--dark-border);
+}
+body.home-dark-luxury #sc-label,
+body.home-dark-luxury .scarcity-band .section-label { color: var(--gold-on-dark); }
+body.home-dark-luxury .scarcity-band .section-label::before { background: var(--gold-ornament); }
+body.home-dark-luxury .scarcity-band .section-title { color: var(--cream); }
+body.home-dark-luxury .scarcity-band .section-title em { color: var(--gold-on-dark); }
+body.home-dark-luxury .scarcity-band .section-desc { color: var(--dark-muted); }
+/* Gold counter bar */
+body.home-dark-luxury .scarcity-counter-bar { background: rgba(244,239,230,0.10); }
+body.home-dark-luxury .scarcity-counter-bar span { background: var(--gold); }
+body.home-dark-luxury .scarcity-counter-text { color: var(--dark-muted); }
+/* Gold CTA button */
+body.home-dark-luxury .scarcity-actions .btn-primary,
+body.home-dark-luxury .scarcity-actions a.btn-primary {
+  background: var(--gold);
+  color: var(--dark-ink);
+  font-weight: 700;
+  border: none;
+}
+body.home-dark-luxury .scarcity-actions .btn-primary:hover { background: var(--gold-light); box-shadow: 0 12px 40px var(--gold-glow); }
+body.home-dark-luxury .scarcity-actions .btn-outline {
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury .scarcity-actions .btn-outline:hover { border-color: var(--gold-ornament); }
+body.home-dark-luxury .scarcity-or { color: var(--dark-muted); }
+/* Scarcity form on dark */
+body.home-dark-luxury .scarcity-form {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .scarcity-form h3 { color: var(--cream); }
+body.home-dark-luxury .scarcity-form p { color: var(--dark-muted); }
+body.home-dark-luxury .scarcity-form input {
+  background: var(--dark-surface-2);
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury .scarcity-form input::placeholder { color: var(--dark-muted-2); }
+body.home-dark-luxury .scarcity-form input:focus { border-color: var(--gold-ornament); box-shadow: 0 0 0 3px rgba(201,160,66,0.10); }
+body.home-dark-luxury .scarcity-form .btn-primary {
+  background: var(--gold);
+  color: var(--dark-ink);
+}
+body.home-dark-luxury .scarcity-form .btn-primary:hover { background: var(--gold-light); }
+/* Gold SVG deco lines — increase opacity on dark */
+body.home-dark-luxury .scarcity-deco line { stroke-opacity: 0.6; }
+
+/* Mode B: brass guilloché atmospheric (images-curated.md Image 5) */
+body.home-dark-luxury .cta-band.scarcity-band {
+  position: relative;
+  isolation: isolate;
+}
+body.home-dark-luxury .cta-band.scarcity-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/cta-brass-guilloche.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.35) contrast(1.1) saturate(0.85) blur(1px);
+  opacity: 0.18;
+  z-index: 0;
+  pointer-events: none;
+}
+body.home-dark-luxury .cta-band.scarcity-band::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(14,14,14,0.70) 0%,
+    rgba(14,14,14,0.88) 60%,
+    rgba(14,14,14,0.95) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+body.home-dark-luxury .cta-band.scarcity-band > .container,
+body.home-dark-luxury .cta-band.scarcity-band > .scarcity-deco { position: relative; z-index: 2; }
+
+/* ── FOOTER — dark luxury ── */
+body.home-dark-luxury footer {
+  background: var(--dark-surface);
+  border-top-color: var(--dark-border);
+}
+body.home-dark-luxury .footer-brand { color: var(--cream); }
+body.home-dark-luxury .footer-brand span { color: var(--gold); opacity: 1; }
+body.home-dark-luxury .footer-desc { color: var(--dark-muted); }
+body.home-dark-luxury .footer-col h5 { color: var(--dark-muted); }
+body.home-dark-luxury .footer-links a { color: var(--dark-muted); }
+body.home-dark-luxury .footer-links a:hover { color: var(--cream); }
+body.home-dark-luxury .footer-contact-item { color: var(--dark-muted); }
+body.home-dark-luxury .footer-bottom { border-top-color: var(--dark-border); }
+body.home-dark-luxury .footer-copy { color: var(--dark-muted-2); }
+body.home-dark-luxury .footer-social {
+  background: rgba(244,239,230,0.04);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .footer-social:hover { background: rgba(244,239,230,0.08); border-color: var(--dark-border-hover); }
+
+/* ── MOBILE CTA BAR — dark-luxury override ── */
+body.home-dark-luxury .mobile-cta-bar {
+  background: rgba(14,14,14,0.97);
+  border-top: 1px solid var(--gold-ornament);
+}
+body.home-dark-luxury .mobile-cta-bar .btn-primary {
+  background: var(--gold);
+  color: var(--dark-ink);
+  font-weight: 700;
+}
+body.home-dark-luxury .mobile-cta-bar .btn-outline {
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+
+/* ── BTN-GOLD — global utility class for dark-luxury CTAs ── */
+.btn-gold {
+  position: relative; overflow: hidden;
+  padding: .9rem 2.4rem;
+  background: var(--gold);
+  color: var(--dark-ink, #0E0E0E);
+  border: none; border-radius: var(--radius);
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: background .2s, box-shadow .2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn-gold:hover { background: var(--gold-light); box-shadow: 0 12px 36px var(--gold-glow, rgba(166,124,46,0.30)); }
+.btn-gold:active { box-shadow: none; }
+
+/* ── MOBILE + REDUCED-MOTION FALLBACKS — v5.1 ── */
+@media (max-width: 768px) {
+  /* Disable background-attachment: fixed on iOS (Safari perf bug) */
+  body.home-dark-luxury .stats-section.stats-dark::before,
+  body.home-dark-luxury section.bg-blueprint-grid::before,
+  body.home-dark-luxury .testimonials-section-dark::before {
+    background-attachment: scroll;
+  }
+  /* Hero art composition hidden on mobile */
+  body.home-dark-luxury .hero-visual-editorial { display: none; }
+  /* Hero headline mobile scale */
+  body.home-dark-luxury .hero-title { font-size: clamp(2.8rem, 8vw, 4rem); }
+  /* Gold glow reduced on mobile */
+  body.home-dark-luxury .pillar-card:hover { box-shadow: 0 12px 40px rgba(166,124,46,0.15); }
+  /* Marquee font reduce */
+  body.home-dark-luxury .marquee .marquee-stat { font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home-dark-luxury .stats-section.stats-dark::before,
+  body.home-dark-luxury section.bg-blueprint-grid::before,
+  body.home-dark-luxury .testimonials-section-dark::before {
+    background-attachment: scroll;
+  }
+}
+
+/* Testimonial monogram on dark — gold-bordered circle */
+body.home-dark-luxury .testimonial-monogram {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--dark-surface);
+  border: 1px solid var(--gold-ornament);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem; font-weight: 700;
+  color: var(--gold-on-dark);
+  flex-shrink: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EFFECTS-MOTION v5.1 — CSS additions for 10 motion effects
+   Phase 3.2 Second Pass — 2026-05-05
+   Scoped under body.home-dark-luxury where applicable.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+
+/* ── EFFECT 1: Loading Choreography ───────────────────────────────────
+   Overlay: position:fixed inset:0 — zero CLS.
+   Wordmark: Be Vietnam Pro 700, gold-on-dark, centered.
+   Sweep direction: translateY(-100%) slide up.
+   ─────────────────────────────────────────────────────────────────── */
+#page-load-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  /* Prevent page interaction during overlay */
+}
+
+#page-load-overlay .overlay-bg {
+  position: absolute;
+  inset: 0;
+  background: #0E0E0E;
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+#page-load-overlay .overlay-wordmark {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display, 'Be Vietnam Pro', sans-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #C9A042;  /* --gold-on-dark */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#page-load-overlay .overlay-wordmark em {
+  font-style: normal;
+  color: #A67C2E;  /* --gold — dot accent matches .nav-brand span */
+}
+
+/* State: is-active — wordmark fades + lifts in */
+#page-load-overlay.is-active .overlay-wordmark {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* State: is-leaving — entire overlay sweeps up */
+#page-load-overlay.is-leaving .overlay-bg {
+  transform: translateY(-100%);
+}
+
+#page-load-overlay.is-leaving .overlay-wordmark {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Body states: hide content during loading, reveal after */
+body.page-loading > *:not(#page-load-overlay) {
+  /* Don't hide — overlay covers everything via z-index */
+}
+
+body.page-loaded {
+  /* Page now visible — no action needed (overlay removed from DOM) */
+}
+
+/* Reduced motion: no overlay at all */
+@media (prefers-reduced-motion: reduce) {
+  #page-load-overlay { display: none; }
+}
+
+
+/* ── EFFECT 2: Scroll Scrubbing — Hero italic em chars ────────────────
+   Chars split by SplitText. Hidden = scramble placeholder.
+   Decoded = real character revealed.
+   ─────────────────────────────────────────────────────────────────── */
+.hero-art-typography .art-italic em .scrub-char {
+  display: inline-block;
+  transition: opacity 0.08s ease, color 0.08s ease;
+}
+
+.hero-art-typography .art-italic em .scrub-char--hidden {
+  opacity: 0.15;
+  color: var(--gold-ornament, rgba(201,160,66,0.4));
+}
+
+.hero-art-typography .art-italic em .scrub-char--hidden::before {
+  /* Show scramble glyph via CSS content when hidden */
+  content: '·';
+  color: var(--gold-ornament, rgba(201,160,66,0.4));
+}
+
+.hero-art-typography .art-italic em .scrub-char--decoded {
+  opacity: 1;
+  color: var(--gold-on-dark, #C9A042);
+}
+
+/* Mid tier fallback: no scroll scrubbing, just opacity reveal */
+.tier-mid .hero-art-typography .art-italic em .scrub-char--hidden,
+.tier-low .hero-art-typography .art-italic em .scrub-char--hidden {
+  opacity: 1;
+  color: var(--gold-on-dark, #C9A042);
+}
+.tier-mid .hero-art-typography .art-italic em .scrub-char--hidden::before,
+.tier-low .hero-art-typography .art-italic em .scrub-char--hidden::before {
+  content: none;
+}
+
+
+/* ── EFFECT 3: Custom Cursor Context-Aware ────────────────────────────
+   Extends existing .cursor-pill. No DOM replacement.
+   Context variants handled by JS label swap.
+   Body cursor:none only on pointer:fine + high tier.
+   ─────────────────────────────────────────────────────────────────── */
+@media (pointer: fine) {
+  body.home-dark-luxury .tier-high {
+    /* cursor: none applied via JS class on body when cursor active */
+  }
+
+  /* Pricing tier cards — shrink cursor to "CHỌN" label */
+  .cursor-pill.is-active {
+    /* Base state already defined in main CSS; label swapped by JS */
+    min-width: 60px;
+    justify-content: center;
+  }
+}
+
+
+/* ── EFFECT 4: Parallax Depth Multi-Layer ─────────────────────────────
+   CSS custom properties consumed by transform rules.
+   Layer 1: body::before (dot-grid) — background-position via JS var
+   Layer 2: .hero-visual-editorial::before — translateY via CSS var
+   Layer 3: .hero-art-typography — translateY via CSS var
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Layer 2: velvet::before parallax (Mode B atmospheric) */
+body.home-dark-luxury .hero-visual-editorial::before {
+  /* Existing background recipe from images-curated.md Image 3 preserved.
+     Adding CSS var --velvet-y for JS-driven parallax translate. */
+  transform: scaleX(-1) translateY(var(--velvet-y, 0px));
+  will-change: transform;
+}
+
+/* Layer 3: hero art typography parallax */
+body.home-dark-luxury .hero-art-typography {
+  transform: translateY(var(--art-y, 0px));
+  will-change: transform;
+}
+
+/* Layer 1: body::before background-position shift */
+body.home-dark-luxury::before {
+  /* background-position-y controlled by --bg-parallax-y CSS var */
+  background-position-y: calc(0px + var(--bg-parallax-y, 0px));
+  will-change: background-position;
+}
+
+/* Disable parallax on mobile (touch/mobile already handled in JS) */
+@media (max-width: 768px) {
+  body.home-dark-luxury .hero-visual-editorial::before,
+  body.home-dark-luxury .hero-art-typography {
+    will-change: auto;
+    transform: none !important;
+  }
+  body.home-dark-luxury::before {
+    background-position-y: center !important;
+    will-change: auto;
+  }
+}
+
+/* Disable on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body.home-dark-luxury .hero-visual-editorial::before,
+  body.home-dark-luxury .hero-art-typography {
+    transform: scaleX(-1) !important; /* only scaleX preserved for velvet flip */
+    will-change: auto;
+  }
+  body.home-dark-luxury .hero-art-typography {
+    transform: none !important;
+  }
+  body.home-dark-luxury::before {
+    background-position-y: center !important;
+  }
+}
+
+
+/* ── EFFECT 5: Split-Text Reveal ──────────────────────────────────────
+   Chars/words start hidden (GSAP sets y:60 opacity:0).
+   Bronze fallback: instant visible via CSS.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Characters created by SplitText */
+.split-char,
+.split-word {
+  display: inline-block; /* Required for translateY to work on inline text */
+}
+
+/* Bronze fallback (low tier / reduced motion) */
+.split-bronze,
+.tier-low [data-split-text] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+/* Ensure section titles don't flash invisible before GSAP sets them */
+[data-split-text]:not([id="hero-title"]) {
+  /* GSAP will set opacity/transform on individual chars.
+     Parent element stays visible so no FOUC on parent. */
+}
+
+
+/* ── EFFECT 6: Magnetic Button ────────────────────────────────────────
+   Bronze: CSS hover scale only.
+   Silver: touch tap scale feedback.
+   Gold: JS handles transform; CSS provides transition smoothness.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Bronze fallback */
+[data-magnetic].is-bronze:hover {
+  transform: scale(1.02);
+}
+
+/* Touch tap feedback (Silver) */
+[data-magnetic].is-tap-active {
+  transform: scale(0.96);
+  transition: transform 0.12s ease;
+}
+
+/* Magnetic active state — JS sets transform inline, CSS provides reset transition */
+[data-magnetic] {
+  transition: box-shadow 0.2s ease;
+  /* Note: transform transition removed — JS RAF handles smoothly without CSS transition */
+}
+
+[data-magnetic].is-magnetic-active {
+  /* Visual pulse: slight glow amplification */
+  box-shadow: 0 0 0 2px var(--gold-ornament, rgba(201,160,66,0.4));
+}
+
+
+/* ── EFFECT 7: Card Tilt 3D ───────────────────────────────────────────
+   Bronze: translateY hover only.
+   Touch/Silver: tap scale feedback.
+   Gold: JS handles 3D transform inline.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Bronze fallback */
+[data-tilt].tilt-bronze:hover {
+  transform: translateY(-4px);
+  transition: transform 0.3s ease;
+}
+
+/* Touch tap feedback */
+[data-tilt].tilt-tap-active {
+  transform: scale(1.02) translateY(-4px);
+  transition: transform 0.2s ease;
+  box-shadow: 0 16px 48px rgba(166,124,46,0.25);
+}
+
+/* Gold tier: transition reset to remove CSS interference with JS RAF */
+[data-tilt] {
+  /* No CSS transform transition — JS RAF handles animation smoothly */
+  cursor: default;
+}
+
+/* Preserve inner gold borders on dark-luxury tilt cards */
+body.home-dark-luxury [data-tilt].pillar-card,
+body.home-dark-luxury [data-tilt].tier {
+  /* border-radius preserved on tilt */
+  transform-style: preserve-3d;
+}
+
+
+/* ── EFFECT 8: Text Scramble ──────────────────────────────────────────
+   Scramble chars are inline spans.
+   JetBrains Mono used for scramble chars (matches stat number font).
+   ─────────────────────────────────────────────────────────────────── */
+
+.scramble-char {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  color: var(--gold-ornament, rgba(201,160,66,0.5));
+  font-size: inherit;
+  display: inline;
+}
+
+/* Bronze fallback (low device) */
+.scramble-bronze {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Stat number container during scramble */
+.stat-number.is-scrambling {
+  pointer-events: none; /* prevent interaction during scramble */
+}
+
+
+/* ── EFFECT 9: Image Hover Suite — lift ───────────────────────────────
+   Portfolio thumbnails: translate3d lift + shadow on hover.
+   CSS-only (no JS animation). Applied via data-hover="lift" attribute.
+   ─────────────────────────────────────────────────────────────────── */
+
+[data-hover="lift"] {
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+}
+
+[data-hover="lift"]:hover {
+  transform: translate3d(0, -8px, 0);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 8px 20px rgba(166,124,46,0.15);
+}
+
+/* Touch: tap feedback instead of lift */
+@media (hover: none) {
+  [data-hover="lift"]:active {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(166,124,46,0.20);
+  }
+  [data-hover="lift"]:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Reduced motion: no lift */
+@media (prefers-reduced-motion: reduce) {
+  [data-hover="lift"]:hover,
+  [data-hover="lift"]:active {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+
+/* ── EFFECT 10: Image Hover Suite — bright ────────────────────────────
+   Partner logos: default opacity 0.55 (dim state per visual-concept §3).
+   Hover: opacity 1.0 + brightness(1.05) + saturate(1.1).
+   CSS-only. Applied via data-hover="bright".
+   ─────────────────────────────────────────────────────────────────── */
+
+[data-hover="bright"] {
+  opacity: 0.55;
+  filter: brightness(0.9) saturate(0.8);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+[data-hover="bright"]:hover {
+  opacity: 1.0;
+  filter: brightness(1.05) saturate(1.1);
+}
+
+/* Touch: tap feedback */
+@media (hover: none) {
+  [data-hover="bright"]:active {
+    opacity: 1.0;
+    filter: brightness(1.05);
+  }
+}
+
+/* Reduced motion: instant state, no animation */
+@media (prefers-reduced-motion: reduce) {
+  [data-hover="bright"] {
+    transition: none;
+  }
+}
+
+
+/* ── SHARED EFFECTS UTILITIES ─────────────────────────────────────────
+   will-change management: only applied when effect is running.
+   Remove will-change after animations complete to free GPU layers.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* Tier class helpers from tier-detect.js */
+html.tier-low .pillar-card:hover,
+html.tier-low .tier:hover {
+  /* No 3D tilt — use CSS translateY fallback */
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 36px rgba(166,124,46,0.15) !important;
+}
+
+html.tier-low [data-magnetic]:hover {
+  transform: scale(1.02) !important;
+}
+
+html.tier-low #page-load-overlay {
+  display: none !important;
+}
+
+/* ── SCROLL SCRUBBING: hero pin adjustments ───────────────────────────
+   When hero is pinned (50% viewport), ensure content below hero
+   starts after the pin zone (pinSpacing: false means no extra space).
+   The marquee proof strip should appear right after hero scroll ends.
+   ─────────────────────────────────────────────────────────────────── */
+.pin-spacer {
+  /* GSAP ScrollTrigger injects .pin-spacer wrapper around pinned element.
+     No visual adjustments needed — pinSpacing: false means zero extra space. */
+}
+
+/* Ensure hero section doesn't show scrollbar during pin */
+.hero.is-pinned {
+  overflow: hidden;
+}
+
+/* ── BODY CURSOR: hide OS cursor on high-tier pointer devices ─────────
+   Applied only when custom cursor is active (pointer:fine + IS_PC).
+   JS adds class 'has-custom-cursor' to body when cursor init runs.
+   ─────────────────────────────────────────────────────────────────── */
+@media (pointer: fine) and (min-width: 1024px) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor [role="button"],
+  body.has-custom-cursor [data-cursor],
+  body.has-custom-cursor [data-magnetic] {
+    cursor: none;
+  }
+}
+
+/* ── EFFECTS COMPLETE ─────────────────────────────────────────────── */
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHASE 3.2 LOOP FIX — 23 fixes (QA Loop / Visual-Critic loop)
+   2026-05-05 — appended below all effects
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* D1 FIX: form inputs 16px — prevents iOS auto-zoom on tap (D-001)
+   Must be 16px+. Universal rule (desktop also benefits from clearer field text). */
+.scarcity-form-grid input,
+.scarcity-form-grid textarea,
+.scarcity-form-grid select,
+.scarcity-form input {
+  font-size: 16px;
+}
+
+/* D2 FIX: hamburger 48×48 minimum touch target (D-002)
+   Scoped to mobile-only breakpoint to NOT override desktop display:none */
+@media (max-width: 768px) {
+  .nav-toggle {
+    min-width: 48px;
+    min-height: 48px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* D3 FIX: service tabs 48px minimum touch target (C-002) */
+.services-tab {
+  min-height: 48px;
+  padding-block: 14px;
+}
+
+/* C1 FIX: footer contact links inherit text style naturally */
+.footer-contact-link {
+  color: inherit;
+  text-decoration: none;
+}
+.footer-contact-link:hover {
+  color: var(--gold-on-dark, #C9A042);
+  text-decoration: underline;
+}
+.footer-mst {
+  opacity: 0.65;
+  font-style: italic;
+  font-size: 0.82em;
+}
+
+/* C2 FIX: disabled social icons — visual-only, not interactive */
+.footer-social--disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* E1 FIX: lazy-load added via JS/HTML (loading="lazy") — CSS perf supports:
+   Reserve space on img before load to prevent layout shift. */
+.folio-image img,
+.testimonial-avatar img {
+  min-height: 1px;  /* prevent zero-height before lazy load */
+}
+
