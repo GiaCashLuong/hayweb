@@ -101,8 +101,10 @@
     if (REDUCED_MOTION || !GSAP_OK || !ST_OK || !SPLIT_OK) return;
     if (TIER === 'low') return;
 
-    // Mid tier: simple fade in on enter (no pin, no scrub)
-    const artItalicEl = document.querySelector('.hero-art-typography .art-italic em');
+    // D1 FIX: .hero-art-typography was replaced by compass figure (images-curated-v2.md v2-1).
+    // Scroll-scrubbing now targets the hero highlight em in the new slogan (.hero-highlight em).
+    // If that element doesn't exist (page structure changed), bail gracefully.
+    const artItalicEl = document.querySelector('.hero-title .hero-highlight em');
     if (!artItalicEl) return;
 
     if (TIER === 'mid') {
@@ -234,7 +236,9 @@
     if (!hero) return;
 
     const heroVisual = document.querySelector('.hero-visual-editorial');
-    const heroArt    = document.querySelector('.hero-art-typography');
+    // D1 FIX: .hero-art-typography replaced by .hero-product-figure (compass image)
+    // Use .hero-product-figure for Layer 3 parallax instead
+    const heroArt    = document.querySelector('.hero-product-figure');
     if (!heroVisual && !heroArt) return;
 
     const layers = [];

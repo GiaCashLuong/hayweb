@@ -22,13 +22,14 @@ const i18n = {
     nav_new:        'Yêu cầu báo giá',
 
     // Hero — editorial direction (replaces v3 generic "platform" eyebrow + generic "tư vấn miễn phí" CTA)
+    // B1 FIX: Peer revision — new 2-line slogan with gold-highlighted "phát triển kinh doanh"
     hero_eyebrow:   'Studio Hà Nội · Issue 01 · 2026',
-    hero_title_1:   'Web đẹp',
-    hero_title_2:   'không bán hàng.',
-    hero_title_3:   'Web bán hàng',
-    hero_title_4:   'không tự đẹp.',
-    hero_title_5:   'HAYWEB làm cả hai',
-    hero_title_6:   'đo lường được.',
+    hero_title_1:   'Ở đây không chỉ có',
+    hero_title_2:   'web đẹp',
+    hero_title_3:   'Mà còn',
+    hero_title_4:   'phát triển kinh doanh',
+    hero_title_5:   'của bạn',
+    hero_title_6:   '',
     hero_sub:       'Bốn trụ cột đi cùng nhau cho doanh nghiệp Việt: website chuyển đổi cao — quảng cáo tối ưu chi phí — SEO bền vững top Google — chiến lược tăng trưởng có lộ trình.',
     hero_cta_1:     'Đặt buổi 90 phút phân tích định vị',
     hero_cta_2:     'Xem 30 dự án đã bàn giao',
@@ -54,10 +55,12 @@ const i18n = {
     why_desc:       'Từ báo giá đến bàn giao trong 5 phút — quy trình minh bạch, tốc độ vượt trội, kết quả đo được.', // content-output.md §3 polish: "5 phút" + "đo được"
 
     // Pricing
+    // B2 FIX: Add reassurance subtitle "giá xứng đáng..." below existing desc
     price_label:    'Bảng giá',
     price_title:    'Giá cố định. Không phí ẩn.', // content-output.md §3 pricing H2 polish
     price_title_em: 'Bàn giao đúng hạn.',
     price_desc:     'Không phí ẩn, không bất ngờ. Chọn gói phù hợp hoặc liên hệ để nhận tư vấn cá nhân.',
+    price_reassurance: 'Giá xứng đáng với những gì bạn nhận được — và hơn thế nữa.',
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
@@ -201,13 +204,14 @@ const i18n = {
     nav_logout:     'Logout',
     nav_new:        'Get a Quote',
 
+    // B1 FIX: Peer revision — new 2-line slogan (EN variant)
     hero_eyebrow:   'Studio Hanoi · Issue 01 · 2026',
-    hero_title_1:   'Pretty sites',
-    hero_title_2:   'don\'t sell.',
-    hero_title_3:   'Sites that sell',
-    hero_title_4:   'aren\'t pretty by chance.',
-    hero_title_5:   'HAYWEB does both',
-    hero_title_6:   'measurably.',
+    hero_title_1:   'Not just',
+    hero_title_2:   'beautiful websites',
+    hero_title_3:   'But real',
+    hero_title_4:   'business growth',
+    hero_title_5:   'for you',
+    hero_title_6:   '',
     hero_sub:       'Four pillars working as one for Vietnamese businesses: high-converting web — cost-optimized ads — sustainable SEO to top of Google — growth strategy with a roadmap.',
     hero_cta_1:     'Book a 90-min positioning workshop',
     hero_cta_2:     'See 30 delivered projects',
@@ -229,10 +233,12 @@ const i18n = {
     why_title_em:   'from day one',
     why_desc:       'From quote to delivery in 5 minutes — transparent process, superior speed, measurable results.', // content-output.md §3 polish: "5 min" + "measurable"
 
+    // B2 FIX: Add reassurance subtitle (EN variant)
     price_label:    'Pricing',
     price_title:    'Fixed price. No hidden fees.', // content-output.md §3 polish
     price_title_em: 'On-time delivery.',
     price_desc:     'No hidden fees, no surprises. Choose a plan or contact us for a custom quote.',
+    price_reassurance: 'You get more than what you pay for — and that\'s a promise.',
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',

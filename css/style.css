@@ -166,10 +166,12 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ===== GSAP ANIMATION PREP — will-change hints for GPU compositing ===== */
 /* Applied only to elements GSAP will animate — not globally (memory cost) */
+/* B1 FIX: .line-e added (replaces .hero-resolve in new slogan) */
 .hero-title .line-a,
 .hero-title .line-b,
 .hero-title .line-c,
 .hero-title .line-d,
+.hero-title .line-e,
 .hero-title .hero-resolve,
 .section-title,
 .pillar-card,
@@ -185,11 +187,13 @@ button { font-family: inherit; cursor: pointer; }
    GSAP primes opacity:0 synchronously in initStrongScrollAnimations(),
    but CSS pre-hide ensures first paint is already hidden even if GSAP
    executes one microtask late (Chromium 3-frame flash prevention).
-   reduced-motion rule below overrides back to opacity:1 immediately. */
+   reduced-motion rule below overrides back to opacity:1 immediately.
+   B1 FIX: Added .line-e (replaces .hero-resolve in new slogan structure) */
 .hero-title .line-a,
 .hero-title .line-b,
 .hero-title .line-c,
 .hero-title .line-d,
+.hero-title .line-e,
 .hero-title .hero-resolve {
   opacity: 0;
 }
@@ -198,9 +202,33 @@ button { font-family: inherit; cursor: pointer; }
   .hero-title .line-b,
   .hero-title .line-c,
   .hero-title .line-d,
+  .hero-title .line-e,
   .hero-title .hero-resolve {
     opacity: 1 !important;
   }
+}
+
+/* B1 FIX: .hero-highlight em = gold-on-dark for "phát triển kinh doanh" highlight
+   Scoped under body.home-dark-luxury to match the dark palette context.
+   On light pages (if ever used), em inherits italic only — no gold rule applied. */
+body.home-dark-luxury .hero-title .hero-highlight em {
+  color: var(--gold-on-dark, #C9A042);
+  font-style: italic;
+}
+
+/* B1 FIX: New 2-sentence slogan — all lines left-aligned (no chiasmus split).
+   Original chiasmus: line-c/d right-aligned. New flow is sequential left-to-right reading. */
+body.home-dark-luxury .hero-title .line-c,
+body.home-dark-luxury .hero-title .line-d,
+body.home-dark-luxury .hero-title .line-e {
+  align-self: flex-start;
+  text-align: left;
+}
+/* line-e = "của bạn" — smaller size, continuation tone */
+body.home-dark-luxury .hero-title .line-e {
+  font-size: 0.85em;
+  opacity: 0.85;
+  font-weight: 500;
 }
 
 /* ===== GRAIN TEXTURE (subtle paper film on ivory) ===== */
@@ -273,9 +301,11 @@ body::before {
 #nav.nav-dark .nav-toggle { color: var(--cream, #F4EFE6); }
 
 /* ===== NAV EDITORIAL META (CIRCA 2026 · HÀ NỘI) ===== */
+/* A3 FIX: nav-meta "HÀ NỘI" uses Vietnamese diacritics — switch from --font-mono to --font-display */
 .nav-meta {
   display: flex; align-items: center; gap: 0.85rem;
-  font-family: var(--font-mono); font-size: 0.7rem;
+  font-family: var(--font-display); font-size: 0.7rem;
+  font-feature-settings: 'tnum';
   color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase;
 }
 .nav-meta em { font-style: normal; font-weight: 600; color: var(--text); }
@@ -415,10 +445,15 @@ section { padding: 8rem 0; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 .container-wide { max-width: 1440px; margin: 0 auto; padding: 0 2rem; }
 
-/* Section label — editorial mono kicker style (replaces v3 gold underline) */
+/* Section label — editorial kicker style (replaces v3 gold underline) */
+/* A3 FIX: Switched from --font-mono (JetBrains Mono, latin-only) to Be Vietnam Pro
+   500 uppercase tracked. JetBrains Mono has no Vietnamese unicode-range — diacritical
+   chars like BỐN TRỤ CỘT / BUỔI ĐỊNH VỊ broke. Be Vietnam Pro has VI subset loaded.
+   Mono-feel preserved via letter-spacing:0.18em + font-feature-settings:'tnum'. */
 .section-label {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+  font-feature-settings: 'tnum';
   text-transform: uppercase; color: var(--muted);
   display: inline-flex; align-items: center; gap: .55rem;
   margin-bottom: 1rem;
@@ -1643,13 +1678,15 @@ footer {
   align-items: center;
 }
 .hero-text { max-width: 720px; }
-/* Hero eyebrow — editorial mono kicker (issue/date format) */
+/* Hero eyebrow — editorial kicker (issue/date format) */
+/* A3 FIX: switched from var(--font-mono) → var(--font-display) — same fix as .section-label */
 .hero-eyebrow {
-  font-family: var(--font-mono);
+  font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 500;
   color: var(--muted);
   letter-spacing: 0.18em;
+  font-feature-settings: 'tnum';
   justify-content: flex-start;
   gap: 0.6rem;
 }
@@ -2494,6 +2531,8 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 }
 .folio-image-hayweb { background: #0E0E0E; }
 .folio-image-hkp    { background: var(--bg); border: 1px solid var(--border); }
+/* C1 FIX: Luật Sư Hà Nội — dark navy-charcoal bg evoking formal legal register */
+.folio-image-lsh    { background: #0F1215; border: 1px solid rgba(201,160,66,0.20); }
 
 /* Mono classification — editorial archive register (CSS fallback for portfolio tiles 2+3) */
 .folio-classify {
@@ -2519,6 +2558,9 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 .folio-image-hayweb .folio-classify-line { color: rgba(244,239,230,0.65); }
 .folio-image-hkp    .folio-classify-id   { color: var(--text); }
 .folio-image-hkp    .folio-classify-line { color: var(--muted); }
+/* C1 FIX: Luật Sư Hà Nội — gold on dark legal register */
+.folio-image-lsh    .folio-classify-id   { color: var(--gold-on-dark, #C9A042); letter-spacing: 0.1em; }
+.folio-image-lsh    .folio-classify-line { color: rgba(244,239,230,0.55); }
 
 .folio-footer {
   display: flex; align-items: center; justify-content: space-between;
@@ -2593,11 +2635,13 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 
   /* GSAP-animated elements: snap to final position immediately
      (initStrongScrollAnimations early-returns on reduced-motion, but
-     belt-and-suspenders: ensure nothing stays at opacity:0 / off-screen) */
+     belt-and-suspenders: ensure nothing stays at opacity:0 / off-screen)
+     B1 FIX: .line-e added to belt-and-suspenders list */
   .hero-title .line-a,
   .hero-title .line-b,
   .hero-title .line-c,
   .hero-title .line-d,
+  .hero-title .line-e,
   .hero-title .hero-resolve,
   .section-title,
   .pillar-card,
@@ -2960,10 +3004,11 @@ body.home-dark-luxury .hero-title {
      5-line block totals ~420px, fits within hero ≤1100px at 1440×900 viewport. */
   font-size: clamp(2.8rem, 7.5vw, 6rem);
 }
-/* A5: Vogue Italia rule — 1 italic gold per headline. line-b/line-d stay italic but cream.
-   Only .hero-resolve em ("đo lường được") gets gold-on-dark. Max 1 gold em in hero. */
-body.home-dark-luxury .hero-title .line-b em,
-body.home-dark-luxury .hero-title .line-d em { color: var(--cream); }
+/* A5: Vogue Italia rule — 1 italic gold per headline. line-b stays cream italic.
+   B1 FIX: line-d now carries .hero-highlight class — its em is "phát triển kinh doanh" = GOLD.
+   Remove .line-d em cream rule. .hero-title .hero-highlight em rule (below the override block)
+   handles gold coloring with sufficient specificity. */
+body.home-dark-luxury .hero-title .line-b em { color: var(--cream); }
 body.home-dark-luxury .hero-resolve { color: var(--dark-muted); }
 body.home-dark-luxury .hero-resolve em { color: var(--gold-on-dark); }
 body.home-dark-luxury .hero-subtitle { color: var(--dark-muted); }
@@ -3168,6 +3213,8 @@ body.home-dark-luxury .svc-tab-card p { color: var(--dark-muted); }
 body.home-dark-luxury .svc-tab-link { color: var(--dark-muted); }
 body.home-dark-luxury .svc-tab-card:hover .svc-tab-link { color: var(--gold-on-dark); }
 body.home-dark-luxury .svc-tab-icon { background: rgba(201,160,66,0.06); border-color: var(--dark-border); }
+/* E1 FIX: hand-drawn SVG icons use currentColor — set color on container so stroke inherits correctly */
+body.home-dark-luxury .svc-tab-icon svg { color: var(--gold-on-dark); stroke: var(--gold-on-dark); }
 
 /* ── SECTION 5: STATS — deeper dark + gold numerals ── */
 body.home-dark-luxury .stats-section.stats-dark {
@@ -3396,7 +3443,11 @@ body.home-dark-luxury .process-step:nth-child(5) .process-num {
 }
 body.home-dark-luxury .process-step h4 { color: var(--cream); }
 body.home-dark-luxury .process-step p { color: var(--dark-muted); }
-body.home-dark-luxury .process-num-bg { color: var(--gold-ornament); }
+/* A2 FIX: process-num-bg was color: var(--gold-ornament) = rgba(201,160,66,0.40).
+   At font-size:5rem this large outline number was clearly visible = visual duplication
+   against the foreground .process-num gold ovals. Reduce to opacity ~0.05 so it acts
+   as a whisper-level decorative texture, not a competing number. */
+body.home-dark-luxury .process-num-bg { color: rgba(201,160,66,0.05); }
 
 /* Mode B: marble zone atmospheric covers process section */
 body.home-dark-luxury section.bg-blueprint-grid {
@@ -3439,6 +3490,21 @@ body.home-dark-luxury .pricing-section-dark .section-title { color: var(--cream)
 body.home-dark-luxury .pricing-section-dark .section-title em { color: var(--gold-on-dark); }
 body.home-dark-luxury #price-desc,
 body.home-dark-luxury .pricing-section-dark .section-desc { color: var(--dark-muted); }
+/* B2 FIX: pricing reassurance subtitle — gold-warm accent on dark, editorial lead style */
+.price-reassurance {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 0.6rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+body.home-dark-luxury .price-reassurance {
+  color: var(--gold-on-dark);
+  opacity: 0.85;
+}
 /* Tier cards ascending dark — Essential / Growth / Enterprise */
 body.home-dark-luxury .tier-starter {
   background: var(--dark-surface-2);
@@ -3529,7 +3595,9 @@ body.home-dark-luxury .testimonial-card {
 }
 body.home-dark-luxury .testimonial-card:hover { box-shadow: 0 12px 40px var(--gold-glow); border-color: var(--gold-ornament); }
 body.home-dark-luxury .testimonial-stars { color: var(--gold-on-dark); }
-body.home-dark-luxury .testimonial-text { color: var(--dark-muted); }
+/* B3 FIX: testimonial body was --dark-muted (rgba 0.55 alpha) — peer: "chữ sáng hơn nhé".
+   Raised to rgba(244,239,230,0.88) — readable contrast on dark testimonial section. */
+body.home-dark-luxury .testimonial-text { color: rgba(244,239,230,0.88); }
 body.home-dark-luxury .testimonial-pullquote .testimonial-text { color: var(--cream); font-style: italic; font-size: 1rem; line-height: 1.7; }
 body.home-dark-luxury .testimonial-name { color: var(--cream); }
 body.home-dark-luxury .testimonial-role { color: var(--dark-muted); }
@@ -3862,11 +3930,14 @@ body.page-loaded {
 /* ── EFFECT 3: Custom Cursor Context-Aware ────────────────────────────
    Extends existing .cursor-pill. No DOM replacement.
    Context variants handled by JS label swap.
-   Body cursor:none only on pointer:fine + high tier.
+   A1 FIX: body.has-custom-cursor { cursor: none } was missing — the JS
+   adds the class but there was no CSS rule consuming it. Added below.
    ─────────────────────────────────────────────────────────────────── */
 @media (pointer: fine) {
-  body.home-dark-luxury .tier-high {
-    /* cursor: none applied via JS class on body when cursor active */
+  /* A1 FIX: hide system cursor when custom pill is active */
+  body.has-custom-cursor,
+  body.has-custom-cursor * {
+    cursor: none !important;
   }
 
   /* Pricing tier cards — shrink cursor to "CHỌN" label */
@@ -3893,8 +3964,12 @@ body.home-dark-luxury .hero-visual-editorial::before {
   will-change: transform;
 }
 
-/* Layer 3: hero art typography parallax */
+/* Layer 3: hero product figure parallax (D1 FIX: was .hero-art-typography, now .hero-product-figure) */
 body.home-dark-luxury .hero-art-typography {
+  transform: translateY(var(--art-y, 0px));
+  will-change: transform;
+}
+body.home-dark-luxury .hero-product-figure {
   transform: translateY(var(--art-y, 0px));
   will-change: transform;
 }
@@ -3909,7 +3984,8 @@ body.home-dark-luxury::before {
 /* Disable parallax on mobile (touch/mobile already handled in JS) */
 @media (max-width: 768px) {
   body.home-dark-luxury .hero-visual-editorial::before,
-  body.home-dark-luxury .hero-art-typography {
+  body.home-dark-luxury .hero-art-typography,
+  body.home-dark-luxury .hero-product-figure {
     will-change: auto;
     transform: none !important;
   }
@@ -4240,5 +4316,247 @@ html.tier-low #page-load-overlay {
 .folio-image img,
 .testimonial-avatar img {
   min-height: 1px;  /* prevent zero-height before lazy load */
+}
+
+/* ======================================================================
+   D3 — Portfolio section atmospheric BG (images-curated-v2.md v2-3)
+   Hạ Long karst mist — Mode B "chìm" on cream bg
+   Selector: .portfolio-section-wrapper (the class on the portfolio <section>)
+   ====================================================================== */
+body.home-dark-luxury .portfolio-section-wrapper {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--bg);
+}
+
+body.home-dark-luxury .portfolio-section-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/portfolio-bg-halong-mist.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: sepia(0.10) brightness(0.98) saturate(0.75) blur(1.5px);
+  opacity: 0.13;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body.home-dark-luxury .portfolio-section-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(244,239,230,0.55) 0%,
+    rgba(244,239,230,0.30) 50%,
+    rgba(244,239,230,0.55) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.home-dark-luxury .portfolio-section-wrapper > .container,
+body.home-dark-luxury .portfolio-section-wrapper > * {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  body.home-dark-luxury .portfolio-section-wrapper::before {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home-dark-luxury .portfolio-section-wrapper::before {
+    background-attachment: scroll;
+  }
+}
+
+/* ======================================================================
+   D4 — Why-Us section atmospheric BG (images-curated-v2.md v2-4)
+   Sa Pa rice terraces — Mode B "chìm" on cream bg
+   Selector: .why-section-light (the class on the why-us <section>)
+   ====================================================================== */
+body.home-dark-luxury .why-section-light {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--surface);
+}
+
+body.home-dark-luxury .why-section-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/whyus-bg-sapa-terraces.jpg');
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: sepia(0.08) brightness(1.02) saturate(0.65) blur(1.5px);
+  opacity: 0.12;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body.home-dark-luxury .why-section-light::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(244,239,230,0.50) 0%,
+    rgba(244,239,230,0.32) 50%,
+    rgba(244,239,230,0.55) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.home-dark-luxury .why-section-light > .container,
+body.home-dark-luxury .why-section-light > * {
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  body.home-dark-luxury .why-section-light::before {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.home-dark-luxury .why-section-light::before {
+    background-attachment: scroll;
+  }
+}
+
+/* ======================================================================
+   D1 — Hero compass image styles (images-curated-v2.md v2-1)
+   ====================================================================== */
+.hero-product-figure {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.hero-product-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+  display: block;
+}
+
+.hero-product-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: rgba(14,14,14,0.72);
+  border: 1px solid rgba(201,160,66,0.25);
+  border-radius: var(--radius);
+}
+
+.caption-kicker {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-on-dark, #C9A042);
+}
+
+.caption-text {
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  color: rgba(244,239,230,0.75);
+  letter-spacing: 0.05em;
+}
+
+.caption-arrow {
+  font-size: 0.9rem;
+  color: var(--gold-on-dark, #C9A042);
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .hero-product-figure {
+    max-height: 280px;
+  }
+  .hero-product-figure img {
+    object-position: center center;
+  }
+}
+
+/* ======================================================================
+   D2 — Why-Us figure + stats strip styles (images-curated-v2.md v2-2)
+   ====================================================================== */
+.why-section-figure {
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.why-section-figure img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: brightness(0.97);
+}
+
+.why-figure-caption {
+  display: block;
+  padding: 0.6rem 0;
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.why-stats-strip {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.why-stats-strip > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.why-stats-strip dt {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.why-stats-strip dd {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold, #A67C2E);
+  margin: 0;
 }
 

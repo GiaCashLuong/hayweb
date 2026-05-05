@@ -40,42 +40,83 @@ const svcCategories = [
     items: [
       {
         accent: 'website',
-        icon: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h18M8 3v18"/></svg>`,
+        // E1 FIX: Hand-drawn style SVG — Website Doanh Nghiệp — building/corporate icon
+        // stroke-linecap/linejoin="round" + slightly imperfect strokes = hand-drawn feel
+        icon: `<svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="4" y="8" width="24" height="20" rx="1.5"/>
+  <path d="M4 13.5h24"/>
+  <path d="M10 13.5V28"/>
+  <path d="M16 13.5V28"/>
+  <rect x="13" y="19" width="6" height="9" rx="0.8"/>
+  <path d="M9 4.5l7-1.2 7 1.2" stroke-dasharray="2 1"/>
+</svg>`,
         titleVI: 'Website Doanh Nghiệp', titleEN: 'Business Website',
         descVI: 'Giao diện chuyên nghiệp, chuẩn SEO, multi-page. Phù hợp công ty, dịch vụ chuyên sâu.',
         descEN: 'Professional multi-page sites, SEO-ready. Ideal for companies & service brands.'
       },
       {
         accent: 'website',
-        icon: `<svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`,
+        // E1 FIX: Hand-drawn style SVG — Landing Page Chuyển Đổi — arrow-up-right conversion funnel
+        icon: `<svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M6 26 L16 8 L26 26"/>
+  <path d="M9 20h14"/>
+  <path d="M22 8l-4-3.5" stroke-dasharray="1.5 1"/>
+  <circle cx="26" cy="7" r="2"/>
+  <path d="M24.6 5.6l2.8 2.8"/>
+</svg>`,
         titleVI: 'Landing Page Chuyển Đổi', titleEN: 'High-conversion Landing Page',
         descVI: 'Tối ưu chuyển đổi cho từng chiến dịch quảng cáo. A/B test, heatmap tích hợp.',
         descEN: 'Conversion-optimized for every ad campaign. A/B testing & heatmap built in.'
       },
       {
         accent: 'website',
-        icon: `<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+        // E1 FIX: Hand-drawn style SVG — Web Bán Hàng — shopping bag with product
+        icon: `<svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M6 10h20l-2.5 15.5a1.5 1.5 0 0 1-1.5 1.3H10a1.5 1.5 0 0 1-1.5-1.3z"/>
+  <path d="M11 10V8.5a5 5 0 0 1 10 0V10"/>
+  <path d="M13 18h6" stroke-dasharray="1.5 1"/>
+  <circle cx="14" cy="20.5" r="0.8" fill="currentColor"/>
+  <circle cx="18" cy="20.5" r="0.8" fill="currentColor"/>
+</svg>`,
         titleVI: 'Web Bán Hàng', titleEN: 'E-commerce Store',
         descVI: 'Cửa hàng online, quản lý sản phẩm, đơn hàng, tích hợp Stripe + PayOS/VietQR.',
         descEN: 'Online stores with product/order management, Stripe + PayOS/VietQR ready.'
       },
       {
         accent: 'website',
-        icon: `<svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`,
+        // E1 FIX: Hand-drawn style SVG — Mẫu Web Triển Khai 24h — clock with lightning bolt
+        icon: `<svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="16" cy="16" r="11"/>
+  <path d="M16 9v7l4.5 2.5"/>
+  <path d="M23.5 6.5l1.5-2" stroke-dasharray="1 1"/>
+  <path d="M8.5 6.5l-1.5-2" stroke-dasharray="1 1"/>
+</svg>`,
         titleVI: 'Mẫu Web Triển Khai 24h', titleEN: 'Ready-made Templates (24h)',
         descVI: 'Bộ template cao cấp, customize logo + nội dung — bàn giao trong 24 giờ.',
         descEN: 'Premium template library, customize logo + content — delivered in 24 hours.'
       },
       {
         accent: 'website',
-        icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
+        // E1 FIX: Hand-drawn style SVG — Website Đa Ngôn Ngữ — globe with translate arrows
+        icon: `<svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="16" cy="16" r="11"/>
+  <path d="M5 16h22"/>
+  <path d="M16 5c-3 4-4 7-4 11s1 7 4 11"/>
+  <path d="M16 5c3 4 4 7 4 11s-1 7-4 11"/>
+  <path d="M9 9.5l2.5 2-2 2.5" stroke-dasharray="0.8 0.8"/>
+</svg>`,
         titleVI: 'Website Đa Ngôn Ngữ', titleEN: 'Multilingual Website',
         descVI: 'Tiếng Việt / Tiếng Anh / hoặc nhiều ngôn ngữ. Chuyển đổi mượt, SEO riêng từng ngôn ngữ.',
         descEN: 'VI / EN or multi-language toggle. Smooth switch, locale-specific SEO.'
       },
       {
         accent: 'website',
-        icon: `<svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`,
+        // E1 FIX: Hand-drawn style SVG — UI/UX & Thương Hiệu — palette/identity brush strokes
+        icon: `<svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M7 22c1-3 3-5 6-5.5l9-8.5a2 2 0 0 1 2.8 2.8l-8.5 9c-.5 3-2.5 5-5.5 6z"/>
+  <path d="M14 22c0 2.2 1.8 4 4 4 .8 0 1.5-.3 2-1l2-3" stroke-dasharray="1.5 1"/>
+  <circle cx="24.5" cy="8" r="1.2" fill="currentColor"/>
+</svg>`,
         titleVI: 'UI/UX & Thương Hiệu', titleEN: 'UI/UX & Branding',
         descVI: 'Nghiên cứu trải nghiệm người dùng, thiết kế nhận diện thương hiệu thống nhất.',
         descEN: 'User research, design system & cohesive brand identity across touchpoints.'
@@ -275,15 +316,10 @@ const stats = [
 ];
 
 // ====== PORTFOLIO — featured first (asymmetric grid: 1 large + 2 small) ======
+// C1 FIX: Peer revision 2026-05-05 — Replace HAYWEB Studio placeholder with Luật Sư Hà Nội.
+// Peer: "web ví dụ thì lấy luật sư hà nội và Hoàng Kim Phát nhé"
+// Final 3 cards: Kobe Steak (folio-feature featured) + Luật Sư Hà Nội (folio-vert) + HKP (folio-small)
 const portfolio = [
-  {
-    accent: '#1a1a1a',
-    image: '/images/portfolio-hayweb.jpg',
-    tagVI: 'Agency · 2026', tagEN: 'Agency · 2026',
-    titleVI: 'HAYWEB Studio', titleEN: 'HAYWEB Studio',
-    descVI: 'Hệ thống agency — báo giá AI, ký số, thanh toán Stripe', descEN: 'Full agency system — AI quotes, e-sign, Stripe checkout',
-    url: 'https://hayweb.vercel.app'
-  },
   {
     accent: '#1a1a1a',
     tagVI: 'F&B · 2025', tagEN: 'F&B · 2025',
@@ -292,11 +328,20 @@ const portfolio = [
     url: 'https://kobe-steak.vercel.app'
   },
   {
+    // C1 FIX: Luật Sư Hà Nội — La Défense legal demo (project_la_defense.md)
+    // CSS classify block "LSH" — no live URL yet, href="#" placeholder consistent with HKP pattern
+    accent: '#1a1a1a',
+    tagVI: 'Legal · 2026', tagEN: 'Legal · 2026',
+    titleVI: 'Luật Sư Hà Nội', titleEN: 'Luat Su Ha Noi',
+    descVI: 'Văn phòng luật uy tín — multi-step consultation form, real-time scheduling', descEN: 'Prestigious law firm — multi-step consultation form, real-time scheduling',
+    url: '#'
+  },
+  {
     accent: '#1a1a1a',
     tagVI: 'E-com · 2026', tagEN: 'E-com · 2026',
     titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
     descVI: 'Sim phong thủy — affiliate CTV, lọc theo mệnh', descEN: 'Feng shui sims — CTV affiliate, filter by element',
-    url: 'https://hoang-kim-phat-sim.vercel.app'  /* C2 FIX: real URL — no broken href="#" (V-003) */
+    url: 'https://hoang-kim-phat-sim.vercel.app'
   },
 ];
 
@@ -773,15 +818,20 @@ function attachMagnetic() {
 }
 
 function buildPage() {
-  // Hero — broken-grid chiasmus typography (pivot-audit §C #1, demo HTML:32-37)
-  // 4 lines: line-a/b left-aligned, line-c/d right-aligned = editorial chiasmus structure
+  // Hero — B1 FIX: peer revision new slogan (2026-05-05)
+  // New structure: "Ở đây không chỉ có web đẹp / Mà còn phát triển kinh doanh của bạn"
+  // "phát triển kinh doanh" = highlighted gold em per peer direction
+  // Line structure: line-a + line-b (first sentence), line-c + line-d[gold-em] + line-e (second)
+  // hero_title_6 left blank in config — .hero-resolve span removed from render.
+  // GSAP initStrongScrollAnimations() still animates line-a/b/c/d/hero-resolve;
+  // line-e is new — added to GSAP targets selector below.
   document.getElementById('hero-eyebrow').textContent = t('hero_eyebrow');
   document.getElementById('hero-title').innerHTML =
     `<span class="line-a">${t('hero_title_1')}</span>` +
     `<span class="line-b"><em>${t('hero_title_2')}</em></span>` +
     `<span class="line-c">${t('hero_title_3')}</span>` +
-    `<span class="line-d"><em>${t('hero_title_4')}</em></span>` +
-    `<span class="hero-resolve">${t('hero_title_5')} — <em>${t('hero_title_6')}</em></span>`;
+    `<span class="line-d hero-highlight"><em>${t('hero_title_4')}</em></span>` +
+    `<span class="line-e">${t('hero_title_5')}</span>`;
   document.getElementById('hero-sub').textContent = t('hero_sub');
   const benefits = vi
     ? ['✓ Bàn giao trong 7–14 ngày', '✓ 30 dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']
@@ -868,15 +918,15 @@ function buildPage() {
   }
 
   // Portfolio — folio asymmetric grid (pivot-audit §C #8, demo lift)
-  // Structure: 1 featured (7fr, span 2 rows, real kobe image) + 2 right column (folio-vert, folio-small)
+  // C1 FIX: 3 cards = Kobe Steak (featured) + Luật Sư Hà Nội (vert) + HKP (small)
+  // portfolio[0] = Kobe Steak, portfolio[1] = LSH, portfolio[2] = HKP
   document.getElementById('port-label').textContent = t('port_label');
   document.getElementById('port-title').innerHTML = `${t('port_title')} <em>${t('port_title_em')}</em>`;
   document.getElementById('port-viewall').textContent = t('port_viewall');
   const portfolioGrid = document.getElementById('portfolio-grid');
   portfolioGrid.className = 'folio-grid';
-  // portfolio[1] = Kobe Steak (real image), portfolio[0] = HAYWEB Studio, portfolio[2] = HKP
-  const p0 = portfolio[1]; // featured: Kobe Steak — real screenshot asset
-  const p1 = portfolio[0]; // folio-vert: HAYWEB Studio
+  const p0 = portfolio[0]; // featured: Kobe Steak — real screenshot asset
+  const p1 = portfolio[1]; // folio-vert: Luật Sư Hà Nội (C1 FIX)
   const p2 = portfolio[2]; // folio-small: HKP Sim Kinh Dịch
   portfolioGrid.innerHTML = `
     <!-- Feature card: Kobe Steak — real screenshot (data-cursor activates gold pill cursor) -->
@@ -898,23 +948,23 @@ function buildPage() {
       </div>
     </a>
 
-    <!-- Vert card: HAYWEB Studio — mono classification (no real screenshot yet) -->
-    <a href="${p1.url}" target="_blank" rel="noopener" class="folio folio-vert fade-up" data-cursor="true">
+    <!-- Vert card: Luật Sư Hà Nội — CSS classify block "LSH" (C1 FIX: replaces HAYWEB Studio) -->
+    <a href="${p1.url}" ${p1.url !== '#' ? 'target="_blank" rel="noopener"' : 'aria-label="Luật Sư Hà Nội — coming soon"'} class="folio folio-vert fade-up" data-cursor="true">
       <div class="folio-meta">
         <span class="folio-no">002</span>
         <span>${vi ? p1.tagVI : p1.tagEN}</span>
       </div>
       <h3 class="folio-title">${vi ? p1.titleVI : p1.titleEN}</h3>
       <p class="folio-desc">${vi ? p1.descVI : p1.descEN}</p>
-      <div class="folio-image folio-image-hayweb" aria-hidden="true">
+      <div class="folio-image folio-image-lsh" aria-hidden="true">
         <div class="folio-classify">
-          <span class="folio-classify-id">HW</span>
-          <span class="folio-classify-line">Agency · Stripe · Supabase</span>
-          <span class="folio-classify-line">Báo giá AI · Ký số · Thanh toán</span>
+          <span class="folio-classify-id">LSH</span>
+          <span class="folio-classify-line">Legal · Consultation Form</span>
+          <span class="folio-classify-line">Real-time scheduling · Supabase</span>
         </div>
       </div>
       <div class="folio-footer">
-        <span>Agency · AI Quotes</span>
+        <span>Legal · Scheduling</span>
         <span class="folio-arrow">↗</span>
       </div>
     </a>
@@ -979,6 +1029,14 @@ function buildPage() {
   document.getElementById('price-label').textContent = t('price_label');
   document.getElementById('price-title').innerHTML = `${t('price_title')} <em>${t('price_title_em')}</em>`;
   document.getElementById('price-desc').textContent = t('price_desc');
+  // B2 FIX: inject reassurance subtitle after main desc
+  const priceDescEl = document.getElementById('price-desc');
+  if (priceDescEl && t('price_reassurance')) {
+    const reassuranceEl = document.createElement('p');
+    reassuranceEl.className = 'price-reassurance fade-up';
+    reassuranceEl.textContent = t('price_reassurance');
+    priceDescEl.parentNode.insertBefore(reassuranceEl, priceDescEl.nextSibling);
+  }
   const pricingEl = document.getElementById('pricing-preview');
   pricingEl.className = 'tier-grid';
   pricingEl.innerHTML = `
@@ -1147,7 +1205,9 @@ function initStrongScrollAnimations() {
   // in viewport on load → animation plays and completes instantly, user sees no motion.
   // FIX: Replace ScrollTrigger with DOMContentLoaded-safe GSAP timeline — stagger 180ms, 1.2s ease.
   // Pass 7: gsap.set() primes opacity:0 synchronously (FOUC belt-and-suspenders kept from Pass 4).
-  const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d, .hero-title .hero-resolve');
+  // B1 FIX: Updated hero line selectors — now includes .line-e (replaces .hero-resolve)
+  // New slogan structure: line-a + line-b (sentence 1), line-c + line-d + line-e (sentence 2)
+  const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d, .hero-title .line-e');
   gsap.set(heroLines, { opacity: 0 });
 
   const heroTl = gsap.timeline({ delay: 0.2 });
@@ -1165,12 +1225,9 @@ function initStrongScrollAnimations() {
   gsap.from('.hero-subtitle, #hero-sub', { y: 30, opacity: 0, duration: 0.8, delay: 1.2, ease: 'power3.out', overwrite: 'auto' });
   gsap.from('.hero-actions, .hero-actions-editorial', { y: 30, opacity: 0, duration: 0.8, delay: 1.5, ease: 'power3.out', overwrite: 'auto' });
   gsap.from('.hero-trust, .hero-benefits', { y: 20, opacity: 0, duration: 0.8, delay: 1.8, ease: 'power3.out', overwrite: 'auto' });
-  // Hero art composition entrance (Task 2: .hero-art-typography children)
-  gsap.from('.hero-art-typography .art-numeral', { y: 80, opacity: 0, duration: 1.0, delay: 0.4, ease: 'power4.out' });
-  gsap.from('.hero-art-typography .art-mono',    { y: 30, opacity: 0, duration: 0.7, delay: 0.9, ease: 'power3.out' });
-  gsap.from('.hero-art-typography .art-divider', { scaleX: 0, opacity: 0, duration: 0.6, delay: 1.1, ease: 'power3.out', transformOrigin: 'left center' });
-  gsap.from('.hero-art-typography .art-italic',  { y: 30, opacity: 0, duration: 0.7, delay: 1.3, ease: 'power3.out' });
-  gsap.from('.hero-art-typography .art-arrow',   { y: 20, opacity: 0, duration: 0.5, delay: 1.5, ease: 'power3.out' });
+  // B1 FIX: Hero art = compass figure entrance (replaces art-typography children animation)
+  gsap.from('.hero-product-figure', { opacity: 0, duration: 1.2, delay: 0.6, ease: 'power3.out' });
+  gsap.from('.hero-product-caption', { y: 20, opacity: 0, duration: 0.8, delay: 1.4, ease: 'power3.out' });
 
   // PATTERN 2 — Section titles slide-from-left REMOVED (Pass 8 / Phase 3.2 Second Pass 2026-05-05)
   // Replaced by effects-motion.js Effect 5: split-text-reveal (per-char stagger via SplitText).

@@ -33,16 +33,22 @@
       </div>
     </div>
 
-    <!-- Editorial art composition — v5.1: velvet oxblood Mode B atmospheric behind typography -->
+    <!-- Hero right column — v5.1 revision: brass compass image (images-curated-v2.md v2-1) -->
+    <!-- D1: Replaces CSS art-typography per peer revision. velvet ::before kept as safety-net below image. -->
     <!-- Mode B: hero-velvet-oxblood.jpg via CSS ::before on .hero-visual-editorial (images-curated.md Image 3) -->
-    <div class="hero-visual hero-visual-editorial" aria-hidden="true" data-motion="hero-art">
-      <div class="hero-art-typography">
-        <span class="art-numeral">04</span>
-        <span class="art-mono">PILLARS</span>
-        <span class="art-divider"></span>
-        <span class="art-italic"><em>compounding</em></span>
-        <span class="art-arrow">↗</span>
-      </div>
+    <div class="hero-visual hero-visual-editorial" data-motion="hero-art">
+      <figure class="hero-product-figure">
+        <img src="images/hero-brass-compass.jpg"
+             alt="La bàn đồng cổ trên nền đá tối — biểu tượng định hướng cho dự án web HAYWEB"
+             loading="eager"
+             fetchpriority="high"
+             width="1600" height="1067">
+        <figcaption class="hero-product-caption">
+          <span class="caption-kicker">04 ∙ PILLARS</span>
+          <span class="caption-text">compounding direction</span>
+          <span class="caption-arrow" aria-hidden="true">↗</span>
+        </figcaption>
+      </figure>
       <span class="hero-visual-caption" id="hero-visual-caption"></span>
     </div>
   </div>
@@ -184,36 +190,24 @@
         <p class="section-desc fade-up drop-cap" style="margin-bottom:3rem" id="why-desc"></p>
         <div class="why-items fade-up" id="why-items"></div>
       </div>
-      <!-- Task 4 Pass 7: editorial art composition in why-us right column (replaces browser chrome) -->
-      <aside class="why-visual fade-up" aria-hidden="true">
-        <div class="why-art-composition">
-          <div class="why-art-grid">
-            <div class="why-art-cell why-art-cell--large">
-              <span class="why-art-stat">5.2<em>×</em></span>
-              <span class="why-art-label">conversion lift</span>
-            </div>
-            <div class="why-art-cell why-art-cell--accent">
-              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-                <path d="M8 28 L16 18 L24 22 L36 10"/>
-                <circle cx="36" cy="10" r="2.5" fill="currentColor"/>
-              </svg>
-            </div>
-            <div class="why-art-cell">
-              <span class="why-art-mono">30</span>
-              <span class="why-art-sub">projects</span>
-            </div>
-            <div class="why-art-cell">
-              <span class="why-art-mono">99.97<small>%</small></span>
-              <span class="why-art-sub">uptime</span>
-            </div>
-          </div>
-          <div class="why-art-bottom">
-            <span class="why-art-wordmark">HAYWEB</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="20" height="20">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </div>
-        </div>
+      <!-- Why-Us right column — v5.1 revision: design-craft image (images-curated-v2.md v2-2) -->
+      <!-- D2: Replaces CSS data-art instrument panel per peer revision. Stats preserved as .why-stats-strip. -->
+      <aside class="why-visual fade-up">
+        <figure class="why-section-figure">
+          <img src="images/whyus-design-craft.jpg"
+               alt="Phác thảo kết cấu đá — tài liệu nghiên cứu thiết kế thủ công của studio HAYWEB"
+               loading="lazy"
+               width="1300" height="2000">
+          <figcaption class="why-figure-caption">
+            <span>Process documentation · 2024–2026</span>
+          </figcaption>
+        </figure>
+        <!-- D2 CRITICAL: preserve load-bearing stats as compact strip below image -->
+        <dl class="why-stats-strip">
+          <div><dt>Conversion lift</dt><dd>5.2×</dd></div>
+          <div><dt>Projects shipped</dt><dd>30</dd></div>
+          <div><dt>Uptime</dt><dd>99.97%</dd></div>
+        </dl>
         <span class="side-caption" id="why-side-caption"></span>
       </aside>
     </div>
