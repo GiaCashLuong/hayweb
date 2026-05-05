@@ -166,18 +166,14 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ===== GSAP ANIMATION PREP — will-change hints for GPU compositing ===== */
 /* Applied only to elements GSAP will animate — not globally (memory cost) */
-/* B1 FIX: .line-e added (replaces .hero-resolve in new slogan) */
-.hero-title .line-a,
-.hero-title .line-b,
-.hero-title .line-c,
-.hero-title .line-d,
-.hero-title .line-e,
-.hero-title .hero-resolve,
+/* P2b: updated to .line-1, .line-2 (2-line slogan) */
+.hero-title .line-1,
+.hero-title .line-2,
 .section-title,
 .pillar-card,
 .tier,
-.folio-feature,
-.folio-image-real,
+.folio-equal,
+.folio-image-screenshot,
 .hero-screenshot-frame,
 .why-screenshot {
   will-change: transform, opacity;
@@ -187,48 +183,35 @@ button { font-family: inherit; cursor: pointer; }
    GSAP primes opacity:0 synchronously in initStrongScrollAnimations(),
    but CSS pre-hide ensures first paint is already hidden even if GSAP
    executes one microtask late (Chromium 3-frame flash prevention).
-   reduced-motion rule below overrides back to opacity:1 immediately.
-   B1 FIX: Added .line-e (replaces .hero-resolve in new slogan structure) */
-.hero-title .line-a,
-.hero-title .line-b,
-.hero-title .line-c,
-.hero-title .line-d,
-.hero-title .line-e,
-.hero-title .hero-resolve {
+   P2b: Updated to .line-1, .line-2 (2-line slogan structure) */
+.hero-title .line-1,
+.hero-title .line-2 {
   opacity: 0;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-title .line-a,
-  .hero-title .line-b,
-  .hero-title .line-c,
-  .hero-title .line-d,
-  .hero-title .line-e,
-  .hero-title .hero-resolve {
+  .hero-title .line-1,
+  .hero-title .line-2 {
     opacity: 1 !important;
   }
 }
 
-/* B1 FIX: .hero-highlight em = gold-on-dark for "phát triển kinh doanh" highlight
-   Scoped under body.home-dark-luxury to match the dark palette context.
-   On light pages (if ever used), em inherits italic only — no gold rule applied. */
+/* P2b: .hero-highlight em = gold-on-dark for "phát triển kinh doanh" highlight
+   Scoped under body.home-dark-luxury to match the dark palette context. */
 body.home-dark-luxury .hero-title .hero-highlight em {
   color: var(--gold-on-dark, #C9A042);
   font-style: italic;
 }
 
-/* B1 FIX: New 2-sentence slogan — all lines left-aligned (no chiasmus split).
-   Original chiasmus: line-c/d right-aligned. New flow is sequential left-to-right reading. */
-body.home-dark-luxury .hero-title .line-c,
-body.home-dark-luxury .hero-title .line-d,
-body.home-dark-luxury .hero-title .line-e {
+/* P2b: 2-line slogan — both lines left-aligned, sequential reading */
+body.home-dark-luxury .hero-title .line-1,
+body.home-dark-luxury .hero-title .line-2 {
   align-self: flex-start;
   text-align: left;
 }
-/* line-e = "của bạn" — smaller size, continuation tone */
-body.home-dark-luxury .hero-title .line-e {
-  font-size: 0.85em;
-  opacity: 0.85;
-  font-weight: 500;
+/* line-2 = slightly smaller weight for the "Mà còn..." resolution line */
+body.home-dark-luxury .hero-title .line-2 {
+  font-size: 0.92em;
+  font-weight: 600;
 }
 
 /* ===== GRAIN TEXTURE (subtle paper film on ivory) ===== */
@@ -1671,10 +1654,10 @@ footer {
 .hero-content {
   width: 100%;
   max-width: 1320px;
-  padding: 5rem 2.5rem 4rem;  /* A3: reduced from 9rem/6rem → 5rem/4rem for ≤1200px hero height */
+  padding: 3.5rem 2.5rem 3rem;  /* P2a: tighten top/bottom — reduce empty zone above kicker */
   display: grid;
-  grid-template-columns: 1.25fr 0.85fr;
-  gap: 4.5rem;
+  grid-template-columns: 1fr 1fr;  /* P2d: 50/50 so compass image fills exact half */
+  gap: 4rem;
   align-items: center;
 }
 .hero-text { max-width: 720px; }
@@ -1705,14 +1688,12 @@ footer {
   letter-spacing: -0.025em;
   white-space: normal;
 }
-/* Hero broken-grid chiasmus (pivot-audit §C #1 — demo lift, lines a/b left, c/d right) */
+/* P2b: 2-line slogan structure (replaces 5-line chiasmus) */
 .hero-title {
   display: flex; flex-direction: column;
 }
-.hero-title .line-a,
-.hero-title .line-b { align-self: flex-start; }
-.hero-title .line-c,
-.hero-title .line-d { align-self: flex-end; text-align: right; max-width: 100%; }
+.hero-title .line-1 { align-self: flex-start; }
+.hero-title .line-2 { align-self: flex-start; }
 
 /* Hero title em (e.g., "không bán hàng") — gold italic = editorial chiasmus pivots */
 .hero-title em {
@@ -1794,8 +1775,8 @@ footer {
   .hero-visual { max-width: 440px; margin: 1rem auto 1.5rem; }
 }
 @media (max-width: 768px) {
-  /* A6: reduce from 6rem top → 3.5rem top so kicker anchors at ~120-140px from top (not 340px) */
-  .hero-content { padding: 3.5rem 1.5rem 3rem; }
+  /* P2a: further tighten mobile hero top padding */
+  .hero-content { padding: 2.5rem 1.5rem 2rem; }
 }
 
 /* =====================================================================
@@ -2464,6 +2445,11 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
   gap: 1.5rem;
   margin-top: 2rem;
 }
+/* P1: 2-equal-card variant — both get same visual weight, larger photo display */
+.folio-grid.folio-grid-equal {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+}
 .folio {
   position: relative;
   background: var(--bg);
@@ -2485,6 +2471,10 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 }
 .folio-vert { grid-column: 2; grid-row: 1; }
 .folio-small { grid-column: 2; grid-row: 2; background: var(--surface); }
+/* P1: equal-weight card — same visual prominence as folio-feature */
+.folio-equal {
+  padding: 2.5rem 2.5rem 2rem;
+}
 
 .folio-meta {
   display: flex; align-items: center; justify-content: space-between;
@@ -2503,6 +2493,8 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 .folio-feature .folio-title { font-size: clamp(2rem, 3.5vw, 3rem); }
 .folio-vert    .folio-title { font-size: 1.6rem; }
 .folio-small   .folio-title { font-size: 1.3rem; }
+/* P1: equal cards use a mid-size prominent title */
+.folio-equal   .folio-title { font-size: clamp(1.6rem, 2.5vw, 2.4rem); }
 .folio-desc {
   font-size: 0.92rem; color: var(--muted);
   margin-bottom: 1.5rem; max-width: 480px; line-height: 1.6;
@@ -2519,6 +2511,8 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 .folio-feature .folio-image { min-height: 380px; }
 .folio-vert    .folio-image { min-height: 180px; }
 .folio-small   .folio-image { min-height: 130px; }
+/* P1: equal cards get prominent image area */
+.folio-equal   .folio-image { min-height: 320px; }
 
 .folio-image-real {
   background: var(--bg);
@@ -2528,6 +2522,25 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 .folio-image-real img {
   width: 100%; height: 100%; object-fit: cover;
   display: block;
+}
+/* P1: screenshot variant — top-cropped so page header is prominent */
+.folio-image-screenshot {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.folio-image-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.5s ease, filter 0.3s ease;
+}
+.folio-equal:hover .folio-image-screenshot img {
+  transform: scale(1.03);
+  filter: brightness(0.95);
 }
 .folio-image-hayweb { background: #0E0E0E; }
 .folio-image-hkp    { background: var(--bg); border: 1px solid var(--border); }
@@ -2578,6 +2591,13 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
 @media (max-width: 1024px) {
   .folio-grid { grid-template-columns: 1fr; }
   .folio-feature, .folio-vert, .folio-small { grid-column: 1; grid-row: auto; }
+  /* P1: equal-card grid collapses to 1-col on tablet */
+  .folio-grid.folio-grid-equal { grid-template-columns: 1fr; }
+}
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* P1: on mid-range screens keep 2 equal cards but smaller images */
+  .folio-grid.folio-grid-equal { gap: 1.25rem; }
+  .folio-equal .folio-image { min-height: 260px; }
 }
 
 /* =====================================================================
@@ -2636,18 +2656,14 @@ footer.footer-dark .footer-social:hover { background: rgba(244,239,230,0.12); }
   /* GSAP-animated elements: snap to final position immediately
      (initStrongScrollAnimations early-returns on reduced-motion, but
      belt-and-suspenders: ensure nothing stays at opacity:0 / off-screen)
-     B1 FIX: .line-e added to belt-and-suspenders list */
-  .hero-title .line-a,
-  .hero-title .line-b,
-  .hero-title .line-c,
-  .hero-title .line-d,
-  .hero-title .line-e,
-  .hero-title .hero-resolve,
+     P2b: updated to .line-1, .line-2 */
+  .hero-title .line-1,
+  .hero-title .line-2,
   .section-title,
   .pillar-card,
   .tier,
-  .folio-feature,
-  .folio-image-real,
+  .folio-equal,
+  .folio-image-screenshot,
   .stat-number,
   .why-screenshot,
   .why-art-composition,
@@ -2984,10 +3000,10 @@ body.home-dark-luxury .hero {
   min-height: auto;
   max-height: none;
 }
-/* A3 polish v2: tighten hero padding on desktop ≥1280 to keep CTAs above first fold (1366×768 laptops) */
+/* P2a+P2d: tighten hero padding on desktop ≥1280 — kicker anchors ~80-100px from nav, CTAs above fold */
 @media (min-width: 1280px) {
-  body.home-dark-luxury .hero-content { padding: 4rem 2.5rem 3rem; }
-  body.home-dark-luxury .hero-title { font-size: clamp(2.6rem, 6.8vw, 5.2rem); line-height: 1.04; }
+  body.home-dark-luxury .hero-content { padding: 3rem 2.5rem 2.5rem; }
+  body.home-dark-luxury .hero-title { font-size: clamp(2.6rem, 6.2vw, 4.8rem); line-height: 1.06; }
   body.home-dark-luxury .hero-subtitle { font-size: 1rem; line-height: 1.55; max-width: 540px; }
   body.home-dark-luxury .hero-benefits { gap: 0.5rem; margin-block: 1rem; }
 }
@@ -3004,13 +3020,10 @@ body.home-dark-luxury .hero-title {
      5-line block totals ~420px, fits within hero ≤1100px at 1440×900 viewport. */
   font-size: clamp(2.8rem, 7.5vw, 6rem);
 }
-/* A5: Vogue Italia rule — 1 italic gold per headline. line-b stays cream italic.
-   B1 FIX: line-d now carries .hero-highlight class — its em is "phát triển kinh doanh" = GOLD.
-   Remove .line-d em cream rule. .hero-title .hero-highlight em rule (below the override block)
-   handles gold coloring with sufficient specificity. */
-body.home-dark-luxury .hero-title .line-b em { color: var(--cream); }
-body.home-dark-luxury .hero-resolve { color: var(--dark-muted); }
-body.home-dark-luxury .hero-resolve em { color: var(--gold-on-dark); }
+/* P2b: line-1 is plain text (no em), line-2 has .hero-highlight em = gold
+   .hero-highlight em handled by body.home-dark-luxury .hero-title .hero-highlight em rule below */
+body.home-dark-luxury .hero-title .line-1 { color: var(--cream); }
+body.home-dark-luxury .hero-title .line-2 { color: var(--cream); }
 body.home-dark-luxury .hero-subtitle { color: var(--dark-muted); }
 body.home-dark-luxury .hero-benefit { color: var(--dark-muted); }
 body.home-dark-luxury .hero-trust { color: var(--dark-muted); }
@@ -4337,7 +4350,9 @@ body.home-dark-luxury .portfolio-section-wrapper::before {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* P3 FIX: background-attachment:fixed fails inside isolation:isolate stacking context (browser bug).
+     Switched to scroll — cover still fills section, atmospheric effect preserved. */
+  background-attachment: scroll;
   filter: sepia(0.10) brightness(0.98) saturate(0.75) blur(1.5px);
   opacity: 0.13;
   z-index: 0;
@@ -4364,18 +4379,6 @@ body.home-dark-luxury .portfolio-section-wrapper > * {
   z-index: 2;
 }
 
-@media (max-width: 768px) {
-  body.home-dark-luxury .portfolio-section-wrapper::before {
-    background-attachment: scroll;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body.home-dark-luxury .portfolio-section-wrapper::before {
-    background-attachment: scroll;
-  }
-}
-
 /* ======================================================================
    D4 — Why-Us section atmospheric BG (images-curated-v2.md v2-4)
    Sa Pa rice terraces — Mode B "chìm" on cream bg
@@ -4395,7 +4398,8 @@ body.home-dark-luxury .why-section-light::before {
   background-size: cover;
   background-position: center 35%;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* P3 FIX: same as portfolio fix — fixed attachment breaks inside isolation:isolate */
+  background-attachment: scroll;
   filter: sepia(0.08) brightness(1.02) saturate(0.65) blur(1.5px);
   opacity: 0.12;
   z-index: 0;
@@ -4422,18 +4426,6 @@ body.home-dark-luxury .why-section-light > * {
   z-index: 2;
 }
 
-@media (max-width: 768px) {
-  body.home-dark-luxury .why-section-light::before {
-    background-attachment: scroll;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body.home-dark-luxury .why-section-light::before {
-    background-attachment: scroll;
-  }
-}
-
 /* ======================================================================
    D1 — Hero compass image styles (images-curated-v2.md v2-1)
    ====================================================================== */
@@ -4453,6 +4445,9 @@ body.home-dark-luxury .why-section-light > * {
   object-fit: cover;
   object-position: center right;
   display: block;
+  /* P2d: blur-fade left edge so compass bleeds into dark text column bg */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28%, black 85%, rgba(0,0,0,0.6) 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 28%, black 85%, rgba(0,0,0,0.6) 100%);
 }
 
 .hero-product-caption {

@@ -317,31 +317,36 @@ const stats = [
 
 // ====== PORTFOLIO — featured first (asymmetric grid: 1 large + 2 small) ======
 // C1 FIX: Peer revision 2026-05-05 — Replace HAYWEB Studio placeholder with Luật Sư Hà Nội.
-// Peer: "web ví dụ thì lấy luật sư hà nội và Hoàng Kim Phát nhé"
-// Final 3 cards: Kobe Steak (folio-feature featured) + Luật Sư Hà Nội (folio-vert) + HKP (folio-small)
+// P1: Drop Kobe, 2 real-project cards (equal weight) — LSH + HKP real screenshots
+// NOTE: LSH (luatsuhanoi-demo.vercel.app) returns 404 — href="#" placeholder per work order.
+//       Peer to deploy LSH separately when ready, then update url below.
 const portfolio = [
   {
+    // P1: Luật Sư Hà Nội — La Défense legal demo (project_la_defense.md)
+    // Real screenshot: portfolio-lsh-firstview.jpg (dark gold luxury editorial, 132KB)
+    // URL: placeholder — project not yet deployed at luatsuhanoi-demo.vercel.app (404 confirmed)
     accent: '#1a1a1a',
-    tagVI: 'F&B · 2025', tagEN: 'F&B · 2025',
-    titleVI: 'Kobe Steak House', titleEN: 'Kobe Steak House',
-    descVI: 'Bít tết cao cấp — đặt bàn realtime, sơ đồ bàn 25 vị trí', descEN: 'Premium steakhouse — realtime booking, 25-table floor plan',
-    url: 'https://kobe-steak.vercel.app'
-  },
-  {
-    // C1 FIX: Luật Sư Hà Nội — La Défense legal demo (project_la_defense.md)
-    // CSS classify block "LSH" — no live URL yet, href="#" placeholder consistent with HKP pattern
-    accent: '#1a1a1a',
-    tagVI: 'Legal · 2026', tagEN: 'Legal · 2026',
+    tagVI: 'LEGAL · 2026', tagEN: 'LEGAL · 2026',
     titleVI: 'Luật Sư Hà Nội', titleEN: 'Luat Su Ha Noi',
-    descVI: 'Văn phòng luật uy tín — multi-step consultation form, real-time scheduling', descEN: 'Prestigious law firm — multi-step consultation form, real-time scheduling',
-    url: '#'
+    descVI: 'Văn phòng luật uy tín — multi-step consultation form, real-time scheduling',
+    descEN: 'Prestigious law firm — multi-step consultation form, real-time scheduling',
+    img: '/images/portfolio-lsh-firstview.jpg',
+    imgAlt: 'Trang chủ Luật Sư Hà Nội — giao diện dark gold luxury editorial',
+    url: '#',
+    urlDeployed: false
   },
   {
+    // P1: Hoàng Kim Phát Sim Kinh Dịch — live at hoang-kim-phat-sim.vercel.app
+    // Real screenshot: portfolio-hkp-firstview.jpg (dark red mystic feng shui, 106KB)
     accent: '#1a1a1a',
-    tagVI: 'E-com · 2026', tagEN: 'E-com · 2026',
-    titleVI: 'HKP Sim Kinh Dịch', titleEN: 'HKP Feng Shui Sims',
-    descVI: 'Sim phong thủy — affiliate CTV, lọc theo mệnh', descEN: 'Feng shui sims — CTV affiliate, filter by element',
-    url: 'https://hoang-kim-phat-sim.vercel.app'
+    tagVI: 'E-COM · 2026', tagEN: 'E-COM · 2026',
+    titleVI: 'Hoàng Kim Phát', titleEN: 'Hoang Kim Phat',
+    descVI: 'Sim phong thủy — affiliate CTV, lọc theo mệnh',
+    descEN: 'Feng shui sims — CTV affiliate, filter by element',
+    img: '/images/portfolio-hkp-firstview.jpg',
+    imgAlt: 'Trang chủ Hoàng Kim Phát Sim Kinh Dịch — giao diện dark red mystic',
+    url: 'https://hoang-kim-phat-sim.vercel.app',
+    urlDeployed: true
   },
 ];
 
@@ -818,20 +823,15 @@ function attachMagnetic() {
 }
 
 function buildPage() {
-  // Hero — B1 FIX: peer revision new slogan (2026-05-05)
-  // New structure: "Ở đây không chỉ có web đẹp / Mà còn phát triển kinh doanh của bạn"
-  // "phát triển kinh doanh" = highlighted gold em per peer direction
-  // Line structure: line-a + line-b (first sentence), line-c + line-d[gold-em] + line-e (second)
-  // hero_title_6 left blank in config — .hero-resolve span removed from render.
-  // GSAP initStrongScrollAnimations() still animates line-a/b/c/d/hero-resolve;
-  // line-e is new — added to GSAP targets selector below.
+  // Hero — P2b: condense slogan 5→2 lines per peer "câu slogan tôi muốn chỉ có 2 hàng thôi"
+  // Line 1: "Ở đây không chỉ có web đẹp" (full first sentence in one span)
+  // Line 2: "Mà còn [phát triển kinh doanh] của bạn" (gold-em wraps the highlighted phrase)
+  // GSAP targets updated to .line-1, .line-2 (2 elements instead of 5)
   document.getElementById('hero-eyebrow').textContent = t('hero_eyebrow');
-  document.getElementById('hero-title').innerHTML =
-    `<span class="line-a">${t('hero_title_1')}</span>` +
-    `<span class="line-b"><em>${t('hero_title_2')}</em></span>` +
-    `<span class="line-c">${t('hero_title_3')}</span>` +
-    `<span class="line-d hero-highlight"><em>${t('hero_title_4')}</em></span>` +
-    `<span class="line-e">${t('hero_title_5')}</span>`;
+  const titleEl = document.getElementById('hero-title');
+  titleEl.innerHTML =
+    `<span class="line-1">${t('hero_title_1')}</span>` +
+    `<span class="line-2">${vi ? 'Mà còn ' : 'But also real '}<span class="hero-highlight"><em>${t('hero_title_2')}</em></span>${vi ? ' của bạn' : ' for you'}</span>`;
   document.getElementById('hero-sub').textContent = t('hero_sub');
   const benefits = vi
     ? ['✓ Bàn giao trong 7–14 ngày', '✓ 30 dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']
@@ -917,75 +917,54 @@ function buildPage() {
     `;
   }
 
-  // Portfolio — folio asymmetric grid (pivot-audit §C #8, demo lift)
-  // C1 FIX: 3 cards = Kobe Steak (featured) + Luật Sư Hà Nội (vert) + HKP (small)
-  // portfolio[0] = Kobe Steak, portfolio[1] = LSH, portfolio[2] = HKP
+  // Portfolio — P1: 2-card equal layout (LSH + HKP, real screenshots both)
+  // Kobe dropped per peer: "bỏ cái kobe nhé"
+  // Both cards get folio-equal class: 1fr 1fr grid, featured-tier visual treatment
   document.getElementById('port-label').textContent = t('port_label');
   document.getElementById('port-title').innerHTML = `${t('port_title')} <em>${t('port_title_em')}</em>`;
   document.getElementById('port-viewall').textContent = t('port_viewall');
   const portfolioGrid = document.getElementById('portfolio-grid');
-  portfolioGrid.className = 'folio-grid';
-  const p0 = portfolio[0]; // featured: Kobe Steak — real screenshot asset
-  const p1 = portfolio[1]; // folio-vert: Luật Sư Hà Nội (C1 FIX)
-  const p2 = portfolio[2]; // folio-small: HKP Sim Kinh Dịch
+  portfolioGrid.className = 'folio-grid folio-grid-equal';
+  const p0 = portfolio[0]; // LSH — Luật Sư Hà Nội (real screenshot, href="#" placeholder)
+  const p1 = portfolio[1]; // HKP — Hoàng Kim Phát (real screenshot, live URL)
   portfolioGrid.innerHTML = `
-    <!-- Feature card: Kobe Steak — real screenshot (data-cursor activates gold pill cursor) -->
-    <a href="${p0.url}" target="_blank" rel="noopener" class="folio folio-feature fade-up" data-cursor="true">
+    <!-- Card 1: Luật Sư Hà Nội — real screenshot, href="#" (not deployed yet) -->
+    <a href="${p0.url}"
+       ${!p0.urlDeployed ? `aria-label="${vi ? 'Luật Sư Hà Nội — đang phát triển' : 'Luat Su Ha Noi — in development'}"` : 'target="_blank" rel="noopener"'}
+       class="folio folio-equal fade-up" data-cursor="view">
       <div class="folio-meta">
         <span class="folio-no">001</span>
         <span>${vi ? p0.tagVI : p0.tagEN}</span>
       </div>
       <h3 class="folio-title">${vi ? p0.titleVI : p0.titleEN}</h3>
       <p class="folio-desc">${vi ? p0.descVI : p0.descEN}</p>
-      <div class="folio-image folio-image-real">
-        <img src="/images/kobe-steak-hero.jpeg"
-             alt="${vi ? p0.titleVI : p0.titleEN}"
-             loading="lazy" width="800" height="500">
+      <div class="folio-image folio-image-real folio-image-screenshot">
+        <img src="${p0.img}"
+             alt="${p0.imgAlt}"
+             loading="lazy" width="1280" height="800">
       </div>
       <div class="folio-footer">
-        <span>${vi ? 'F&B · Realtime Booking' : 'F&B · Realtime Booking'}</span>
+        <span>${vi ? 'Legal · Scheduling · Supabase' : 'Legal · Scheduling · Supabase'}</span>
         <span class="folio-arrow">↗</span>
       </div>
     </a>
 
-    <!-- Vert card: Luật Sư Hà Nội — CSS classify block "LSH" (C1 FIX: replaces HAYWEB Studio) -->
-    <a href="${p1.url}" ${p1.url !== '#' ? 'target="_blank" rel="noopener"' : 'aria-label="Luật Sư Hà Nội — coming soon"'} class="folio folio-vert fade-up" data-cursor="true">
+    <!-- Card 2: Hoàng Kim Phát Sim Kinh Dịch — real screenshot, live URL -->
+    <a href="${p1.url}" target="_blank" rel="noopener noreferrer"
+       class="folio folio-equal fade-up" data-cursor="view">
       <div class="folio-meta">
         <span class="folio-no">002</span>
         <span>${vi ? p1.tagVI : p1.tagEN}</span>
       </div>
       <h3 class="folio-title">${vi ? p1.titleVI : p1.titleEN}</h3>
       <p class="folio-desc">${vi ? p1.descVI : p1.descEN}</p>
-      <div class="folio-image folio-image-lsh" aria-hidden="true">
-        <div class="folio-classify">
-          <span class="folio-classify-id">LSH</span>
-          <span class="folio-classify-line">Legal · Consultation Form</span>
-          <span class="folio-classify-line">Real-time scheduling · Supabase</span>
-        </div>
+      <div class="folio-image folio-image-real folio-image-screenshot">
+        <img src="${p1.img}"
+             alt="${p1.imgAlt}"
+             loading="lazy" width="1280" height="800">
       </div>
       <div class="folio-footer">
-        <span>Legal · Scheduling</span>
-        <span class="folio-arrow">↗</span>
-      </div>
-    </a>
-
-    <!-- Small card: HKP Sim Kinh Dịch — mono classification -->
-    <a href="${p2.url || '#'}" target="_blank" rel="noopener noreferrer" class="folio folio-small fade-up" data-cursor="true">
-      <div class="folio-meta">
-        <span class="folio-no">003</span>
-        <span>${vi ? p2.tagVI : p2.tagEN}</span>
-      </div>
-      <h3 class="folio-title">${vi ? p2.titleVI : p2.titleEN}</h3>
-      <p class="folio-desc">${vi ? p2.descVI : p2.descEN}</p>
-      <div class="folio-image folio-image-hkp" aria-hidden="true">
-        <div class="folio-classify">
-          <span class="folio-classify-id">HKP</span>
-          <span class="folio-classify-line">E-com · Sim phong thủy</span>
-          <span class="folio-classify-line">CTV affiliate · Supabase</span>
-        </div>
-      </div>
-      <div class="folio-footer">
-        <span>E-com · Feng Shui</span>
+        <span>${vi ? 'E-com · Sim phong thủy · Supabase' : 'E-com · Feng Shui Sims · Supabase'}</span>
         <span class="folio-arrow">↗</span>
       </div>
     </a>
@@ -1200,14 +1179,10 @@ function initStrongScrollAnimations() {
   // Bail immediately if user prefers reduced motion — CSS handles snap-to-position
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // PATTERN 1 — Hero chiasmus lines: PAGE-LOAD timeline (Pass 7 fix)
-  // ROOT CAUSE of desktop issue: ScrollTrigger 'top 90%' fires on hero elements that are already
-  // in viewport on load → animation plays and completes instantly, user sees no motion.
-  // FIX: Replace ScrollTrigger with DOMContentLoaded-safe GSAP timeline — stagger 180ms, 1.2s ease.
-  // Pass 7: gsap.set() primes opacity:0 synchronously (FOUC belt-and-suspenders kept from Pass 4).
-  // B1 FIX: Updated hero line selectors — now includes .line-e (replaces .hero-resolve)
-  // New slogan structure: line-a + line-b (sentence 1), line-c + line-d + line-e (sentence 2)
-  const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d, .hero-title .line-e');
+  // PATTERN 1 — Hero 2-line slide animation: PAGE-LOAD timeline (P2b update)
+  // P2b: Updated from 5-line selectors (line-a/b/c/d/e) → 2-line (.line-1, .line-2)
+  // Line 1 slides in from left, line 2 from right — dramatic chiasmus entrance
+  const heroLines = gsap.utils.toArray('.hero-title .line-1, .hero-title .line-2');
   gsap.set(heroLines, { opacity: 0 });
 
   const heroTl = gsap.timeline({ delay: 0.2 });
@@ -1216,7 +1191,7 @@ function initStrongScrollAnimations() {
     heroTl.fromTo(line,
       { x: fromX, opacity: 0 },
       { x: 0, opacity: 1, duration: 1.2, ease: 'power4.out' },
-      i * 0.18
+      i * 0.22
     );
   });
 
@@ -1225,9 +1200,8 @@ function initStrongScrollAnimations() {
   gsap.from('.hero-subtitle, #hero-sub', { y: 30, opacity: 0, duration: 0.8, delay: 1.2, ease: 'power3.out', overwrite: 'auto' });
   gsap.from('.hero-actions, .hero-actions-editorial', { y: 30, opacity: 0, duration: 0.8, delay: 1.5, ease: 'power3.out', overwrite: 'auto' });
   gsap.from('.hero-trust, .hero-benefits', { y: 20, opacity: 0, duration: 0.8, delay: 1.8, ease: 'power3.out', overwrite: 'auto' });
-  // B1 FIX: Hero art = compass figure entrance (replaces art-typography children animation)
+  // Hero compass image entrance (P2c: caption removed, figure entrance kept)
   gsap.from('.hero-product-figure', { opacity: 0, duration: 1.2, delay: 0.6, ease: 'power3.out' });
-  gsap.from('.hero-product-caption', { y: 20, opacity: 0, duration: 0.8, delay: 1.4, ease: 'power3.out' });
 
   // PATTERN 2 — Section titles slide-from-left REMOVED (Pass 8 / Phase 3.2 Second Pass 2026-05-05)
   // Replaced by effects-motion.js Effect 5: split-text-reveal (per-char stagger via SplitText).
@@ -1278,10 +1252,9 @@ function initStrongScrollAnimations() {
     );
   });
 
-  // PATTERN 5 — Folio featured image: scale-in with blur lift (dramatic reveal)
-  // filter:'blur(20px)' only runs if not in ban list — visual-concept §9 allows on elements, not bg
-  // Pass 6: removed gsap.set() prime, converted to gsap.fromTo() with end { scale:1, opacity:1, filter:'blur(0px)' }.
-  const folioEls = gsap.utils.toArray('.folio-feature, .folio-image-real');
+  // PATTERN 5 — Folio cards: scale-in with blur lift (dramatic reveal on both equal cards)
+  // P1: updated selectors — folio-feature removed, now targets .folio-equal + .folio-image-real
+  const folioEls = gsap.utils.toArray('.folio-equal, .folio-image-screenshot');
   folioEls.forEach(el => {
     gsap.fromTo(el,
       { scale: 1.15, opacity: 0, filter: 'blur(16px)' },

@@ -654,14 +654,14 @@
 
   /* ====================================================================
      EFFECT 9 — image-hover-suite: lift (Silver)
-     Portfolio thumbnails (.folio-feature img, .folio-vert img, .folio-small img).
+     Portfolio thumbnails — now targets .folio-equal (P1 update: 2-card layout).
      CSS-only hover effect: translate3d(0, -8px, 0) + shadow elevation.
      data-hover="lift" added to folio containers here.
      JS just adds the attribute; CSS handles the rest.
   ==================================================================== */
   function initImageLift() {
-    // Add data-hover="lift" to portfolio folio containers
-    document.querySelectorAll('.folio-feature, .folio-vert, .folio-small').forEach(el => {
+    // P1: updated selector to include .folio-equal (replaces folio-feature/vert/small)
+    document.querySelectorAll('.folio-feature, .folio-vert, .folio-small, .folio-equal').forEach(el => {
       el.dataset.hover = 'lift';
     });
     // Effect is purely CSS — no JS animation needed.

@@ -22,13 +22,14 @@ const i18n = {
     nav_new:        'Yêu cầu báo giá',
 
     // Hero — editorial direction (replaces v3 generic "platform" eyebrow + generic "tư vấn miễn phí" CTA)
-    // B1 FIX: Peer revision — new 2-line slogan with gold-highlighted "phát triển kinh doanh"
+    // P2b: Peer revision — condense 5 lines → 2 lines per "câu slogan tôi muốn chỉ có 2 hàng thôi"
+    // line-1: full first sentence / line-2: second sentence with gold-em on "phát triển kinh doanh"
     hero_eyebrow:   'Studio Hà Nội · Issue 01 · 2026',
-    hero_title_1:   'Ở đây không chỉ có',
-    hero_title_2:   'web đẹp',
-    hero_title_3:   'Mà còn',
-    hero_title_4:   'phát triển kinh doanh',
-    hero_title_5:   'của bạn',
+    hero_title_1:   'Ở đây không chỉ có web đẹp',
+    hero_title_2:   'phát triển kinh doanh',
+    hero_title_3:   '',
+    hero_title_4:   '',
+    hero_title_5:   '',
     hero_title_6:   '',
     hero_sub:       'Bốn trụ cột đi cùng nhau cho doanh nghiệp Việt: website chuyển đổi cao — quảng cáo tối ưu chi phí — SEO bền vững top Google — chiến lược tăng trưởng có lộ trình.',
     hero_cta_1:     'Đặt buổi 90 phút phân tích định vị',
@@ -204,13 +205,13 @@ const i18n = {
     nav_logout:     'Logout',
     nav_new:        'Get a Quote',
 
-    // B1 FIX: Peer revision — new 2-line slogan (EN variant)
+    // P2b: condensed to 2-line slogan (EN variant)
     hero_eyebrow:   'Studio Hanoi · Issue 01 · 2026',
-    hero_title_1:   'Not just',
-    hero_title_2:   'beautiful websites',
-    hero_title_3:   'But real',
-    hero_title_4:   'business growth',
-    hero_title_5:   'for you',
+    hero_title_1:   'Not just beautiful websites',
+    hero_title_2:   'business growth',
+    hero_title_3:   '',
+    hero_title_4:   '',
+    hero_title_5:   '',
     hero_title_6:   '',
     hero_sub:       'Four pillars working as one for Vietnamese businesses: high-converting web — cost-optimized ads — sustainable SEO to top of Google — growth strategy with a roadmap.',
     hero_cta_1:     'Book a 90-min positioning workshop',
