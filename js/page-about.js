@@ -154,8 +154,8 @@ function init() {
   renderNav('about');
   renderFooter();
 
-  // ── Hero — sharper positioning + LF8 status desire (Big-4 access) ──
-  document.getElementById('about-label').textContent = vi ? 'Studio Hà Nội · Circa 2020' : 'Hanoi Studio · Circa 2020';
+  // ── Hero — kicker tight to desc, no giant invisible H1 ──
+  document.getElementById('about-label').textContent = vi ? 'Về chúng tôi' : 'About us';
   document.getElementById('about-title').innerHTML = vi
     ? 'Website đẳng cấp <em>Big 4</em> — không còn là đặc quyền của Big 4'
     : '<em>Big-4-grade</em> websites — without the Big-4 invoice';

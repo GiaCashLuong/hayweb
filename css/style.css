@@ -5617,6 +5617,30 @@ body.home-dark-luxury .price-card .btn-primary,
 body.home-dark-luxury .price-card .btn-primary::before {
   display: none;
 }
+
+/* ── About page hero — kicker sát desc, cắt khoảng trống đầu trang ── */
+body.home-dark-luxury .about-hero {
+  padding: 3.5rem 0 2.5rem;       /* was 10rem 0 5rem — gần halve */
+}
+body.home-dark-luxury .about-hero #about-title,
+body.home-dark-luxury .about-hero .section-title {
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);   /* shrink so the H1 doesn't
+                                                 swallow the visual gap */
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 0.6rem 0 0.85rem;
+  color: var(--cream, #F4EFE6);
+}
+body.home-dark-luxury .about-hero #about-title em,
+body.home-dark-luxury .about-hero .section-title em {
+  color: var(--gold-on-dark, #C9A042);
+  font-weight: 700;
+}
+body.home-dark-luxury .about-hero #about-desc {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
 /* Same treatment for the trust-band & inline-CTA variants that already
    use display font — keep consistent rhythm across all "primary CTA" */
 body.home-dark-luxury .article-inline-cta .inline-cta-btn {
