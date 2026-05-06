@@ -4989,3 +4989,74 @@ body.home-dark-luxury .btn-outline {
 body.home-dark-luxury .btn-outline:hover { border-color: var(--gold-on-dark); color: var(--gold-on-dark); }
 body.home-dark-luxury .btn-ghost { color: var(--cream); }
 body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
+
+/* ── About page — founder portrait card ───────────────────────────────
+   Editorial portrait frame: dark-surface card + gold accent border-top,
+   subtle inner gradient so a transparent (background-removed) PNG sits
+   naturally on the dark page. */
+.founder-portrait {
+  position: relative;
+  margin: 0;
+  padding: 1.25rem 1.25rem 1.5rem;
+  background: linear-gradient(180deg, var(--dark-surface, #161410) 0%, var(--dark-surface-2, #1E1B16) 100%);
+  border: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-top: 2px solid var(--gold-on-dark, #C9A042);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45),
+              0 0 0 1px rgba(201,160,66,0.08) inset;
+}
+.founder-portrait::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%,
+                rgba(201,160,66,0.10) 0%,
+                rgba(201,160,66,0.04) 40%,
+                transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.founder-portrait img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  object-position: center bottom;
+  /* Photo has a white studio bg — embrace it as a polaroid-style portrait
+     card mounted on the dark page (intentional editorial contrast). The
+     gold-accent frame around makes the white block read as deliberate. */
+  background: #FFFFFF;
+  border-radius: 4px;
+  filter: contrast(1.02);
+}
+
+.founder-portrait figcaption {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  font-family: var(--font-display);
+}
+.founder-portrait .founder-name {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-on-dark, #C9A042);
+  font-weight: 600;
+}
+.founder-portrait .founder-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: rgba(244,239,230,0.55);
+}
+@media (max-width: 768px) {
+  .founder-portrait img { max-height: 420px; }
+}
