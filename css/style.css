@@ -5626,6 +5626,14 @@ body.home-dark-luxury .value-num {
   text-shadow: 0 0 24px rgba(201,160,66,0.20);
 }
 
+/* ── Hide editorial meta flourishes ("CIRCA 2026 · HÀ NỘI" nav strip
+   and "Studio Hà Nội · Issue 01 · 2026" hero eyebrow) per peer
+   feedback — read as cosmetic noise on the live page. ── */
+.nav-meta,
+.hero-eyebrow {
+  display: none !important;
+}
+
 /* ── About page hero — kicker sát desc, cắt khoảng trống đầu trang ── */
 body.home-dark-luxury .about-hero {
   padding: 3.5rem 0 2.5rem;       /* was 10rem 0 5rem — gần halve */
