@@ -5588,22 +5588,34 @@ body.home-dark-luxury .price-card.featured .price-tag-tier {
   margin: 0 !important;          /* remove the article-inline-cta default 3rem */
 }
 
-/* ── Pricing tier CTA — VN-friendly: drop uppercase + open up tracking ──
-   "Bắt đầu ngay", "Nhận báo giá ngay", "Đặt buổi chiến lược" cramped
-   under default .btn-primary { text-transform: uppercase; letter-
-   spacing: 0.08em }. Diacritics need air. Scoped to price-card only. */
+/* ── Pricing tier CTA — VN-friendly: force lowercase rendering + open
+   up tracking so all 3 tier buttons render at the SAME visual rhythm.
+   "Bắt đầu ngay", "Nhận báo giá ngay", "Đặt buổi chiến lược" all
+   cramp under default uppercase + 0.08em tracking. Higher-specificity
+   override + !important on the transform-related props so no other
+   .btn-primary rule beats us. */
 body.home-dark-luxury .price-card .btn-primary,
-body.home-dark-luxury .price-card .btn-outline {
-  font-family: var(--font-display);
-  font-size: 0.98rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  padding: 1.1rem 1.75rem;
-  line-height: 1.3;
+body.home-dark-luxury .price-card .btn-outline,
+.price-card .btn-primary,
+.price-card .btn-outline {
+  font-family: var(--font-display) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.005em !important;
+  text-transform: none !important;
+  padding: 1.1rem 1.5rem !important;
+  line-height: 1.3 !important;
+  /* Hard line-break protection: keep CTA + arrow on one line */
+  white-space: nowrap;
 }
-body.home-dark-luxury .price-card .btn-primary {
-  font-weight: 700;
+body.home-dark-luxury .price-card .btn-primary,
+.price-card .btn-primary {
+  font-weight: 700 !important;
+}
+/* Kill the ::before sweep highlight that adds weird flicker on the
+   gold button — clean flat surface reads more even */
+body.home-dark-luxury .price-card .btn-primary::before {
+  display: none;
 }
 /* Same treatment for the trust-band & inline-CTA variants that already
    use display font — keep consistent rhythm across all "primary CTA" */
