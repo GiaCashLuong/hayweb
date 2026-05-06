@@ -7,10 +7,10 @@
   <meta name="description" content="Liên hệ HAYWEB để được tư vấn miễn phí về dự án website của bạn. Chung cư R3 Onsen, KĐT Ecopark. 0797 986 525.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://hayweb.vercel.app/contact.html">
-  <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/inter-600-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2">
+  <link rel="preload" href="fonts/inter-600-latin.woff2" as="font" type="font/woff2">
+  <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2">
+  <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="js/leaflet.min.css">
 </head>
@@ -85,20 +85,20 @@
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label" id="lbl-name"></label>
-              <input type="text" id="con-name" class="form-input" required>
+              <label class="form-label" for="con-name" id="lbl-name"></label>
+              <input type="text" id="con-name" class="form-input" required autocomplete="name">
             </div>
             <div class="form-group">
-              <label class="form-label" id="lbl-email"></label>
-              <input type="email" id="con-email" class="form-input" required>
+              <label class="form-label" for="con-email" id="lbl-email"></label>
+              <input type="email" id="con-email" class="form-input" required autocomplete="email">
             </div>
           </div>
           <div class="form-group">
-            <label class="form-label" id="lbl-phone"></label>
-            <input type="tel" id="con-phone" class="form-input">
+            <label class="form-label" for="con-phone" id="lbl-phone"></label>
+            <input type="tel" id="con-phone" class="form-input" autocomplete="tel">
           </div>
           <div class="form-group">
-            <label class="form-label" id="lbl-msg"></label>
+            <label class="form-label" for="con-msg" id="lbl-msg"></label>
             <textarea id="con-msg" class="form-textarea" rows="5" required></textarea>
           </div>
           <div id="con-success" class="form-hint" style="color:var(--success);display:none"></div>

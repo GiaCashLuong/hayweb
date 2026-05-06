@@ -212,6 +212,48 @@ h2.section-title {
   font-weight: 700;
 }
 
+/* ── QA round (post 139/155 audit, P1 fixes):
+   1. H1 < H2 hierarchy violation on / and /about — promote H1 sizes
+      so they exceed sub-page H2 visually + measurably.
+   2. Form input font-size < 16px — iOS Safari auto-zooms on focus
+      below this threshold. Apply globally to ensure no field zooms. */
+
+/* Hero H1 — bump explicit size beats the previous clamp ceiling */
+body.home-dark-luxury .hero-title {
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  line-height: 1.05;
+}
+
+/* About-hero H1 — was shrunk to 2rem max for kicker tightness, but that
+   put H1 below sub-page H2. Bump to ≥2.4rem so it dominates the section
+   stack without re-introducing the 64px void above the H1. */
+body.home-dark-luxury .about-hero #about-title,
+body.home-dark-luxury .about-hero .section-title {
+  font-size: clamp(2rem, 3.4vw, 2.75rem) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.85rem !important;
+}
+
+/* Page-header H1 (pricing, portfolio, contact, guides) — same family,
+   ensure desktop renders at minimum 2.6rem (prev was inheriting clamp
+   ceiling of section-title via cascade). */
+body.home-dark-luxury .page-header h1,
+body.home-dark-luxury .page-header .section-title {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  line-height: 1.1;
+}
+
+/* Form inputs: 16px minimum to defeat iOS Safari focus-zoom */
+body.home-dark-luxury input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+body.home-dark-luxury textarea,
+body.home-dark-luxury select,
+body.home-dark-luxury .form-input,
+body.home-dark-luxury .form-textarea,
+body.home-dark-luxury .form-select {
+  font-size: 16px;
+  font-family: var(--font-body);
+}
+
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
 body {
   font-family: var(--font-body);
