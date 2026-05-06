@@ -5618,6 +5618,26 @@ body.home-dark-luxury .price-card .btn-primary::before {
   display: none;
 }
 
+/* ── Homepage tier CTA (.tier-cta) — same VN-friendly treatment.
+   These are DIFFERENT classes from the pricing-page .btn-primary/
+   .btn-outline buttons. Default .tier-cta uses font-mono UPPERCASE
+   letter-spacing 0.12em — same diacritic-cramping issue. */
+.tier-cta,
+.tier-cta-strong,
+.tier-cta-cream {
+  font-family: var(--font-display) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.005em !important;
+  text-transform: none !important;
+  padding: 1.05rem 1.5rem !important;
+  line-height: 1.3 !important;
+  white-space: nowrap;
+}
+.tier-cta-strong {
+  font-weight: 700 !important;
+}
+
 /* ── About page — value-card numerals in gold ── */
 body.home-dark-luxury .value-num {
   color: var(--gold-on-dark, #C9A042);

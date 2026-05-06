@@ -65,9 +65,9 @@ const i18n = {
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
-    price_cta_s:    'Bắt đầu ngay →',         // content-output.md §3 polish
-    price_cta_p:    'Nhận báo giá ngay →',    // content-output.md §3 polish
-    price_cta_e:    'Đặt buổi chiến lược →',  // content-output.md §3 polish
+    price_cta_s:    'Khởi tạo dự án →',       // peer-feedback: B2B premium tone, less pushy than "ngay"
+    price_cta_p:    'Yêu cầu báo giá →',      // peer-feedback: polite formal verb
+    price_cta_e:    'Đặt lịch tư vấn →',      // peer-feedback: shorter, professional
 
     // Portfolio
     port_label:     'Portfolio',
@@ -243,9 +243,9 @@ const i18n = {
     price_starter:  'Starter',
     price_pro:      'Professional',
     price_ent:      'Enterprise',
-    price_cta_s:    'Start now →',              // content-output.md §3 polish
-    price_cta_p:    'Get a quote →',            // content-output.md §3 polish
-    price_cta_e:    'Book a strategy call →',   // content-output.md §3 polish
+    price_cta_s:    'Start a project →',         // peer-feedback: B2B premium tone
+    price_cta_p:    'Request a quote →',         // peer-feedback: polite formal verb
+    price_cta_e:    'Book a consultation →',     // peer-feedback: shorter, professional
 
     port_label:     'Portfolio',
     port_title:     'Projects that',
