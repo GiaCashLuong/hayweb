@@ -499,33 +499,45 @@ function buildPage() {
   document.getElementById('cta-btn').textContent = vi ? 'Báo giá ngay →' : 'Get a quote →';
 }
 
-// Inline CTA block injected after ~2nd H2 — info → kích cầu mid-flow
+// Inline CTA block injected after ~2nd H2 — info → kích cầu mid-flow.
+// Falls back to "before end-strip" if the article has < 3 H2s (still gets CTA).
 function injectInlineCTA() {
   const content = document.getElementById('article-content');
   if (!content) return;
   const h2s = content.querySelectorAll('h2');
-  if (h2s.length < 3) return;            // skip short articles
 
-  // Insert before the H2 that sits roughly at the middle of the article
-  const targetH2 = h2s[Math.min(2, h2s.length - 2)]; // 3rd H2 (so block reads after H1 + 2 sections)
   const cta = document.createElement('aside');
   cta.className = 'article-inline-cta';
   cta.innerHTML = vi ? `
     <div class="inline-cta-body">
-      <span class="inline-cta-kicker">DỊCH VỤ TRỌN GÓI</span>
-      <strong class="inline-cta-headline">Đang đọc và tự hỏi giá thật bao nhiêu?</strong>
-      <p>HAYWEB triển khai chính xác theo bài viết này — báo giá chi tiết tự động trong 5 phút, đặt cọc 30%, bàn giao 3-14 ngày. Trễ hạn → hoàn tiền theo điều khoản hợp đồng.</p>
+      <span class="inline-cta-kicker">Báo giá tự động · 5 phút</span>
+      <strong class="inline-cta-headline">Đọc xong rồi — muốn HAYWEB triển khai thẳng?</strong>
+      <p>Điền form 5 phút, hệ thống tự động ra báo giá chi tiết kèm timeline + tier suggestion. Đặt cọc 30%, bàn giao 3-14 ngày. Trễ hạn → hoàn tiền theo điều khoản hợp đồng.</p>
+      <span class="inline-cta-compare">
+        <strong>HAYWEB: 5 phút có báo giá.</strong> Agency truyền thống: 1-2 tuần email qua lại để chốt scope, rồi mới có quote.
+      </span>
     </div>
-    <a href="/new-project.html" class="btn-primary inline-cta-btn">Báo giá 5 phút →</a>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Nhận báo giá ngay →</a>
   ` : `
     <div class="inline-cta-body">
-      <span class="inline-cta-kicker">FULL-SERVICE BUILD</span>
-      <strong class="inline-cta-headline">Reading and wondering what it actually costs?</strong>
-      <p>HAYWEB ships exactly what this article describes — auto-quote in 5 minutes, 30% deposit, 3-14 day delivery. Late = refund per contract clause.</p>
+      <span class="inline-cta-kicker">Auto-quote · 5 minutes</span>
+      <strong class="inline-cta-headline">Done reading — want HAYWEB to ship it?</strong>
+      <p>Fill the 5-minute form, our system auto-generates a detailed quote with timeline + tier suggestion. 30% deposit, 3-14 day delivery. Late = refund per contract clause.</p>
+      <span class="inline-cta-compare">
+        <strong>HAYWEB: 5 minutes to a quote.</strong> Traditional agencies: 1-2 weeks of emails to scope before they price.
+      </span>
     </div>
-    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a 5-min quote →</a>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a quote now →</a>
   `;
-  targetH2.parentNode.insertBefore(cta, targetH2);
+
+  if (h2s.length >= 3) {
+    // Insert before middle-ish H2 so reader hits CTA after digesting 2 sections
+    const targetH2 = h2s[Math.min(2, h2s.length - 2)];
+    targetH2.parentNode.insertBefore(cta, targetH2);
+  } else {
+    // Short article — append at end (before injectEndStrip's strip)
+    content.appendChild(cta);
+  }
 }
 
 // End-of-article trust strip — 3 proof chips (kích cầu via risk-reversal)

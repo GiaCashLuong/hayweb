@@ -1445,32 +1445,43 @@ function buildPage() {
   document.getElementById('cta-btn').textContent = vi ? 'Báo giá ngay →' : 'Get a quote →';
 }
 
-// Mid-service inline CTA — kích cầu after readers see scope
+// Mid-service inline CTA — kích cầu after readers see scope.
+// Fallback to "append at end" for short services (< 3 H2s).
 function injectServiceInlineCTA(serviceTitle) {
   const content = document.getElementById('article-content');
   if (!content) return;
   const h2s = content.querySelectorAll('h2');
-  if (h2s.length < 3) return;
 
-  const targetH2 = h2s[Math.min(2, h2s.length - 2)];
   const cta = document.createElement('aside');
   cta.className = 'article-inline-cta service-inline-cta';
   cta.innerHTML = vi ? `
     <div class="inline-cta-body">
-      <span class="inline-cta-kicker">DỊCH VỤ NÀY · BÁO GIÁ TỰ ĐỘNG</span>
-      <strong class="inline-cta-headline">Đã hình dung được scope. Giờ là lúc xem giá thực.</strong>
-      <p>Điền form 5 phút → nhận báo giá chi tiết PDF kèm timeline + tier suggestion. Không cần đợi "tư vấn viên liên hệ", không phí ẩn ở phase 2, trễ deadline → hoàn tiền.</p>
+      <span class="inline-cta-kicker">Dịch vụ này · Báo giá tự động</span>
+      <strong class="inline-cta-headline">Đã hình dung được scope — giờ xem giá thực luôn.</strong>
+      <p>Điền form 5 phút → nhận báo giá PDF chi tiết kèm timeline, tier phù hợp và breakdown từng hạng mục. Không phí ẩn ở phase 2. Trễ deadline → hoàn tiền theo điều khoản hợp đồng.</p>
+      <span class="inline-cta-compare">
+        <strong>HAYWEB: báo giá kèm scope ngay.</strong> Agency truyền thống: 50tr ban đầu → 80tr lúc bàn giao do "phí phát sinh".
+      </span>
     </div>
-    <a href="/new-project.html" class="btn-primary inline-cta-btn">Nhận báo giá 5 phút →</a>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Nhận báo giá ngay →</a>
   ` : `
     <div class="inline-cta-body">
-      <span class="inline-cta-kicker">THIS SERVICE · AUTO-QUOTE</span>
-      <strong class="inline-cta-headline">You've seen the scope. Now see the real price.</strong>
-      <p>Fill the 5-minute form → get a detailed PDF quote with timeline + tier suggestion. No "wait for a sales rep", no hidden phase-2 fees, late delivery → refund.</p>
+      <span class="inline-cta-kicker">This service · Auto-quote</span>
+      <strong class="inline-cta-headline">You've seen the scope — now see the real price.</strong>
+      <p>Fill the 5-minute form → get a detailed PDF quote with timeline, recommended tier, and per-line breakdown. No phase-2 surprise fees. Late = refund per contract clause.</p>
+      <span class="inline-cta-compare">
+        <strong>HAYWEB: quote with scope locked in.</strong> Traditional agencies: $2K up front → $3.5K at delivery via "scope creep".
+      </span>
     </div>
-    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a 5-min quote →</a>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a quote now →</a>
   `;
-  targetH2.parentNode.insertBefore(cta, targetH2);
+
+  if (h2s.length >= 3) {
+    const targetH2 = h2s[Math.min(2, h2s.length - 2)];
+    targetH2.parentNode.insertBefore(cta, targetH2);
+  } else {
+    content.appendChild(cta);
+  }
 }
 
 function injectServiceEndStrip() {

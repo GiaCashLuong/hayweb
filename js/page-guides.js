@@ -101,7 +101,8 @@ function buildPage() {
     ? 'Tổng hợp các bài viết ngắn gọn, dễ đọc — giúp doanh nghiệp ra quyết định sáng suốt khi chọn đối tác làm web.'
     : 'A curated set of short, readable posts to help businesses make smart decisions when choosing a web partner.';
 
-  document.getElementById('guides-grid').innerHTML = guides.map(g => {
+  // Render guides — split into 2 halves so we can drop a mid-page CTA between
+  const renderCard = g => {
     const art = g.art.replace('<svg ', '<svg class="guide-thumb-art" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" ');
     return `
     <article class="guide-card fade-up">
@@ -126,15 +127,42 @@ function buildPage() {
       </div>
     </article>
   `;
-  }).join('');
+  };
+  const splitAt = Math.ceil(guides.length / 2);
+  document.getElementById('guides-grid-top').innerHTML    = guides.slice(0, splitAt).map(renderCard).join('');
+  document.getElementById('guides-grid-bottom').innerHTML = guides.slice(splitAt).map(renderCard).join('');
 
+  // Mid-page inline CTA — between the two grid halves
+  document.getElementById('guides-mid-cta').innerHTML = vi ? `
+    <div class="inline-cta-body">
+      <span class="inline-cta-kicker">Đọc đủ rồi · Báo giá ngay</span>
+      <strong class="inline-cta-headline">Không cần đọc hết — bạn đã biết mình cần gì.</strong>
+      <p>Nếu sau vài bài đã rõ hướng đi, không cần đọc thêm. HAYWEB triển khai thẳng — báo giá chi tiết tự động trong 5 phút, đặt cọc 30%, bàn giao 3-14 ngày tùy gói.</p>
+      <span class="inline-cta-compare">
+        <strong>HAYWEB: 5 phút.</strong> Agency truyền thống: 1-2 tuần email qua lại trước khi có báo giá đầu tiên.
+      </span>
+    </div>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Nhận báo giá ngay →</a>
+  ` : `
+    <div class="inline-cta-body">
+      <span class="inline-cta-kicker">Read enough · Quote me</span>
+      <strong class="inline-cta-headline">You don't need to read it all — you know what you need.</strong>
+      <p>If a few articles already clarified the direction, skip the rest. HAYWEB ships directly — auto-quote in 5 minutes, 30% deposit, 3-14 day delivery per tier.</p>
+      <span class="inline-cta-compare">
+        <strong>HAYWEB: 5 minutes.</strong> Traditional agencies: 1-2 weeks of emails before even pricing it.
+      </span>
+    </div>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a quote now →</a>
+  `;
+
+  // Final CTA — sharper risk-reversal microcopy
   document.getElementById('cta-title').innerHTML = vi
-    ? 'Cần tư vấn cụ thể cho <em>dự án của bạn?</em>'
-    : 'Need specific advice for <em>your project?</em>';
+    ? 'Đọc xong rồi — <em>triển khai thẳng?</em>'
+    : 'Done reading — <em>ship it?</em>';
   document.getElementById('cta-desc').textContent = vi
-    ? 'Đội ngũ HAYWEB sẵn sàng phân tích miễn phí trong 30 phút đầu tiên.'
-    : 'Our team is ready for a free 30-minute analysis of your project.';
-  document.getElementById('cta-btn').textContent = vi ? 'Đặt lịch tư vấn' : 'Book a consultation';
+    ? 'Báo giá tự động 5 phút · Đặt cọc 30% · Bàn giao 3-14 ngày · Trễ hạn → hoàn tiền theo điều khoản hợp đồng.'
+    : 'Auto-quote in 5 min · 30% deposit · Delivered in 3-14 days · Late → refund per contract clause.';
+  document.getElementById('cta-btn').textContent = vi ? 'Báo giá ngay →' : 'Get a quote →';
 }
 
 async function init() {

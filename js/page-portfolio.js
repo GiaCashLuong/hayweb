@@ -80,7 +80,8 @@ let activeFilter = 'all';
 
 function renderProjects() {
   const filtered = activeFilter === 'all' ? projects : projects.filter(p => p.category === activeFilter);
-  document.getElementById('portfolio-grid').innerHTML = filtered.map(p => `
+
+  const cardHTML = p => `
     <div class="portfolio-full-card fade-up" style="--port-accent:${p.accent}">
       <div class="portfolio-full-img">
         <div class="portfolio-card-visual" aria-hidden="true"></div>
@@ -102,7 +103,42 @@ function renderProjects() {
         ` : `<span style="font-size:.78rem;color:var(--muted);display:block;margin-top:1rem">${vi ? 'Bảo mật theo yêu cầu khách hàng' : 'Private per client request'}</span>`}
       </div>
     </div>
-  `).join('');
+  `;
+
+  const midCTA = vi ? `
+    <aside class="article-inline-cta portfolio-mid-cta fade-up">
+      <div class="inline-cta-body">
+        <span class="inline-cta-kicker">Báo giá tự động · 5 phút</span>
+        <strong class="inline-cta-headline">Đã thấy outcome thật. Giờ xem giá thực luôn.</strong>
+        <p>Mỗi dự án trên đây đều có metric đo được — không phải testimonial chung chung. HAYWEB triển khai thẳng cho dự án của bạn theo cùng quy trình. Báo giá chi tiết trong 5 phút.</p>
+        <span class="inline-cta-compare">
+          <strong>HAYWEB: outcome đo được sau 1-2 tháng launch.</strong> Agency truyền thống: "case study" không số liệu cụ thể, không follow-up.
+        </span>
+      </div>
+      <a href="/new-project.html" class="btn-primary inline-cta-btn">Nhận báo giá ngay →</a>
+    </aside>
+  ` : `
+    <aside class="article-inline-cta portfolio-mid-cta fade-up">
+      <div class="inline-cta-body">
+        <span class="inline-cta-kicker">Auto-quote · 5 minutes</span>
+        <strong class="inline-cta-headline">You've seen real outcomes. Now see the real price.</strong>
+        <p>Every project above has a measured metric — not vague testimonials. HAYWEB ships your project on the same playbook. Detailed quote in 5 minutes.</p>
+        <span class="inline-cta-compare">
+          <strong>HAYWEB: measured outcome 1-2 months post-launch.</strong> Traditional agencies: "case studies" without specific numbers, no follow-up.
+        </span>
+      </div>
+      <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a quote now →</a>
+    </aside>
+  `;
+
+  // Inject mid-CTA after 3rd card (or middle card if fewer than 6)
+  const splitAt = Math.min(3, Math.ceil(filtered.length / 2));
+  const before = filtered.slice(0, splitAt).map(cardHTML).join('');
+  const after  = filtered.slice(splitAt).map(cardHTML).join('');
+  document.getElementById('portfolio-grid').innerHTML = filtered.length > 3
+    ? before + `<div class="portfolio-mid-cta-wrap">${midCTA}</div>` + after
+    : before + after;
+
   initScrollReveal();
 }
 
