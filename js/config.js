@@ -185,7 +185,7 @@ const i18n = {
 
     // Editorial v4 additions
     stats_meta:        'Số liệu cập nhật 04/2026 · Audit nội bộ',
-    why_side_caption:  'conversion đo được — A/B test, báo cáo ROI hàng tuần.', // content-output.md §3 polish: "conversion đo được"
+    why_side_caption:  'conversion đo được — A/B test, báo cáo ROI hàng tuần.', // hidden via CSS .side-caption{display:none} per peer 2026-05-06; kept value to avoid t() key-fallback rendering
 
     // Common
     loading:        'Đang tải...',
@@ -350,7 +350,7 @@ const i18n = {
 
     // Editorial v4 additions
     stats_meta:        'Numbers updated 04/2026 · Audited internally',
-    why_side_caption:  'measurable conversion — A/B test, weekly ROI report.', // content-output.md §3 polish
+    why_side_caption:  'measurable conversion — A/B test, weekly ROI report.', // hidden via CSS per peer 2026-05-06
 
     loading:        'Loading...',
     error:          'An error occurred. Please try again.',
