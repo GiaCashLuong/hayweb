@@ -4990,30 +4990,30 @@ body.home-dark-luxury .btn-outline:hover { border-color: var(--gold-on-dark); co
 body.home-dark-luxury .btn-ghost { color: var(--cream); }
 body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
 
-/* ── About page — founder portrait card ───────────────────────────────
-   Editorial portrait frame: dark-surface card + gold accent border-top,
-   subtle inner gradient so a transparent (background-removed) PNG sits
-   naturally on the dark page. */
+/* ── About page — founder portrait, full-bleed on dark ────────────────
+   PNG đã tách nền (transparent) → để bg trong cho nền đen của card lộ qua,
+   subject (người mặc vest) đứng trên dark-ink. Phóng to: bỏ padding,
+   tăng max-height, full-bleed image. */
 .founder-portrait {
   position: relative;
   margin: 0;
-  padding: 1.25rem 1.25rem 1.5rem;
-  background: linear-gradient(180deg, var(--dark-surface, #161410) 0%, var(--dark-surface-2, #1E1B16) 100%);
+  padding: 0;
+  background: var(--dark-ink, #0E0E0E);
   border: 1px solid var(--dark-border, rgba(244,239,230,0.10));
   border-top: 2px solid var(--gold-on-dark, #C9A042);
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.45),
-              0 0 0 1px rgba(201,160,66,0.08) inset;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55),
+              0 0 0 1px rgba(201,160,66,0.10) inset;
 }
 .founder-portrait::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 30%,
-                rgba(201,160,66,0.10) 0%,
-                rgba(201,160,66,0.04) 40%,
-                transparent 70%);
+  background: radial-gradient(ellipse at 50% 35%,
+                rgba(201,160,66,0.12) 0%,
+                rgba(201,160,66,0.04) 45%,
+                transparent 75%);
   pointer-events: none;
   z-index: 0;
 }
@@ -5023,15 +5023,11 @@ body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
   display: block;
   width: 100%;
   height: auto;
-  max-height: 560px;
+  max-height: 760px;                     /* phóng to: 560 → 760 */
   object-fit: contain;
   object-position: center bottom;
-  /* Photo has a white studio bg — embrace it as a polaroid-style portrait
-     card mounted on the dark page (intentional editorial contrast). The
-     gold-accent frame around makes the white block read as deliberate. */
-  background: #FFFFFF;
-  border-radius: 4px;
-  filter: contrast(1.02);
+  background: transparent;               /* PNG đã tách nền — không cần white bg */
+  filter: contrast(1.04) brightness(1.02);
 }
 
 .founder-portrait figcaption {
@@ -5040,10 +5036,10 @@ body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding-top: 1rem;
-  margin-top: 1rem;
+  padding: 1.25rem 1.5rem 1.5rem;        /* caption padding inside the dark card */
   border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
   font-family: var(--font-display);
+  background: var(--dark-surface, #161410);
 }
 .founder-portrait .founder-name {
   font-size: 0.78rem;
@@ -5058,5 +5054,5 @@ body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
   color: rgba(244,239,230,0.55);
 }
 @media (max-width: 768px) {
-  .founder-portrait img { max-height: 420px; }
+  .founder-portrait img { max-height: 520px; }
 }
