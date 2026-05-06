@@ -697,21 +697,21 @@
   function initAllEffects() {
     // Order matters: loading choreography first (changes DOM state),
     // then parallax (attaches scroll listener), then others.
+    const isSafari = document.documentElement.classList.contains('is-safari');
 
-    initLoadingChoreography();  // Effect 1 — Platinum
-    initScrollScrubbing();      // Effect 2 — Platinum (requires GSAP + SplitText)
-    initCustomCursorContext();  // Effect 3 — Platinum (extends existing cursor)
-    initParallaxHero();         // Effect 4 — Platinum (RAF scroll listener)
-    initSplitTextReveal();      // Effect 5 — Gold (GSAP SplitText)
-    initMagneticButtons();      // Effect 6 — Gold (pointer proximity)
-    initCardTilt3D();           // Effect 7 — Gold (3D mousemove tilt)
-    initTextScramble();         // Effect 8 — Gold (char cycling + counter)
-    initImageLift();            // Effect 9 — Silver (CSS + data-hover attr)
-    initImageBright();          // Effect 10 — Silver (CSS + data-hover attr)
+    initLoadingChoreography();                    // Effect 1 — Platinum
+    if (!isSafari) initScrollScrubbing();         // Effect 2 — Platinum scrub (Safari killer)
+    initCustomCursorContext();                    // Effect 3 — Platinum (extends existing cursor)
+    initParallaxHero();                           // Effect 4 — Platinum (already gated for Safari internally)
+    if (!isSafari) initSplitTextReveal();         // Effect 5 — Gold SplitText + ScrollTrigger heavy
+    initMagneticButtons();                        // Effect 6 — Gold (pointer-proximity, not scroll)
+    if (!isSafari) initCardTilt3D();              // Effect 7 — Gold 3D tilt (per-frame matrix3d on Safari = jank)
+    initTextScramble();                           // Effect 8 — Gold (one-shot counter)
+    initImageLift();                              // Effect 9 — Silver (hover-only)
+    initImageBright();                            // Effect 10 — Silver (hover-only)
 
     // Refresh ScrollTrigger after all effects registered
-    // (some effects add new triggers after page-index.js already called refresh)
-    if (GSAP_OK && ST_OK) {
+    if (GSAP_OK && ST_OK && !isSafari) {
       setTimeout(() => ScrollTrigger.refresh(), 200);
     }
   }

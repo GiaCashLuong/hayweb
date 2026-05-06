@@ -1203,6 +1203,21 @@ function initStrongScrollAnimations() {
   // Hero compass image entrance (P2c: caption removed, figure entrance kept)
   gsap.from('.hero-product-figure', { opacity: 0, duration: 1.2, delay: 0.6, ease: 'power3.out' });
 
+  // SAFARI BAIL — keep the page-load hero entrance anims above (one-shot,
+  // no ScrollTrigger). Skip every scroll-bound entrance below: pillar
+  // cards, stats, folio, tiers, why-screenshot, process steps, etc.
+  // Each ScrollTrigger forces per-scroll-frame work that compounds on
+  // Safari. Pages stay readable — just no scroll-reveal animations.
+  if (document.documentElement.classList.contains('is-safari')) {
+    document.querySelectorAll('.fade-up, .pillar-card, .tier, .stat-number, .why-screenshot, .process-step, .folio-feature, .folio-image-real')
+      .forEach(el => {
+        el.classList.add('revealed');
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    return;
+  }
+
   // PATTERN 2 — Section titles slide-from-left REMOVED (Pass 8 / Phase 3.2 Second Pass 2026-05-05)
   // Replaced by effects-motion.js Effect 5: split-text-reveal (per-char stagger via SplitText).
   // split-text-reveal targets [data-split-text] on the 8 section H2s with overwrite:'auto'

@@ -5723,6 +5723,74 @@ body.home-dark-luxury .value-num {
   will-change: auto !important;
 }
 
+/* ── SAFARI ROUND 2 (post-deploy: still janky) ──────────────────────────
+   Aggressive: kill every scroll-bound anim + transform residual + heavy
+   shadow + remaining filters. Site stays readable; just no entrance
+   choreography on Safari. */
+
+/* 7. Reveal every fade-up / scroll-anim target instantly — no transitions */
+.is-safari .fade-up,
+.is-safari .testimonial-card,
+.is-safari .pillar-card,
+.is-safari .tier,
+.is-safari .stat-number,
+.is-safari .why-screenshot,
+.is-safari .process-step,
+.is-safari .folio-feature,
+.is-safari .folio-image-real,
+.is-safari [data-split-text] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* 8. Reset hero compass parallax-CSS-var transform — even at 0px the
+      transform creates a separate compositor layer */
+.is-safari body.home-dark-luxury .hero-product-figure,
+.is-safari body.home-dark-luxury .hero-product-figure img,
+.is-safari body.home-dark-luxury .hero-art-typography {
+  transform: none !important;
+}
+
+/* 9. Drop ALL filters on bg images — flat backgrounds composite trivially */
+.is-safari body.home-dark-luxury .hero-visual-editorial::before,
+.is-safari body.home-dark-luxury .stats-section.stats-dark::before,
+.is-safari body.home-dark-luxury section.bg-blueprint-grid::before,
+.is-safari body.home-dark-luxury .testimonials-section-dark::before,
+.is-safari body.home-dark-luxury .scarcity-band::before,
+.is-safari body.home-dark-luxury .cta-band::before {
+  filter: none !important;
+}
+
+/* 10. Replace heavy box-shadows on tier-pro / pricing cards with cheap ones —
+       80px blur radius shadows force a 80px paint margin around each card */
+.is-safari .tier-pro,
+.is-safari body.home-dark-luxury .tier-pro {
+  box-shadow: 0 4px 14px rgba(166,124,46,0.20) !important;
+}
+.is-safari body.home-dark-luxury .price-card.featured {
+  box-shadow: 0 4px 14px rgba(201,160,66,0.18) !important;
+}
+.is-safari .founder-portrait {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45) !important;
+}
+
+/* 11. Disable card 3D tilt CSS perspective — 3D contexts force separate
+       layer trees and Safari struggles with their reflow */
+.is-safari .tilt,
+.is-safari [data-tilt] {
+  transform-style: flat !important;
+  perspective: none !important;
+}
+
+/* 12. Disable any decorative mask-image left over (rectangular fade etc.) */
+.is-safari [class*="mask-image"],
+.is-safari .hero-product-figure {
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
 /* ── About page hero — kicker sát desc, cắt khoảng trống đầu trang ── */
 body.home-dark-luxury .about-hero {
   padding: 3.5rem 0 2.5rem;       /* was 10rem 0 5rem — gần halve */
