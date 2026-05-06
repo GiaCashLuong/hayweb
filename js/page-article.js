@@ -464,11 +464,17 @@ function buildPage() {
   // Content
   document.getElementById('article-content').innerHTML = vi ? a.contentVI : a.contentEN;
 
+  // ── Inject mid-article inline CTA (kích cầu) ──
+  injectInlineCTA();
+
+  // ── Inject end-article trust strip (after content, before final CTA band) ──
+  injectEndStrip();
+
   // Sidebar
   document.getElementById('sidebar-label').textContent = vi
-    ? 'Sẵn sàng bắt đầu dự án của bạn?'
-    : 'Ready to start your project?';
-  document.getElementById('sidebar-btn').textContent = vi ? 'Nhận báo giá ngay' : 'Get a quote';
+    ? 'Đọc xong rồi — muốn HAYWEB triển khai thẳng?'
+    : 'Done reading — want HAYWEB to ship it for you?';
+  document.getElementById('sidebar-btn').textContent = vi ? 'Báo giá 5 phút →' : 'Get a 5-min quote →';
 
   // Build TOC from h2s
   const h2s = document.querySelectorAll('.article-content h2');
@@ -483,14 +489,65 @@ function buildPage() {
     document.getElementById('article-toc').innerHTML = tocHTML;
   }
 
-  // CTA
+  // CTA — sharper risk-reversal microcopy
   document.getElementById('cta-title').innerHTML = vi
-    ? 'Muốn áp dụng điều này cho <em>dự án của bạn?</em>'
-    : 'Want to apply this to <em>your project?</em>';
+    ? 'Muốn áp dụng điều này cho <em>dự án thật?</em>'
+    : 'Want to apply this to <em>a real project?</em>';
   document.getElementById('cta-desc').textContent = vi
-    ? 'Đội ngũ HAYWEB tư vấn miễn phí và báo giá trong 5 phút.'
-    : 'HAYWEB team offers free consultation and quotes in 5 minutes.';
-  document.getElementById('cta-btn').textContent = vi ? 'Bắt đầu ngay' : 'Get started';
+    ? 'Báo giá tự động 5 phút · Đặt cọc 30% · Bàn giao 3-14 ngày · Trễ hạn → hoàn tiền theo điều khoản hợp đồng.'
+    : 'Auto-quote in 5 min · 30% deposit · Delivered in 3-14 days · Late delivery → refund per contract clause.';
+  document.getElementById('cta-btn').textContent = vi ? 'Báo giá ngay →' : 'Get a quote →';
+}
+
+// Inline CTA block injected after ~2nd H2 — info → kích cầu mid-flow
+function injectInlineCTA() {
+  const content = document.getElementById('article-content');
+  if (!content) return;
+  const h2s = content.querySelectorAll('h2');
+  if (h2s.length < 3) return;            // skip short articles
+
+  // Insert before the H2 that sits roughly at the middle of the article
+  const targetH2 = h2s[Math.min(2, h2s.length - 2)]; // 3rd H2 (so block reads after H1 + 2 sections)
+  const cta = document.createElement('aside');
+  cta.className = 'article-inline-cta';
+  cta.innerHTML = vi ? `
+    <div class="inline-cta-body">
+      <span class="inline-cta-kicker">DỊCH VỤ TRỌN GÓI</span>
+      <strong class="inline-cta-headline">Đang đọc và tự hỏi giá thật bao nhiêu?</strong>
+      <p>HAYWEB triển khai chính xác theo bài viết này — báo giá chi tiết tự động trong 5 phút, đặt cọc 30%, bàn giao 3-14 ngày. Trễ hạn → hoàn tiền theo điều khoản hợp đồng.</p>
+    </div>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Báo giá 5 phút →</a>
+  ` : `
+    <div class="inline-cta-body">
+      <span class="inline-cta-kicker">FULL-SERVICE BUILD</span>
+      <strong class="inline-cta-headline">Reading and wondering what it actually costs?</strong>
+      <p>HAYWEB ships exactly what this article describes — auto-quote in 5 minutes, 30% deposit, 3-14 day delivery. Late = refund per contract clause.</p>
+    </div>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a 5-min quote →</a>
+  `;
+  targetH2.parentNode.insertBefore(cta, targetH2);
+}
+
+// End-of-article trust strip — 3 proof chips (kích cầu via risk-reversal)
+function injectEndStrip() {
+  const content = document.getElementById('article-content');
+  if (!content) return;
+  const strip = document.createElement('div');
+  strip.className = 'article-end-strip';
+  strip.innerHTML = vi ? `
+    <div class="end-strip-row">
+      <div class="end-strip-cell"><strong>30/30</strong><span>Dự án bàn giao đúng hạn</span></div>
+      <div class="end-strip-cell"><strong>0</strong><span>Khiếu nại pháp lý sau bàn giao</span></div>
+      <div class="end-strip-cell"><strong>100%</strong><span>Sở hữu source code</span></div>
+    </div>
+  ` : `
+    <div class="end-strip-row">
+      <div class="end-strip-cell"><strong>30/30</strong><span>Projects delivered on time</span></div>
+      <div class="end-strip-cell"><strong>0</strong><span>Legal complaints post-handover</span></div>
+      <div class="end-strip-cell"><strong>100%</strong><span>Source-code ownership</span></div>
+    </div>
+  `;
+  content.appendChild(strip);
 }
 
 async function init() {

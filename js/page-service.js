@@ -1415,10 +1415,14 @@ function buildPage() {
 
   document.getElementById('article-content').innerHTML = vi ? s.contentVI : s.contentEN;
 
+  // ── Mid-content inline CTA + end-content trust strip (info + kích cầu) ──
+  injectServiceInlineCTA(title);
+  injectServiceEndStrip();
+
   document.getElementById('sidebar-label').textContent = vi
-    ? 'Quan tâm đến dịch vụ này?'
-    : 'Interested in this service?';
-  document.getElementById('sidebar-btn').textContent = vi ? 'Nhận báo giá ngay' : 'Get a quote';
+    ? 'Sẵn sàng triển khai dịch vụ này?'
+    : 'Ready to ship this service?';
+  document.getElementById('sidebar-btn').textContent = vi ? 'Báo giá 5 phút →' : 'Get a 5-min quote →';
 
   const h2s = document.querySelectorAll('.article-content h2');
   if (h2s.length > 0) {
@@ -1433,12 +1437,61 @@ function buildPage() {
   }
 
   document.getElementById('cta-title').innerHTML = vi
-    ? 'Sẵn sàng bắt đầu <em>dự án của bạn?</em>'
-    : 'Ready to start <em>your project?</em>';
+    ? 'Sẵn sàng triển khai <em>dịch vụ này?</em>'
+    : 'Ready to ship <em>this service?</em>';
   document.getElementById('cta-desc').textContent = vi
-    ? 'Đội ngũ HAYWEB tư vấn miễn phí và báo giá chi tiết trong 5 phút.'
-    : 'HAYWEB team offers free consultation and detailed quotes in 5 minutes.';
-  document.getElementById('cta-btn').textContent = vi ? 'Bắt đầu ngay' : 'Get started';
+    ? 'Báo giá tự động 5 phút · Đặt cọc 30% · Bàn giao đúng hạn · Trễ → hoàn tiền theo điều khoản hợp đồng.'
+    : 'Auto-quote in 5 min · 30% deposit · On-time delivery · Late → refund per contract clause.';
+  document.getElementById('cta-btn').textContent = vi ? 'Báo giá ngay →' : 'Get a quote →';
+}
+
+// Mid-service inline CTA — kích cầu after readers see scope
+function injectServiceInlineCTA(serviceTitle) {
+  const content = document.getElementById('article-content');
+  if (!content) return;
+  const h2s = content.querySelectorAll('h2');
+  if (h2s.length < 3) return;
+
+  const targetH2 = h2s[Math.min(2, h2s.length - 2)];
+  const cta = document.createElement('aside');
+  cta.className = 'article-inline-cta service-inline-cta';
+  cta.innerHTML = vi ? `
+    <div class="inline-cta-body">
+      <span class="inline-cta-kicker">DỊCH VỤ NÀY · BÁO GIÁ TỰ ĐỘNG</span>
+      <strong class="inline-cta-headline">Đã hình dung được scope. Giờ là lúc xem giá thực.</strong>
+      <p>Điền form 5 phút → nhận báo giá chi tiết PDF kèm timeline + tier suggestion. Không cần đợi "tư vấn viên liên hệ", không phí ẩn ở phase 2, trễ deadline → hoàn tiền.</p>
+    </div>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Nhận báo giá 5 phút →</a>
+  ` : `
+    <div class="inline-cta-body">
+      <span class="inline-cta-kicker">THIS SERVICE · AUTO-QUOTE</span>
+      <strong class="inline-cta-headline">You've seen the scope. Now see the real price.</strong>
+      <p>Fill the 5-minute form → get a detailed PDF quote with timeline + tier suggestion. No "wait for a sales rep", no hidden phase-2 fees, late delivery → refund.</p>
+    </div>
+    <a href="/new-project.html" class="btn-primary inline-cta-btn">Get a 5-min quote →</a>
+  `;
+  targetH2.parentNode.insertBefore(cta, targetH2);
+}
+
+function injectServiceEndStrip() {
+  const content = document.getElementById('article-content');
+  if (!content) return;
+  const strip = document.createElement('div');
+  strip.className = 'article-end-strip';
+  strip.innerHTML = vi ? `
+    <div class="end-strip-row">
+      <div class="end-strip-cell"><strong>3-14 ngày</strong><span>Bàn giao tùy gói</span></div>
+      <div class="end-strip-cell"><strong>30/30</strong><span>Dự án đúng hạn</span></div>
+      <div class="end-strip-cell"><strong>100%</strong><span>Source code thuộc về bạn</span></div>
+    </div>
+  ` : `
+    <div class="end-strip-row">
+      <div class="end-strip-cell"><strong>3-14 days</strong><span>Delivery per tier</span></div>
+      <div class="end-strip-cell"><strong>30/30</strong><span>Projects on time</span></div>
+      <div class="end-strip-cell"><strong>100%</strong><span>You own the source</span></div>
+    </div>
+  `;
+  content.appendChild(strip);
 }
 
 async function init() {
