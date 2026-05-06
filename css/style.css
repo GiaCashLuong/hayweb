@@ -4859,7 +4859,53 @@ body.home-dark-luxury {
   --border:         var(--dark-border);
   --border-hover:   var(--dark-border-hover);
   --gold:           var(--gold-on-dark);          /* brighter on dark — 5.13:1 on #0E0E0E */
+  --white:          var(--dark-surface);          /* was #FFFFFF — used by .price-card etc */
 }
+
+/* ── Pricing page (.price-card) — sub-page tier styling ── */
+body.home-dark-luxury .price-card {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+}
+body.home-dark-luxury .price-card.featured {
+  background: var(--dark-surface-2);
+  border-color: var(--gold-on-dark);
+  border-top: 3px solid var(--gold-on-dark);
+  box-shadow: 0 24px 60px rgba(201,160,66,0.18);
+}
+body.home-dark-luxury .price-card.featured::before { color: var(--gold-on-dark); opacity: 0.85; }
+body.home-dark-luxury .price-tier { color: var(--gold-on-dark); }
+body.home-dark-luxury .price-amount { color: var(--cream); }
+body.home-dark-luxury .price-amount-usd { color: var(--dark-muted); }
+body.home-dark-luxury .price-divider { background: var(--dark-border); }
+body.home-dark-luxury .price-features li { color: var(--cream); }
+body.home-dark-luxury .price-features li svg { stroke: var(--gold-on-dark); }
+body.home-dark-luxury .price-card .btn-outline {
+  background: transparent;
+  border: 1px solid var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury .price-card .btn-outline:hover {
+  border-color: var(--gold-on-dark);
+  color: var(--gold-on-dark);
+}
+body.home-dark-luxury .price-card .btn-primary {
+  background: var(--gold-on-dark);
+  color: var(--dark-ink);
+  border: none;
+  font-weight: 700;
+}
+body.home-dark-luxury .price-card .btn-primary:hover {
+  background: var(--cream);
+  color: var(--dark-ink);
+}
+
+/* Pricing page comparison table + FAQ */
+body.home-dark-luxury .compare-table,
+body.home-dark-luxury #compare-table { color: var(--cream); }
+body.home-dark-luxury .compare-table th { background: var(--dark-surface-2); color: var(--gold-on-dark); }
+body.home-dark-luxury .check-yes { color: var(--gold-on-dark); }
+body.home-dark-luxury .check-no  { color: rgba(244,239,230,0.30); }
 
 /* ── Form fields on sub-pages (contact, quote, new-project, auth) ── */
 body.home-dark-luxury input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
