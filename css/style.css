@@ -4838,3 +4838,108 @@ body.home-dark-luxury .process-step:nth-child(5) .process-num {
   opacity: 1 !important;
   text-shadow: none;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MANUAL FIX 2026-05-06 — round 4: SUB-PAGES dark-luxury tone
+   Strategy: redefine the base :root tokens INSIDE body.home-dark-luxury so
+   every component that uses var(--bg) / var(--surface) / var(--text) /
+   var(--muted) / var(--border) auto-themes for dark mode. Homepage's 346
+   explicit overrides already use dark-specific tokens (var(--cream),
+   var(--gold-on-dark), …) so they don't depend on these — no regression.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+body.home-dark-luxury {
+  --bg:             var(--dark-ink);              /* was #F4EFE6 cream */
+  --surface:        var(--dark-surface);          /* was #FAF7EE paper */
+  --surface-hover:  var(--dark-surface-2);
+  --text:           var(--cream);                 /* was #1a1a1a near-black */
+  --silver:         var(--cream);                 /* body text token */
+  --silver-light:   rgba(244,239,230,0.72);
+  --muted:          var(--dark-muted);            /* was rgba(26,26,26,0.58) */
+  --border:         var(--dark-border);
+  --border-hover:   var(--dark-border-hover);
+  --gold:           var(--gold-on-dark);          /* brighter on dark — 5.13:1 on #0E0E0E */
+}
+
+/* ── Form fields on sub-pages (contact, quote, new-project, auth) ── */
+body.home-dark-luxury input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+body.home-dark-luxury textarea,
+body.home-dark-luxury select {
+  background: var(--dark-surface-2);
+  color: var(--cream);
+  border: 1px solid var(--dark-border-hover);
+}
+body.home-dark-luxury input:focus,
+body.home-dark-luxury textarea:focus,
+body.home-dark-luxury select:focus {
+  border-color: var(--gold-on-dark);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(201,160,66,0.18);
+}
+body.home-dark-luxury input::placeholder,
+body.home-dark-luxury textarea::placeholder { color: rgba(244,239,230,0.40); }
+body.home-dark-luxury label,
+body.home-dark-luxury .form-label { color: var(--cream); }
+
+/* ── Sub-page page banner / page-header (about, guides, article, etc.) ── */
+body.home-dark-luxury .page-header,
+body.home-dark-luxury .page-banner,
+body.home-dark-luxury .hero-mini {
+  background: var(--dark-ink);
+  color: var(--cream);
+  border-color: var(--dark-border);
+}
+
+/* ── FAQ / accordion / guides cards ── */
+body.home-dark-luxury .faq-item,
+body.home-dark-luxury .accordion,
+body.home-dark-luxury .guide-card,
+body.home-dark-luxury .article-card {
+  background: var(--dark-surface);
+  border-color: var(--dark-border);
+  color: var(--cream);
+}
+body.home-dark-luxury .faq-question,
+body.home-dark-luxury .faq-q { color: var(--cream); }
+body.home-dark-luxury .faq-answer,
+body.home-dark-luxury .faq-a { color: var(--dark-muted); }
+
+/* ── Article body text (article.html long-form) ── */
+body.home-dark-luxury .article-body,
+body.home-dark-luxury .article-body p,
+body.home-dark-luxury .article-content { color: var(--cream); }
+body.home-dark-luxury .article-body h2,
+body.home-dark-luxury .article-body h3 { color: var(--cream); }
+body.home-dark-luxury .article-body a { color: var(--gold-on-dark); }
+body.home-dark-luxury .article-body blockquote {
+  border-left-color: var(--gold-on-dark);
+  color: var(--dark-muted);
+}
+body.home-dark-luxury .article-body code,
+body.home-dark-luxury .article-body pre {
+  background: var(--dark-surface-2);
+  color: var(--cream);
+  border: 1px solid var(--dark-border);
+}
+
+/* ── Tables (dashboard, pricing comparison) ── */
+body.home-dark-luxury table { color: var(--cream); }
+body.home-dark-luxury th { color: var(--cream); border-color: var(--dark-border); }
+body.home-dark-luxury td { color: var(--dark-muted); border-color: var(--dark-border); }
+body.home-dark-luxury tr:hover td { background: var(--dark-surface-2); }
+
+/* ── Generic text/heading safety net ── */
+body.home-dark-luxury h1,
+body.home-dark-luxury h2,
+body.home-dark-luxury h3,
+body.home-dark-luxury h4,
+body.home-dark-luxury h5 { color: var(--cream); }
+
+/* ── Buttons ── */
+body.home-dark-luxury .btn-outline {
+  border-color: var(--dark-border-hover);
+  color: var(--cream);
+}
+body.home-dark-luxury .btn-outline:hover { border-color: var(--gold-on-dark); color: var(--gold-on-dark); }
+body.home-dark-luxury .btn-ghost { color: var(--cream); }
+body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
