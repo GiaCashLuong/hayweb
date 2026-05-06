@@ -1,3 +1,16 @@
+// ── Safari perf firewall — detect Safari early so CSS can disable effects
+// that cause scroll jank (background-attachment: fixed, backdrop-filter,
+// mix-blend-mode, deep filter chains). Must run BEFORE first paint of any
+// scroll-bound section.
+(function _detectSafari() {
+  const ua = navigator.userAgent;
+  // Match Safari (desktop + iOS) but exclude Chrome, Chromium, Edge, Firefox-iOS, Android browsers
+  const isSafari = /^((?!chrome|chromium|android|edg|crios|fxios|opr).)*safari/i.test(ua);
+  if (isSafari) {
+    document.documentElement.classList.add('is-safari');
+  }
+})();
+
 const SUPABASE_URL     = 'https://jllirmrpkayiyajwebbr.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbGlybXJwa2F5aXlhandlYmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MDI5NDMsImV4cCI6MjA5MjM3ODk0M30.1_DZoCymoVUwdPrv_cZQPkF4NT9Rcucw7kvONvcCs0A';
 const HW_FN_BASE       = `${SUPABASE_URL}/functions/v1`;
@@ -423,24 +436,31 @@ async function renderNav(activePage) {
   nav.querySelector('#nav-lang-btn').addEventListener('click', toggleLang);
   nav.querySelector('#nav-menu-btn').addEventListener('click', () => nav.classList.toggle('open'));
 
-  // nav-dark: section-aware inversion when overlapping dark sections
-  // (pivot-audit §C #7 — BLOCKER for dark footer and stats readability)
+  // nav-dark: section-aware inversion when overlapping dark sections.
+  // rAF-throttled — without it, every scroll event forced N getBoundingClientRect
+  // reads (= sync layout). On Safari that was the dominant scroll-jank source.
+  const _darkSections = () => document.querySelectorAll('.stats-dark, footer.footer-dark, [data-nav-dark]');
   function updateNavDark() {
     const navRect = nav.getBoundingClientRect();
     const navBottom = navRect.bottom;
-    const darkSections = document.querySelectorAll('.stats-dark, footer.footer-dark, [data-nav-dark]');
     let isDark = false;
-    darkSections.forEach(section => {
+    _darkSections().forEach(section => {
       const r = section.getBoundingClientRect();
       if (r.top <= navBottom && r.bottom >= 0) isDark = true;
     });
     nav.classList.toggle('nav-dark', isDark);
   }
 
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-    updateNavDark();
-  }, { passive: true });
+  let _navRaf = null;
+  function onNavScroll() {
+    if (_navRaf) return;
+    _navRaf = requestAnimationFrame(() => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+      updateNavDark();
+      _navRaf = null;
+    });
+  }
+  window.addEventListener('scroll', onNavScroll, { passive: true });
   nav.classList.toggle('scrolled', window.scrollY > 40);
   updateNavDark();
 }

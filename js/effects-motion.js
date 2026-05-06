@@ -231,6 +231,9 @@
   function initParallaxHero() {
     if (REDUCED_MOTION || TIER === 'low') return;
     if (IS_TOUCH) return; // mobile: background-attachment:fixed already disabled in CSS
+    // Safari perf: skip parallax entirely — the per-frame style.setProperty
+    // forces compositor invalidations that Safari can't keep up with.
+    if (document.documentElement.classList.contains('is-safari')) return;
 
     const hero = document.querySelector('#home');
     if (!hero) return;

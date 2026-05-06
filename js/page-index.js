@@ -1369,18 +1369,27 @@ function initStrongScrollAnimations() {
 
   // PATTERN 11 — Marquee scroll-velocity boost (Pass 7)
   // Fast scroll → marquee speeds up, then eases back to 64s baseline.
-  let _lastScroll = window.scrollY;
-  window.addEventListener('scroll', () => {
-    const velocity = Math.abs(window.scrollY - _lastScroll);
-    _lastScroll = window.scrollY;
+  // rAF-throttled + skipped on Safari (its scroll fires at slower paint rate
+  // and the duration-mutation triggers re-layout of the marquee track).
+  if (!document.documentElement.classList.contains('is-safari')) {
+    let _lastScroll = window.scrollY;
+    let _marqueeRaf = null;
     const marqueeTrack = document.querySelector('.marquee-track');
-    if (marqueeTrack && velocity > 5) {
-      marqueeTrack.style.animationDuration = Math.max(8, 64 - velocity * 0.5) + 's';
-      setTimeout(() => {
-        if (marqueeTrack) marqueeTrack.style.animationDuration = '64s';
-      }, 800);
-    }
-  }, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (_marqueeRaf || !marqueeTrack) return;
+      _marqueeRaf = requestAnimationFrame(() => {
+        const velocity = Math.abs(window.scrollY - _lastScroll);
+        _lastScroll = window.scrollY;
+        if (velocity > 5) {
+          marqueeTrack.style.animationDuration = Math.max(8, 64 - velocity * 0.5) + 's';
+          setTimeout(() => {
+            if (marqueeTrack) marqueeTrack.style.animationDuration = '64s';
+          }, 800);
+        }
+        _marqueeRaf = null;
+      });
+    }, { passive: true });
+  }
 
   // PATTERN 12 — Stats counter increment from 0 to target (Pass 7)
   // Combines with Pattern 4 scale-in. Reads data-count attribute set in buildPage() stats render.

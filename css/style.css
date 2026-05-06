@@ -5654,6 +5654,75 @@ body.home-dark-luxury .value-num {
   display: none !important;
 }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   SAFARI PERF FIREWALL — disable scroll-jank-causing effects on Safari
+   (desktop + iOS). Class .is-safari added by config.js detectSafari() to
+   <html> before first paint of any scroll-bound section.
+
+   Why this is needed: Safari's compositor handles a few CSS features much
+   worse than Chrome/Firefox:
+     1. background-attachment: fixed — repaints on every scroll frame
+        instead of moving a cached layer
+     2. backdrop-filter — every value, even 0.5px blur, triggers full
+        backdrop sampling
+     3. mix-blend-mode — disables GPU acceleration on the parent layer
+     4. multi-pass filter chains (blur + hue-rotate + saturate) — each
+        pass = separate GPU shader invocation
+
+   These are all "ok in moderation" on Chrome but compound to scroll jank
+   on Safari. We strip them on .is-safari while keeping them everywhere
+   else.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* 1. background-attachment fixed → scroll across all viewports on Safari
+      (existing fix at line 3859 only covered max-width: 768px) */
+.is-safari body.home-dark-luxury .stats-section.stats-dark::before,
+.is-safari body.home-dark-luxury section.bg-blueprint-grid::before,
+.is-safari body.home-dark-luxury .testimonials-section-dark::before,
+.is-safari body.home-dark-luxury .scarcity-band::before,
+.is-safari body.home-dark-luxury .cta-band::before {
+  background-attachment: scroll !important;
+  /* Drop blur from filter chain — keep hue/brightness/saturation only */
+  filter: hue-rotate(-12deg) saturate(0.85) brightness(0.55) !important;
+}
+
+/* 2. backdrop-filter disabled — even 0.5px blur is a Safari tax */
+.is-safari .hero-product-figure::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 3. mix-blend-mode → opacity equivalent on body grain texture */
+.is-safari body.home-dark-luxury::before {
+  mix-blend-mode: normal !important;
+  opacity: 0.045;                         /* matches the visual weight of the previous screen blend */
+}
+
+/* 4. Drop blur on hero velvet bg (Mode B) — keep darkening */
+.is-safari body.home-dark-luxury .hero-visual-editorial::before {
+  filter: brightness(0.45) contrast(1.05) saturate(0.7) !important;
+}
+
+/* 5. Cheap perf hint: tell Safari that large bg sections are independent
+      paint contexts — scroll within one doesn't reflow others. */
+.is-safari .stats-section.stats-dark,
+.is-safari section.bg-blueprint-grid,
+.is-safari .testimonials-section-dark,
+.is-safari .pricing-section-dark,
+.is-safari .scarcity-band,
+.is-safari .cta-band {
+  contain: layout;
+}
+
+/* 6. Disable will-change on parallax targets when Safari skips parallax —
+      frees GPU memory that was being reserved for layers we never animate. */
+.is-safari body.home-dark-luxury .hero-visual-editorial::before,
+.is-safari body.home-dark-luxury .hero-art-typography,
+.is-safari body.home-dark-luxury .hero-product-figure,
+.is-safari body.home-dark-luxury::before {
+  will-change: auto !important;
+}
+
 /* ── About page hero — kicker sát desc, cắt khoảng trống đầu trang ── */
 body.home-dark-luxury .about-hero {
   padding: 3.5rem 0 2.5rem;       /* was 10rem 0 5rem — gần halve */
