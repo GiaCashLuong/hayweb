@@ -5056,3 +5056,116 @@ body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
 @media (max-width: 768px) {
   .founder-portrait img { max-height: 520px; }
 }
+
+/* ── About page — 5-column comparison table (HAYWEB vs DIY/freelance/agency) ── */
+.about-compare-section {
+  background: var(--dark-ink, #0E0E0E);
+  border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-bottom: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  position: relative;
+}
+.about-compare-table {
+  display: grid;
+  grid-template-columns: 1.4fr 1.2fr 1fr 1fr 1.1fr;
+  background: var(--dark-surface, #161410);
+  border: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.about-compare-table .cmp-row {
+  display: contents;
+}
+.about-compare-table .cmp-cell {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-right: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  color: var(--cream, #F4EFE6);
+  line-height: 1.45;
+}
+.about-compare-table .cmp-cell:nth-child(5n) { border-right: none; }
+.about-compare-table .cmp-row:last-child .cmp-cell { border-bottom: none; }
+.about-compare-table .cmp-head .cmp-cell {
+  background: var(--dark-surface-2, #1E1B16);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--dark-muted, rgba(244,239,230,0.55));
+  padding: 1rem 1.25rem;
+}
+.about-compare-table .cmp-cell-label {
+  font-family: var(--font-display);
+  color: var(--gold-on-dark, #C9A042);
+  font-weight: 600;
+}
+.about-compare-table .cmp-head .cmp-cell-label {
+  color: var(--dark-muted, rgba(244,239,230,0.55));
+}
+.about-compare-table .cmp-cell-hayweb {
+  background: rgba(201,160,66,0.08);
+  color: var(--cream, #F4EFE6) !important;
+  position: relative;
+}
+.about-compare-table .cmp-head .cmp-cell-hayweb {
+  background: var(--gold-on-dark, #C9A042);
+  color: var(--dark-ink, #0E0E0E) !important;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  position: relative;
+}
+.about-compare-table .cmp-col-tag {
+  display: inline-flex;
+  align-items: center;
+  background: var(--dark-ink, #0E0E0E);
+  color: var(--gold-on-dark, #C9A042);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 100px;
+  margin-right: 0.5rem;
+  font-weight: 700;
+}
+.about-compare-table .cmp-mark {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.about-compare-table .cmp-good .cmp-mark {
+  background: rgba(201,160,66,0.18);
+  color: var(--gold-on-dark, #C9A042);
+}
+.about-compare-table .cmp-bad .cmp-mark {
+  background: rgba(244,239,230,0.06);
+  color: rgba(244,239,230,0.40);
+}
+.about-compare-table .cmp-mid .cmp-mark {
+  background: rgba(244,239,230,0.08);
+  color: var(--dark-muted, rgba(244,239,230,0.55));
+}
+.about-compare-table .cmp-good { color: var(--cream, #F4EFE6); font-weight: 500; }
+.about-compare-table .cmp-bad  { color: rgba(244,239,230,0.45); }
+.about-compare-table .cmp-mid  { color: rgba(244,239,230,0.72); }
+.about-compare-table .cmp-text { color: var(--cream, #F4EFE6); }
+
+@media (max-width: 1024px) {
+  .about-compare-table { grid-template-columns: 1.2fr 1fr 1fr; overflow-x: auto; }
+  .about-compare-table .cmp-cell:nth-child(4),
+  .about-compare-table .cmp-cell:nth-child(5),
+  .about-compare-table .cmp-cell:nth-child(5n + 4),
+  .about-compare-table .cmp-cell:nth-child(5n + 5) { display: none; }
+  .about-compare-table .cmp-cell:nth-child(3n) { border-right: none; }
+}
+@media (max-width: 640px) {
+  .about-compare-table .cmp-cell { padding: 0.85rem 0.75rem; font-size: 0.84rem; }
+  .about-compare-table .cmp-head .cmp-cell { font-size: 0.66rem; padding: 0.75rem 0.75rem; }
+}

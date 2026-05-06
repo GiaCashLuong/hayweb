@@ -1,41 +1,97 @@
 const vi = currentLang === 'vi';
 
+// 4 sharp values, mỗi cái có comparison angle (vs DIY / agency / freelance pattern)
 const values = [
   {
     num: '01',
-    titleVI: 'Chất lượng không thỏa hiệp', titleEN: 'Uncompromising Quality',
-    descVI: 'Mỗi dòng code, mỗi pixel trên màn hình đều được chúng tôi kiểm tra kỹ lưỡng. Chúng tôi không chấp nhận "tạm ổn".',
-    descEN: 'Every line of code, every pixel on screen is carefully reviewed. We do not accept "good enough".'
+    titleVI: 'Code tay 100%, không template',
+    titleEN: '100% custom code, no templates',
+    descVI: 'Mỗi pixel được vẽ riêng cho thương hiệu của bạn — không Wix, không WordPress builder, không "lấy theme đẹp về sửa". Vì website giống hệt 200 doanh nghiệp khác không phải tài sản, đó là tiêu sản.',
+    descEN: 'Every pixel drawn for your brand — no Wix, no WordPress builders, no "buy a theme and tweak it". A site that looks like 200 other businesses is not an asset — it\'s a liability.'
   },
   {
     num: '02',
-    titleVI: 'Minh bạch tuyệt đối', titleEN: 'Absolute Transparency',
-    descVI: 'Báo giá rõ ràng, tiến độ cập nhật realtime, không phí ẩn. Bạn luôn biết chính xác tiền của mình đang được dùng vào đâu.',
-    descEN: 'Clear pricing, realtime progress updates, no hidden fees. You always know exactly where your money is being used.'
+    titleVI: 'Báo giá cố định trong 5 phút',
+    titleEN: 'Fixed quote in 5 minutes',
+    descVI: 'Điền form → nhận báo giá chi tiết tự động — không "chờ liên hệ tuần sau", không phí ẩn ở phase 2, không "phát sinh do scope mở rộng". Giá ký hôm nay là giá thanh toán cuối kỳ.',
+    descEN: 'Fill the form → get a detailed quote automatically — no "we\'ll get back to you next week", no hidden phase-2 fees, no "scope creep" surprises. The price you sign today is the price you pay.'
   },
   {
     num: '03',
-    titleVI: 'Đặt khách hàng làm trung tâm', titleEN: 'Client-First Mindset',
-    descVI: 'Thành công của bạn chính là thành công của chúng tôi. Mỗi quyết định thiết kế đều hướng đến mục tiêu kinh doanh của bạn.',
-    descEN: 'Your success is our success. Every design decision is directed toward your business goals.'
+    titleVI: 'Đúng hạn hoặc hoàn tiền — cam kết pháp lý',
+    titleEN: 'On-time or refund — legally binding',
+    descVI: 'Trễ deadline 1 ngày → giảm 10% giá trị. Trễ 7 ngày → hoàn 100%. Đây là điều khoản trong hợp đồng, không phải khẩu hiệu marketing. 30/30 dự án đã bàn giao đúng hạn.',
+    descEN: '1 day late → 10% off. 7 days late → 100% refund. This is a contract clause, not a marketing slogan. 30/30 projects delivered on time.'
   },
   {
     num: '04',
-    titleVI: 'Đổi mới liên tục', titleEN: 'Continuous Innovation',
-    descVI: 'Luôn cập nhật xu hướng và công nghệ mới nhất. Sản phẩm của bạn sẽ không bao giờ lỗi thời khi làm việc với HAYWEB.',
-    descEN: 'Always updated with the latest trends and technologies. Your product will never become outdated when working with HAYWEB.'
+    titleVI: 'Source code 100% thuộc về bạn',
+    titleEN: 'You own 100% of the source code',
+    descVI: 'Bàn giao kèm Git repo + tài khoản hosting + hướng dẫn deploy — bạn có thể đổi đối tác bảo trì bất cứ lúc nào. Không subscription, không lock-in, không "trả phí duy trì hàng tháng cho hosting riêng".',
+    descEN: 'You receive the Git repo + hosting credentials + deployment guide — switch maintainers anytime. No subscriptions, no lock-in, no "monthly platform fees".'
+  },
+];
+
+// Refined defensive stats — proof + trust signals
+const stats = [
+  { count: 30, suffix: '+',   labelVI: 'Dự án bàn giao',         labelEN: 'Projects delivered' },
+  { count: 100, suffix: '%',  labelVI: 'Đúng hạn (30/30)',        labelEN: 'On-time (30/30)' },
+  { count: 99.97, suffix: '%',labelVI: 'Uptime 12 tháng',         labelEN: 'Uptime, 12 months' },
+  { count: 0, suffix: '',     labelVI: 'Khiếu nại pháp lý',       labelEN: 'Legal complaints' },
+];
+
+// Comparison rows — HAYWEB vs DIY (Wix/Webflow) vs Freelance giá rẻ vs Agency truyền thống
+// Cấu trúc: { rowVI/rowEN, hayweb, diy, freelance, agency }
+// Each cell: { type: 'good'|'bad'|'mid'|'text', vi: string, en: string }
+const compareRows = [
+  {
+    rowVI: 'Giá khởi điểm', rowEN: 'Starting price',
+    hayweb:    { type: 'text', vi: '8 – 35 triệu',     en: '8 – 35M VND ($320 – $1,400)' },
+    diy:       { type: 'mid',  vi: '~6tr/năm subscription', en: '~$240/yr subscription' },
+    freelance: { type: 'mid',  vi: '3 – 15 triệu',     en: '3 – 15M VND ($120 – $600)' },
+    agency:    { type: 'bad',  vi: '50 – 250 triệu',   en: '50 – 250M VND ($2K – $10K)' },
   },
   {
-    num: '05',
-    titleVI: 'Cam kết đúng hạn', titleEN: 'On-time Commitment',
-    descVI: 'Deadline là sacred với chúng tôi. Bàn giao đúng hạn hoặc hoàn tiền 100% — đây không phải là khẩu hiệu mà là cam kết pháp lý.',
-    descEN: 'Deadlines are sacred to us. On-time delivery or 100% refund — this is not a slogan but a legal commitment.'
+    rowVI: 'Thời gian bàn giao', rowEN: 'Delivery time',
+    hayweb:    { type: 'good', vi: '3 – 14 ngày',      en: '3 – 14 days' },
+    diy:       { type: 'mid',  vi: 'Tự làm vài tuần',  en: 'DIY, weeks' },
+    freelance: { type: 'bad',  vi: '1 – 3 tháng',      en: '1 – 3 months' },
+    agency:    { type: 'bad',  vi: '2 – 6 tháng',      en: '2 – 6 months' },
   },
   {
-    num: '06',
-    titleVI: 'Hỗ trợ dài hạn', titleEN: 'Long-term Support',
-    descVI: 'Mối quan hệ không kết thúc khi bàn giao sản phẩm. Chúng tôi đồng hành cùng bạn trong suốt hành trình phát triển.',
-    descEN: 'The relationship does not end when the product is delivered. We accompany you throughout your development journey.'
+    rowVI: 'Sở hữu source code', rowEN: 'Source-code ownership',
+    hayweb:    { type: 'good', vi: '100% bạn sở hữu',  en: '100% yours' },
+    diy:       { type: 'bad',  vi: 'Thuộc Wix/Webflow', en: 'Locked to Wix/Webflow' },
+    freelance: { type: 'mid',  vi: 'Phụ thuộc người làm', en: 'Depends on freelancer' },
+    agency:    { type: 'mid',  vi: 'Tùy hợp đồng',     en: 'Per contract' },
+  },
+  {
+    rowVI: 'Đúng hạn hoặc hoàn tiền', rowEN: 'On-time or refund',
+    hayweb:    { type: 'good', vi: 'Có (cam kết pháp lý)', en: 'Yes (legally binding)' },
+    diy:       { type: 'bad',  vi: 'Không áp dụng',     en: 'N/A' },
+    freelance: { type: 'bad',  vi: 'Không',             en: 'No' },
+    agency:    { type: 'bad',  vi: 'Hiếm khi',          en: 'Rarely' },
+  },
+  {
+    rowVI: 'Tốc độ trang (Lighthouse)', rowEN: 'Page speed (Lighthouse)',
+    hayweb:    { type: 'good', vi: '90+ / 100',         en: '90+ / 100' },
+    diy:       { type: 'mid',  vi: '50 – 70 / 100',     en: '50 – 70 / 100' },
+    freelance: { type: 'mid',  vi: 'Tùy người làm',     en: 'Varies' },
+    agency:    { type: 'mid',  vi: '60 – 80 / 100',     en: '60 – 80 / 100' },
+  },
+  {
+    rowVI: 'Bảo mật (Mozilla Observatory)', rowEN: 'Security (Mozilla Observatory)',
+    hayweb:    { type: 'good', vi: '100/100 A+',        en: '100/100 A+' },
+    diy:       { type: 'mid',  vi: 'B – C',             en: 'B – C' },
+    freelance: { type: 'bad',  vi: 'D – F (thường gặp)', en: 'D – F (typical)' },
+    agency:    { type: 'mid',  vi: 'B – A',             en: 'B – A' },
+  },
+  {
+    rowVI: 'Hỗ trợ sau bàn giao', rowEN: 'Post-launch support',
+    hayweb:    { type: 'good', vi: '30 ngày miễn phí + gói SLA', en: '30 days free + SLA tiers' },
+    diy:       { type: 'mid',  vi: 'Forum cộng đồng',   en: 'Community forum' },
+    freelance: { type: 'bad',  vi: 'Tùy lúc rảnh',      en: 'When they\'re free' },
+    agency:    { type: 'mid',  vi: 'Tính phí giờ',      en: 'Hourly billing' },
   },
 ];
 
@@ -50,62 +106,94 @@ function svgTeamAvatar(variant) {
 }
 
 const team = [
-  {
-    nameVI: 'Gia Lương', nameEN: 'Gia Luong',
-    roleVI: 'Founder & Lead Developer', roleEN: 'Founder & Lead Developer',
-    avatarVariant: 'a'
-  },
-  {
-    nameVI: 'Minh Tuyết', nameEN: 'Minh Tuyet',
-    roleVI: 'UI/UX Designer', roleEN: 'UI/UX Designer',
-    avatarVariant: 'b'
-  },
-  {
-    nameVI: 'Thái Bình', nameEN: 'Thai Binh',
-    roleVI: 'Backend & Database', roleEN: 'Backend & Database',
-    avatarVariant: 'c'
-  },
-  {
-    nameVI: 'Lan Anh', nameEN: 'Lan Anh',
-    roleVI: 'Project Manager', roleEN: 'Project Manager',
-    avatarVariant: 'd'
-  },
+  { nameVI: 'Gia Lương',  nameEN: 'Gia Luong',  roleVI: 'Founder · Lead Developer',  roleEN: 'Founder · Lead Developer',  avatarVariant: 'a' },
+  { nameVI: 'Minh Tuyết', nameEN: 'Minh Tuyet', roleVI: 'UI/UX Designer',            roleEN: 'UI/UX Designer',            avatarVariant: 'b' },
+  { nameVI: 'Thái Bình',  nameEN: 'Thai Binh',  roleVI: 'Backend & Database',        roleEN: 'Backend & Database',        avatarVariant: 'c' },
+  { nameVI: 'Lan Anh',    nameEN: 'Lan Anh',    roleVI: 'Project Manager',           roleEN: 'Project Manager',           avatarVariant: 'd' },
 ];
 
-const stats = [
-  { count: 120, suffix: '+', labelVI: 'Dự án đã bàn giao', labelEN: 'Projects Delivered' },
-  { count: 98, suffix: '%', labelVI: 'Khách hàng hài lòng', labelEN: 'Client Satisfaction' },
-  { count: 5, suffix: '+', labelVI: 'Năm kinh nghiệm', labelEN: 'Years Experience' },
-  { count: 50, suffix: '+', labelVI: 'Đối tác tin cậy', labelEN: 'Trusted Partners' },
-];
+function renderCompareTable() {
+  const el = document.getElementById('about-compare-table');
+  if (!el) return;
+  const cellMark = { good: '✓', bad: '✗', mid: '◯', text: '' };
+  const cellClass = { good: 'cmp-good', bad: 'cmp-bad', mid: 'cmp-mid', text: 'cmp-text' };
+
+  const headerRow = `
+    <div class="cmp-row cmp-head" role="row">
+      <div class="cmp-cell cmp-cell-label" role="columnheader">${vi ? 'Tiêu chí' : 'Criteria'}</div>
+      <div class="cmp-cell cmp-cell-hayweb" role="columnheader">
+        <span class="cmp-col-tag">${vi ? 'CHỌN' : 'PICK'}</span>HAYWEB
+      </div>
+      <div class="cmp-cell" role="columnheader">${vi ? 'DIY (Wix/Webflow)' : 'DIY (Wix/Webflow)'}</div>
+      <div class="cmp-cell" role="columnheader">${vi ? 'Freelance giá rẻ' : 'Cheap freelance'}</div>
+      <div class="cmp-cell" role="columnheader">${vi ? 'Agency truyền thống' : 'Traditional agency'}</div>
+    </div>`;
+
+  const bodyRows = compareRows.map(r => {
+    const c = (col) => {
+      const v = r[col];
+      const text = vi ? v.vi : v.en;
+      const mark = cellMark[v.type] || '';
+      const cls  = cellClass[v.type] || '';
+      return `<div class="cmp-cell ${cls}" role="cell">${mark ? `<span class="cmp-mark">${mark}</span>` : ''}<span class="cmp-text">${text}</span></div>`;
+    };
+    return `
+      <div class="cmp-row" role="row">
+        <div class="cmp-cell cmp-cell-label" role="rowheader">${vi ? r.rowVI : r.rowEN}</div>
+        ${c('hayweb')}
+        ${c('diy')}
+        ${c('freelance')}
+        ${c('agency')}
+      </div>`;
+  }).join('');
+
+  el.innerHTML = headerRow + bodyRows;
+}
 
 function init() {
   renderNav('about');
   renderFooter();
 
-  document.getElementById('about-label').textContent = vi ? 'Về chúng tôi' : 'About Us';
+  // ── Hero — sharper positioning + LF8 status desire (Big-4 access) ──
+  document.getElementById('about-label').textContent = vi ? 'Studio Hà Nội · Circa 2020' : 'Hanoi Studio · Circa 2020';
   document.getElementById('about-title').innerHTML = vi
-    ? 'Chúng tôi <em>kiến tạo</em> hơn là thiết kế'
-    : 'We <em>craft</em> rather than design';
+    ? 'Website đẳng cấp <em>Big 4</em> — không còn là đặc quyền của Big 4'
+    : '<em>Big-4-grade</em> websites — without the Big-4 invoice';
   document.getElementById('about-desc').textContent = vi
-    ? 'HAYWEB ra đời từ niềm tin rằng mỗi doanh nghiệp xứng đáng có một website đẳng cấp thế giới — không phân biệt quy mô hay ngân sách.'
-    : 'HAYWEB was born from the belief that every business deserves a world-class website — regardless of size or budget.';
+    ? 'Trong 5 năm, HAYWEB chỉ làm một việc: code tay từng dự án, báo giá cố định, bàn giao đúng hạn. 30/30 dự án về đích đúng deadline. 0 khiếu nại pháp lý sau bàn giao. Một quy trình duy nhất, hai cam kết: minh bạch giá, sở hữu 100% source code.'
+    : 'For 5 years, HAYWEB has done one thing: hand-code every project, fixed pricing, on-time delivery. 30/30 projects shipped on deadline. Zero legal complaints. One process, two promises: transparent pricing, 100% source-code ownership.';
 
-  document.getElementById('story-label').textContent = vi ? 'Câu chuyện' : 'Our Story';
+  // ── Story — narrative arc with demand-stim opening ──
+  document.getElementById('story-label').textContent = vi ? 'Vì sao có HAYWEB' : 'Why HAYWEB exists';
   document.getElementById('story-title').innerHTML = vi
-    ? 'Từ một đam mê, <em>thành một sứ mệnh</em>'
-    : 'From a passion, <em>to a mission</em>';
-  document.getElementById('story-p1').textContent = vi
-    ? 'HAYWEB được thành lập năm 2020 bởi một nhóm kỹ sư và designer đam mê với tầm nhìn: đưa chất lượng thiết kế web quốc tế đến với doanh nghiệp Việt Nam với mức giá hợp lý và quy trình minh bạch.'
-    : 'HAYWEB was founded in 2020 by a group of passionate engineers and designers with a vision: to bring international-quality web design to Vietnamese businesses at fair prices with transparent processes.';
-  document.getElementById('story-p2').textContent = vi
-    ? 'Trong hơn 5 năm hoạt động, chúng tôi đã hoàn thành hơn 120 dự án cho khách hàng từ nhà hàng, bất động sản, thương mại điện tử đến startup công nghệ. Mỗi dự án là một bài học, mỗi khách hàng là một người bạn đồng hành.'
-    : 'Over 5 years of operation, we have completed more than 120 projects for clients ranging from restaurants, real estate, e-commerce to tech startups. Each project is a lesson, each client is a companion.';
+    ? 'Năm 2020, chúng tôi nói <em>KHÔNG</em> với 3 thứ'
+    : 'In 2020, we said <em>NO</em> to three things';
+  document.getElementById('story-p1').innerHTML = vi
+    ? '<strong>Thứ nhất —</strong> KHÔNG template Wix/WordPress 200k bán đại trà mà 50 doanh nghiệp cùng dùng. <strong>Thứ hai —</strong> KHÔNG báo giá 50 triệu cho việc đáng 15 triệu rồi đẻ thêm "phí phát sinh" sau hợp đồng. <strong>Thứ ba —</strong> KHÔNG bàn giao file ZIP rồi biến mất khi khách cần đổi logo, sửa nội dung hay deploy lên hosting mới.'
+    : '<strong>First —</strong> NO mass-produced Wix/WordPress templates that 50 other businesses already use. <strong>Second —</strong> NO 50M-VND quotes for 15M-VND work, then "additional fees" after the contract. <strong>Third —</strong> NO handing over a ZIP file then disappearing when the client needs to update a logo, edit content, or deploy to a new host.';
+  document.getElementById('story-p2').innerHTML = vi
+    ? 'Sau 5 năm — 30 dự án bàn giao, 0 khiếu nại pháp lý — công thức đã rõ: <strong>code tay 100%</strong>, báo giá cố định trong 5 phút, ký số online, đúng hạn hoặc hoàn tiền, source code thuộc về bạn ngay khi nghiệm thu. Đó là khác biệt giữa "studio" và "shop làm web".'
+    : 'After 5 years — 30 projects delivered, zero legal complaints — the formula is clear: <strong>100% hand-coded</strong>, fixed quote in 5 minutes, digital signing, on-time-or-refund, source code yours on delivery. That\'s the difference between a studio and a web shop.';
 
-  document.getElementById('values-label').textContent = vi ? 'Giá trị cốt lõi' : 'Core Values';
+  // ── Comparison section (NEW — kích cầu) ──
+  document.getElementById('compare-label').textContent = vi ? 'So sánh thẳng' : 'Direct comparison';
+  document.getElementById('compare-title').innerHTML = vi
+    ? 'HAYWEB so với <em>3 lựa chọn khác</em>'
+    : 'HAYWEB vs <em>three alternatives</em>';
+  document.getElementById('compare-desc').textContent = vi
+    ? 'Mỗi tiêu chí dưới đây là một quyết định bạn phải đưa ra trước khi ký hợp đồng. Chúng tôi liệt kê thẳng — không che, không spin.'
+    : 'Each row below is a decision you face before signing. We lay it out — no hedging, no spin.';
+  renderCompareTable();
+  document.getElementById('compare-cta').textContent = vi ? 'Bắt đầu dự án ngay →' : 'Start your project →';
+  document.getElementById('compare-cta-sub').textContent = vi
+    ? 'Báo giá trong 5 phút · Đặt cọc 30% · Trễ hạn → hoàn tiền'
+    : 'Quote in 5 min · 30% deposit · Late delivery → refund';
+
+  // ── Values — 4 sharp, comparison-flavored ──
+  document.getElementById('values-label').textContent = vi ? 'Giá trị cốt lõi' : 'Core principles';
   document.getElementById('values-title').innerHTML = vi
-    ? 'Những gì chúng tôi <em>tin tưởng</em>'
-    : 'What we <em>believe in</em>';
+    ? 'Bốn điều chúng tôi <em>không bao giờ</em> đánh đổi'
+    : 'Four things we will <em>never</em> compromise on';
   document.getElementById('values-grid').innerHTML = values.map(v => `
     <div class="value-card fade-up">
       <div class="value-num">${v.num}</div>
@@ -114,6 +202,7 @@ function init() {
     </div>
   `).join('');
 
+  // ── Stats — defensive proof points ──
   document.getElementById('stats-grid').innerHTML = stats.map(s => `
     <div class="stat-item fade-up">
       <div class="stat-number"><span data-count="${s.count}">${s.count}</span><span class="stat-suffix">${s.suffix}</span></div>
@@ -121,10 +210,11 @@ function init() {
     </div>
   `).join('');
 
-  document.getElementById('team-label').textContent = vi ? 'Đội ngũ' : 'Our Team';
+  // ── Team ──
+  document.getElementById('team-label').textContent = vi ? 'Đội ngũ' : 'Our team';
   document.getElementById('team-title').innerHTML = vi
-    ? 'Những người <em>tạo nên HAYWEB</em>'
-    : 'The people <em>behind HAYWEB</em>';
+    ? 'Bốn người, <em>một nguyên tắc</em>'
+    : 'Four people, <em>one principle</em>';
   document.getElementById('team-grid').innerHTML = team.map(m => `
     <div class="team-card fade-up">
       <div class="team-avatar"><img src="${svgTeamAvatar(m.avatarVariant)}" alt="${vi ? m.nameVI : m.nameEN}" loading="lazy"></div>
@@ -133,8 +223,11 @@ function init() {
     </div>
   `).join('');
 
-  document.getElementById('cta-title').innerHTML = `${t('cta_title')} <em>${t('cta_title_em')}</em>`;
-  document.getElementById('cta-btn').textContent = t('cta_btn');
+  // ── CTA — risk-reversal stack ──
+  document.getElementById('cta-title').innerHTML = vi
+    ? 'Sẵn sàng <em>sở hữu</em> website tiếp theo của bạn?'
+    : 'Ready to <em>own</em> your next site?'
+  document.getElementById('cta-btn').textContent = vi ? 'Nhận báo giá 5 phút →' : 'Get a 5-minute quote →';
 
   initScrollReveal();
   initStatsCounter();
