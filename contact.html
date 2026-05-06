@@ -21,6 +21,13 @@
   </div>
 </div>
 
+<!-- 4-step "what happens next" trust strip — reduces form-friction (kích cầu) -->
+<section class="contact-trust-section" data-nav-dark>
+  <div class="container">
+    <div class="contact-trust-grid" id="contact-trust-strip"></div>
+  </div>
+</section>
+
 <section>
   <div class="container">
     <div class="contact-grid">
@@ -93,9 +100,15 @@
           <div id="con-success" class="form-hint" style="color:var(--success);display:none"></div>
           <div id="con-error" class="form-error"></div>
           <button type="submit" class="btn-primary" id="con-send" style="margin-top:1rem"></button>
+          <p class="form-reassurance">
+            <span class="form-reassurance-icon" aria-hidden="true">🔒</span>
+            <span class="form-reassurance-text" id="form-reassurance-text"></span>
+          </p>
         </form>
       </div>
     </div>
+    <!-- Alternative paths — for users not ready to fill form -->
+    <div class="contact-alt-strip fade-up" id="contact-alt-strip"></div>
   </div>
 </section>
 

@@ -5169,3 +5169,261 @@ body.home-dark-luxury .btn-ghost:hover { color: var(--gold-on-dark); }
   .about-compare-table .cmp-cell { padding: 0.85rem 0.75rem; font-size: 0.84rem; }
   .about-compare-table .cmp-head .cmp-cell { font-size: 0.66rem; padding: 0.75rem 0.75rem; }
 }
+
+/* ── Pricing page — pain strip (kích cầu) ───────────────────────────── */
+.pricing-pain-section {
+  background: var(--dark-ink, #0E0E0E);
+  border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+}
+.pricing-pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.pain-card {
+  background: var(--dark-surface, #161410);
+  border: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-top: 2px solid var(--gold-on-dark, #C9A042);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.5rem;
+}
+.pain-card .pain-icon {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  min-width: 56px;
+  height: 32px;
+  padding: 0 0.85rem;
+  border-radius: 100px;
+  background: rgba(201,160,66,0.14);
+  color: var(--gold-on-dark, #C9A042);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+}
+.pain-card h4 {
+  color: var(--cream, #F4EFE6);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.pain-card p {
+  color: rgba(244,239,230,0.72);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .pricing-pain-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Pricing page — tier tag under name ─────────────────────────────── */
+.price-tag-tier {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-on-dark, #C9A042);
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  background: rgba(201,160,66,0.10);
+  border-radius: 100px;
+}
+body.home-dark-luxury .price-card.featured .price-tag-tier {
+  background: rgba(14,14,14,0.40);
+  color: var(--gold-on-dark, #C9A042);
+}
+
+/* ── Pricing page — trust band (post-tier risk-reversal proof) ──────── */
+.pricing-trust-band {
+  background: var(--dark-surface-2, #1E1B16);
+  border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-bottom: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  padding: 3rem 0 !important;
+}
+.pricing-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.trust-item strong {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold-on-dark, #C9A042);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.trust-item span {
+  font-size: 0.82rem;
+  color: rgba(244,239,230,0.62);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+@media (max-width: 768px) {
+  .pricing-trust-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+/* ── Pricing page — compare-table "PICK" tag on Pro column ──────────── */
+.cmp-pick-tag {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  background: var(--gold-on-dark, #C9A042);
+  color: var(--dark-ink, #0E0E0E);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  border-radius: 100px;
+  vertical-align: middle;
+}
+
+/* ── Portfolio page — outcome metric block on each card ─────────────── */
+.portfolio-outcome {
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+  background: rgba(201,160,66,0.06);
+  border-left: 2px solid var(--gold-on-dark, #C9A042);
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.portfolio-outcome .outcome-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.55);
+}
+.portfolio-outcome strong {
+  color: var(--gold-on-dark, #C9A042);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+.portfolio-outcome .delivery-meta {
+  font-size: 0.78rem;
+  color: rgba(244,239,230,0.55);
+  font-style: italic;
+}
+
+/* ── Contact page — 4-step "what happens next" trust strip ──────────── */
+.contact-trust-section {
+  background: var(--dark-surface, #161410);
+  border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-bottom: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+}
+.contact-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.contact-trust-step {
+  padding: 1.5rem 1.25rem;
+  background: var(--dark-ink, #0E0E0E);
+  border: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-radius: var(--radius);
+  position: relative;
+}
+.contact-trust-step .step-num {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-on-dark, #C9A042);
+  margin-bottom: 0.65rem;
+  font-weight: 700;
+}
+.contact-trust-step h4 {
+  color: var(--cream, #F4EFE6);
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.contact-trust-step p {
+  color: rgba(244,239,230,0.62);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+@media (max-width: 1024px) {
+  .contact-trust-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 540px) {
+  .contact-trust-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Contact page — form reassurance microcopy under submit ────────── */
+.form-reassurance {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(201,160,66,0.06);
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: rgba(244,239,230,0.65);
+  line-height: 1.5;
+}
+.form-reassurance-icon { font-size: 0.85rem; flex-shrink: 0; }
+
+/* ── Contact page — alternative path strip (escape hatches) ────────── */
+.contact-alt-strip {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  text-align: center;
+}
+.contact-alt-strip .alt-label {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(244,239,230,0.55);
+  margin-bottom: 1.5rem;
+}
+.contact-alt-strip .alt-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.contact-alt-strip .alt-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1rem;
+  background: var(--dark-surface, #161410);
+  border: 1px solid var(--dark-border, rgba(244,239,230,0.10));
+  border-radius: var(--radius);
+  transition: border-color .25s ease, transform .25s ease;
+}
+.contact-alt-strip .alt-link:hover {
+  border-color: var(--gold-on-dark, #C9A042);
+  transform: translateY(-2px);
+}
+.contact-alt-strip .alt-link strong {
+  color: var(--cream, #F4EFE6);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+.contact-alt-strip .alt-link span {
+  color: rgba(244,239,230,0.55);
+  font-size: 0.78rem;
+}
+@media (max-width: 768px) {
+  .contact-alt-strip .alt-links { grid-template-columns: 1fr; }
+}
