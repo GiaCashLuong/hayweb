@@ -5587,3 +5587,29 @@ body.home-dark-luxury .price-card.featured .price-tag-tier {
 .portfolio-mid-cta {
   margin: 0 !important;          /* remove the article-inline-cta default 3rem */
 }
+
+/* ── Pricing tier CTA — VN-friendly: drop uppercase + open up tracking ──
+   "Bắt đầu ngay", "Nhận báo giá ngay", "Đặt buổi chiến lược" cramped
+   under default .btn-primary { text-transform: uppercase; letter-
+   spacing: 0.08em }. Diacritics need air. Scoped to price-card only. */
+body.home-dark-luxury .price-card .btn-primary,
+body.home-dark-luxury .price-card .btn-outline {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  padding: 1.1rem 1.75rem;
+  line-height: 1.3;
+}
+body.home-dark-luxury .price-card .btn-primary {
+  font-weight: 700;
+}
+/* Same treatment for the trust-band & inline-CTA variants that already
+   use display font — keep consistent rhythm across all "primary CTA" */
+body.home-dark-luxury .article-inline-cta .inline-cta-btn {
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  padding: 1.1rem 1.85rem;
+}
