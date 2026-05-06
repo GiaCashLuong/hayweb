@@ -141,7 +141,24 @@
 
   --font-display: 'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
   --font-body:    'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
-  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  /* JetBrains Mono is NOT self-hosted in this project — fallback was
+     'Courier New' / generic monospace which renders Vietnamese diacritics
+     as bitmap fallback glyphs (the "DỊCH VỤ / LIÊN HỆ pixelated" complaint).
+     Switch --font-mono to Be Vietnam Pro so every label/kicker that uses
+     this token gets real VN glyphs. Genuine code blocks (article <code>,
+     <pre>) re-opt back to system monospace via local override below. */
+  --font-mono:        'Be Vietnam Pro', system-ui, -apple-system, sans-serif;
+  --font-mono-strict: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, 'Courier New', monospace;
+}
+
+/* Code blocks — keep real monospace (rare ASCII-only contexts) */
+code,
+pre,
+.article-content code,
+.article-content pre,
+kbd,
+samp {
+  font-family: var(--font-mono-strict) !important;
 }
 
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; overflow-x: clip; }
