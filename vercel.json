@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://images.unsplash.com https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://*.basemaps.cartocdn.com; connect-src 'self' https://jllirmrpkayiyajwebbr.supabase.co https://api-merchant.payos.vn; frame-src 'self' https://checkout.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://images.unsplash.com https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://*.clarity.ms https://*.google-analytics.com; connect-src 'self' https://jllirmrpkayiyajwebbr.supabase.co https://api-merchant.payos.vn https://*.google-analytics.com https://*.analytics.google.com https://*.clarity.ms; frame-src 'self' https://checkout.stripe.com; object-src 'none'; base-uri 'self'; form-action 'self'"
         },
         {
           "key": "X-Frame-Options",

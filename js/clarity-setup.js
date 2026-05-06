@@ -1,15 +1,10 @@
 'use strict';
 
 // Microsoft Clarity — Session Recording + Heatmaps (FREE)
-// TODO: Get project ID from clarity.microsoft.com
-// 1. Go to clarity.microsoft.com
-// 2. Create new project for hayweb.vercel.app
-// 3. Copy the project ID below
+// Project: hayweb.vercel.app
+const CLARITY_ID = 'wjwi5fs4rg';
 
-const CLARITY_ID = 'XXXXXXXXXX'; // ← REPLACE THIS
-
-// Self-hosted Clarity script
-// TODO: Download clarity.js from the Clarity dashboard embed code and save to hayweb/js/clarity.js
+// Self-hosted Clarity loader (script downloaded from clarity.ms/tag/{ID} → /js/clarity.js)
 (function(c, l, a, r, i, t, y) {
   c[a] = c[a] || function() { (c[a].q = c[a].q || []).push(arguments); };
   t = l.createElement(r); t.async = 1; t.src = '/js/clarity.js';

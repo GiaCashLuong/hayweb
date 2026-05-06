@@ -1,8 +1,7 @@
 'use strict';
 
-// TODO: Replace GA4_MEASUREMENT_ID with real ID from Google Analytics
-// Get it from: analytics.google.com → Admin → Data Streams → Web Stream → Measurement ID
-const GA4_ID = 'G-XXXXXXXXXX'; // ← REPLACE THIS
+// GA4 Measurement ID — property: hayweb.vercel.app
+const GA4_ID = 'G-QGCT87D43F';
 
 /* ── Utility: throttle ── */
 function throttle(fn, ms) {
@@ -14,6 +13,14 @@ function throttle(fn, ms) {
 }
 
 function gtag() { window.dataLayer = window.dataLayer || []; window.dataLayer.push(arguments); }
+
+/* ── GA4 bootstrap — fires page_view immediately ── */
+gtag('js', new Date());
+gtag('config', GA4_ID, {
+  send_page_view: true,
+  anonymize_ip: true,
+  cookie_flags: 'SameSite=Strict;Secure'
+});
 
 /* ── 1. Scroll depth ── */
 (function() {
