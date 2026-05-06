@@ -5618,6 +5618,14 @@ body.home-dark-luxury .price-card .btn-primary::before {
   display: none;
 }
 
+/* ── About page — value-card numerals in gold ── */
+body.home-dark-luxury .value-num {
+  color: var(--gold-on-dark, #C9A042);
+  opacity: 0.85;
+  font-weight: 700;
+  text-shadow: 0 0 24px rgba(201,160,66,0.20);
+}
+
 /* ── About page hero — kicker sát desc, cắt khoảng trống đầu trang ── */
 body.home-dark-luxury .about-hero {
   padding: 3.5rem 0 2.5rem;       /* was 10rem 0 5rem — gần halve */
