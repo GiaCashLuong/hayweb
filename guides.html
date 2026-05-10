@@ -8,12 +8,80 @@
   <meta property="og:title" content="Hướng dẫn – HAYWEB">
   <meta property="og:description" content="Resource hub cho doanh nghiệp muốn đầu tư web đúng cách.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="canonical" href="https://hayweb.vercel.app/guides.html">
+  <link rel="canonical" href="https://hayweb.vn/guides">
   <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2">
   <link rel="preload" href="fonts/inter-600-latin.woff2" as="font" type="font/woff2">
   <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2">
   <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2">
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://hayweb.vn/#organization",
+        "name": "HAYWEB",
+        "alternateName": "HAYWEB Studio",
+        "url": "https://hayweb.vn/",
+        "logo": { "@type": "ImageObject", "url": "https://hayweb.vn/favicon.svg", "width": 512, "height": 512 },
+        "description": "Studio thiết kế website cao cấp tại Hà Nội. Bốn trụ cột: website chuyển đổi cao, quảng cáo tối ưu, SEO bền vững, chiến lược tăng trưởng cho doanh nghiệp Việt.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Chung cư R3 Onsen, KĐT Ecopark",
+          "addressLocality": "Hà Nội",
+          "addressCountry": "VN"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+84-797-986-525",
+          "contactType": "customer service",
+          "areaServed": "VN",
+          "availableLanguage": ["Vietnamese", "English"]
+        },
+        "founder": { "@id": "https://hayweb.vn/about#gialuong" },
+        "areaServed": { "@type": "Country", "name": "Vietnam" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hayweb.vn/#website",
+        "url": "https://hayweb.vn/",
+        "name": "HAYWEB",
+        "publisher": { "@id": "https://hayweb.vn/#organization" },
+        "inLanguage": ["vi", "en"]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://hayweb.vn/guides#webpage",
+        "url": "https://hayweb.vn/guides",
+        "name": "Hướng dẫn – HAYWEB",
+        "description": "Bài viết hướng dẫn cơ bản về thiết kế web, SEO, hosting, chi phí làm web — từ đội ngũ HAYWEB.",
+        "isPartOf": { "@id": "https://hayweb.vn/#website" },
+        "about": { "@id": "https://hayweb.vn/#organization" },
+        "mainEntity": { "@id": "https://hayweb.vn/guides#itemlist" },
+        "inLanguage": "vi"
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://hayweb.vn/guides#itemlist",
+        "name": "HAYWEB Guides",
+        "itemListOrder": "https://schema.org/ItemListOrderDescending",
+        "numberOfItems": 9,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "url": "https://hayweb.vn/article?slug=seo-checklist-2026", "name": "SEO checklist cho doanh nghiệp Việt: 30 điểm phải kiểm tra năm 2026" },
+          { "@type": "ListItem", "position": 2, "url": "https://hayweb.vn/article?slug=why-website-2026", "name": "Tại sao doanh nghiệp 2026 vẫn cần một website riêng?" },
+          { "@type": "ListItem", "position": 3, "url": "https://hayweb.vn/article?slug=website-cost", "name": "Chi phí làm website thực sự là bao nhiêu?" },
+          { "@type": "ListItem", "position": 4, "url": "https://hayweb.vn/article?slug=seo-guide", "name": "SEO là gì? Bộ khung tối thiểu cho người mới" },
+          { "@type": "ListItem", "position": 5, "url": "https://hayweb.vn/article?slug=landing-vs-website", "name": "Landing page khác gì với website? Khi nào nên dùng cái nào?" },
+          { "@type": "ListItem", "position": 6, "url": "https://hayweb.vn/article?slug=hosting-guide", "name": "Chọn hosting thế nào? So sánh shared / VPS / Cloud" },
+          { "@type": "ListItem", "position": 7, "url": "https://hayweb.vn/article?slug=hayweb-process", "name": "Quy trình thiết kế web tại HAYWEB — từ A đến Z" },
+          { "@type": "ListItem", "position": 8, "url": "https://hayweb.vn/article?slug=website-security", "name": "7 lỗ hổng bảo mật website phổ biến — và cách bịt" },
+          { "@type": "ListItem", "position": 9, "url": "https://hayweb.vn/article?slug=website-performance", "name": "Tăng tốc website xuống dưới 2 giây — kỹ thuật thực chiến" }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="home-dark-luxury">
 

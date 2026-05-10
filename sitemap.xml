@@ -38,6 +38,46 @@
   <url>
     <loc>https://hayweb.vn/article?slug=seo-checklist-2026</loc>
     <lastmod>2026-05-10</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=why-website-2026</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=website-cost</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=seo-guide</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=landing-vs-website</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=hosting-guide</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=hayweb-process</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=website-security</loc>
+    <lastmod>2026-05-10</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://hayweb.vn/article?slug=website-performance</loc>
+    <lastmod>2026-05-10</lastmod>
     <priority>0.6</priority>
   </url>
 </urlset>

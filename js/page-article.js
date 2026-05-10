@@ -432,6 +432,7 @@ const articles = {
   'seo-checklist-2026': {
     tagVI: 'SEO', tagEN: 'SEO',
     timeVI: '12 phút đọc', timeEN: '12 min read',
+    datePublished: '2026-05-10',
     img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop',
     titleVI: 'SEO checklist cho doanh nghiệp Việt: 30 điểm phải kiểm tra năm 2026',
     titleEN: 'SEO checklist for Vietnamese businesses: 30 points to audit in 2026',
@@ -629,6 +630,13 @@ function buildPage() {
   document.getElementById('page-title').textContent = `${title} – HAYWEB`;
   document.getElementById('page-desc').setAttribute('content', vi ? a.titleVI : a.titleEN);
 
+  // Update canonical to current article URL (overrides static placeholder)
+  const canonicalEl = document.getElementById('page-canonical');
+  if (canonicalEl) canonicalEl.setAttribute('href', `https://hayweb.vn/article?slug=${slug}`);
+
+  // Inject Article + Person + BreadcrumbList JSON-LD schema (SEO + AEO eligibility)
+  injectArticleSchema(slug, a, title);
+
   // Hero
   document.getElementById('article-back').textContent = vi ? '← Hướng dẫn' : '← Guides';
   document.getElementById('article-tag').textContent = vi ? a.tagVI : a.tagEN;
@@ -739,6 +747,76 @@ function injectEndStrip() {
     </div>
   `;
   content.appendChild(strip);
+}
+
+// Inject @graph JSON-LD: Organization + WebSite + Person + BreadcrumbList + Article.
+// Builds dynamically from articles{} entry so each slug gets correct headline/image/url.
+function injectArticleSchema(slug, a, title) {
+  const url = `https://hayweb.vn/article?slug=${slug}`;
+  const lang = vi ? 'vi' : 'en';
+
+  const articleNode = {
+    "@type": "Article",
+    "@id": url + "#article",
+    "headline": title,
+    "image": a.img,
+    "url": url,
+    "mainEntityOfPage": url,
+    "author": { "@id": "https://hayweb.vn/about#gialuong" },
+    "publisher": { "@id": "https://hayweb.vn/#organization" },
+    "isPartOf": { "@id": "https://hayweb.vn/#website" },
+    "articleSection": vi ? a.tagVI : a.tagEN,
+    "inLanguage": lang
+  };
+  if (a.datePublished) articleNode.datePublished = a.datePublished;
+
+  const graph = [
+    {
+      "@type": "Organization",
+      "@id": "https://hayweb.vn/#organization",
+      "name": "HAYWEB",
+      "alternateName": "HAYWEB Studio",
+      "url": "https://hayweb.vn/",
+      "logo": { "@type": "ImageObject", "url": "https://hayweb.vn/favicon.svg", "width": 512, "height": 512 }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hayweb.vn/#website",
+      "url": "https://hayweb.vn/",
+      "name": "HAYWEB",
+      "publisher": { "@id": "https://hayweb.vn/#organization" },
+      "inLanguage": ["vi", "en"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hayweb.vn/about#gialuong",
+      "name": "Gia Lương",
+      "alternateName": "Gia Luong",
+      "jobTitle": "Founder · Lead Developer",
+      "url": "https://hayweb.vn/about",
+      "worksFor": { "@id": "https://hayweb.vn/#organization" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": url + "#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": vi ? "Trang chủ" : "Home", "item": "https://hayweb.vn/" },
+        { "@type": "ListItem", "position": 2, "name": vi ? "Hướng dẫn" : "Guides", "item": "https://hayweb.vn/guides" },
+        { "@type": "ListItem", "position": 3, "name": title, "item": url }
+      ]
+    },
+    articleNode
+  ];
+
+  // Remove any prior schema (in case render re-runs on lang switch)
+  const old = document.getElementById('article-schema');
+  if (old) old.remove();
+
+  const script = document.createElement('script');
+  script.type = 'application/ld+json';
+  script.id = 'article-schema';
+  script.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
+  document.head.appendChild(script);
 }
 
 async function init() {
