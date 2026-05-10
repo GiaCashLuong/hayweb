@@ -23,10 +23,26 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://hayweb.vn/">
   <link rel="preload" href="images/hero-pocket-compass.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2">
-  <link rel="preload" href="fonts/inter-600-latin.woff2" as="font" type="font/woff2">
-  <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2">
-  <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2">
+  <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    /* CLS prevention — reserve space for JS-rendered sections (page-index.js renderXxx).
+       Numbers tuned via DevTools-measured rendered heights at 360px viewport mobile sim. */
+    #pillars { min-height: 3200px; }
+    #services-panels { min-height: 1100px; }
+    #why-grid { min-height: 850px; }
+    #portfolio-grid { min-height: 1400px; }
+    #testimonial-marquee { min-height: 320px; }
+    #pricing-grid { min-height: 1800px; }
+    @media (min-width: 768px) {
+      #pillars { min-height: 1800px; }
+      #services-panels { min-height: 700px; }
+      #portfolio-grid { min-height: 900px; }
+      #pricing-grid { min-height: 900px; }
+    }
+  </style>
+  <link rel="preload" href="fonts/inter-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
