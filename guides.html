@@ -66,12 +66,21 @@
         "@type": "CollectionPage",
         "@id": "https://hayweb.vn/guides#webpage",
         "url": "https://hayweb.vn/guides",
-        "name": "Hướng dẫn – HAYWEB",
-        "description": "Bài viết hướng dẫn cơ bản về thiết kế web, SEO, hosting, chi phí làm web — từ đội ngũ HAYWEB.",
+        "name": "Hướng dẫn thiết kế website + SEO — HAYWEB Studio",
+        "description": "Hướng dẫn từ HAYWEB: thiết kế web, SEO, hosting, chi phí, bảo mật. Resource hub cho doanh nghiệp đầu tư web đúng cách, không lãng phí.",
         "isPartOf": { "@id": "https://hayweb.vn/#website" },
         "about": { "@id": "https://hayweb.vn/#organization" },
         "mainEntity": { "@id": "https://hayweb.vn/guides#itemlist" },
+        "breadcrumb": { "@id": "https://hayweb.vn/guides#breadcrumb" },
         "inLanguage": "vi"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://hayweb.vn/guides#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://hayweb.vn/" },
+          { "@type": "ListItem", "position": 2, "name": "Hướng dẫn", "item": "https://hayweb.vn/guides" }
+        ]
       },
       {
         "@type": "ItemList",

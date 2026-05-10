@@ -32,28 +32,49 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "ProfessionalService"],
         "@id": "https://hayweb.vn/#organization",
         "name": "HAYWEB",
         "alternateName": "HAYWEB Studio",
         "url": "https://hayweb.vn/",
         "logo": { "@type": "ImageObject", "url": "https://hayweb.vn/favicon.svg", "width": 512, "height": 512 },
+        "image": "https://hayweb.vn/images/og-image.jpg",
         "description": "Studio thiết kế website cao cấp tại Hà Nội. Bốn trụ cột: website chuyển đổi cao, quảng cáo tối ưu, SEO bền vững, chiến lược tăng trưởng cho doanh nghiệp Việt.",
+        "telephone": "+84-797-986-525",
+        "email": "hello@hayweb.vn",
+        "priceRange": "5.000.000 - 35.000.000 VND",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Chung cư R3 Onsen, KĐT Ecopark",
           "addressLocality": "Hà Nội",
           "addressCountry": "VN"
         },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+84-797-986-525",
-          "contactType": "customer service",
-          "areaServed": "VN",
-          "availableLanguage": ["Vietnamese", "English"]
-        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+84-797-986-525",
+            "contactType": "customer service",
+            "areaServed": "VN",
+            "availableLanguage": ["Vietnamese", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+84-797-986-525",
+            "contactType": "sales",
+            "areaServed": "VN",
+            "availableLanguage": ["Vietnamese"],
+            "contactOption": "TollFree"
+          }
+        ],
+        "sameAs": [
+          "https://zalo.me/0797986525"
+        ],
         "founder": { "@id": "https://hayweb.vn/about#gialuong" },
-        "areaServed": { "@type": "Country", "name": "Vietnam" }
+        "areaServed": [
+          { "@type": "Country", "name": "Vietnam" },
+          { "@type": "AdministrativeArea", "name": "Hà Nội" }
+        ],
+        "serviceType": ["Web Design", "SEO", "Digital Marketing", "Conversion Optimization"]
       },
       {
         "@type": "WebSite",
@@ -67,12 +88,21 @@
         "@type": "ContactPage",
         "@id": "https://hayweb.vn/contact#webpage",
         "url": "https://hayweb.vn/contact",
-        "name": "Liên hệ – HAYWEB",
-        "description": "Liên hệ HAYWEB để được tư vấn miễn phí về dự án website của bạn. Chung cư R3 Onsen, KĐT Ecopark. 0797 986 525.",
+        "name": "Liên hệ HAYWEB — Tư vấn thiết kế website Hà Nội miễn phí",
+        "description": "Liên hệ HAYWEB tại Chung cư R3 Onsen, Ecopark hoặc 0797 986 525 (Zalo). Tư vấn miễn phí thiết kế website, SEO, Ads cho doanh nghiệp Việt.",
         "isPartOf": { "@id": "https://hayweb.vn/#website" },
         "about": { "@id": "https://hayweb.vn/#organization" },
         "mainEntity": { "@id": "https://hayweb.vn/#organization" },
+        "breadcrumb": { "@id": "https://hayweb.vn/contact#breadcrumb" },
         "inLanguage": "vi"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://hayweb.vn/contact#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Trang chủ", "item": "https://hayweb.vn/" },
+          { "@type": "ListItem", "position": 2, "name": "Liên hệ", "item": "https://hayweb.vn/contact" }
+        ]
       }
     ]
   }
