@@ -31,5 +31,13 @@
     }
   ],
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{"type": "host", "value": "hayweb.vercel.app"}],
+      "destination": "https://hayweb.vn/$1",
+      "permanent": true
+    }
+  ]
 }

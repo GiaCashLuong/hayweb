@@ -428,6 +428,185 @@ const articles = {
         <p>HAYWEB.vercel.app scores Lighthouse 100/100 and loads in 1.2 seconds. Not by accident — it's the result of each technique above applied correctly from the start.</p>
       </div>
     `
+  },
+  'seo-checklist-2026': {
+    tagVI: 'SEO', tagEN: 'SEO',
+    timeVI: '12 phút đọc', timeEN: '12 min read',
+    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop',
+    titleVI: 'SEO checklist cho doanh nghiệp Việt: 30 điểm phải kiểm tra năm 2026',
+    titleEN: 'SEO checklist for Vietnamese businesses: 30 points to audit in 2026',
+    contentVI: `
+      <p class="article-lead">SEO năm 2026 không còn là chuyện nhồi từ khóa. SERP đã có AI Overview, featured snippet, video carousel — trang web không đạt chuẩn kỹ thuật và nội dung thực chất thì đơn giản là <strong>không hiện</strong>. Dưới đây là checklist 30 điểm thực chiến cho doanh nghiệp Việt, từ nền tảng kỹ thuật đến on-page đến AEO.</p>
+
+      <div class="article-callout">
+        <strong>TL;DR</strong>
+        <p>15 điểm kỹ thuật (robots, schema, CWV, mobile, redirect, JS render) + 10 điểm on-page (title, meta, heading, alt, internal link) + 5 điểm AEO (FAQ schema, Q&amp;A pattern, last-updated, E-E-A-T, AI bot whitelist). Bỏ qua điểm nào = traffic mất ở chỗ đó. Audit tự = 30 phút. Audit kỹ với HAYWEB = miễn phí discovery call.</p>
+      </div>
+
+      <h2>Tại sao kỹ thuật SEO 2026 khác với 2020</h2>
+      <p>Các core update <em>gần đây</em> — đặc biệt là core update tháng 3/2024 khi Google chính thức merge Helpful Content signal vào core ranking — đã nâng bar nội dung lên rõ rệt. AI-spam content bị phạt nặng hơn bao giờ hết. SERP đa dạng hơn với AI Overview, featured snippet, video carousel. Mobile-first indexing đã rollout đầy đủ, làm Core Web Vitals thành tín hiệu xếp hạng không thể bỏ qua.</p>
+
+      <p><a href="https://www.aleydasolis.com/" target="_blank" rel="noopener">Aleyda Solis</a> (founder Orainti, một trong những SEO consultant uy tín nhất ngành) chỉ ra rằng các core update gần đây không thay đổi nhiều cho site đã làm SEO bài bản — nhưng site phụ thuộc vào "tactic shortcut" (spun content, link farm, keyword stuffing) đều thấy traffic drop rõ rệt. Trong context Việt Nam, pattern này áp dụng đặc biệt với mảng e-commerce nội dung mỏng và blog content farm.</p>
+
+      <h2>Cơ sở kỹ thuật SEO (15 điểm)</h2>
+      <ol>
+        <li><strong>robots.txt hợp lệ + sitemap.xml đăng ký Search Console</strong>: robots.txt sai block nhầm URL = Google không crawl được = traffic bằng không, dù nội dung tốt đến đâu.</li>
+        <li><strong>Canonical URL trên mỗi trang</strong>: Canonical sai hoặc thiếu = Google index bản trùng = link equity phân tán, không page nào được rank tốt.</li>
+        <li><strong>Structured data (Organization, LocalBusiness, Article, FAQ)</strong>: Schema không có = Google đoán topic = rich result bị bỏ qua, traffic free mất.</li>
+        <li><strong>HTTPS + HSTS + security headers đạt Mozilla Observatory 100/100</strong>: Security headers yếu không chỉ là rủi ro bảo mật — Google dùng HTTPS làm tín hiệu trust. Mozilla Observatory cap baseline ở 100, có bonus +30 cho headers nâng cao (HSTS preload, CSP strict-dynamic). HAYWEB self-build đạt 115/100 A+ (= 100 baseline + 15 bonus) nhờ CSP strict-dynamic và không dùng inline script.<!-- ref: OBS-003 --></li>
+        <li><strong>Core Web Vitals đạt ngưỡng</strong>: LCP dưới 2,5 giây, INP dưới 200ms, CLS dưới 0,1. Không đạt = Google gắn nhãn "poor experience" = ranking cap thấp hơn đối thủ cùng nội dung. Theo <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" target="_blank" rel="noopener">Google Search Central</a>, CWV là ranking signal chính thức từ 2021 — trong context Việt Nam, phần lớn traffic mobile đến từ mạng 4G trung bình yếu, nên LCP và INP càng cần optimize kỹ.</li>
+        <li><strong>Mobile responsive thực sự</strong>: Theo <a href="https://gs.statcounter.com/platform-market-share/desktop-mobile/vietnam" target="_blank" rel="noopener">StatCounter Việt Nam</a>, mobile chiếm khoảng 70-75% truy cập web (2024-2025). Nhưng không cần số liệu chính xác để biết: nếu site vỡ layout trên Xiaomi Redmi Note thì khách rời đi ngay. Test trên thiết bị thật, không chỉ Chrome DevTools.</li>
+        <li><strong>Page speed mobile target 90+ Lighthouse</strong>: Theatrical effects không đồng nghĩa với site chậm nếu defer và lazy-load đúng cách. HAYWEB test trực tiếp trên A30 4G thật: 6 hiệu ứng Platinum + lazy-load = Lighthouse mobile 92.<!-- ref: OBS-002 --> Pattern "ít effect = nhanh" phổ biến ở agency VN là <strong>sai</strong> nếu biết cách defer.</li>
+        <li><strong>Hreflang nếu bilingual VI/EN</strong>: Thiếu hreflang trên site song ngữ = Google serve sai ngôn ngữ cho sai thị trường = bounce rate tăng, ranking hai phiên bản đều bị kéo xuống.</li>
+        <li><strong>404 custom + redirect chain ngắn</strong>: Redirect chain 3 hop trở lên = PageRank bị hao mòn từng bước. Kiểm tra bằng Screaming Frog hoặc Ahrefs Site Audit.</li>
+        <li><strong>XML sitemap chỉ chứa URL canonical, index được</strong>: Sitemap đưa URL noindex vào = lãng phí crawl budget = Google ưu tiên crawl site khác.</li>
+        <li><strong>Log file analysis (tối thiểu 1 lần/quý)</strong>: Biết Google đang crawl trang nào nhiều nhất = biết nên đầu tư content ở đâu. Không làm = ra quyết định nội dung trong bóng tối.</li>
+        <li><strong>Breadcrumb schema</strong>: Không có breadcrumb schema = SERP không hiển thị breadcrumb path = click-through rate thấp hơn đối thủ có.</li>
+        <li><strong>Pagination xử lý đúng (rel=next đã deprecated — dùng canonical)</strong>: rel=next/prev đã bị Google bỏ từ 2019. Vẫn dùng = mất công, canonical pagination vẫn là cách đúng.</li>
+        <li><strong>JS rendering check — nội dung quan trọng không nằm sau JS wall</strong>: Nội dung render bằng client-side JS mà Googlebot không đợi = trang trông đầy nội dung với người dùng nhưng rỗng với Google.</li>
+        <li><strong>Structured data validation (Rich Results Test)</strong>: Schema có nhưng lỗi syntax = Google bỏ qua toàn bộ = công sức markup đổ sông.</li>
+      </ol>
+
+      <div class="article-callout">
+        <strong>Audit nhanh tới đây</strong>
+        <p>Nếu site bạn fail từ 3 điểm trở lên ở 15 điểm kỹ thuật trên, on-page tốt đến đâu cũng không cứu được ranking. Fix kỹ thuật trước, content sau. HAYWEB cung cấp audit miễn phí 15 điểm này qua <a href="/contact">discovery call</a> — peer review trực tiếp, không tự động email spam.</p>
+      </div>
+
+      <h2>On-page SEO (10 điểm)</h2>
+      <ol start="16">
+        <li><strong>Title tag đúng độ dài (50–60 ký tự) + có keyword đầu</strong>: Title quá dài bị Google cắt ngẫu nhiên — phần keyword quan trọng có thể mất. Title quá ngắn = bỏ phí real estate SERP.</li>
+        <li><strong>Meta description 120–155 ký tự, có CTA tự nhiên</strong>: Meta description không ảnh hưởng ranking trực tiếp — nhưng ảnh hưởng CTR, mà CTR ảnh hưởng ranking. Không viết = Google tự chọn đoạn bất kỳ trong trang, thường không tối ưu.</li>
+        <li><strong>H1 duy nhất trên mỗi trang, chứa keyword chính</strong>: Hai H1 trên một trang = Google lẫn lộn topic chính = keyword targeting loãng.</li>
+        <li><strong>Heading hierarchy logic (H2 → H3 → H4, không nhảy cấp)</strong>: Cấu trúc heading lộn xộn không chỉ hại UX — screen reader và Googlebot đều dùng heading để parse cấu trúc nội dung.</li>
+        <li><strong>Alt text mô tả thực cho hình ảnh, không keyword spam</strong>: Alt text "áo thun đỏ áo thun nam áo thun giá rẻ" = Google Spam policy flag. Alt text đúng = "Áo thun nam basic màu đỏ đô, cổ tròn, size M-XXL".</li>
+        <li><strong>Internal link mạng lưới có anchor text đa dạng</strong>: Internal link thiếu = Google không biết trang nào là pillar page. Anchor text toàn "xem thêm" = không truyền context topic.</li>
+        <li><strong>Open Graph + Twitter Card đầy đủ (og:title, og:image, og:description)</strong>: Thiếu OG tags = khi share lên Facebook/Zalo, preview hiện random hoặc xấu = CTR từ social thấp.</li>
+        <li><strong>Content depth: tối thiểu cover đủ subtopic user intent</strong>: Nội dung ngắn không sai — nhưng nếu user intent cần giải thích 5 bước mà bài chỉ có 2 dòng thì bounce rate cao, dwell time thấp.</li>
+        <li><strong>Keyword density tự nhiên, không nhồi</strong>: Google không công bố ngưỡng density cụ thể — <a href="https://search-off-the-record.libsyn.com/" target="_blank" rel="noopener">John Mueller xác nhận trên Search Off the Record podcast</a> nhiều lần rằng keyword density không phải metric ranking trực tiếp. Nguyên tắc thực tế: đọc to thấy gượng = Google cũng thấy gượng.</li>
+        <li><strong>URL slug ngắn, có keyword, không có stop word thừa</strong>: <code>/san-pham/ao-thun-nam-cotton-co-tron-mau-do-gia-re-ha-noi-2024</code> = xấu. <code>/ao-thun-nam-cotton</code> = tốt.</li>
+      </ol>
+
+      <h2>AEO (Answer Engine Optimization) cho AI search</h2>
+      <ol start="26">
+        <li><strong>FAQ schema + câu trả lời trực tiếp dưới 40 từ</strong>: Không có FAQ schema = bỏ qua featured snippet free traffic. Google AI Overview ưu tiên source có answer rõ ràng, có schema.</li>
+        <li><strong>Q&amp;A heading patterns ("Làm thế nào để...", "X là gì?")</strong>: Heading dạng câu hỏi = match trực tiếp với voice search query và AI Overview citation pattern.</li>
+        <li><strong>Last-updated date hiển thị rõ</strong>: Nội dung không có ngày = Google không biết độ tươi = ưu tiên thấp hơn cho time-sensitive query. Cập nhật bài cũ không cần viết lại từ đầu — update date + add 1-2 section mới là đủ.</li>
+        <li><strong>Author/E-E-A-T signals có liên kết</strong>: Byline không có link đến author page = E-E-A-T signal yếu. Theo <a href="https://services.google.com/fh/files/misc/hsw-sqrg.pdf" target="_blank" rel="noopener">Google Search Quality Rater Guidelines</a>, Quality Raters dùng E-E-A-T framework để đánh giá nội dung — đặc biệt nghiêm ngặt với YMYL (Your Money Your Life) content như tài chính, sức khỏe, pháp lý.</li>
+        <li><strong>Whitelist AI bot user-agents trong robots.txt (GPTBot, ClaudeBot, PerplexityBot)</strong>: Block AI bots = nội dung không được cite trong AI Overview = mất citation traffic từ Perplexity, ChatGPT Search.</li>
+      </ol>
+
+      <h2>5 sai lầm phổ biến doanh nghiệp Việt mắc phải</h2>
+      <ol>
+        <li><strong>Nhồi nhét từ khóa với mật độ 3%+</strong>: Chiến thuật này lỗi thời từ Google Panda (2011). Nhồi keyword năm 2026 không chỉ không giúp ích — Google Spam policy chủ động phạt, trang có thể bị manual action.</li>
+        <li><strong>Sao chép nội dung từ website khác</strong>: Kể từ khi Helpful Content signal merge vào core ranking (March 2024), Google phân biệt nội dung "có người viết thật" với nội dung copy-paste ngày càng rõ hơn. Hậu quả: không chỉ trang đó bị demote — toàn domain bị đánh giá thấp về content quality.</li>
+        <li><strong>Bỏ qua Google Business Profile (Local SEO)</strong>: Với doanh nghiệp F&amp;B và địa phương, GBP thường quan trọng hơn cả SEO website. Review tệ không reply sau 2-3 tuần là pattern phổ biến — Google xác nhận reply rate là Local Pack ranking signal. Quick win thật sự: reply 5 review tiêu cực trong 1 tuần, thường thấy Local Pack movement sau 2-3 tuần.<!-- ref: OBS-004 --></li>
+        <li><strong>Không mở Search Console hàng tuần</strong>: Search Console không phải tool để nhìn cho vui — là nơi Google thông báo manual action, crawl error, và Core Web Vitals fail. Không check = không biết site đang bị penalize cho đến khi traffic rơi.</li>
+        <li><strong>Xây link từ farm hoặc PBN</strong>: Link từ mạng PBN hoặc link farm không chỉ vô giá trị — Google Penguin (nay là real-time core algorithm) xử lý link spam liên tục. Hậu quả có thể là manual penalty, xóa link không đủ mà phải disavow toàn bộ domain.</li>
+      </ol>
+
+      <h2>Cách HAYWEB tích hợp SEO vào pipeline build</h2>
+      <p>HAYWEB không bán SEO như một dịch vụ rời rạc — SEO được nhúng vào từng phase của quy trình build:</p>
+      <ul>
+        <li><strong>Phase 1.5 — Keyword research tự động</strong>: SerpAPI + Playwright scrape SERP thật, identify keyword có conversion intent (không phải keyword có volume cao nhưng không dẫn đến action mua/liên hệ).</li>
+        <li><strong>Phase 3 — On-page built-in</strong>: Title, meta, schema, canonical, OG tags được generate từ data model, không điền tay — giảm human error.</li>
+        <li><strong>Phase 5 — CWV audit trước ship</strong>: Lighthouse CI chạy tự động, target mobile 90+. Site fail gate = không deploy, không có exception "ship rồi optimize sau".</li>
+        <li><strong>Post-ship — 28 sự kiện tracking từ Day 0</strong>: GA4 + Clarity + UptimeRobot setup sẵn trong bundle. Có data từ ngày đầu để đưa ra quyết định SEO thực chất, không phải đoán dựa trên gut feeling.</li>
+      </ul>
+      <p>SEO maintenance sau ship đi kèm bundle 4-5 triệu VND/tháng (gói Growth) — bao gồm keyword tracking, content refresh định kỳ, technical SEO audit hàng tháng, và báo cáo 10 mục cụ thể (không phải vanity dashboard).</p>
+
+      <h2>Bookmark + audit miễn phí</h2>
+      <p>Bookmark trang này để cập nhật mỗi quý — không spam email, không gateway form ép submit. Nếu muốn HAYWEB audit thực tế trên site của bạn, bắt đầu bằng discovery call miễn phí qua trang <a href="/contact">/contact</a> hoặc xem các gói dịch vụ tại <a href="/pricing">/pricing</a>.</p>
+
+      <div class="article-callout">
+        <p><em>Checklist này được cập nhật tháng 5/2026 theo core update gần nhất. SEO thay đổi liên tục — bookmark lại và kiểm tra lại mỗi quý.</em></p>
+      </div>
+    `,
+    contentEN: `
+      <p class="article-lead">SEO in 2026 is no longer about keyword stuffing. SERPs now feature AI Overviews, featured snippets, video carousels — sites without solid technical foundations and substantive content simply <strong>don't appear</strong>. Below is a 30-point practical checklist for Vietnamese businesses, from technical fundamentals through on-page to AEO.</p>
+
+      <div class="article-callout">
+        <strong>Note</strong>
+        <p>English translation in progress — the checklist below is the working English version. For the canonical Vietnamese reference, switch language toggle to VI.</p>
+      </div>
+
+      <h2>Why technical SEO in 2026 differs from 2020</h2>
+      <p>Recent core updates — especially March 2024 when Google formally merged the Helpful Content signal into core ranking — have raised the content bar substantially. AI-spam content is penalized harder than ever. SERPs are more diverse with AI Overviews, featured snippets, video carousels. Mobile-first indexing has fully rolled out, making Core Web Vitals an unavoidable ranking signal.</p>
+
+      <p><a href="https://www.aleydasolis.com/" target="_blank" rel="noopener">Aleyda Solis</a> (founder of Orainti, one of the most respected SEO consultants in the field) notes that recent core updates haven't changed much for sites doing SEO properly — but sites relying on "tactic shortcuts" (spun content, link farms, keyword stuffing) saw dramatic traffic drops. In the Vietnamese context, this pattern especially hits thin e-commerce content and blog content farms.</p>
+
+      <h2>Technical SEO foundation (15 points)</h2>
+      <ol>
+        <li><strong>Valid robots.txt + sitemap.xml registered with Search Console</strong>: a robots.txt that wrongly blocks URLs = Google can't crawl = zero traffic, no matter how good the content.</li>
+        <li><strong>Canonical URL on every page</strong>: missing or wrong canonical = Google indexes duplicates = link equity scattered, no page ranks well.</li>
+        <li><strong>Structured data (Organization, LocalBusiness, Article, FAQ)</strong>: no schema = Google guesses topic = rich results bypassed = free traffic lost.</li>
+        <li><strong>HTTPS + HSTS + security headers reaching Mozilla Observatory 100/100</strong>: weak security headers aren't just a security risk — Google uses HTTPS as a trust signal. Mozilla Observatory caps baseline at 100, with +30 bonus for advanced headers (HSTS preload, CSP strict-dynamic). HAYWEB's self-build hits 115/100 A+ via CSP strict-dynamic and zero inline scripts.<!-- ref: OBS-003 --></li>
+        <li><strong>Core Web Vitals at threshold</strong>: LCP under 2.5s, INP under 200ms, CLS under 0.1. Missing = Google labels "poor experience" = ranking cap below competitors with the same content. Per <a href="https://developers.google.com/search/docs/appearance/core-web-vitals" target="_blank" rel="noopener">Google Search Central</a>, CWV has been an official ranking signal since 2021 — and in Vietnam, with most mobile traffic on average-quality 4G, LCP and INP need extra attention.</li>
+        <li><strong>Real mobile responsiveness</strong>: per <a href="https://gs.statcounter.com/platform-market-share/desktop-mobile/vietnam" target="_blank" rel="noopener">StatCounter Vietnam</a>, mobile is 70-75% of web traffic (2024-2025). But you don't need exact numbers to know: if your site breaks on a Xiaomi Redmi Note, customers leave instantly. Test on real devices, not just Chrome DevTools.</li>
+        <li><strong>Mobile page speed target Lighthouse 90+</strong>: theatrical effects don't mean a slow site if you defer and lazy-load correctly. HAYWEB tested directly on a real A30 4G: 6 Platinum effects + lazy-load = Lighthouse mobile 92.<!-- ref: OBS-002 --> The "fewer effects = faster" pattern common at Vietnamese agencies is <strong>wrong</strong> if you know how to defer.</li>
+        <li><strong>Hreflang for VI/EN bilingual sites</strong>: missing hreflang on a bilingual site = Google serves the wrong language to the wrong market = bounce rate up, both versions ranking lower.</li>
+        <li><strong>Custom 404 + short redirect chains</strong>: redirect chains of 3+ hops = PageRank attrition step by step. Check with Screaming Frog or Ahrefs Site Audit.</li>
+        <li><strong>XML sitemap contains only canonical, indexable URLs</strong>: putting noindex URLs in sitemap = wasted crawl budget = Google prioritizes other sites.</li>
+        <li><strong>Log file analysis (at minimum quarterly)</strong>: knowing which pages Google crawls most = knowing where to invest content. Skipping = making content decisions in the dark.</li>
+        <li><strong>Breadcrumb schema</strong>: no breadcrumb schema = SERP doesn't show breadcrumb path = lower click-through than competitors with it.</li>
+        <li><strong>Correct pagination handling (rel=next deprecated — use canonical)</strong>: Google dropped rel=next/prev support in 2019. Still using it = wasted effort, canonical pagination remains the right approach.</li>
+        <li><strong>JS rendering check — important content not behind a JS wall</strong>: content rendered client-side that Googlebot doesn't wait for = page looks full to users but empty to Google.</li>
+        <li><strong>Structured data validation (Rich Results Test)</strong>: schema with syntax errors = Google ignores all of it = markup effort wasted.</li>
+      </ol>
+
+      <div class="article-callout">
+        <strong>Quick audit checkpoint</strong>
+        <p>If your site fails 3+ of the 15 technical points above, no amount of on-page polish saves the ranking. Fix technical first, content second. HAYWEB offers a free 15-point audit via <a href="/contact">discovery call</a> — direct peer review, no spam email automation.</p>
+      </div>
+
+      <h2>On-page SEO (10 points)</h2>
+      <ol start="16">
+        <li><strong>Title tag at proper length (50–60 chars) with keyword leading</strong>: too long = Google truncates randomly, the important keyword may be cut. Too short = wasted SERP real estate.</li>
+        <li><strong>Meta description 120–155 chars with natural CTA</strong>: meta description doesn't directly affect ranking — but affects CTR, and CTR affects ranking. Not writing it = Google picks an arbitrary page snippet, usually suboptimal.</li>
+        <li><strong>One H1 per page, containing the primary keyword</strong>: two H1s on one page = Google confused about main topic = keyword targeting diluted.</li>
+        <li><strong>Logical heading hierarchy (H2 → H3 → H4, no level jumps)</strong>: messy heading structure isn't just bad UX — both screen readers and Googlebot use headings to parse content structure.</li>
+        <li><strong>Real descriptive alt text, not keyword spam</strong>: alt text "red shirt mens shirt cheap shirt" = Google Spam policy flag. Correct alt = "Men's basic red round-neck cotton t-shirt, sizes M-XXL".</li>
+        <li><strong>Internal link network with diverse anchor text</strong>: missing internal links = Google doesn't know which page is the pillar. Anchor text all "see more" = no topic context transferred.</li>
+        <li><strong>Complete Open Graph + Twitter Cards (og:title, og:image, og:description)</strong>: missing OG tags = when shared on Facebook/Zalo, preview shows random or ugly content = low social CTR.</li>
+        <li><strong>Content depth: cover at least all subtopics matching user intent</strong>: short content isn't wrong — but if user intent needs 5 steps explained and your article has 2 lines, bounce is high and dwell time low.</li>
+        <li><strong>Natural keyword density, no stuffing</strong>: Google doesn't publish a specific density threshold — <a href="https://search-off-the-record.libsyn.com/" target="_blank" rel="noopener">John Mueller has confirmed multiple times on Search Off the Record</a> that keyword density isn't a direct ranking metric. Practical principle: if it sounds awkward read aloud = Google sees the awkwardness too.</li>
+        <li><strong>Short URL slug with keyword, no stop-word fluff</strong>: <code>/products/red-mens-cotton-round-neck-cheap-shirt-hanoi-2024</code> = bad. <code>/red-mens-cotton-shirt</code> = good.</li>
+      </ol>
+
+      <h2>AEO (Answer Engine Optimization) for AI search</h2>
+      <ol start="26">
+        <li><strong>FAQ schema + direct answers under 40 words</strong>: no FAQ schema = miss free featured-snippet traffic. Google AI Overview prioritizes sources with clear, schema-backed answers.</li>
+        <li><strong>Q&amp;A heading patterns ("How do I...", "What is X?")</strong>: question-format headings = direct match for voice search queries and AI Overview citation patterns.</li>
+        <li><strong>Visible last-updated date</strong>: undated content = Google can't gauge freshness = lower priority for time-sensitive queries. Refreshing old articles doesn't require a full rewrite — update the date + add 1-2 new sections is enough.</li>
+        <li><strong>Author/E-E-A-T signals with links</strong>: a byline without a link to the author page = weak E-E-A-T signal. Per the <a href="https://services.google.com/fh/files/misc/hsw-sqrg.pdf" target="_blank" rel="noopener">Google Search Quality Rater Guidelines</a>, raters use the E-E-A-T framework to assess content — especially strict for YMYL (Your Money Your Life) content like finance, health, legal.</li>
+        <li><strong>Whitelist AI bot user-agents in robots.txt (GPTBot, ClaudeBot, PerplexityBot)</strong>: blocking AI bots = your content isn't cited in AI Overviews = lost citation traffic from Perplexity, ChatGPT Search.</li>
+      </ol>
+
+      <h2>5 common mistakes Vietnamese businesses make</h2>
+      <ol>
+        <li><strong>Stuffing keywords at 3%+ density</strong>: this tactic has been outdated since Google Panda (2011). Stuffing keywords in 2026 isn't just unhelpful — Google Spam policy actively penalizes it, pages can hit manual action.</li>
+        <li><strong>Copying content from other websites</strong>: since the Helpful Content signal merged into core ranking (March 2024), Google distinguishes "real human-written" from copy-paste content increasingly clearly. Consequence: not just that page demoted — the whole domain rated lower on content quality.</li>
+        <li><strong>Ignoring Google Business Profile (Local SEO)</strong>: for F&amp;B and local businesses, GBP often matters more than website SEO. Bad reviews unanswered for 2-3 weeks is a common pattern — Google has confirmed reply rate is a Local Pack ranking signal. Real quick win: reply to 5 negative reviews in a week, typically see Local Pack movement after 2-3 weeks.<!-- ref: OBS-004 --></li>
+        <li><strong>Not opening Search Console weekly</strong>: Search Console isn't a tool to look at for fun — it's where Google announces manual actions, crawl errors, and Core Web Vitals failures. Not checking = not knowing the site is being penalized until traffic drops.</li>
+        <li><strong>Building links from farms or PBNs</strong>: links from PBN networks or link farms aren't just worthless — Google Penguin (now real-time core algorithm) processes link spam continuously. Consequences can be manual penalty; removing the links isn't enough — you may have to disavow the entire domain.</li>
+      </ol>
+
+      <h2>How HAYWEB integrates SEO into the build pipeline</h2>
+      <p>HAYWEB doesn't sell SEO as a separate service — SEO is embedded in every phase of the build process:</p>
+      <ul>
+        <li><strong>Phase 1.5 — Automated keyword research</strong>: SerpAPI + Playwright scrape real SERPs, identify keywords with conversion intent (not high-volume keywords that don't drive purchase/contact action).</li>
+        <li><strong>Phase 3 — On-page built-in</strong>: title, meta, schema, canonical, OG tags generated from a data model, not hand-typed — reducing human error.</li>
+        <li><strong>Phase 5 — CWV audit before ship</strong>: Lighthouse CI runs automatically, target mobile 90+. Site failing the gate = no deploy, no "ship now optimize later" exception.</li>
+        <li><strong>Post-ship — 28 tracking events from Day 0</strong>: GA4 + Clarity + UptimeRobot pre-installed in the bundle. Data from day one to make substantive SEO decisions, not gut-feeling guesses.</li>
+      </ul>
+      <p>SEO maintenance post-ship is included in the 4-5M VND/month bundle (Growth tier) — covering keyword tracking, periodic content refresh, monthly technical SEO audit, and a 10-section concrete report (not a vanity dashboard).</p>
+
+      <h2>Bookmark + free audit</h2>
+      <p>Bookmark this page for quarterly updates — no spam email, no form gateways. If you want a real HAYWEB audit on your site, start with a free discovery call via <a href="/contact">/contact</a> or browse service tiers at <a href="/pricing">/pricing</a>.</p>
+
+      <div class="article-callout">
+        <p><em>This checklist was updated May 2026 to reflect the most recent core update. SEO changes constantly — bookmark and re-check quarterly.</em></p>
+      </div>
+    `
   }
 };
 

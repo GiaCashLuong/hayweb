@@ -87,6 +87,17 @@ const guides = [
     titleEN: 'Cut website load time below 2 seconds — practical techniques',
     excerptVI: 'Tối ưu ảnh, font, CSS, lazy load, CDN. Checklist Lighthouse 100/100 không phải là điều xa vời.',
     excerptEN: 'Image, font, CSS optimization, lazy load, CDN. Lighthouse 100/100 is closer than you think.'
+  },
+  {
+    slug: 'seo-checklist-2026',
+    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=75&auto=format&fit=crop',
+    tagVI: 'SEO', tagEN: 'SEO',
+    minutesVI: '12 phút đọc', minutesEN: '12 min read',
+    art: `<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>`,
+    titleVI: 'SEO checklist cho doanh nghiệp Việt: 30 điểm phải kiểm tra năm 2026',
+    titleEN: 'SEO checklist for Vietnamese businesses: 30 points to audit in 2026',
+    excerptVI: '15 điểm kỹ thuật + 10 on-page + 5 AEO. Checklist thực chiến cho mảng e-commerce, F&B, B2B Việt Nam — từ HCU March 2024 đến AI Overview citation.',
+    excerptEN: '15 technical + 10 on-page + 5 AEO points. A practical checklist for Vietnamese e-commerce, F&B, B2B — from HCU March 2024 to AI Overview citations.'
   }
 ];
 
