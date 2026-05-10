@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://hayweb.vn/images/og-image.jpg">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="canonical" href="https://hayweb.vn/">
-  <link rel="preload" href="images/hero-pocket-compass.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="images/peer-working.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="fonts/inter-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     /* CLS prevention — reserve space for JS-rendered sections (page-index.js renderXxx).
@@ -43,6 +43,10 @@
   <link rel="preload" href="fonts/inter-600-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/bvp-700-vi.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/bvp-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/bvp-700italic-vi.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/bvp-700italic-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/style.css"><noscript><link rel="stylesheet" href="css/style.css"></noscript>
   <script type="application/ld+json">
   {
@@ -128,15 +132,14 @@
       </div>
     </div>
 
-    <!-- Hero right column — v5.1 revision: brass compass image (images-curated-v2.md v2-1) -->
-    <!-- D1: Replaces CSS art-typography per peer revision. velvet ::before kept as safety-net below image. -->
-    <!-- Mode B: hero-velvet-oxblood.jpg via CSS ::before on .hero-visual-editorial (images-curated.md Image 3) -->
+    <!-- Hero right column — Day 12 swap: peer-working portrait (founder authority narrative)
+         per peer Câu 2 directive. Replaces hero-pocket-compass (color mismatch với dark-luxury palette).
+         peer-skyline atmospheric BG layer added via .hero::before (Day 12 L4b). -->
     <div class="hero-visual hero-visual-editorial" data-motion="hero-art">
-      <!-- P2c: figcaption removed per peer direction — image only, no overlay text -->
-      <figure class="hero-product-figure" style="background:url('data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAAAwBACdASoUAB4APxF8tVOsJ6UiqAqpgCIJZwAAj/UFfdD6D47xpe4mAwAA/vVnJYE7Z5KVYGWlECJxAb3+tQM5Imr643l0JAGkzM6wjkcAAA==') center/cover no-repeat;background-color:#FAF7EE">
+      <figure class="hero-product-figure" style="background:#1a1a1a">
         <picture>
-          <source type="image/webp" srcset="images/hero-pocket-compass.webp">
-          <img src="images/hero-pocket-compass.png" alt="La bàn bỏ túi đồng cổ trên nền tối — biểu tượng định hướng cho dự án web HAYWEB" loading="eager" fetchpriority="high" decoding="async" width="700" height="1050">
+          <source type="image/webp" srcset="images/peer-working.webp">
+          <img src="images/peer-working.webp" alt="Đông Nguyên — founder HAYWEB làm việc trên MacBook trong studio Hà Nội" loading="eager" fetchpriority="high" decoding="async" width="1600" height="900">
         </picture>
       </figure>
       <span class="hero-visual-caption" id="hero-visual-caption" hidden></span>
