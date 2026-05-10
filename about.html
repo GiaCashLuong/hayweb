@@ -77,6 +77,8 @@
 <body class="home-dark-luxury">
 <nav id="nav"></nav>
 
+<main id="main-content">
+
 <div class="about-hero">
   <div class="container">
     <div class="section-label fade-up" style="justify-content:center" id="about-label"></div>
@@ -97,10 +99,14 @@
       </div>
       <div class="why-visual fade-up">
         <figure class="founder-portrait">
-          <img src="images/founder-portrait.png"
-               alt="Founder HAYWEB — chân dung studio Hà Nội"
-               loading="lazy"
-               width="720" height="960">
+          <picture>
+            <source type="image/webp" srcset="images/founder-portrait.webp">
+            <img src="images/founder-portrait.png"
+                 alt="Founder HAYWEB — chân dung studio Hà Nội"
+                 loading="lazy"
+                 decoding="async"
+                 width="720" height="960">
+          </picture>
           <figcaption>
             <span class="founder-name">Founder · HAYWEB Studio</span>
             <span class="founder-title">Hà Nội · 2020 — Now</span>
@@ -165,6 +171,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <footer id="footer"></footer>
 

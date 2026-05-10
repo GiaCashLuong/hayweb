@@ -77,6 +77,8 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation"></nav>
 
+<main id="main-content">
+
 <!-- HERO — editorial v5.1 dark luxury (asymmetric text-left + velvet art right) -->
 <!-- Pattern: design-004 Dark Editorial Typography, copy-004 Hero Triple Trust Stack -->
 <section class="hero bg-paper-grain" id="home">
@@ -100,11 +102,15 @@
     <div class="hero-visual hero-visual-editorial" data-motion="hero-art">
       <!-- P2c: figcaption removed per peer direction — image only, no overlay text -->
       <figure class="hero-product-figure">
-        <img src="images/hero-pocket-compass.png"
-             alt="La bàn bỏ túi đồng cổ trên nền tối — biểu tượng định hướng cho dự án web HAYWEB"
-             loading="eager"
-             fetchpriority="high"
-             width="700" height="1050">
+        <picture>
+          <source type="image/webp" srcset="images/hero-pocket-compass.webp">
+          <img src="images/hero-pocket-compass.png"
+               alt="La bàn bỏ túi đồng cổ trên nền tối — biểu tượng định hướng cho dự án web HAYWEB"
+               loading="eager"
+               fetchpriority="high"
+               decoding="async"
+               width="700" height="1050">
+        </picture>
       </figure>
       <span class="hero-visual-caption" id="hero-visual-caption" hidden></span>
     </div>
@@ -356,6 +362,8 @@
     </form>
   </div>
 </section>
+
+</main>
 
 <footer id="footer" role="contentinfo"></footer>
 
