@@ -15,8 +15,39 @@ const SUPABASE_URL     = 'https://jllirmrpkayiyajwebbr.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpsbGlybXJwa2F5aXlhandlYmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MDI5NDMsImV4cCI6MjA5MjM3ODk0M30.1_DZoCymoVUwdPrv_cZQPkF4NT9Rcucw7kvONvcCs0A';
 const HW_FN_BASE       = `${SUPABASE_URL}/functions/v1`;
 
-const { createClient } = window.supabase;
-window._sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Lazy supabase loader — defer 35KB bundle until actually needed.
+// Marketing pages (index/about/contact/pricing/portfolio/guides/article/service)
+// don't ship the <script src="supabase.min.js"> tag; this loader injects it on demand.
+// Auth pages (auth/dashboard/new-project/quote/success) keep the eager script tag
+// so window.supabase is ready immediately when this loader runs.
+let _sbPromise = null;
+function loadSb() {
+  if (_sbPromise) return _sbPromise;
+  _sbPromise = new Promise((resolve, reject) => {
+    if (window.supabase) {
+      window._sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      resolve(window._sb);
+      return;
+    }
+    const s = document.createElement('script');
+    s.src = 'js/supabase.min.js';
+    s.defer = true;
+    s.onload = () => {
+      window._sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      resolve(window._sb);
+    };
+    s.onerror = () => reject(new Error('supabase load failed'));
+    document.head.appendChild(s);
+  });
+  return _sbPromise;
+}
+
+// Pre-warm only if user has an existing session token (logged-in user)
+// Anonymous visitors get zero supabase bytes until they trigger a form/auth action.
+(function _prewarmSbIfSession() {
+  const hasSession = Object.keys(localStorage).some(k => k.startsWith('sb-') && k.endsWith('-auth-token'));
+  if (hasSession) loadSb();
+})();
 
 let currentLang = localStorage.getItem('hw_lang') || 'vi';
 
@@ -382,7 +413,11 @@ function toggleLang() {
 }
 
 async function getUser() {
-  const { data: { user } } = await _sb.auth.getUser();
+  // Anonymous visitors: skip supabase load entirely (saves 35KB + parse time).
+  const hasSession = Object.keys(localStorage).some(k => k.startsWith('sb-') && k.endsWith('-auth-token'));
+  if (!hasSession) return null;
+  const sb = await loadSb();
+  const { data: { user } } = await sb.auth.getUser();
   return user;
 }
 
@@ -393,7 +428,8 @@ async function requireAuth() {
 }
 
 async function signOut() {
-  await _sb.auth.signOut();
+  const sb = await loadSb();
+  await sb.auth.signOut();
   window.location.href = '/index.html';
 }
 

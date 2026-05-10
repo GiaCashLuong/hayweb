@@ -115,7 +115,8 @@ document.getElementById('contact-form').addEventListener('submit', async (e) => 
   const phone = document.getElementById('con-phone').value.trim();
   const msg   = document.getElementById('con-msg').value.trim();
 
-  const { error } = await _sb.from('hw_contact_messages').insert({ name, email, phone, message: msg });
+  const sb = await loadSb();
+  const { error } = await sb.from('hw_contact_messages').insert({ name, email, phone, message: msg });
 
   if (error) {
     errEl.textContent = t('error');
