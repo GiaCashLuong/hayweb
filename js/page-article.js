@@ -770,23 +770,9 @@ function injectArticleSchema(slug, a, title) {
   };
   if (a.datePublished) articleNode.datePublished = a.datePublished;
 
+  // Note: Organization + WebSite already in static <script id="schema-static-article">
+  // Dynamic injection only adds per-article schemas (Person + BreadcrumbList + Article)
   const graph = [
-    {
-      "@type": "Organization",
-      "@id": "https://hayweb.vn/#organization",
-      "name": "HAYWEB",
-      "alternateName": "HAYWEB Studio",
-      "url": "https://hayweb.vn/",
-      "logo": { "@type": "ImageObject", "url": "https://hayweb.vn/favicon.svg", "width": 512, "height": 512 }
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://hayweb.vn/#website",
-      "url": "https://hayweb.vn/",
-      "name": "HAYWEB",
-      "publisher": { "@id": "https://hayweb.vn/#organization" },
-      "inLanguage": ["vi", "en"]
-    },
     {
       "@type": "Person",
       "@id": "https://hayweb.vn/about#gialuong",

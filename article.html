@@ -12,6 +12,45 @@
   <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2">
   <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2">
   <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json" id="schema-static-article">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://hayweb.vn/#organization",
+        "name": "HAYWEB",
+        "alternateName": "HAYWEB Studio",
+        "url": "https://hayweb.vn/",
+        "logo": { "@type": "ImageObject", "url": "https://hayweb.vn/favicon.svg", "width": 512, "height": 512 },
+        "description": "Studio thiết kế website cao cấp tại Hà Nội. Bốn trụ cột: website chuyển đổi cao, quảng cáo tối ưu, SEO bền vững, chiến lược tăng trưởng cho doanh nghiệp Việt.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Chung cư R3 Onsen, KĐT Ecopark",
+          "addressLocality": "Hà Nội",
+          "addressCountry": "VN"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+84-797-986-525",
+          "contactType": "customer service",
+          "areaServed": "VN",
+          "availableLanguage": ["Vietnamese", "English"]
+        },
+        "founder": { "@id": "https://hayweb.vn/about#gialuong" },
+        "areaServed": { "@type": "Country", "name": "Vietnam" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://hayweb.vn/#website",
+        "url": "https://hayweb.vn/",
+        "name": "HAYWEB",
+        "publisher": { "@id": "https://hayweb.vn/#organization" },
+        "inLanguage": ["vi", "en"]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="home-dark-luxury">
 <nav id="nav" role="navigation" aria-label="Main navigation"></nav>
