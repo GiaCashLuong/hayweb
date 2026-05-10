@@ -626,13 +626,29 @@ function buildPage() {
 
   // Meta
   const title = vi ? a.titleVI : a.titleEN;
-  document.title = `${title} – HAYWEB`;
-  document.getElementById('page-title').textContent = `${title} – HAYWEB`;
-  document.getElementById('page-desc').setAttribute('content', vi ? a.titleVI : a.titleEN);
+  const fullTitle = `${title} – HAYWEB`;
+  const desc = vi ? (a.descVI || a.titleVI) : (a.descEN || a.titleEN);
+  const url = `https://hayweb.vn/article?slug=${slug}`;
+  document.title = fullTitle;
+  document.getElementById('page-title').textContent = fullTitle;
+  document.getElementById('page-desc').setAttribute('content', desc);
 
   // Update canonical to current article URL (overrides static placeholder)
   const canonicalEl = document.getElementById('page-canonical');
-  if (canonicalEl) canonicalEl.setAttribute('href', `https://hayweb.vn/article?slug=${slug}`);
+  if (canonicalEl) canonicalEl.setAttribute('href', url);
+
+  // Update OG + Twitter Card per-article (overrides static fallback)
+  const setMeta = (id, attr, val) => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute(attr, val);
+  };
+  setMeta('og-title', 'content', fullTitle);
+  setMeta('og-desc', 'content', desc);
+  setMeta('og-url', 'content', url);
+  setMeta('og-image', 'content', a.img || 'https://hayweb.vn/images/og-image.jpg');
+  setMeta('tw-title', 'content', fullTitle);
+  setMeta('tw-desc', 'content', desc);
+  setMeta('tw-image', 'content', a.img || 'https://hayweb.vn/images/og-image.jpg');
 
   // Inject Article + Person + BreadcrumbList JSON-LD schema (SEO + AEO eligibility)
   injectArticleSchema(slug, a, title);
