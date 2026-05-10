@@ -26,6 +26,20 @@
   <link rel="preload" href="fonts/playfair-roman-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/bvp-400-vi.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Day 9 — atmospheric backgrounds (Mode B "chìm") for about-hero + cta-band.
+       peer-skyline.webp: Hà Nội window-skyline at dusk (vision/identity).
+       peer-working.webp: MacBook + coffee + journal (productivity/process). */
+    .about-hero{position:relative;isolation:isolate;padding:8rem 0 5rem}
+    .about-hero::before{content:'';position:absolute;inset:0;background:url('images/peer-skyline.webp') center/cover no-repeat;filter:brightness(.5) saturate(.8) blur(1px);opacity:.28;z-index:0;pointer-events:none}
+    .about-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.62) 0,rgba(14,14,14,.82) 55%,var(--dark-ink,#0E0E0E) 100%);z-index:1;pointer-events:none}
+    .about-hero>.container{position:relative;z-index:2}
+    .about-cta-working{position:relative;isolation:isolate}
+    .about-cta-working::before{content:'';position:absolute;inset:0;background:url('images/peer-working.webp') center/cover no-repeat;filter:brightness(.42) saturate(.7) blur(1.5px);opacity:.20;z-index:0;pointer-events:none}
+    .about-cta-working::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(14,14,14,.55) 0,rgba(14,14,14,.86) 70%,var(--dark-ink,#0E0E0E) 100%);z-index:1;pointer-events:none}
+    .about-cta-working>.container{position:relative;z-index:2}
+    @media (max-width:768px){.about-hero{padding:6rem 0 4rem}.about-hero::before,.about-cta-working::before{filter:brightness(.5) saturate(.8)}}
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -189,8 +203,8 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-band">
+<!-- CTA — Day 9: atmospheric peer-working background (Mode B chìm) -->
+<section class="cta-band about-cta-working">
   <div class="container text-center">
     <h2 class="section-title fade-up" id="cta-title"></h2>
     <div class="fade-up" style="margin-top:2rem">
