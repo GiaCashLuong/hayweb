@@ -199,6 +199,22 @@
             <label class="form-label" for="con-msg" id="lbl-msg"></label>
             <textarea id="con-msg" class="form-textarea" rows="5" required></textarea>
           </div>
+          <!-- Augmented Gate 4 v2 Metric 8: AI-attributed sessions self-report (A.9 Probe #14) -->
+          <div class="form-group">
+            <label class="form-label" for="con-nguon">Bạn biết HAYWEB qua đâu? <small style="opacity:0.7">(tùy chọn — giúp HAYWEB hiểu kênh discovery)</small></label>
+            <select id="con-nguon" name="nguon" class="form-input">
+              <option value="">— Chọn nguồn (tùy chọn) —</option>
+              <option value="ai_hay">AI Hay</option>
+              <option value="chatgpt">ChatGPT</option>
+              <option value="gemini">Gemini</option>
+              <option value="perplexity">Perplexity</option>
+              <option value="ai_overview">Google AI Overview</option>
+              <option value="google_search">Google Search</option>
+              <option value="referral">Bạn bè giới thiệu</option>
+              <option value="zalo">Zalo</option>
+              <option value="other">Khác</option>
+            </select>
+          </div>
           <div id="con-success" class="form-hint" style="color:var(--success);display:none"></div>
           <div id="con-error" class="form-error"></div>
           <button type="submit" class="btn-primary" id="con-send" style="margin-top:1rem"></button>

@@ -1,3 +1,8 @@
+# robots.txt — HAYWEB
+# A.15 SEO upgrade 2026-05-13: 11-bot 2026 AI crawler whitelist + Bytespider mandatory block
+# Per A.8.5 Q12 + CLAUDE.md mandate Day 15
+
+# ═══ Default + private page exclusions ═══
 User-agent: *
 Allow: /
 
@@ -7,4 +12,50 @@ Disallow: /new-project
 Disallow: /quote
 Disallow: /success
 
+# ═══ 11-bot 2026 AI crawler whitelist (per A.8.5 Q12) ═══
+
+# OpenAI 3-tier
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic 4-bot (Feb 2026 expansion)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: claude-code
+Allow: /
+
+# Google 2-bot
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity 2-tier
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# ═══ Bytespider mandatory block (per A.8.5 Q12) ═══
+# ByteDance Bytespider: 1.4M req/day (~25× GPTBot), user-agent spoofing documented.
+# Block at robots.txt + server (Vercel) + CDN (Cloudflare WAF if applicable).
+User-agent: Bytespider
+Disallow: /
+
+# ═══ Sitemap ═══
 Sitemap: https://hayweb.vn/sitemap.xml
