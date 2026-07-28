@@ -16,36 +16,47 @@
 
 <nav id="nav" role="navigation" aria-label="Main navigation"></nav>
 
-<!-- HERO — editorial v4 (asymmetric text-left + real screenshot right) -->
-<section class="hero bg-paper-grain" id="home">
-  <div class="hero-bg"></div>
+<!-- HERO — editorial V-4: 2-column with visual stack on right (asymmetric, image-rich) -->
+<section class="hero hero-2col" id="home">
+  <div class="hero-credits" aria-hidden="true">
+    <span class="vol">VOL.<strong>03</strong></span>
+    <span class="date">2026 · 05</span>
+  </div>
+
   <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-eyebrow" id="hero-eyebrow"></div>
-      <h1 class="hero-title" id="hero-title"></h1>
-      <p class="hero-subtitle" id="hero-sub"></p>
-      <div class="hero-benefits" id="hero-benefits"></div>
-      <div class="hero-actions" id="hero-actions"></div>
+    <div class="hero-eyebrow" id="hero-eyebrow">
+      <span class="dot" aria-hidden="true"></span>
     </div>
 
-    <!-- Real screenshot in browser chrome — replaces v3 fake stats/chart/+340% badge -->
-    <div class="hero-visual hero-visual-editorial" aria-hidden="true">
-      <figure class="hero-screenshot-frame">
-        <div class="hero-screenshot-bar">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="hero-screenshot-url">hayweb.vercel.app</span>
-        </div>
-        <img class="hero-screenshot-img"
-             src="/images/portfolio-hayweb.jpg"
-             alt=""
-             loading="eager"
-             width="800" height="500">
-      </figure>
-      <span class="hero-visual-caption" id="hero-visual-caption"></span>
-    </div>
+    <h1 class="hero-title" id="hero-title"></h1>
+
+    <div class="hero-resolve" id="hero-resolve"></div>
+
+    <div class="hero-cta-row" id="hero-cta-row"></div>
+
+    <div class="hero-meta" id="hero-meta"></div>
   </div>
+
+  <!-- Visual stack: layered photos + abstract gradient blob (PASS 10, 2026-05-04) -->
+  <aside class="hero-visual fade-up" aria-hidden="true">
+    <div class="hero-visual-blob"></div>
+    <figure class="hero-visual-main">
+      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=80&auto=format&fit=crop"
+           alt=""
+           loading="eager" fetchpriority="high"
+           width="1200" height="900">
+      <figcaption class="hero-visual-tag">— Studio · Hà Nội</figcaption>
+    </figure>
+    <figure class="hero-visual-mock">
+      <div class="hero-mock-frame">
+        <div class="hero-mock-dots"><span></span><span></span><span></span></div>
+        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800&q=80&auto=format&fit=crop"
+             alt=""
+             loading="lazy"
+             width="800" height="500">
+      </div>
+    </figure>
+  </aside>
 </section>
 
 <!-- MARQUEE PROOF STRIP — gold band, 7 verified stats, 64s loop (content-output-2026-05-03 §marquee) -->
@@ -119,6 +130,11 @@
 
 <!-- STATS — editorial shock-contrast dark section (1 dark instance per page = pacing rhythm) -->
 <section class="stats-section stats-dark bg-film-grain">
+  <!-- Decorative dot grid — Task 4 Pass 7 -->
+  <svg class="stats-dot-grid" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+    <defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="rgba(244,239,230,0.12)"/></pattern></defs>
+    <rect width="240" height="240" fill="url(#dots)"/>
+  </svg>
   <div class="container">
     <div class="stats-grid" id="stats-grid"></div>
     <p class="stats-dark-meta" id="stats-meta"></p>
@@ -167,19 +183,42 @@
         <p class="section-desc fade-up drop-cap" style="margin-bottom:3rem" id="why-desc"></p>
         <div class="why-items fade-up" id="why-items"></div>
       </div>
-      <aside class="why-visual fade-up" aria-hidden="true">
-        <figure class="why-screenshot">
-          <div class="why-screenshot-bar">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-          <img class="why-screenshot-img"
-               src="/images/kobe-steak-hero.jpeg"
-               alt="Kobe Steak — landing page client work"
+      <!-- PASS 10: editorial photo + floating stat overlay (real image base, composition floats on top) -->
+      <aside class="why-visual why-visual-photo fade-up" aria-hidden="true">
+        <figure class="why-photo">
+          <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=1000&q=80&auto=format&fit=crop"
+               alt=""
                loading="lazy"
-               width="600" height="450">
+               width="1000" height="1200">
         </figure>
+        <div class="why-art-composition why-art-floating">
+          <div class="why-art-grid">
+            <div class="why-art-cell why-art-cell--large">
+              <span class="why-art-stat">5.2<em>×</em></span>
+              <span class="why-art-label">conversion lift</span>
+            </div>
+            <div class="why-art-cell why-art-cell--accent">
+              <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                <path d="M8 28 L16 18 L24 22 L36 10"/>
+                <circle cx="36" cy="10" r="2.5" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="why-art-cell">
+              <span class="why-art-mono">30</span>
+              <span class="why-art-sub">projects</span>
+            </div>
+            <div class="why-art-cell">
+              <span class="why-art-mono">99.97<small>%</small></span>
+              <span class="why-art-sub">uptime</span>
+            </div>
+          </div>
+          <div class="why-art-bottom">
+            <span class="why-art-wordmark">HAYWEB</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" width="20" height="20">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
         <span class="side-caption" id="why-side-caption"></span>
       </aside>
     </div>
@@ -226,6 +265,13 @@
 
 <!-- SCARCITY CTA BAND — real daily slot count from Supabase -->
 <section class="cta-band scarcity-band bg-warm-corner" id="scarcity">
+  <!-- Decorative corner line pattern — Task 4 Pass 7 -->
+  <svg class="scarcity-deco" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+    <line x1="0" y1="120" x2="120" y2="0" stroke="rgba(166,124,46,0.12)" stroke-width="1"/>
+    <line x1="20" y1="120" x2="120" y2="20" stroke="rgba(166,124,46,0.08)" stroke-width="1"/>
+    <line x1="40" y1="120" x2="120" y2="40" stroke="rgba(166,124,46,0.06)" stroke-width="1"/>
+    <line x1="60" y1="120" x2="120" y2="60" stroke="rgba(166,124,46,0.04)" stroke-width="1"/>
+  </svg>
   <div class="container">
     <div class="section-label fade-up" style="justify-content:center" id="sc-label"></div>
     <h2 class="section-title fade-up" id="sc-title"></h2>
@@ -258,6 +304,20 @@
 </section>
 
 <footer id="footer" role="contentinfo"></footer>
+
+<!-- MOBILE STICKY BOTTOM CTA BAR — visible mobile only (@max-width:768px)
+     VN conversion pattern: Click-to-Zalo mandatory for 70% mobile traffic (CLAUDE.md CTA Rules) -->
+<div class="mobile-sticky-cta" id="mobile-sticky-cta" role="complementary" aria-label="Quick contact">
+  <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener"
+     class="mobile-sticky-cta__btn mobile-sticky-cta__btn--primary">
+    Đặt tư vấn
+  </a>
+  <a href="https://zalo.me/0797986525" target="_blank" rel="noopener"
+     class="mobile-sticky-cta__btn mobile-sticky-cta__btn--zalo" aria-label="Chat Zalo HAYWEB">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.149 2 11.25c0 2.822 1.298 5.35 3.354 7.1L4.5 22l3.75-1.5C9.6 21.15 10.785 21.5 12 21.5c5.523 0 10-4.149 10-9.25S17.523 2 12 2zm0 16.5c-1.1 0-2.16-.22-3.13-.63l-.22-.1-2.3.92.74-2.22-.17-.24C5.47 14.89 4.5 13.14 4.5 11.25 4.5 7.25 7.86 4 12 4s7.5 3.25 7.5 7.25-3.36 7.25-7.5 7.25z"/></svg>
+    Chat Zalo
+  </a>
+</div>
 
 <!-- Custom cursor pill — activates on data-cursor elements (folio cards) -->
 <div class="cursor-pill" id="cursor" aria-hidden="true"><span>VIEW →</span></div>

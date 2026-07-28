@@ -1,4 +1,7 @@
-// ====== SERVICE SLUG MAP ======
+// Debug flag — logs only on localhost; silent in production
+const DEBUG = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+
+// Service slug map — used by renderServicesTabs() to build href for each service card link
 const svcSlugMap = {
   'Website Doanh Nghiệp': 'website-doanh-nghiep',
   'Landing Page Chuyển Đổi': 'landing-page',
@@ -30,8 +33,7 @@ const svcSlugMap = {
   'Chứng Chỉ Hoàn Thành': 'chung-chi-hoan-thanh',
 };
 
-// ====== SERVICES — TAB-BASED CATALOGUE ======
-// 5 nhóm dịch vụ: Website / Marketing / Hosting / Software / Training
+// Services catalogue — 5 tab groups (Website / Marketing / Hosting / Software / Training), rendered by renderServicesTabs()
 const svcCategories = [
   {
     key: 'website',
@@ -266,7 +268,7 @@ const svcCategories = [
   }
 ];
 
-// ====== STATS — specificity (lẻ = thật, tròn = nghi) ======
+// Stats data — odd numbers (97.4%, 5.2×) signal real measurement; round numbers lose trust
 const stats = [
   { numVI: '30',   numEN: '30',   suffix: '',  labelVI: 'Dự án đã bàn giao',     labelEN: 'Projects Delivered' },
   { numVI: '97.4', numEN: '97.4', suffix: '%', labelVI: 'Khách quay lại / giới thiệu', labelEN: 'Client Retention / Referral' },
@@ -274,7 +276,7 @@ const stats = [
   { numVI: '99.97',numEN: '99.97',suffix: '%', labelVI: 'Uptime 12 tháng qua',  labelEN: 'Uptime, last 12 months' },
 ];
 
-// ====== PORTFOLIO — featured first (asymmetric grid: 1 large + 2 small) ======
+// Portfolio items — index [0] renders large card, [1][2] small; matches CSS asymmetric grid pattern
 const portfolio = [
   {
     accent: '#1a1a1a',
@@ -300,7 +302,7 @@ const portfolio = [
   },
 ];
 
-// ====== WHY US ======
+// Why-us differentiators — rendered as icon list beside the editorial art composition
 const whyItems = [
   {
     icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="var(--silver)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>`,
@@ -356,7 +358,7 @@ const pricing = [
   }
 ];
 
-// ====== SVG AVATARS (replaces unsplash people images) ======
+// SVG avatar generator — 4 variants replace Unsplash photos, keeping CSP clean (no external image fetch)
 function svgAvatar(variant) {
   // 4 variants — minimalist, monochromatic
   const variants = {
@@ -369,7 +371,7 @@ function svgAvatar(variant) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-// ====== TESTIMONIALS ======
+// Testimonials — 3 verified clients; primary pull-quote in grid, secondary below (renderTestimonials)
 const testimonials = [
   {
     stars: '★★★★★',
@@ -397,7 +399,7 @@ const testimonials = [
   }
 ];
 
-// ====== 4 TRỤ CỘT — varied storytelling per pillar (PAS / compare / BAB / Q&A) ======
+// 4 pillars data — each pillar uses a different copywriting framework (PAS / compare / BAB / Q&A) for editorial variety
 const pillars = [
   {
     num: '01',
@@ -490,7 +492,7 @@ const pillars = [
   },
 ];
 
-// ====== COMPARISON — direct contrast ======
+// Comparison rows — HAYWEB vs typical agency; rendered as accessible role="table" in renderComparison()
 const comparisonRows = [
   {
     aspectVI: 'Sau khi web live',     aspectEN: 'After site goes live',
@@ -534,6 +536,20 @@ const vi = currentLang === 'vi';
 function renderPillars() {
   const grid = document.getElementById('pillars-grid');
   if (!grid) return;
+
+  // LIFT-4: pull-quote before grid (border-left editorial, demo CSS:322-331)
+  const pullContainer = grid.previousElementSibling;
+  const pullId = 'pillars-pull-quote';
+  if (!document.getElementById(pullId)) {
+    const pullEl = document.createElement('p');
+    pullEl.id = pullId;
+    pullEl.className = 'pillar-pull';
+    pullEl.textContent = vi
+      ? 'Web không phải chỉ là giao diện — đó là công cụ bán hàng đo lường được.'
+      : 'A website isn\'t just a facade — it\'s a measurable sales instrument.';
+    grid.parentElement.insertBefore(pullEl, grid);
+  }
+
   grid.innerHTML = pillars.map(p => `
     <article class="pillar-card fade-up" data-framework="${p.framework}">
       <header class="pillar-head">
@@ -612,6 +628,7 @@ async function renderScarcity() {
   } catch (_) { /* fallback to default */ }
 
   const { used, total, available } = slotState;
+  if (DEBUG) console.log('[scarcity] slots loaded:', { used, total, available });
   const isFull = available === 0;
 
   if (isFull) {
@@ -759,45 +776,42 @@ function attachMagnetic() {
 }
 
 function buildPage() {
-  // Hero — broken-grid chiasmus typography (pivot-audit §C #1, demo HTML:32-37)
-  // 4 lines: line-a/b left-aligned, line-c/d right-aligned = editorial chiasmus structure
-  document.getElementById('hero-eyebrow').textContent = t('hero_eyebrow');
+  // Hero V-3 — full-width single-column typographic dominance (Option B port from demo)
+  // eyebrow: pulsing gold dot already in HTML; append text node after span
+  const eyebrowEl = document.getElementById('hero-eyebrow');
+  eyebrowEl.appendChild(document.createTextNode(t('hero_eyebrow')));
+
+  // h1: 4 chiasmus lines (a/b left, c/d right), 2 gold ems per Q2 gate
   document.getElementById('hero-title').innerHTML =
     `<span class="line-a">${t('hero_title_1')}</span>` +
     `<span class="line-b"><em>${t('hero_title_2')}</em></span>` +
     `<span class="line-c">${t('hero_title_3')}</span>` +
-    `<span class="line-d"><em>${t('hero_title_4')}</em></span>` +
-    `<span class="hero-resolve">${t('hero_title_5')} — <em>${t('hero_title_6')}</em></span>`;
-  document.getElementById('hero-sub').textContent = t('hero_sub');
-  const benefits = vi
-    ? ['✓ Bàn giao trong 7–14 ngày', '✓ 30 dự án thành công', '✓ Hỗ trợ 12 tháng miễn phí']
-    : ['✓ Delivered in 7–14 days', '✓ 30 projects delivered', '✓ 12 months free support'];
-  const benefitsEl = document.getElementById('hero-benefits');
-  if (benefitsEl) benefitsEl.innerHTML = benefits.map(b => `<span class="hero-benefit">${b}</span>`).join('');
+    `<span class="line-d"><em>${t('hero_title_4')}</em></span>`;
 
-  // Hero CTA — editorial: primary outcome-specific + microcopy + secondary text-link
-  document.getElementById('hero-actions').className = 'hero-actions hero-actions-editorial';
-  document.getElementById('hero-actions').innerHTML = `
-    <div class="hero-actions-row">
-      <a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener" class="btn-primary">
-        ${t('hero_cta_1')}
-        <span aria-hidden="true" style="margin-left:.1rem">↗</span>
-      </a>
-      <a href="/portfolio.html" class="hero-cta-secondary">
-        ${t('hero_cta_2')}
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-    <span class="cta-microcopy">${t('hero_cta_micro')}</span>
-    <div class="hero-trust" aria-label="${vi ? 'Đánh giá khách hàng' : 'Client reviews'}">
-      <span class="hero-trust-stars" aria-hidden="true">★★★★★</span>
-      <span>${vi ? '4.9/5 từ 124 khách hàng' : '4.9/5 from 124 clients'}</span>
-    </div>
-  `;
+  // resolve row: flanking rule lines + chiasmus signature with gold em
+  document.getElementById('hero-resolve').innerHTML =
+    `<span class="rule" aria-hidden="true"></span>` +
+    `<p>${t('hero_title_5')} <em>${t('hero_title_6')}</em></p>` +
+    `<span class="rule" aria-hidden="true"></span>`;
 
-  // Hero visual caption (editorial side note next to screenshot)
-  const heroCaptionEl = document.getElementById('hero-visual-caption');
-  if (heroCaptionEl) heroCaptionEl.textContent = t('hero_visual_caption');
+  // CTA row: gold pill primary + text-link secondary + Zalo tertiary pill
+  document.getElementById('hero-cta-row').innerHTML =
+    `<a href="https://calendly.com/gsg-zero/30min" target="_blank" rel="noopener" class="cta-gold">
+      ${t('hero_cta_1')} <span class="arrow" aria-hidden="true">→</span>
+    </a>` +
+    `<a href="/portfolio.html" class="cta-link">${t('hero_cta_2')}</a>` +
+    `<a href="https://zalo.me/0797986525" target="_blank" rel="noopener" class="cta-zalo" aria-label="Nhắn Zalo HAYWEB">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.149 2 11.25c0 2.822 1.298 5.35 3.354 7.1L4.5 22l3.75-1.5C9.6 21.15 10.785 21.5 12 21.5c5.523 0 10-4.149 10-9.25S17.523 2 12 2zm0 16.5c-1.1 0-2.16-.22-3.13-.63l-.22-.1-2.3.92.74-2.22-.17-.24C5.47 14.89 4.5 13.14 4.5 11.25 4.5 7.25 7.86 4 12 4s7.5 3.25 7.5 7.25-3.36 7.25-7.5 7.25z"/></svg>
+      ${vi ? 'Nhắn Zalo' : 'Chat Zalo'}
+    </a>`;
+
+  // meta strip: social proof mono text
+  document.getElementById('hero-meta').innerHTML =
+    `<span>${vi ? '★ 4.9' : '★ 4.9'}</span>` +
+    `<span>·</span>` +
+    `<span>${vi ? '30 dự án bàn giao' : '30 projects delivered'}</span>` +
+    `<span>·</span>` +
+    `<span>${t('hero_cta_micro')}</span>`;
 
   // Pillars (4 trụ cột — varied storytelling)
   document.getElementById('pillars-label').textContent = t('pillars_label');
@@ -821,8 +835,9 @@ function buildPage() {
   renderComparison();
 
   // Stats — dark shock-contrast section, editorial meta line below
-  document.getElementById('stats-grid').innerHTML = stats.map(s => `
-    <div class="stat-item fade-up">
+  // LIFT-5: index 1 (2nd stat) gets .stat-pop for gold-tinted climax tile (MC-3 ascending ramp)
+  document.getElementById('stats-grid').innerHTML = stats.map((s, i) => `
+    <div class="stat-item fade-up${i === 1 ? ' stat-pop' : ''}">
       <div class="stat-number">
         <span data-count="${parseFloat(s.numVI)}">${s.numVI}</span><span class="stat-suffix">${s.suffix}</span>
       </div>
@@ -882,7 +897,7 @@ function buildPage() {
       </div>
     </a>
 
-    <!-- Vert card: HAYWEB Studio — mono classification (no real screenshot yet) -->
+    <!-- Vert card: HAYWEB Studio — PASS 10: real photo (designer + multi-screen, warm tone) -->
     <a href="${p1.url}" target="_blank" rel="noopener" class="folio folio-vert fade-up" data-cursor="true">
       <div class="folio-meta">
         <span class="folio-no">002</span>
@@ -890,12 +905,10 @@ function buildPage() {
       </div>
       <h3 class="folio-title">${vi ? p1.titleVI : p1.titleEN}</h3>
       <p class="folio-desc">${vi ? p1.descVI : p1.descEN}</p>
-      <div class="folio-image folio-image-hayweb" aria-hidden="true">
-        <div class="folio-classify">
-          <span class="folio-classify-id">HW</span>
-          <span class="folio-classify-line">Agency · Stripe · Supabase</span>
-          <span class="folio-classify-line">Báo giá AI · Ký số · Thanh toán</span>
-        </div>
+      <div class="folio-image folio-image-real">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=900&q=80&auto=format&fit=crop"
+             alt="${vi ? p1.titleVI : p1.titleEN}"
+             loading="lazy" width="900" height="900">
       </div>
       <div class="folio-footer">
         <span>Agency · AI Quotes</span>
@@ -903,7 +916,7 @@ function buildPage() {
       </div>
     </a>
 
-    <!-- Small card: HKP Sim Kinh Dịch — mono classification -->
+    <!-- Small card: HKP Sim Kinh Dịch — PASS 10: real photo (warm minimalist workspace) -->
     <a href="${p2.url || '#'}" class="folio folio-small fade-up" data-cursor="true">
       <div class="folio-meta">
         <span class="folio-no">003</span>
@@ -911,12 +924,10 @@ function buildPage() {
       </div>
       <h3 class="folio-title">${vi ? p2.titleVI : p2.titleEN}</h3>
       <p class="folio-desc">${vi ? p2.descVI : p2.descEN}</p>
-      <div class="folio-image folio-image-hkp" aria-hidden="true">
-        <div class="folio-classify">
-          <span class="folio-classify-id">HKP</span>
-          <span class="folio-classify-line">E-com · Sim phong thủy</span>
-          <span class="folio-classify-line">CTV affiliate · Supabase</span>
-        </div>
+      <div class="folio-image folio-image-real">
+        <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80&auto=format&fit=crop"
+             alt="${vi ? p2.titleVI : p2.titleEN}"
+             loading="lazy" width="800" height="600">
       </div>
       <div class="folio-footer">
         <span>E-com · Feng Shui</span>
@@ -948,13 +959,19 @@ function buildPage() {
     : 'From idea to <em>product</em> in 5 steps';
   const procEl = document.getElementById('process-steps');
   procEl.classList.add('process-editorial');
-  procEl.innerHTML = process.map((p, i) => `
-    <div class="process-step fade-up ${i===0?'active':''}">
+  // Task 4 Pass 7: oversized number illustration in card corner (editorial numbered cards)
+  // MC-7: process step 05 (index 4) gets data-nav-dark for nav inversion + ascending-tone dark bg
+  procEl.innerHTML = process.map((p, i) => {
+    const isDark = i === 4;
+    return `
+    <div class="process-step fade-up ${i === 0 ? 'active' : ''}"${isDark ? ' data-nav-dark=""' : ''}>
+      <div class="process-num-bg" aria-hidden="true">${vi ? p.numVI : p.numEN}</div>
       <div class="process-num">${vi ? p.numVI : p.numEN}</div>
       <h4>${vi ? p.stepVI : p.stepEN}</h4>
       <p>${vi ? p.descVI : p.descEN}</p>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   // Pricing — 3-tone tiers (pivot-audit §C #5, demo lift)
   // Starter = cream, Pro = gold-bg + ribbon + lift, Enterprise = black
@@ -983,6 +1000,10 @@ function buildPage() {
     <!-- Tier 2: Pro — gold bg, ribbon, translateY lift (architect §5 exception) -->
     <div class="tier tier-pro fade-up">
       <span class="tier-ribbon">${vi ? 'Phổ biến nhất' : 'Most popular'}</span>
+      <!-- Task 4 Pass 7: gold star SVG badge accent on tier-pro -->
+      <svg class="tier-pro-badge" aria-hidden="true" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="16,3 19.5,12.5 30,12.5 21.5,18.5 24.5,28 16,22.5 7.5,28 10.5,18.5 2,12.5 12.5,12.5" stroke="rgba(166,124,46,0.7)" stroke-width="1.5" fill="none"/>
+      </svg>
       <div class="tier-head">
         <span class="tier-name">${vi ? pricing[1].tierVI : pricing[1].tierEN}</span>
         <span class="tier-tag">${vi ? 'Web app · Đa trang · Tài khoản' : 'Web app · Multi-page · Auth'}</span>
@@ -1018,19 +1039,24 @@ function buildPage() {
   // Testimonials — editorial: 1 oversized pull-quote + 2 standard tiles
   document.getElementById('testi-label').textContent = t('testi_label');
   document.getElementById('testi-title').innerHTML = `${t('testi_title')} <em>${t('testi_title_em')}</em>`;
-  const renderTestimonialCard = (t2, isPullQuote) => `
+  // Task 4 Pass 7: replace SVG avatar with monogram circle (first letter, gold border)
+  const renderTestimonialCard = (t2, isPullQuote) => {
+    const name = vi ? t2.nameVI : t2.nameEN;
+    const initial = name.charAt(0).toUpperCase();
+    return `
     <div class="testimonial-card${isPullQuote ? ' testimonial-pullquote' : ''}">
       <div class="testimonial-stars">${t2.stars}</div>
       <p class="testimonial-text">${vi ? t2.textVI : t2.textEN}</p>
       <div class="testimonial-author">
-        <div class="testimonial-avatar svg-avatar"><img src="${svgAvatar(t2.avatarVariant)}" alt="" loading="lazy"></div>
+        <div class="testimonial-monogram" aria-hidden="true">${initial}</div>
         <div>
-          <div class="testimonial-name">${vi ? t2.nameVI : t2.nameEN}</div>
+          <div class="testimonial-name">${name}</div>
           <div class="testimonial-role">${vi ? t2.roleVI : t2.roleEN}</div>
         </div>
       </div>
     </div>
   `;
+  };
   // Pick the longest testimonial as pull-quote (most impactful when elevated)
   const sortedByLen = [...testimonials].sort((a, b) =>
     ((vi ? b.textVI : b.textEN).length) - ((vi ? a.textVI : a.textEN).length));
@@ -1092,37 +1118,39 @@ function initStrongScrollAnimations() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
   gsap.registerPlugin(ScrollTrigger);
 
-  // Bail immediately if user prefers reduced motion — CSS handles snap-to-position
+  // Bail: CSS at style.css:185-203 restores opacity:1 on hero lines for reduced-motion devices.
+  // If that CSS block is removed, hero content will be invisible — keep them in sync.
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // PATTERN 1 — Hero chiasmus lines slide from far offscreen (alternating left/right)
-  // Targets .line-a / .line-b / .line-c / .line-d / .hero-resolve inside .hero-title
-  // FOUC-safe: gsap.set() primes opacity:0 synchronously BEFORE forEach loop,
-  // so GSAP controls final state from the very first paint tick.
-  // CSS also pre-hides at opacity:0 as belt-and-suspenders (see style.css HERO FOUC block).
-  // Pass 6: converted from gsap.from() to gsap.fromTo() — explicit end state { x:0, opacity:1 }
-  // prevents the set+from race condition where GSAP records END=opacity:0 and animates 0→0.
-  const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d, .hero-title .hero-resolve');
-  // CRITICAL: prime initial state synchronously to prevent FOUC flash (hero-specific, kept from Pass 4)
+  // EFFECT-2 — Hero V-3 typographic reveal: clip-path wipe per line + resolve fade
+  // Lines a/b enter from left, lines c/d enter from right (chiasmus mirror), resolve fades up.
+  // gsap.set() primes opacity:0 synchronously (FOUC belt-and-suspenders).
+  const heroLines = gsap.utils.toArray('.hero-title .line-a, .hero-title .line-b, .hero-title .line-c, .hero-title .line-d');
+  const heroResolve = document.querySelector('.hero-resolve');
   gsap.set(heroLines, { opacity: 0 });
+  if (heroResolve) gsap.set(heroResolve, { opacity: 0 });
+
+  const heroTl = gsap.timeline({ delay: 0.2 });
   heroLines.forEach((line, i) => {
-    const fromX = (i % 2 === 0) ? '-120vw' : '120vw'; // extreme offscreen
-    gsap.fromTo(line,
+    const fromX = (i % 2 === 0) ? '-150vw' : '150vw';
+    heroTl.fromTo(line,
       { x: fromX, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1.4,
-        ease: 'power4.out',
-        delay: i * 0.08,
-        scrollTrigger: {
-          trigger: line,
-          start: 'top 92%',
-          toggleActions: 'play none none none'
-        }
-      }
+      { x: 0, opacity: 1, duration: 1.2, ease: 'power4.out' },
+      i * 0.18
     );
   });
+  if (heroResolve) {
+    heroTl.fromTo(heroResolve,
+      { y: 24, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
+      heroLines.length * 0.18 + 0.1
+    );
+  }
+
+  // Hero supporting elements: eyebrow, CTA row, meta strip — page-load stagger
+  gsap.from('.hero-eyebrow', { y: 30, opacity: 0, duration: 0.8, delay: 0.1, ease: 'power3.out' });
+  gsap.from('.hero-cta-row', { y: 30, opacity: 0, duration: 0.8, delay: 0.7, ease: 'power3.out', overwrite: 'auto' });
+  gsap.from('.hero-meta',    { y: 20, opacity: 0, duration: 0.7, delay: 0.9, ease: 'power3.out', overwrite: 'auto' });
 
   // PATTERN 2 — Section titles slide in from far left
   // Pass 6: removed gsap.set() prime (caused set+from race: END recorded as opacity:0, animated 0→0).
@@ -1273,10 +1301,142 @@ function initStrongScrollAnimations() {
     );
   });
 
+  // PATTERN 9 — Magnetic hover on primary CTAs (Pass 7)
+  // Buttons shift toward cursor 20% of offset. Elastic return on leave.
+  document.querySelectorAll('.btn-primary, .cta-gold, .tier-cta-strong').forEach(btn => {
+    if (btn._magneticCTA) return;
+    btn._magneticCTA = true;
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(btn, { x: x * 0.2, y: y * 0.2, duration: 0.4, ease: 'power2.out' });
+    });
+    btn.addEventListener('mouseleave', () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+    });
+  });
+
+  // PATTERN 10 — Section h2 word-by-word reveal on scroll (Pass 7)
+  // Skips .section-title already handled by Pattern 2 (class overlap guard).
+  // Uses word wrapping — does NOT split em/strong (regex preserves tags).
+  gsap.utils.toArray('section h2:not(.section-title)').forEach(h2 => {
+    const original = h2.innerHTML;
+    // Wrap text nodes only (not HTML tags) — split on whitespace tokens
+    h2.innerHTML = original.replace(/>([^<]+)</g, (match, text) => {
+      return '>' + text.replace(/(\S+)/g, '<span class="hw-word">$1</span>') + '<';
+    });
+    const words = h2.querySelectorAll('.hw-word');
+    if (!words.length) return;
+    gsap.fromTo(words,
+      { y: 60, opacity: 0, rotateX: -45 },
+      {
+        y: 0, opacity: 1, rotateX: 0,
+        duration: 0.8,
+        stagger: 0.05,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: h2, start: 'top 85%', toggleActions: 'play none none none' }
+      }
+    );
+  });
+
+  // PATTERN 11 — Marquee scroll-velocity boost (Pass 7)
+  // Fast scroll → marquee speeds up, then eases back to 64s baseline.
+  let _lastScroll = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const velocity = Math.abs(window.scrollY - _lastScroll);
+    _lastScroll = window.scrollY;
+    const marqueeTrack = document.querySelector('.marquee-track');
+    if (marqueeTrack && velocity > 5) {
+      marqueeTrack.style.animationDuration = Math.max(8, 64 - velocity * 0.5) + 's';
+      setTimeout(() => {
+        if (marqueeTrack) marqueeTrack.style.animationDuration = '64s';
+      }, 800);
+    }
+  }, { passive: true });
+
+  // PATTERN 12 — Stats counter increment from 0 to target (Pass 7)
+  // Combines with Pattern 4 scale-in. Reads data-count attribute set in buildPage() stats render.
+  // Targets .stat-number span[data-count] — the inner span that holds numeric text.
+  gsap.utils.toArray('.stat-number span[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const decimals = (String(target).split('.')[1] || '').length;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target,
+      duration: 2,
+      ease: 'power2.out',
+      onUpdate: () => {
+        el.textContent = obj.val.toFixed(decimals);
+      },
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+    });
+  });
+
   // Refresh ScrollTrigger after all async DOM builds settle
   // (buildPage() is called before this, but just in case of reflows)
   // Pass 5 Option C: explicit refresh after all triggers registered
   ScrollTrigger.refresh();
+}
+
+// Refresh ScrollTrigger positions after window resize
+window.addEventListener('resize', () => {
+  if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+});
+
+// ===== PHASE B — NON-HERO EFFECTS (Pass 1) =====
+
+// EFFECT-9: SVG path-draw on Why-Us accent cell via IntersectionObserver
+function initPathDraw() {
+  const accentCell = document.querySelector('.why-art-cell--accent');
+  if (!accentCell) return;
+  // Already in view on init? Apply immediately (deep-link / fullpage bug protection)
+  const rect = accentCell.getBoundingClientRect();
+  if (rect.top < window.innerHeight) {
+    accentCell.classList.add('drawn');
+    return;
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('drawn');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(accentCell);
+}
+
+// Nav scroll-progress gold line (step 25 — also covers nav-dark process step-05 via [data-nav-dark])
+function initNavScrollProgress() {
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight * 100).toFixed(1) + '%' : '0%';
+    nav.style.setProperty('--scroll-progress', progress);
+  }, { passive: true });
+}
+
+// MC-4 partner stagger IO trigger (re-initialise if needed — CSS animation handles timing)
+function initPartnerStagger() {
+  const logos = document.querySelectorAll('.partner-logo');
+  if (!logos.length) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Force reflow so CSS animation-delay takes effect from visible moment
+        entry.target.style.animationPlayState = 'running';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+  logos.forEach(logo => {
+    logo.style.animationPlayState = 'paused';
+    io.observe(logo);
+  });
 }
 
 async function init() {
@@ -1291,11 +1451,10 @@ async function init() {
   // the dual-system conflict (GSAP inline opacity:0 beats CSS .revealed opacity:1).
   initStrongScrollAnimations();
   initScrollReveal();
+  // Phase B non-hero effects
+  initPathDraw();
+  initNavScrollProgress();
+  initPartnerStagger();
 }
-
-// Refresh ScrollTrigger positions after window resize
-window.addEventListener('resize', () => {
-  if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-});
 
 init();
